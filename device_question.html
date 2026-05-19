@@ -1,0 +1,1863 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cashygo - Issue Check</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --green: #078f61;
+      --green-dark: #056d4b;
+      --green-soft: #eaf8f2;
+      --ink: #121722;
+      --muted: #667085;
+      --line: #e3ebe7;
+      --bg: #f8faf9;
+      --white: #fff;
+      --danger: #d94343;
+      --shadow: 0 18px 42px rgba(13, 72, 54, .12);
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(180deg, #ffffff 0, var(--bg) 260px, var(--bg) 100%);
+      color: var(--ink);
+      font-family: "DM Sans", Arial, sans-serif;
+    }
+
+    button,
+    input {
+      font-family: inherit;
+    }
+
+    .nav,
+    .footer {
+      --text: #0f172a;
+      --border: #e2e8f0;
+      --white: #fff;
+    }
+
+    .page {
+      width: min(1240px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 24px 0 48px;
+    }
+
+    .crumbs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    .crumbs .active {
+      color: var(--ink);
+      font-weight: 800;
+    }
+
+    .page-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: end;
+      margin-bottom: 22px;
+    }
+
+    .flow-steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(120px, 1fr));
+      gap: 10px;
+      min-width: 390px;
+    }
+
+    .flow-step {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, .06);
+    }
+
+    .flow-step strong {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    .flow-step span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--green);
+      background: #e8f7ef;
+      border: 1px solid #c7ead8;
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.08;
+      font-weight: 800;
+    }
+
+    h1 span {
+      color: var(--green);
+    }
+
+    .subtitle {
+      margin: 0 0 10px;
+      color: #4d5562;
+      max-width: 640px;
+      font-size: 15px;
+      line-height: 1.65;
+      font-weight: 500;
+    }
+
+    .progress-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 22px;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .pips {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 8px;
+    }
+
+    .pip {
+      height: 10px;
+      border-radius: 999px;
+      background: #dceae4;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .pip::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      transform: scaleX(0);
+      transform-origin: left;
+      background: var(--green);
+      transition: transform .25s ease;
+    }
+
+    .pip.done::after {
+      transform: scaleX(1);
+    }
+
+    .counter {
+      color: #37564b;
+      font-size: 18px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .counter strong {
+      color: var(--green);
+    }
+
+    .questions {
+      display: grid;
+      gap: 15px;
+    }
+
+    .q-card {
+      display: grid;
+      grid-template-columns: 116px 1fr;
+      gap: 15px;
+      align-items: start;
+      padding: 5px 10px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--white);
+      box-shadow: 0 8px 26px rgba(17, 24, 39, .07);
+      transition: border-color .2s ease, box-shadow .2s ease, opacity .2s ease;
+    }
+
+    .q-card.active,
+    .q-card.done {
+      border-color: #d7eae3;
+      box-shadow: 0 12px 32px rgba(17, 24, 39, .08);
+    }
+
+    .q-card.locked {
+      opacity: .58;
+    }
+
+    .q-icon-box {
+      display: grid;
+      place-items: center;
+      width: 96px;
+      height: 96px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #e9fbf5, #f4fffb);
+      color: var(--green);
+      font-size: 44px;
+    }
+
+    .q-head {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      /* margin-bottom: 14px; */
+    }
+
+    .q-badge {
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: var(--green);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 800;
+      box-shadow: 0 6px 14px rgba(7, 143, 97, .2);
+    }
+
+    .q-title {
+      margin: 3px 0 0;
+      font-size: 15px;
+      line-height: 1.25;
+      font-weight: 700;
+    }
+
+    .q-help {
+      margin: 0 0 20px 35px;
+      color: #5d6673;
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    .answers {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(180px, 1fr));
+      gap: 26px;
+      margin-left: 56px;
+    }
+
+    .answer {
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 18px;
+      min-height: 45px;
+      padding: 0 15px;
+      border: 1.5px solid #dfe5e3;
+      border-radius: 8px;
+      background: #fff;
+      color: #4b5563;
+      font-size: 21px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: border-color .18s ease, box-shadow .18s ease, color .18s ease;
+    }
+
+    .answer:hover,
+    .answer.selected {
+      border-color: rgba(7, 143, 97, .42);
+      box-shadow: 0 8px 18px rgba(7, 143, 97, .08);
+      color: var(--green);
+    }
+
+    .answer.no.selected {
+      border-color: rgba(217, 67, 67, .42);
+      color: var(--danger);
+    }
+
+    .answer-radio {
+      display: grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      border: 2px solid #cfd8d5;
+      border-radius: 50%;
+      color: transparent;
+      font-size: 18px;
+      transition: .18s ease;
+    }
+
+    .answer.selected .answer-radio {
+      border-color: var(--green);
+      background: var(--green);
+      color: #fff;
+    }
+
+    .answer.no.selected .answer-radio {
+      border-color: var(--danger);
+      background: var(--danger);
+    }
+
+    .safe-line {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 32px 4px 0;
+      color: #5e6875;
+      font-size: 17px;
+      font-weight: 500;
+    }
+
+    .safe-line strong {
+      color: var(--ink);
+      font-weight: 800;
+    }
+
+    .safe-line i {
+      color: var(--green);
+      font-size: 26px;
+    }
+
+    .quote {
+      position: sticky;
+      top: 118px;
+      border: 1px solid #cfe8dd;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, .96);
+      box-shadow: var(--shadow);
+      padding: 30px;
+    }
+
+    .device {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      align-items: center;
+      text-align: center;
+      padding-bottom: 30px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .device img {
+      width: min(170px, 70%);
+      height: 210px;
+      object-fit: contain;
+      filter: drop-shadow(0 18px 22px rgba(0, 0, 0, .14));
+      transition: transform .2s ease;
+    }
+
+    .device img:hover {
+      transform: scale(1.03);
+    }
+
+    .device h2 {
+      margin: 0 0 8px;
+      font-size: 30px;
+      line-height: 1.15;
+      font-weight: 800;
+    }
+
+    .device p {
+      margin: 0;
+      color: #535c68;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .quote-price {
+      padding: 32px 0;
+      text-align: center;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .quote-label {
+      color: #5f6873;
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .price {
+      margin: 16px 0 20px;
+      color: var(--green);
+      font-size: 40px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .quote-price p {
+      margin: 0 auto;
+      max-width: 240px;
+      color: #535c68;
+      font-size: 17px;
+      line-height: 1.55;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      padding-top: 28px;
+    }
+
+    .stat {
+      min-height: 94px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #f7faf9;
+      display: grid;
+      place-items: center;
+      text-align: center;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 31px;
+      line-height: 1;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 10px;
+      color: #6c7682;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .finish {
+      width: 100%;
+      min-height: 54px;
+      margin-top: 22px;
+      border: 0;
+      border-radius: 12px;
+      background: var(--green);
+      color: #fff;
+      font-size: 18px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .finish:disabled {
+      opacity: .48;
+      cursor: not-allowed;
+    }
+
+    .trust {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 28px;
+      color: #5e6875;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .trust span {
+      display: block;
+      color: var(--ink);
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 2px;
+    }
+
+    .trust i {
+      color: var(--green);
+      font-size: 24px;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(15, 23, 42, .46);
+      z-index: 50;
+    }
+
+    .modal-backdrop.show {
+      display: flex;
+    }
+
+    .modal {
+      position: static;
+      inset: auto;
+      display: block;
+      width: min(720px, 100%);
+      max-height: calc(100vh - 48px);
+      border-radius: 18px;
+      background: #fff;
+      box-shadow: 0 30px 70px rgba(0, 0, 0, .2);
+      overflow: hidden;
+      z-index: auto;
+    }
+
+    .modal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .modal-head h2 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .close {
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: #fff;
+      cursor: pointer;
+      font-size: 22px;
+    }
+
+    .modal-body {
+      display: grid;
+      gap: 18px;
+      padding: 22px;
+      grid-template-columns: 1fr;
+      max-height: calc(100vh - 140px);
+      overflow-y: auto;
+      background: #f8faf9;
+    }
+
+    .modal-q {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #f5fffb;
+    }
+
+    .modal-q p {
+      margin: 0 0 16px;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .modal-actions .answer {
+      min-width: 132px;
+      min-height: 46px;
+      font-size: 17px;
+      padding: 0 18px;
+    }
+
+    .modal-submit {
+      min-height: 52px;
+      border: 0;
+      border-radius: 12px;
+      background: var(--green);
+      color: #fff;
+      font-size: 18px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .modal-submit:disabled {
+      opacity: .45;
+      cursor: not-allowed;
+    }
+
+    .screen-modal {
+      width: min(860px, 100%);
+    }
+
+    .screen-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .touch-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .screen-card {
+      display: grid;
+      grid-template-rows: auto minmax(34px, auto) auto;
+      gap: 10px;
+      min-height: 210px;
+      padding: 12px;
+      border: 1px solid #dcebe5;
+      border-radius: 14px;
+      background: #fff;
+      color: var(--ink);
+      text-align: center;
+      cursor: pointer;
+      transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+    }
+
+    .screen-card:hover,
+    .screen-card.selected {
+      border-color: var(--green);
+      box-shadow: 0 12px 26px rgba(7, 143, 97, .14);
+      transform: translateY(-1px);
+    }
+
+    .screen-card-img {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 134px;
+      border-radius: 12px;
+      background: #f5fffb;
+      overflow: hidden;
+    }
+
+    .screen-card-img img {
+      width: 82px;
+      height: 116px;
+      object-fit: contain;
+      /* filter: drop-shadow(0 10px 12px rgba(0, 0, 0, .13)); */
+    }
+
+    .screen-card-img i {
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      display: grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      /* background: var(--green); */
+      color: #fff;
+      font-size: 18px;
+    }
+
+    .screen-card-title {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .screen-card-price {
+      display: none;
+    }
+
+    .screen-card-price.free {
+      color: var(--green);
+    }
+
+    .card-check {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      display: grid;
+      place-items: center;
+      width: 24px;
+      height: 24px;
+      border: 2px solid #cfd8d5;
+      border-radius: 8px;
+      background: #fff;
+      color: transparent;
+      font-size: 14px;
+      transition: .18s ease;
+    }
+
+    .screen-card.selected .card-check {
+      border-color: var(--green);
+      background: var(--green);
+      color: #fff;
+    }
+
+    .touch-card {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 16px;
+      align-items: center;
+      padding: 18px;
+      border: 1.5px solid var(--line);
+      border-radius: 14px;
+      background: #fff;
+      color: var(--ink);
+      text-align: left;
+      cursor: pointer;
+      transition: border-color .18s ease, box-shadow .18s ease;
+    }
+
+    .touch-card:hover,
+    .touch-card.selected {
+      border-color: var(--green);
+      box-shadow: 0 10px 22px rgba(7, 143, 97, .1);
+    }
+
+    .touch-card .card-check {
+      position: static;
+    }
+
+    .touch-card.selected .card-check {
+      border-color: var(--green);
+      background: var(--green);
+      color: #fff;
+    }
+
+    .touch-card-title {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .touch-card-desc {
+      display: none;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 500;
+      line-height: 1.35;
+    }
+
+    .touch-card-price {
+      color: var(--danger);
+      font-size: 16px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .touch-card-price.free {
+      color: var(--green);
+    }
+
+    .modal-subtitle {
+      margin: -8px 0 2px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.45;
+    }
+
+    .screen-selected-text {
+      min-height: 22px;
+      margin: 2px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    @media (max-width: 1100px) {
+      .page-head {
+        display: block;
+      }
+
+      .flow-steps {
+        min-width: 0;
+        margin-top: 18px;
+      }
+
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .quote {
+        position: static;
+      }
+
+      .screen-grid {
+        /* grid-template-columns: repeat(2, minmax(0, 1fr)); */
+      }
+
+      .modal {
+        max-height: calc(100vh - 32px);
+      }
+
+      .modal-body {
+        max-height: calc(100vh - 120px);
+      }
+    }
+
+    @media (max-width: 760px) {
+
+      .page {
+        width: 100%;
+        padding: 16px;
+      }
+
+      .crumbs {
+        flex-wrap: wrap;
+      }
+
+      .progress-row {
+        grid-template-columns: 1fr;
+      }
+
+      .flow-steps {
+        /* grid-template-columns: 1fr; */
+      }
+
+      .q-card,
+      .q-card.active {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding: 20px;
+      }
+
+      .q-icon-box {
+        width: 78px;
+        height: 78px;
+        border-radius: 18px;
+        font-size: 36px;
+        display: none;
+      }
+
+      .q-help,
+      .answers {
+        margin-left: 30px;
+      }
+
+      .answers {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .answer {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .trust {
+        text-align: center;
+      }
+
+      .screen-grid {
+        /* grid-template-columns: repeat(2, minmax(0, 1fr)); */
+        gap: 10px;
+      }
+
+      .modal-backdrop {
+        align-items: flex-end;
+        padding: 10px;
+      }
+
+      .modal {
+        width: 100%;
+        max-height: calc(100vh - 20px);
+        border-radius: 18px 18px 12px 12px;
+      }
+
+      .modal-head {
+        padding: 14px 16px;
+      }
+
+      .modal-head h2 {
+        font-size: 17px;
+      }
+
+      .close {
+        width: 36px;
+        height: 36px;
+      }
+
+      .modal-body {
+        gap: 14px;
+        padding: 14px;
+        max-height: calc(100vh - 92px);
+      }
+
+      .screen-card {
+        min-height: 160px;
+        padding: 10px;
+        border-radius: 12px;
+      }
+
+      .screen-card-img {
+        min-height: 96px;
+      }
+
+      .screen-card-img img {
+        width: 58px;
+        height: 82px;
+      }
+
+      .screen-card-title {
+        font-size: 12px;
+      }
+
+      .modal-submit {
+        min-height: 48px;
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-top">
+      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <i class="bi bi-list"></i>
+      </button>
+
+      <a href="/" class="nav-logo" aria-label="Cashygo - Go to homepage">
+        <img src="assets/images/project-logo/logo-new.svg" alt="Cashygo logo" width="120" height="40">
+      </a>
+
+      <div class="nav-search" role="search">
+        <div class="nav-city" id="cityPicker" tabindex="0" aria-haspopup="listbox" aria-label="Select city">
+          <i class="bi bi-geo-alt-fill"></i>
+          <span id="cityLabel">Bangalore</span>
+          <i class="bi bi-chevron-down"></i>
+          <ul class="city-drop" id="cityDrop" role="listbox" aria-label="Select your city">
+            <li role="option" data-city="Delhi">Delhi NCR</li>
+            <li role="option" data-city="Bangalore">Bangalore</li>
+            <li role="option" data-city="Mumbai">Mumbai</li>
+            <li role="option" data-city="Pune">Pune</li>
+            <li role="option" data-city="Hyderabad">Hyderabad</li>
+          </ul>
+        </div>
+        <label for="mainSearch" class="sr-only">Search devices</label>
+        <input type="search" id="mainSearch" name="search" placeholder="Search devices, brands..." autocomplete="off">
+        <div class="search-icon" aria-hidden="true"><i class="bi bi-search"></i></div>
+      </div>
+
+      <button class="nav-login" id="openLoginBtn" aria-label="Sign in to your account">
+        <i class="bi bi-person-circle"></i>
+        <span>Sign in</span>
+      </button>
+    </div>
+
+    <div class="nav-menu" id="navMenu">
+      <div class="nav-menu-inner">
+        <div class="dropdown" id="dropMobile">
+          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Mobile ⌵</button>
+          <ul class="dropdown-menu">
+            <li><a href="Apple_model.html">Apple iPhone</a></li>
+            <li><a href="samsung.html">Samsung Galaxy</a></li>
+            <li><a href="oneplus.html">OnePlus</a></li>
+            <li><a href="google.html">Google Pixel</a></li>
+            <li><a href="xiaomi.html">Xiaomi</a></li>
+            <li><a href="vivo.html">Vivo</a></li>
+          </ul>
+        </div>
+
+        <div class="dropdown" id="dropTablet">
+          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Tablet ⌵</button>
+          <ul class="dropdown-menu">
+            <li><a href="apple-tab.html">Apple Tab</a></li>
+            <li><a href="samsung-tab.html">Samsung Tab</a></li>
+            <li><a href="oneplus-tab.html">OnePlus Tab</a></li>
+            <li><a href="xiaomi-tab.html">Xiaomi Tab</a></li>
+            <li><a href="realme-tab.html">Realme Tab</a></li>
+          </ul>
+        </div>
+
+        <div class="dropdown" id="dropLaptop">
+          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Laptop ⌵</button>
+          <ul class="dropdown-menu">
+            <li><a href="dell.html">Dell</a></li>
+            <li><a href="hp.html">HP</a></li>
+            <li><a href="lenovo.html">Lenovo</a></li>
+            <li><a href="asus.html">Asus</a></li>
+            <li><a href="acer.html">Acer</a></li>
+          </ul>
+        </div>
+
+        <div class="dropdown" id="dropMac">
+          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Mac ⌵</button>
+          <ul class="dropdown-menu">
+            <li><a href="macbook.html">MacBook</a></li>
+            <li><a href="imac.html">iMac</a></li>
+            <li><a href="mac-mini.html">Mac Mini</a></li>
+            <li><a href="macbook-pro.html">MacBook Pro</a></li>
+          </ul>
+        </div>
+
+        <button class="menu-link">Corporate Deals</button>
+        <button class="menu-link">Price Calculator</button>
+        <button class="menu-link">Blog & Tips</button>
+        <button class="menu-link">Partner</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page">
+    <div class="crumbs" aria-label="Breadcrumb">
+      <a href="brand.html">Sell phone</a><i class="bi bi-chevron-right"></i>
+      <a href="Device_condation.html">Condition</a><i class="bi bi-chevron-right"></i>
+      <span id="crumbModel">iPhone</span><i class="bi bi-chevron-right"></i>
+      <span class="active">Issue Check</span>
+    </div>
+
+    <section class="page-head" aria-label="Issue check workflow">
+      <div>
+        <div class="eyebrow"><i class="bi bi-shield-check"></i> Trade-in Evaluation</div>
+        <h1>How's your <span>device</span> doing?</h1>
+        <p class="subtitle">Answer 6 quick questions and we'll update your quote instantly.</p>
+      </div>
+
+      <div class="flow-steps" aria-label="Steps">
+        <div class="flow-step">
+          <strong>1. Variant</strong>
+          <span>Storage and colour</span>
+        </div>
+        <div class="flow-step">
+          <strong>2. Condition</strong>
+          <span>Age and bill details</span>
+        </div>
+        <div class="flow-step">
+          <strong>3. Issues</strong>
+          <span>Functional checks</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="layout">
+      <section>
+        <div class="progress-row">
+          <div class="pips" id="pips" aria-label="Question progress"></div>
+          <div class="counter"><strong id="doneCount">0</strong> of <span id="totalCount">6</span> done</div>
+        </div>
+        
+        <div class="questions" id="questions">
+          
+        </div>
+        <button class="finish" id="finishBtn" type="button" disabled>Complete Issue Check</button>
+        <div class="safe-line"><i class="bi bi-shield-lock"></i><strong>100% Safe & Secure</strong><span>Your data is
+            protected and will not be shared.</span></div>
+
+            
+      </section>
+
+      <aside>
+        <div class="quote">
+          <div class="device">
+            <img id="deviceImage" src="assets/images/Mobile_brand/iPhone 17 Pro Max.avif" alt="iPhone 15" class="cashygo-phone">
+            <div>
+              <h2 id="deviceName">Apple iPhone</h2>
+              <p id="deviceMeta">Storage - Colour</p>
+            </div>
+            
+          </div>
+          <div class="quote-price">
+            <div class="quote-label">Estimated Quote</div>
+            <div class="price" id="quotePrice">&#8377; 0</div>
+            <p>This is an estimated price. Final price may vary after device verification.</p>
+          </div>
+          <div class="stats">
+            <div class="stat"><strong id="answeredStat">0</strong><span>Answered</span></div>
+          <div class="stat"><strong id="remainingStat">6</strong><span>Remaining</span></div>
+          </div>
+          <!-- <button class="finish" id="finishBtn" type="button" disabled>Complete Issue Check</button> -->
+        </div>
+        <div class="trust">
+          <div><i class="bi bi-shield-check"></i><span>Secure</span>100% safe</div>
+          <div><i class="bi bi-rocket-takeoff"></i><span>Quick</span>Get instant quote</div>
+          <div><i class="bi bi-award"></i><span>Trusted</span>50k+ users</div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <div class="modal-backdrop" id="screenPopup" role="dialog" aria-modal="true" aria-labelledby="screenPopupTitle">
+    <div class="modal screen-modal">
+      <div class="modal-head">
+        <h2 id="screenPopupTitle">Select screen issue</h2>
+        <button class="close" id="closeScreenPopup" type="button" aria-label="Close screen issue popup"><i
+            class="bi bi-x"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="screen-grid" id="screenIssueGrid"></div>
+        <button class="modal-submit" id="screenIssueSubmit" type="button" disabled>Save screen issue</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="bodyPopup" role="dialog" aria-modal="true" aria-labelledby="bodyPopupTitle">
+    <div class="modal screen-modal">
+      <div class="modal-head">
+        <h2 id="bodyPopupTitle">Select body issue</h2>
+        <button class="close" id="closeBodyPopup" type="button" aria-label="Close body issue popup"><i
+            class="bi bi-x"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="screen-grid" id="bodyIssueGrid"></div>
+        <p class="screen-selected-text" id="bodyIssueText">Select all body issues that apply.</p>
+        <button class="modal-submit" id="bodyIssueSubmit" type="button" disabled>Save body issues</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="touchPopup" role="dialog" aria-modal="true" aria-labelledby="touchPopupTitle">
+    <div class="modal screen-modal">
+      <div class="modal-head">
+        <h2 id="touchPopupTitle">Select touch condition</h2>
+        <button class="close" id="closeTouchPopup" type="button" aria-label="Close touch issue popup"><i
+            class="bi bi-x"></i></button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-subtitle">Pick the closest match. Each card uses your selected device image.</p>
+        <div class="screen-grid" id="touchIssueGrid"></div>
+        <p class="screen-selected-text" id="touchIssueText">Pick the closest match.</p>
+        <button class="modal-submit" id="touchIssueSubmit" type="button" disabled>Save touch condition</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="warrantyPopup" role="dialog" aria-modal="true" aria-labelledby="warrantyPopupTitle">
+    <div class="modal screen-modal">
+      <div class="modal-head">
+        <h2 id="warrantyPopupTitle">Select warranty detail</h2>
+        <button class="close" id="closeWarrantyPopup" type="button" aria-label="Close warranty popup"><i
+            class="bi bi-x"></i></button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-subtitle">Choose the warranty proof available for your device.</p>
+        <div class="screen-grid" id="warrantyGrid"></div>
+        <p class="screen-selected-text" id="warrantyText">Pick the closest match.</p>
+        <button class="modal-submit" id="warrantySubmit" type="button" disabled>Save warranty detail</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="batteryPopup" role="dialog" aria-modal="true" aria-labelledby="batteryPopupTitle">
+    <div class="modal screen-modal">
+      <div class="modal-head">
+        <h2 id="batteryPopupTitle">Select battery issue</h2>
+        <button class="close" id="closeBatteryPopup" type="button" aria-label="Close battery issue popup"><i
+            class="bi bi-x"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="screen-grid" id="batteryIssueGrid"></div>
+        <p class="screen-selected-text" id="batteryIssueText">Pick the closest match.</p>
+        <button class="modal-submit" id="batteryIssueSubmit" type="button" disabled>Save battery issue</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <section class="section" style="max-width:800px" aria-label="Frequently asked questions">
+    <div class="faq-header">
+      <h2>Frequently <span>Asked</span> Questions</h2>
+      <p>Everything you need to know before selling your device</p>
+    </div>
+    <details class="faq-item">
+      <summary>How do I sell my device? <span class="faq-icon">+</span></summary>
+      <div class="faq-answer">Select your device, check the price, schedule pickup, and get paid instantly after
+        verification.</div>
+    </details>
+    <details class="faq-item">
+      <summary>How is the price calculated? <span class="faq-icon">+</span></summary>
+      <div class="faq-answer">Price depends on device condition, market demand, and current resale value.</div>
+    </details>
+    <details class="faq-item">
+      <summary>Is pickup free? <span class="faq-icon">+</span></summary>
+      <div class="faq-answer">Yes, doorstep pickup is completely free with no hidden charges.</div>
+    </details>
+    <details class="faq-item">
+      <summary>When will I get payment? <span class="faq-icon">+</span></summary>
+      <div class="faq-answer">Payment is processed instantly after device verification during pickup.</div>
+    </details>
+  </section>
+   <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">
+            <img src="assets/images/project-logo/logo-new.svg" alt="Cashygo" loading="lazy">
+          </div>
+          <p class="footer-desc">India's most trusted device buyback platform. Instant pricing, free doorstep pickup,
+            and instant payment.</p>
+          <div class="social-links" aria-label="Follow us on social media">
+            <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>SELL</h4>
+          <ul>
+            <li><a href="#">Sell Mobile</a></li>
+            <li><a href="#">Sell Laptop</a></li>
+            <li><a href="#">Sell Tablet</a></li>
+            <li><a href="#">Sell MacBook</a></li>
+            <li><a href="#">Sell Smartwatch</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>COMPANY</h4>
+          <ul>
+            <li><a href="#">About Cashygo</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Partner With Us</a></li>
+            <li><a href="#">Press & Media</a></li>
+            <li><a href="#">Blog & Tips</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>SUPPORT</h4>
+          <ul>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Contact Support</a></li>
+            <li><a href="#">Return Policy</a></li>
+            <li><a href="#">Privacy & Security</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col footer-contact">
+          <h4>CONTACT</h4>
+          <address>
+            <p><i class="bi bi-envelope"></i><a href="mailto:hr@cashygo.com">hr@cashygo.com</a></p>
+            <p><i class="bi bi-telephone"></i><a href="tel:+917766071191">+91 7766071191</a></p>
+            <p><i class="bi bi-geo-alt"></i>Bangalore, Karnataka, India</p>
+          </address>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-links-row">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms & Conditions</a>
+          <a href="#">Refund Policy</a>
+          <a href="#">Sitemap</a>
+        </div>
+        <div class="payment-row" aria-label="Secure payment methods">
+          <span>Secure payments:</span>
+          <i class="bi bi-credit-card" title="Credit/Debit Card"></i>
+          <i class="bi bi-bank" title="Bank Transfer"></i>
+          <i class="bi bi-wallet2" title="Digital Wallet"></i>
+        </div>
+        <p>© 2026 Cashygo — Resale Redefined</p>
+      </div>
+    </div>
+  </footer>
+  <script>
+    const cityPicker = document.getElementById("cityPicker");
+    const cityLabel = document.getElementById("cityLabel");
+    const hamburger = document.getElementById("hamburger");
+    const navMenu = document.getElementById("navMenu");
+
+    cityPicker.addEventListener("click", event => {
+      event.stopPropagation();
+      cityPicker.classList.toggle("open");
+    });
+
+    cityPicker.querySelectorAll("li").forEach(item => {
+      item.addEventListener("click", event => {
+        event.stopPropagation();
+        cityLabel.textContent = item.dataset.city;
+        cityPicker.classList.remove("open");
+      });
+    });
+
+    hamburger.addEventListener("click", () => {
+      const open = navMenu.classList.toggle("open");
+      hamburger.setAttribute("aria-expanded", open);
+    });
+
+    document.querySelectorAll(".dropdown").forEach(dropdown => {
+      dropdown.querySelector(".dropdown-btn").addEventListener("click", event => {
+        event.stopPropagation();
+        const wasOpen = dropdown.classList.contains("open");
+        document.querySelectorAll(".dropdown").forEach(item => item.classList.remove("open"));
+        if (!wasOpen) dropdown.classList.add("open");
+      });
+    });
+
+    document.addEventListener("click", event => {
+      if (!cityPicker.contains(event.target)) cityPicker.classList.remove("open");
+      document.querySelectorAll(".dropdown").forEach(item => item.classList.remove("open"));
+    });
+
+    const Qs = [
+      { id: "calls", title: "Are you able to make and receive calls?", hint: "Please check your device for any cellular network connectivity issues.", opts: ["Yes", "No"], score: { Yes: 0, No: -15000 }, label: "Cellular", icon: "bi-telephone-fill" },
+      { id: "touch", title: "Is your phone's screen original?", hint: "Select Yes if the screen has never been replaced or was replaced by an Authorized Service Center. Select No if the screen was replaced at a local repair shop.", opts: ["Yes", "No"], score: { Yes: 0, No: 0 }, label: "Original screen", icon: "bi-hand-index-thumb" },
+      { id: "screen", title: "Is your device's touch screen working properly?", hint: "Please check whether your phone's touchscreen is functioning correctly.", opts: ["Yes", "No"], score: { Yes: 0, No: 0 }, label: "Touch screen", icon: "bi-phone" },
+      { id: "warranty", title: "Is there any damage to your phone's body?", hint: "Check for dents, cracks, scratches, or bends on the phone body.", opts: ["Yes", "No"], score: { Yes: 0, No: 0 }, label: "Body damage", icon: "bi-shield-check" },
+      { id: "battery", title: "Is there any battery issue with your phone?", hint: "Check for fast battery drain, overheating, swelling, charging issues, or battery health below 80%.", opts: ["Yes", "No"], score: { Yes: 0, No: 0 }, label: "Battery issue", icon: "bi-battery-half" },
+      { id: "esim", title: "How many eSIMs does your device support?", hint: "Select Dual eSIM if your device supports two eSIMs. Otherwise, select Single eSIM.", opts: ["Single eSIM", "Dual eSIM"], score: { "Single eSIM": 0, "Dual eSIM": 2000 }, label: "eSIM type", icon: "bi-sim-fill" }
+    ];
+
+    const questions = Qs;
+
+    const screenIssues = [
+      { id: "crack", title: "Cracked glass", icon: "bi-bandaid", image: "assets/images/Glass section/Chipped Corners Around Screen.png", price: 4500 },
+      { id: "lines", title: "Lines / green display", icon: "bi-distribute-vertical", image: "assets/images/spot on display/lines on display.png", price: 6500 },
+      { id: "spots", title: "Black spots / bleeding", icon: "bi-circle-half", image: "assets/images/spot on display/Screen Has One or Two Small Spots.png", price: 5800 },
+      { id: "duplicate", title: "Duplicate display", icon: "bi-phone-flip", image: "assets/images/spot on display/Visible Background Issue on Screen.png", price: 7200 },
+      { id: "discoloration", title: "Heavy discoloration", icon: "bi-palette", image: "assets/images/spot on display/Heavy Discoloration Visible on Screen.png", price: 6200 },
+      { id: "scratches", title: "Multiple scratches", icon: "bi-slash-lg", image: "assets/images/Glass section/Screen Has Multiple Visible Scratches.png", price: 2600 }
+    ];
+
+    const bodyIssues = [
+      { id: "dent", title: "Dents / bent frame", icon: "bi-phone-vibrate", image: "assets/images/Mobile_brand/iPhone 16 Pro.avif", price: 1800 },
+      { id: "back", title: "Back panel damaged", icon: "bi-phone-flip", image: "assets/images/Mobile_brand/Sell iPhone 16 Pro Max.avif", price: 2200 },
+      { id: "buttons", title: "Buttons not working", icon: "bi-toggle2-off", image: "assets/images/functional issues/Volume Button not working.png", price: 1400 },
+      { id: "camera-glass", title: "Camera glass broken", icon: "bi-camera", image: "assets/images/functional issues/Back Camera Broken.png", price: 1600 },
+      { id: "charging-port", title: "Charging port issue", icon: "bi-usb-plug", image: "assets/images/functional issues/Charging Port not working.png", price: 1900 },
+      { id: "speaker", title: "Speaker faulty", icon: "bi-volume-mute", image: "assets/images/functional issues/Speaker Faulty.png", price: 1500 }
+    ];
+
+    const touchIssues = [
+      { id: "duplicate-display", title: "Local / duplicate screen", desc: "Screen was replaced outside authorized service", icon: "bi-phone-flip", image: "assets/images/spot on display/Light Discoloration Visible on Screen.png", price: 10000, label: "-₹10,000" },
+      { id: "touch-lag", title: "Touch lag", desc: "Touch responds slowly or misses taps", icon: "bi-hand-index-thumb", image: "assets/images/spot on display/Multiple Small Spots Present on Display.png", price: 6000, label: "-₹6,000" },
+      { id: "ghost-touch", title: "Ghost touch", desc: "Screen taps automatically without touch", icon: "bi-hand-index", image: "assets/images/Glass section/yellow issue in display border.png", price: 8000, label: "-₹8,000" },
+      { id: "dead-zone", title: "Touch dead zone", desc: "Some part of screen is not responding", icon: "bi-bounding-box", image: "assets/images/spot on display/Large Patchy Spots on Display.png", price: 12000, label: "-₹12,000" }
+    ];
+
+    const warrantyDetails = [
+      { id: "gst-bill", title: "GST bill available", desc: "Manufacturer warranty with valid GST invoice", icon: "bi-receipt-cutoff", price: 0, label: "Best proof" },
+      { id: "digital-invoice", title: "Digital invoice", desc: "Invoice is available as email or PDF", icon: "bi-file-earmark-check", price: 0, label: "Accepted" },
+      { id: "no-bill", title: "No bill", desc: "Warranty may not be verified during pickup", icon: "bi-file-earmark-x", price: 1800, label: "-₹1,800" },
+      { id: "expired", title: "Warranty expired", desc: "Manufacturer warranty is no longer active", icon: "bi-shield-x", price: 5000, label: "-₹5,000" }
+    ];
+
+    const batteryIssues = [
+      { id: "battery-health", title: "Battery health below 80%", desc: "Battery backup is weak or service warning is visible", icon: "bi-battery-half", image: "assets/images/Mobile_brand/iPhone 15 Pro.avif", price: 3000, label: "-₹3,000" },
+      { id: "fast-drain", title: "Fast battery drain", desc: "Charge drops quickly during normal use", icon: "bi-lightning-charge", image: "assets/images/Mobile_brand/iPhone 17e.avif", price: 2500, label: "-₹2,500" },
+      { id: "charging-issue", title: "Charging issue", desc: "Phone charges slowly or disconnects often", icon: "bi-plug", image: "assets/images/functional issues/Charging Port not working.png", price: 3500, label: "-₹3,500" },
+      { id: "heating", title: "Heating issue", desc: "Phone gets hot during charging or normal use", icon: "bi-thermometer-high", image: "assets/images/Mobile_brand/iPhone Air.avif", price: 2800, label: "-₹2,800" }
+    ];
+
+    const state = { active: 0, answers: {}, screenIssue: [], bodyIssues: [], touchIssue: [], warrantyDetail: null, batteryIssue: [], basePrice: 64000 };
+    const rupee = new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 });
+    const pips = document.getElementById("pips");
+    const questionWrap = document.getElementById("questions");
+    const doneCount = document.getElementById("doneCount");
+    const totalCount = document.getElementById("totalCount");
+    const answeredStat = document.getElementById("answeredStat");
+    const remainingStat = document.getElementById("remainingStat");
+    const quotePrice = document.getElementById("quotePrice");
+    const finishBtn = document.getElementById("finishBtn");
+    const screenPopup = document.getElementById("screenPopup");
+    const screenIssueGrid = document.getElementById("screenIssueGrid");
+    const screenIssueSubmit = document.getElementById("screenIssueSubmit");
+    const bodyPopup = document.getElementById("bodyPopup");
+    const bodyIssueGrid = document.getElementById("bodyIssueGrid");
+    const bodyIssueText = document.getElementById("bodyIssueText");
+    const bodyIssueSubmit = document.getElementById("bodyIssueSubmit");
+    const touchPopup = document.getElementById("touchPopup");
+    const touchIssueGrid = document.getElementById("touchIssueGrid");
+    const touchIssueText = document.getElementById("touchIssueText");
+    const touchIssueSubmit = document.getElementById("touchIssueSubmit");
+    const warrantyPopup = document.getElementById("warrantyPopup");
+    const warrantyGrid = document.getElementById("warrantyGrid");
+    const warrantyText = document.getElementById("warrantyText");
+    const warrantySubmit = document.getElementById("warrantySubmit");
+    const batteryPopup = document.getElementById("batteryPopup");
+    const batteryIssueGrid = document.getElementById("batteryIssueGrid");
+    const batteryIssueText = document.getElementById("batteryIssueText");
+    const batteryIssueSubmit = document.getElementById("batteryIssueSubmit");
+    let screenDeviceImage = "assets/images/brand-img/iphone-air.jpeg";
+
+    function readSelection() {
+      const fallback = { model: "iPhone 15", storage: "128 GB", color: "Black", price: 64000, image: "assets/images/brand-img/iphone-air.jpeg" };
+      try {
+        return { ...fallback, ...JSON.parse(sessionStorage.getItem("cashygoSelection") || "{}") };
+      } catch (error) {
+        return fallback;
+      }
+    }
+
+    function readCondition() {
+      const fallback = { age: "0 to 3 months", billBox: "Not selected" };
+      try {
+        return { ...fallback, ...JSON.parse(sessionStorage.getItem("cashygoCondition") || "{}") };
+      } catch (error) {
+        return fallback;
+      }
+    }
+
+    function answeredCount() {
+      return questions.filter((question) => isQuestionComplete(question.id)).length;
+    }
+
+    function isQuestionComplete(id) {
+      if (!state.answers[id]) return false;
+      return true;
+    }
+
+    function currentQuote() {
+      let price = state.basePrice;
+      questions.forEach((question) => {
+        const answer = state.answers[question.id];
+        if (answer) price += question.score[answer] || 0;
+      });
+      state.screenIssue.forEach((issue) => {
+        price -= issue.price;
+      });
+      state.bodyIssues.forEach((issue) => {
+        price -= issue.price;
+      });
+      state.touchIssue.forEach((issue) => {
+        price -= issue.price;
+      });
+      if (state.warrantyDetail) price -= state.warrantyDetail.price;
+      state.batteryIssue.forEach((issue) => {
+        price -= issue.price;
+      });
+      return Math.max(price, 0);
+    }
+
+    function buildOrderSummary() {
+      const deductions = [];
+      questions.forEach((question) => {
+        const answer = state.answers[question.id];
+        const amount = answer ? question.score[answer] || 0 : 0;
+        if (amount < 0) {
+          deductions.push({ label: question.label, amount: Math.abs(amount) });
+        }
+      });
+      state.screenIssue.forEach((issue) => deductions.push({ label: issue.title, amount: issue.price }));
+      state.bodyIssues.forEach((issue) => deductions.push({ label: issue.title, amount: issue.price }));
+      state.touchIssue.forEach((issue) => deductions.push({ label: issue.title, amount: issue.price }));
+      if (state.warrantyDetail?.price) deductions.push({ label: state.warrantyDetail.title, amount: state.warrantyDetail.price });
+      state.batteryIssue.forEach((issue) => deductions.push({ label: issue.title, amount: issue.price }));
+      return {
+        selection: readSelection(),
+        condition: readCondition(),
+        basePrice: state.basePrice,
+        finalQuote: currentQuote(),
+        answers: { ...state.answers },
+        deductions,
+        completedAt: new Date().toISOString()
+      };
+    }
+
+    function saveOrderSummary() {
+      sessionStorage.setItem("cashygoIssueSummary", JSON.stringify(buildOrderSummary()));
+    }
+
+    function renderProgress() {
+      const done = answeredCount();
+      const nextPopup = needsIssuePopup();
+      pips.innerHTML = questions.map((_, index) => `<span class="pip ${index < done ? "done" : ""}"></span>`).join("");
+      doneCount.textContent = done;
+      totalCount.textContent = questions.length;
+      answeredStat.textContent = done;
+      remainingStat.textContent = Math.max(questions.length - done, 0);
+      quotePrice.textContent = rupee.format(currentQuote());
+      finishBtn.disabled = done !== questions.length;
+      finishBtn.textContent = nextPopup ? "Select issue details" : "Continue";
+    }
+
+    function needsIssuePopup() {
+      if (state.answers.screen === "Yes" && !state.screenIssue.length) return "screen";
+      if (state.answers.touch === "Yes" && !state.touchIssue.length) return "touch";
+      if (state.answers.warranty === "Yes" && !state.bodyIssues.length) return "body";
+      if (state.answers.battery === "Yes" && !state.batteryIssue.length) return "battery";
+      return "";
+    }
+
+    function openNextRequiredPopup() {
+      const nextPopup = needsIssuePopup();
+      if (nextPopup === "screen") openScreenPopup();
+      if (nextPopup === "touch") openTouchPopup();
+      if (nextPopup === "body") openBodyPopup();
+      if (nextPopup === "battery") openBatteryPopup();
+    }
+
+    function resetDependentPopup(answerId, answerValue) {
+      if (answerId === "screen" && answerValue !== "Yes") {
+        state.screenIssue = [];
+      }
+      if (answerId === "touch" && answerValue !== "Yes") {
+        state.touchIssue = [];
+      }
+      if (answerId === "warranty" && answerValue !== "Yes") {
+        state.bodyIssues = [];
+      }
+      if (answerId === "battery" && answerValue !== "Yes") {
+        state.batteryIssue = [];
+      }
+    }
+
+    function selectedSummary(items, label) {
+      return items.length
+        ? `${items.length} ${label}${items.length > 1 ? "s" : ""} selected.`
+        : `Select all ${label}s that apply.`;
+    }
+
+    function renderScreenIssues() {
+      screenIssueGrid.innerHTML = screenIssues.map((issue) => {
+        const selected = state.screenIssue.some((item) => item.id === issue.id);
+        return `
+          <button class="screen-card ${selected ? "selected" : ""}" type="button" data-screen-issue="${issue.id}">
+            <span class="screen-card-img">
+              <span class="card-check"><i class="bi bi-check-lg"></i></span>
+              <img src="${issue.image || screenDeviceImage}" alt="${issue.title}">
+              <i class="bi ${issue.icon}"></i>
+            </span>
+            <span class="screen-card-title">${issue.title}</span>
+            <span class="screen-card-price">-${rupee.format(issue.price)}</span>
+          </button>
+        `;
+      }).join("");
+
+      screenIssueGrid.querySelectorAll("[data-screen-issue]").forEach((card) => {
+        card.addEventListener("click", () => {
+          const issue = screenIssues.find((item) => item.id === card.dataset.screenIssue);
+          const selected = state.screenIssue.some((item) => item.id === issue.id);
+          state.screenIssue = selected
+            ? state.screenIssue.filter((item) => item.id !== issue.id)
+            : [...state.screenIssue, issue];
+          screenIssueSubmit.disabled = !state.screenIssue.length;
+          renderScreenIssues();
+          renderProgress();
+        });
+      });
+    }
+
+    function openScreenPopup() {
+      renderScreenIssues();
+      screenIssueSubmit.disabled = !state.screenIssue.length;
+      screenPopup.classList.add("show");
+    }
+
+    function closeScreenPopup() {
+      screenPopup.classList.remove("show");
+    }
+
+    function renderBodyIssues() {
+      bodyIssueGrid.innerHTML = bodyIssues.map((issue) => {
+        const selected = state.bodyIssues.some((item) => item.id === issue.id);
+        return `
+          <button class="screen-card ${selected ? "selected" : ""}" type="button" data-body-issue="${issue.id}">
+            <span class="screen-card-img">
+              <span class="card-check"><i class="bi bi-check-lg"></i></span>
+              <img src="${issue.image || screenDeviceImage}" alt="${issue.title}">
+              <i class="bi ${issue.icon}"></i>
+            </span>
+            <span class="screen-card-title">${issue.title}</span>
+            <span class="screen-card-price">-${rupee.format(issue.price)}</span>
+          </button>
+        `;
+      }).join("");
+
+      bodyIssueGrid.querySelectorAll("[data-body-issue]").forEach((card) => {
+        card.addEventListener("click", () => {
+          const issue = bodyIssues.find((item) => item.id === card.dataset.bodyIssue);
+          const selected = state.bodyIssues.some((item) => item.id === issue.id);
+          state.bodyIssues = selected
+            ? state.bodyIssues.filter((item) => item.id !== issue.id)
+            : [...state.bodyIssues, issue];
+          bodyIssueText.textContent = selectedSummary(state.bodyIssues, "body issue");
+          bodyIssueSubmit.disabled = !state.bodyIssues.length;
+          renderBodyIssues();
+          renderProgress();
+        });
+      });
+    }
+
+    function openBodyPopup() {
+      renderBodyIssues();
+      bodyIssueText.textContent = selectedSummary(state.bodyIssues, "body issue");
+      bodyIssueSubmit.disabled = !state.bodyIssues.length;
+      bodyPopup.classList.add("show");
+    }
+
+    function closeBodyPopup() {
+      bodyPopup.classList.remove("show");
+    }
+
+    function renderTouchIssues() {
+      touchIssueGrid.innerHTML = touchIssues.map((issue) => {
+        const selected = state.touchIssue.some((item) => item.id === issue.id);
+        return `
+          <button class="screen-card ${selected ? "selected" : ""}" type="button" data-touch-issue="${issue.id}">
+            <span class="screen-card-img">
+              <span class="card-check"><i class="bi bi-check-lg"></i></span>
+              <img src="${issue.image || screenDeviceImage}" alt="${issue.title}">
+              <i class="bi ${issue.icon}"></i>
+            </span>
+            <span class="screen-card-title">${issue.title}</span>
+            <span class="touch-card-desc">${issue.desc}</span>
+            <span class="screen-card-price ${issue.price === 0 ? "free" : ""}">${issue.label}</span>
+          </button>
+        `;
+      }).join("");
+
+      touchIssueGrid.querySelectorAll("[data-touch-issue]").forEach((card) => {
+        card.addEventListener("click", () => {
+          const issue = touchIssues.find((item) => item.id === card.dataset.touchIssue);
+          const selected = state.touchIssue.some((item) => item.id === issue.id);
+          state.touchIssue = selected
+            ? state.touchIssue.filter((item) => item.id !== issue.id)
+            : [...state.touchIssue, issue];
+          touchIssueText.textContent = selectedSummary(state.touchIssue, "touch issue");
+          touchIssueSubmit.disabled = !state.touchIssue.length;
+          renderTouchIssues();
+          renderProgress();
+        });
+      });
+    }
+
+    function openTouchPopup() {
+      renderTouchIssues();
+      touchIssueText.textContent = selectedSummary(state.touchIssue, "touch issue");
+      touchIssueSubmit.disabled = !state.touchIssue.length;
+      touchPopup.classList.add("show");
+    }
+
+    function closeTouchPopup() {
+      touchPopup.classList.remove("show");
+    }
+
+    function renderWarrantyDetails() {
+      warrantyGrid.innerHTML = warrantyDetails.map((detail) => {
+        const selected = state.warrantyDetail?.id === detail.id;
+        return `
+          <button class="screen-card ${selected ? "selected" : ""}" type="button" data-warranty-detail="${detail.id}">
+            <span class="screen-card-img">
+              <span class="card-check"><i class="bi bi-check-lg"></i></span>
+              <img src="${detail.image || screenDeviceImage}" alt="${detail.title}">
+              <i class="bi ${detail.icon}"></i>
+            </span>
+            <span class="screen-card-title">${detail.title}</span>
+            <span class="touch-card-desc">${detail.desc}</span>
+            <span class="screen-card-price ${detail.price === 0 ? "free" : ""}">${detail.label}</span>
+          </button>
+        `;
+      }).join("");
+
+      warrantyGrid.querySelectorAll("[data-warranty-detail]").forEach((card) => {
+        card.addEventListener("click", () => {
+          state.warrantyDetail = warrantyDetails.find((item) => item.id === card.dataset.warrantyDetail);
+          warrantyText.textContent = state.warrantyDetail.price
+            ? `${state.warrantyDetail.title} selected. Quote reduced by ${rupee.format(state.warrantyDetail.price)}.`
+            : `${state.warrantyDetail.title} selected. No extra deduction.`;
+          warrantySubmit.disabled = false;
+          renderWarrantyDetails();
+          renderProgress();
+        });
+      });
+    }
+
+    function openWarrantyPopup() {
+      renderWarrantyDetails();
+      warrantyText.textContent = state.warrantyDetail
+        ? `${state.warrantyDetail.title} selected.`
+        : "Pick the closest match.";
+      warrantySubmit.disabled = !state.warrantyDetail;
+      warrantyPopup.classList.add("show");
+    }
+
+    function closeWarrantyPopup() {
+      warrantyPopup.classList.remove("show");
+    }
+
+    function renderBatteryIssues() {
+      batteryIssueGrid.innerHTML = batteryIssues.map((issue) => {
+        const selected = state.batteryIssue.some((item) => item.id === issue.id);
+        return `
+          <button class="screen-card ${selected ? "selected" : ""}" type="button" data-battery-issue="${issue.id}">
+            <span class="screen-card-img">
+              <span class="card-check"><i class="bi bi-check-lg"></i></span>
+              <img src="${issue.image || screenDeviceImage}" alt="${issue.title}">
+              <i class="bi ${issue.icon}"></i>
+            </span>
+            <span class="screen-card-title">${issue.title}</span>
+            <span class="touch-card-desc">${issue.desc}</span>
+            <span class="screen-card-price">${issue.label}</span>
+          </button>
+        `;
+      }).join("");
+
+      batteryIssueGrid.querySelectorAll("[data-battery-issue]").forEach((card) => {
+        card.addEventListener("click", () => {
+          const issue = batteryIssues.find((item) => item.id === card.dataset.batteryIssue);
+          const selected = state.batteryIssue.some((item) => item.id === issue.id);
+          state.batteryIssue = selected
+            ? state.batteryIssue.filter((item) => item.id !== issue.id)
+            : [...state.batteryIssue, issue];
+          batteryIssueText.textContent = selectedSummary(state.batteryIssue, "battery issue");
+          batteryIssueSubmit.disabled = !state.batteryIssue.length;
+          renderBatteryIssues();
+          renderProgress();
+        });
+      });
+    }
+
+    function openBatteryPopup() {
+      renderBatteryIssues();
+      batteryIssueText.textContent = selectedSummary(state.batteryIssue, "battery issue");
+      batteryIssueSubmit.disabled = !state.batteryIssue.length;
+      batteryPopup.classList.add("show");
+    }
+
+    function closeBatteryPopup() {
+      batteryPopup.classList.remove("show");
+    }
+
+    function renderQuestions() {
+      questionWrap.innerHTML = questions.map((question, index) => {
+        const answer = state.answers[question.id];
+        const isActive = state.active === index;
+        const done = isQuestionComplete(question.id);
+        const locked = index > answeredCount();
+        const options = question.opts.map((option) => `
+          <button class="answer ${option === "No" ? "no" : ""} ${answer === option ? "selected" : ""}" type="button" data-answer="${option}" data-id="${question.id}">
+            <span class="answer-radio"><i class="bi bi-check-lg"></i></span>
+            <span>${option}</span>
+          </button>
+        `).join("");
+        return `
+          <article class="q-card ${isActive ? "active" : ""} ${done ? "done" : ""} ${locked ? "locked" : ""}" data-index="${index}">
+            <div class="q-icon-box"><i class="bi ${question.icon}"></i></div>
+            <div>
+              <div class="q-head">
+                <div class="q-badge">${index + 1}</div>
+                <h2 class="q-title">${question.title}</h2>
+              </div>
+              <p class="q-help">${question.hint}</p>
+              <div class="answers">
+                ${options}
+              </div>
+            </div>
+          </article>`;
+      }).join("");
+
+      questionWrap.querySelectorAll(".q-card").forEach((card) => {
+        card.addEventListener("click", (event) => {
+          if (event.target.closest(".answer")) return;
+          const index = Number(card.dataset.index);
+          if (index <= answeredCount()) {
+            state.active = index;
+            renderQuestions();
+          }
+        });
+      });
+
+      questionWrap.querySelectorAll("[data-answer]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const answerId = button.dataset.id;
+          const answerValue = button.dataset.answer;
+          state.answers[answerId] = answerValue;
+          resetDependentPopup(answerId, answerValue);
+          state.active = Math.min(answeredCount(), questions.length - 1);
+          renderQuestions();
+          renderProgress();
+          if (["screen", "touch", "warranty", "battery"].includes(answerId) && answerValue === "Yes") {
+            window.setTimeout(openNextRequiredPopup, 120);
+          } else if (answeredCount() === questions.length) {
+            window.setTimeout(openNextRequiredPopup, 220);
+          }
+        });
+      });
+    }
+
+    document.getElementById("closeScreenPopup").addEventListener("click", closeScreenPopup);
+    document.getElementById("closeBodyPopup").addEventListener("click", closeBodyPopup);
+    document.getElementById("closeTouchPopup").addEventListener("click", closeTouchPopup);
+    document.getElementById("closeWarrantyPopup").addEventListener("click", closeWarrantyPopup);
+    document.getElementById("closeBatteryPopup").addEventListener("click", closeBatteryPopup);
+
+    screenIssueSubmit.addEventListener("click", () => {
+      if (!state.screenIssue.length) return;
+      closeScreenPopup();
+      renderProgress();
+      window.setTimeout(openNextRequiredPopup, 120);
+    });
+
+    bodyIssueSubmit.addEventListener("click", () => {
+      if (!state.bodyIssues.length) return;
+      closeBodyPopup();
+      renderProgress();
+    });
+
+    touchIssueSubmit.addEventListener("click", () => {
+      if (!state.touchIssue.length) return;
+      closeTouchPopup();
+      renderProgress();
+      window.setTimeout(openNextRequiredPopup, 120);
+    });
+
+    warrantySubmit.addEventListener("click", () => {
+      if (!state.warrantyDetail) return;
+      closeWarrantyPopup();
+      renderProgress();
+      window.setTimeout(openNextRequiredPopup, 120);
+    });
+
+    batteryIssueSubmit.addEventListener("click", () => {
+      if (!state.batteryIssue.length) return;
+      closeBatteryPopup();
+      renderProgress();
+      window.setTimeout(openNextRequiredPopup, 120);
+    });
+
+    finishBtn.addEventListener("click", () => {
+      if (finishBtn.disabled) return;
+      if (needsIssuePopup()) {
+        openNextRequiredPopup();
+        return;
+      }
+      saveOrderSummary();
+      window.location.href = "device_issu.html";
+    });
+
+    const selection = readSelection();
+    const conditionSelection = readCondition();
+    state.basePrice = Number(selection.price) || 64000;
+    document.getElementById("deviceName").textContent = selection.model;
+    document.getElementById("deviceMeta").textContent = `${selection.storage} - ${selection.color} - ${conditionSelection.age}`;
+    document.getElementById("crumbModel").textContent = selection.model;
+    document.getElementById("deviceImage").src = selection.image;
+    document.getElementById("deviceImage").alt = selection.model;
+    screenDeviceImage = selection.image;
+    document.getElementById("deviceImage").onerror = (event) => {
+      event.currentTarget.src = "assets/images/Mobile_brand/iPhone 17 Pro Max.avif";
+      screenDeviceImage = "assets/images/Mobile_brand/iPhone 17 Pro Max.avif";
+    };
+
+    renderQuestions();
+    renderProgress();
+  </script>
+</body>
+
+</html>

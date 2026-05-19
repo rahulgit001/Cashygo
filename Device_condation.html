@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Cashygo Device Check</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/verient.css">
+
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --primary: #0d8c60;
+      --primary-dark: #0a6f4d;
+      --primary-light: #e8f7ef;
+      --white: #fff;
+      --black: #111827;
+      --text: #4b5563;
+      --border: #e5e7eb;
+      --bg: #f7faf8;
+      --shadow: 0 18px 45px rgba(15, 23, 42, .08);
+      --shadow-soft: 0 8px 24px rgba(15, 23, 42, .06);
+      --radius: 16px;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: linear-gradient(180deg, #fff 0, var(--bg) 260px, var(--bg) 100%);
+      color: var(--black);
+      min-height: 100vh;
+    }
+
+    body,
+    button,
+    input,
+    select,
+    textarea {
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .nav,
+    .footer {
+      --text: #0f172a;
+      --border: #e2e8f0;
+      --white: #fff;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* ── PAGE ── */
+    .cashygo-page {
+      padding: 24px 0 0;
+    }
+
+    .cashygo-wrapper {
+      max-width: 1240px;
+      margin: auto;
+      padding: 0 24px;
+    }
+
+    /* ── BREADCRUMB ── */
+    .cashygo-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #64748b;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+
+    .cashygo-breadcrumb a {
+      color: #0f172a;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    /* ── PAGE HEAD ── */
+    .cashygo-page-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: flex-end;
+      margin-bottom: 22px;
+    }
+
+    .cashygo-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary-light);
+      color: var(--primary);
+      border: 1px solid #c7ead8;
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .cashygo-google-box {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .cashygo-google-box .cashygo-eyebrow {
+      margin-bottom: 0;
+    }
+
+    .google-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--primary-light);
+      color: var(--primary);
+      border: 1px solid #c7ead8;
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+
+    .google-box h4 {
+      margin: 0;
+      font-size: inherit;
+      font-weight: inherit;
+      line-height: inherit;
+    }
+
+    .google-box span {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .cashygo-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      max-width: 680px;
+    }
+
+    .cashygo-subtitle {
+      color: var(--text);
+      font-size: 12px;
+      max-width: 620px;
+    }
+
+    /* ── PROGRESS ── */
+    .cashygo-progress {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(120px, 1fr));
+      gap: 10px;
+      min-width: 390px;
+    }
+
+    .cashygo-progress__item {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .cashygo-progress__item strong {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    .cashygo-progress__item span {
+      display: block;
+      color: #64748b;
+      font-size: 12px;
+    }
+
+    .cashygo-progress__item.active {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    .cashygo-progress__item.done strong {
+      color: var(--primary);
+    }
+
+    /* ── 3-COL LAYOUT ── */
+    .cashygo-layout {
+      display: grid;
+      grid-template-columns: minmax(240px, 290px) minmax(0, 1fr) minmax(280px, 330px);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .cashygo-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    /* ── LEFT PRODUCT PANEL ── */
+    .cashygo-product {
+      padding: 18px;
+      border-radius: 18px;
+      position: sticky;
+      top: 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    /* .cashygo-product__media {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px 0 0;
+      gap: 16px;
+      margin-bottom: 0;
+    } */
+
+    /* .cashygo-phone {
+      width: min(170px, 64%);
+      max-width: 180px;
+      object-fit: contain;
+      transition: .3s ease;
+    } */
+
+    /* .cashygo-phone:hover {
+      transform: scale(1.03);
+    } */
+/* 
+    .cashygo-product__content {
+      width: 100%;
+    } */
+
+    .cashygo-brand {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: #f3f7ff;
+      color: #2b6fff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .4px;
+      margin-bottom: 12px;
+    }
+
+    /* .cashygo-model {
+      font-size: 30px;
+      font-weight: 800;
+      color: #0f172a;
+      display: block;
+      text-align: center;
+      margin-bottom: 8px;
+      line-height: 1.15;
+    } */
+
+    /* .cashygo-storage {
+      font-size: 16px;
+      font-weight: 700;
+      color: #475569;
+      margin-bottom: 14px;
+      display: block;
+      text-align: center;
+    } */
+
+    .cashygo-user {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #e7f7eb;
+      color: #0a8f3d;
+      padding: 10px 14px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 18px;
+      width: 100%;
+      justify-content: center;
+      line-height: 1.35;
+    }
+
+    .cashygo-trust {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      width: 100%;
+    }
+
+    .cashygo-trust-box {
+      background: #f8fafc;
+      border: 1px solid #dbe3ea;
+      border-radius: 14px;
+      padding: 12px 7px;
+      text-align: center;
+    }
+
+    .cashygo-trust-box i {
+      font-size: 20px;
+      color: #0a8f3d;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .cashygo-trust-box span {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 2px;
+    }
+
+    .cashygo-trust-box p {
+      font-size: 10px;
+      color: #64748b;
+      line-height: 1.4;
+    }
+
+    /* ── CENTER MAIN ── */
+    .cashygo-main {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: clamp(20px, 2.4vw, 30px);
+    }
+
+    .cashygo-section {
+      margin-bottom: 30px;
+    }
+
+    .cashygo-section.is-hidden {
+      display: none;
+    }
+
+    .cashygo-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .cashygo-step {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex: 0 0 auto;
+    }
+
+    /* ── QUESTION CARDS ── */
+    .question-card {
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      background: #fbfefd;
+      margin-bottom: 0;
+    }
+
+    .question-help {
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.55;
+      margin-bottom: 18px;
+    }
+
+    /* ── OPTION GRIDS ── */
+    .option-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .cashygo-option-card {
+      border: 1.5px solid #097832;
+      border-radius: 14px;
+      background: var(--white);
+      cursor: pointer;
+      transition: border-color .2s, box-shadow .2s, transform .2s, background .2s;
+      position: relative;
+      padding: 20px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 110px;
+    }
+
+    .cashygo-option-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--primary);
+      box-shadow: 0 12px 26px rgba(13, 140, 96, .11);
+    }
+
+    .cashygo-option-card.active {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      box-shadow: 0 0 0 4px rgba(13, 140, 96, .1);
+    }
+
+    .cashygo-option-card.active::after {
+      content: "\F26E";
+      font-family: "bootstrap-icons";
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+    }
+
+    .cashygo-option-card i {
+      color: var(--primary);
+      font-size: 32px;
+    }
+
+    .cashygo-option-card strong {
+      font-size: 15px;
+      font-weight: 700;
+      display: block;
+    }
+
+    .cashygo-option-card small {
+      display: inline-block;
+      background: #eefdf9;
+      color: #07856f;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    /* Wide option (bill row) */
+    .wide-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .cashygo-wide-option {
+      border: 1.5px solid #097832;
+      border-radius: 14px;
+      background: var(--white);
+      cursor: pointer;
+      transition: border-color .2s, box-shadow .2s, transform .2s, background .2s;
+      position: relative;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      min-height: 78px;
+    }
+
+    .cashygo-wide-option:hover {
+      transform: translateY(-2px);
+      border-color: var(--primary);
+      box-shadow: 0 12px 26px rgba(13, 140, 96, .11);
+    }
+
+    .cashygo-wide-option.active {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      box-shadow: 0 0 0 4px rgba(13, 140, 96, .1);
+    }
+
+    .cashygo-wide-option.active::after {
+      content: "\F26E";
+      font-family: "bootstrap-icons";
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+    }
+
+    .cashygo-wide-option i {
+      color: var(--primary);
+      font-size: 28px;
+      flex: 0 0 auto;
+    }
+
+    .cashygo-wide-option .wo-text strong {
+      font-size: 15px;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .cashygo-wide-option .wo-text span {
+      color: var(--text);
+      font-size: 12px;
+    }
+
+    /* ── RIGHT SUMMARY PANEL ── */
+    .cashygo-summary {
+      border-radius: 18px;
+      position: sticky;
+      top: 120px;
+    }
+
+    .cashygo-summary__head {
+      padding: 22px;
+      background: #097832;
+      color: #fff;
+    }
+
+    .cashygo-summary-title {
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .cashygo-summary__hint {
+      color: #cbd5e1;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .cashygo-summary__body {
+      padding: 22px;
+    }
+
+    .cashygo-summary-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+      font-size: 15px;
+    }
+
+    .cashygo-summary-row span:first-child {
+      color: var(--text);
+    }
+
+    .cashygo-summary-row strong {
+      font-weight: 700;
+      text-align: right;
+    }
+
+    /* checklist rows */
+    .check-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .check-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      border: 1px solid #edf1f5;
+      border-radius: 14px;
+      background: #fff;
+      font-size: 14px;
+    }
+
+    .check-row .tick {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      background: #e2e8f0;
+      color: #94a3b8;
+    }
+
+    .check-row.done .tick {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .check-row .check-label {
+      flex: 1;
+      font-weight: 600;
+    }
+
+    .check-row .check-val {
+      color: #94a3b8;
+      font-size: 13px;
+    }
+
+    .check-row.done .check-val {
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    /* progress pill */
+    .summary-pill {
+      display: inline-block;
+      background: rgba(255, 255, 255, .18);
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-top: 10px;
+    }
+
+    /* estimated value block */
+    .cashygo-total {
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+    }
+
+    .cashygo-total small {
+      display: block;
+      color: var(--text);
+      margin-bottom: 6px;
+      font-size: 13px;
+    }
+
+    .cashygo-price {
+      font-size: 30px;
+      color: var(--primary);
+      font-weight: 800;
+    }
+
+    .cashygo-price-sub {
+      font-size: 12px;
+      color: var(--text);
+      margin-top: 4px;
+    }
+
+    .cashygo-note {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+      padding: 12px;
+      border-radius: 12px;
+      background: #fffbf0;
+      border: 1px solid #f5e5bc;
+      color: #64748b;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .cashygo-note i {
+      color: #dda014;
+      font-size: 16px;
+      flex: 0 0 auto;
+    }
+
+    /* ── FEATURES ── */
+    .cashygo-features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 30px;
+    }
+
+    .cashygo-feature {
+      background: #f1f5f3;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .cashygo-feature-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: #fff;
+      color: var(--primary);
+      display: grid;
+      place-items: center;
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+
+    .cashygo-feature h4 {
+      font-size: 16px;
+      margin-bottom: 6px;
+    }
+
+    .cashygo-feature p {
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    /* ── FAQ ── */
+    .section {
+      max-width: 800px;
+      margin: 60px auto 0;
+      padding: 0 24px 60px;
+    }
+
+    /* ════════════════════
+       RESPONSIVE
+    ════════════════════ */
+    @media (max-width: 1180px) {
+      .cashygo-page-head {
+        display: block;
+      }
+
+      .cashygo-progress {
+        min-width: 0;
+        margin-top: 18px;
+      }
+
+      .cashygo-layout {
+        grid-template-columns: minmax(240px, 300px) minmax(0, 1fr);
+      }
+
+      .cashygo-summary {
+        grid-column: 1/-1;
+        position: static;
+      }
+
+      .cashygo-summary__body {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px 22px;
+        align-items: start;
+      }
+
+      .cashygo-summary-row,
+      .cashygo-total,
+      .cashygo-note {
+        margin: 0;
+      }
+
+      .cashygo-total {
+        padding-top: 0;
+        border-top: 0;
+      }
+
+      .cashygo-note {
+        grid-column: 1/-1;
+      }
+
+      .check-list {
+        grid-column: 1/-1;
+      }
+    }
+
+    @media (max-width: 820px) {
+
+      .cashygo-breadcrumb,
+      .cashygo-subtitle {
+        display: none;
+      }
+
+      .cashygo-title {
+        font-size: 20px;
+      }
+
+      .cashygo-progress {
+        display: none;
+      }
+
+      .cashygo-layout {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .cashygo-product,
+      .cashygo-summary {
+        position: static;
+      }
+
+      /* .cashygo-product__media {
+        display: grid;
+        grid-template-columns: 104px minmax(0, 1fr);
+        align-items: center;
+        text-align: left;
+        padding: 0;
+        gap: 14px;
+      } */
+
+      /* .cashygo-phone {
+        width: 96px;
+        max-width: 96px;
+      } */
+
+      /* .cashygo-product__content {
+        display: contents;
+      } */
+
+      /* .cashygo-product__content .cashygo-model,
+      .cashygo-storage,
+      .cashygo-user {
+        grid-column: 2;
+      }
+
+      .cashygo-product__content .cashygo-model,
+      .cashygo-storage {
+        text-align: left;
+      }
+
+      .cashygo-product__content .cashygo-model {
+        margin-bottom: 4px;
+      } */
+
+      /* .cashygo-storage {
+        margin-bottom: 8px;
+      } */
+
+      .cashygo-user {
+        justify-content: flex-start;
+        width: fit-content;
+        max-width: 100%;
+        margin-bottom: 0;
+        padding: 8px 12px;
+        font-size: 12px;
+      }
+
+      .cashygo-trust {
+        grid-column: 1/-1;
+        margin-top: 2px;
+        width: 100%;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .cashygo-main {
+        display: block;
+      }
+
+      .option-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .cashygo-features {
+        display: none;
+      }
+
+      .cashygo-summary__body {
+        display: block;
+      }
+
+      .cashygo-total {
+        margin-top: 20px;
+        padding-top: 18px;
+        border-top: 1px solid var(--border);
+      }
+
+      .cashygo-note {
+        margin-top: 14px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .cashygo-wrapper {
+        padding: 0 12px;
+      }
+
+      .cashygo-google-box {
+        gap: 8px;
+        margin-bottom: 10px;
+      }
+
+      .cashygo-eyebrow,
+      .google-box {
+        width: fit-content;
+      }
+
+      .google-box {
+        padding: 7px 10px;
+        font-size: 11px;
+        gap: 4px;
+      }
+
+      .cashygo-product {
+        padding: 14px;
+        border-radius: 16px;
+        height: auto;
+      }
+
+      /* .cashygo-product__media {
+        grid-template-columns: 82px minmax(0, 1fr);
+        gap: 12px;
+      } */
+
+      /* .cashygo-phone {
+        width: 74px;
+        max-width: 74px;
+      } */
+
+      .cashygo-product__content .cashygo-model {
+        font-size: 20px;
+      }
+
+      .cashygo-storage {
+        font-size: 13px;
+      }
+
+      .cashygo-user {
+        padding: 7px 10px;
+        font-size: 11px;
+        line-height: 1.3;
+      }
+
+      .cashygo-trust {
+        gap: 6px;
+      }
+
+      .cashygo-trust-box {
+        border-radius: 12px;
+        padding: 10px 5px;
+      }
+
+      .cashygo-trust-box i {
+        font-size: 18px;
+        margin-bottom: 5px;
+      }
+
+      .cashygo-trust-box span {
+        font-size: 11px;
+      }
+
+      .cashygo-trust-box p {
+        font-size: 9px;
+      }
+
+      .cashygo-main {
+        padding: 16px;
+        border-radius: 16px;
+      }
+
+      .cashygo-label {
+        font-size: 16px;
+      }
+
+      .cashygo-option-card {
+        min-height: 90px;
+        padding: 14px 10px;
+        border-radius: 12px;
+      }
+
+      .cashygo-option-card i {
+        font-size: 26px;
+      }
+
+      .cashygo-option-card strong {
+        font-size: 13px;
+      }
+
+      .cashygo-wide-option {
+        padding: 14px 16px;
+        min-height: 66px;
+        gap: 12px;
+      }
+
+      .cashygo-wide-option i {
+        font-size: 22px;
+      }
+
+      .cashygo-summary__head {
+        padding: 16px;
+      }
+
+      .cashygo-summary__body {
+        padding: 16px;
+      }
+
+      .cashygo-price {
+        font-size: 26px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-top">
+      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <i class="bi bi-list"></i>
+      </button>
+
+      <a href="/" class="nav-logo" aria-label="Cashygo - Go to homepage">
+        <img src="assets/images/project-logo/logo-new.svg" alt="Cashygo logo" width="120" height="40">
+      </a>
+
+      <div class="nav-search" role="search">
+        <div class="nav-city" id="cityPicker" tabindex="0" aria-haspopup="listbox" aria-label="Select city">
+          <i class="bi bi-geo-alt-fill"></i>
+          <span id="cityLabel">Bangalore</span>
+          <i class="bi bi-chevron-down"></i>
+          <ul class="city-drop" id="cityDrop" role="listbox" aria-label="Select your city">
+            <li role="option" data-city="Delhi">Delhi NCR</li>
+            <li role="option" data-city="Bangalore">Bangalore</li>
+            <li role="option" data-city="Mumbai">Mumbai</li>
+            <li role="option" data-city="Pune">Pune</li>
+            <li role="option" data-city="Hyderabad">Hyderabad</li>
+          </ul>
+        </div>
+        <label for="mainSearch" class="sr-only">Search devices</label>
+        <input type="search" id="mainSearch" name="search" placeholder="Search devices, brands..." autocomplete="off">
+        <div class="search-icon" aria-hidden="true"><i class="bi bi-search"></i></div>
+      </div>
+
+      <button class="nav-login" id="openLoginBtn" aria-label="Sign in to your account">
+        <i class="bi bi-person-circle"></i>
+        <span>Sign in</span>
+      </button>
+    </div>
+
+    <div class="nav-menu" id="navMenu">
+      <div class="nav-menu-inner">
+        <div class="dropdown" id="dropMobile">
+          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Mobile ⌵</button>
+          <ul class="dropdown-menu">
+            <li><a href="Apple_model.html">Apple iPhone</a></li>
+            <li><a href="samsung.html">Samsung Galaxy</a></li>
+            <li><a href="oneplus.html">OnePlus</a></li>
+            <li><a href="google.html">Google Pixel</a></li>
+            <li><a href="xiaomi.html">Xiaomi</a></li>
+            <li><a href="vivo.html">Vivo</a></li>
+          </ul>
+        </div>
+
+        <div class="dropdown" id="dropTablet">
+          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Tablet ⌵</button>
+          <ul class="dropdown-menu">
+            <li><a href="apple-tab.html">Apple Tab</a></li>
+            <li><a href="samsung-tab.html">Samsung Tab</a></li>
+            <li><a href="oneplus-tab.html">OnePlus Tab</a></li>
+            <li><a href="xiaomi-tab.html">Xiaomi Tab</a></li>
+            <li><a href="realme-tab.html">Realme Tab</a></li>
+          </ul>
+        </div>
+
+        <div class="dropdown" id="dropLaptop">
+          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Laptop ⌵</button>
+          <ul class="dropdown-menu">
+            <li><a href="dell.html">Dell</a></li>
+            <li><a href="hp.html">HP</a></li>
+            <li><a href="lenovo.html">Lenovo</a></li>
+            <li><a href="asus.html">Asus</a></li>
+            <li><a href="acer.html">Acer</a></li>
+          </ul>
+        </div>
+
+        <div class="dropdown" id="dropMac">
+          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Mac ⌵</button>
+          <ul class="dropdown-menu">
+            <li><a href="macbook.html">MacBook</a></li>
+            <li><a href="imac.html">iMac</a></li>
+            <li><a href="mac-mini.html">Mac Mini</a></li>
+            <li><a href="macbook-pro.html">MacBook Pro</a></li>
+          </ul>
+        </div>
+
+        <button class="menu-link">Corporate Deals</button>
+        <button class="menu-link">Price Calculator</button>
+        <button class="menu-link">Blog & Tips</button>
+        <button class="menu-link">Partner</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="cashygo-page">
+    <div class="cashygo-wrapper">
+
+      <!-- BREADCRUMB -->
+      <nav class="cashygo-breadcrumb" aria-label="Breadcrumb">
+        <a href="brand.html">Sell phone</a>
+        <i class="bi bi-chevron-right"></i>
+        <a href="verient.html">Variant</a>
+        <i class="bi bi-chevron-right"></i>
+        <span>Condition</span>
+      </nav>
+
+      <!-- PAGE HEAD -->
+      <section class="cashygo-page-head">
+        <div>
+          <div class="cashygo-google-box">
+            <div class="cashygo-eyebrow">
+              <i class="bi bi-shield-check"></i>
+              Secure device evaluation
+            </div>
+            <div class="google-box">
+              <h4>Google Trusted</h4>
+              <span> 4.8 ⭐⭐⭐⭐⭐</span>
+            </div>
+          </div>
+          <h1 class="cashygo-title">Tell us about your device condition</h1>
+          <p class="cashygo-subtitle">
+            Answer these quick checks so Cashygo can estimate the right value before pickup verification.
+          </p>
+        </div>
+        <div class="cashygo-progress">
+          <div class="cashygo-progress__item done">
+            <strong>1. Variant</strong>
+            <span>Storage and colour</span>
+          </div>
+          <div class="cashygo-progress__item active">
+            <strong>2. Condition</strong>
+            <span>Age and bill details</span>
+          </div>
+          <div class="cashygo-progress__item">
+            <strong>3. Pickup</strong>
+            <span>Schedule and payment</span>
+          </div>
+        </div>
+      </section>
+
+      <div class="cashygo-layout">
+
+        <!-- ── LEFT: PRODUCT PANEL ── -->
+        <aside class="cashygo-card cashygo-product">
+          <div class="cashygo-product__media">
+
+            <!-- IMAGE -->
+            <img src="assets/images/Mobile_brand/iPhone 17 Pro Max.avif" alt="iPhone 15" class="cashygo-phone">
+
+            <!-- CONTENT -->
+            <div class="cashygo-product__content">
+
+              <h2 class="cashygo-model" id="panelModel">
+                iPhone 15
+              </h2>
+
+              <span class="cashygo-storage" id="panelSpec">
+                128GB
+              </span>
+
+              <!-- SOLD -->
+              <div class="cashygo-user">
+                <strong>7400+</strong>
+                already sold on CashyGo
+              </div>
+
+              <!-- TRUST -->
+              <div class="cashygo-trust">
+
+                <div class="cashygo-trust-box">
+                  <i class="bi bi-shield-check"></i>
+                  <span>Secure</span>
+                  <p>100% Safe</p>
+                </div>
+
+                <div class="cashygo-trust-box">
+                  <i class="bi bi-rocket-takeoff"></i>
+                  <span>Quick</span>
+                  <p>Instant Quote</p>
+                </div>
+
+                <div class="cashygo-trust-box">
+                  <i class="bi bi-award"></i>
+                  <span>Trusted</span>
+                  <p>50k+ Users</p>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+        </aside>
+
+        <!-- ── CENTER: QUESTIONS ── -->
+        <section class="cashygo-main" aria-label="Device condition questions">
+
+          <!-- Q1: Age -->
+          <section class="cashygo-section" id="ageSection">
+            <div class="cashygo-label">
+              <div class="cashygo-step">1</div>
+              How old is your mobile?
+            </div>
+            <div class="question-card">
+              <p class="question-help">
+                Select the time duration since you purchased your device.
+              </p>
+              <div class="option-grid" id="ageGrid">
+                <button class="cashygo-option-card" data-question="age" data-value="0 to 3 months">
+                  <i class="bi bi-calendar3"></i>
+                  <strong>0 to 3 months</strong>
+                  <small>Best value</small>
+                </button>
+                <button class="cashygo-option-card" data-question="age" data-value="3 to 6 months">
+                  <i class="bi bi-calendar3"></i>
+                  <strong>3 to 6 months</strong>
+                  <small>High value</small>
+                </button>
+                <button class="cashygo-option-card" data-question="age" data-value="6 to 11 months">
+                  <i class="bi bi-calendar"></i>
+                  <strong>6 to 11 months</strong>
+                  <small>Fair value</small>
+                </button>
+                <button class="cashygo-option-card" data-question="age" data-value="More than 11 months">
+                  <i class="bi bi-calendar-plus"></i>
+                  <strong>More than 11 months</strong>
+                  <small>Standard value</small>
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <!-- Q2: Bill & Box -->
+          <section class="cashygo-section is-hidden" id="billSection">
+            <div class="cashygo-label">
+              <div class="cashygo-step">2</div>
+              Do you have bill and box?
+            </div>
+            <div class="question-card">
+              <p class="question-help">
+                Original bill and box can improve buyer trust and may help the final value.
+              </p>
+              <div class="wide-grid" id="billGrid">
+                <button class="cashygo-wide-option" data-question="billBox" data-value="Bill and box available">
+                  <i class="bi bi-box-seam"></i>
+                  <div class="wo-text">
+                    <strong>Bill and box available</strong>
+                    <span>Best for resale value</span>
+                  </div>
+                </button>
+                <button class="cashygo-wide-option" data-question="billBox" data-value="Only bill available">
+                  <i class="bi bi-receipt-cutoff"></i>
+                  <div class="wo-text">
+                    <strong>Only bill available</strong>
+                    <span>Good for verification</span>
+                  </div>
+                </button>
+                <button class="cashygo-wide-option" data-question="billBox" data-value="No bill or box">
+                  <i class="bi bi-x-circle"></i>
+                  <div class="wo-text">
+                    <strong>No bill or box</strong>
+                    <span>Standard evaluation applies</span>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <!-- FEATURES -->
+          <div class="cashygo-features">
+            <div class="cashygo-feature">
+              <div class="cashygo-feature-icon"><i class="bi bi-truck"></i></div>
+              <h4>Free Pickup</h4>
+              <p>Doorstep pickup across India.</p>
+            </div>
+            <div class="cashygo-feature">
+              <div class="cashygo-feature-icon"><i class="bi bi-lightning-charge"></i></div>
+              <h4>Instant Payment</h4>
+              <p>Get paid instantly after pickup.</p>
+            </div>
+            <div class="cashygo-feature">
+              <div class="cashygo-feature-icon"><i class="bi bi-lock"></i></div>
+              <h4>100% Secure</h4>
+              <p>Your personal data stays protected.</p>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ── RIGHT: SUMMARY PANEL ── -->
+        <aside class="cashygo-card cashygo-summary">
+
+          <div class="cashygo-summary__head">
+            <h3 class="cashygo-summary-title">Evaluation Summary</h3>
+            <p class="cashygo-summary__hint">Complete both checks to get your best price.</p>
+            <span class="summary-pill" id="progressPill">1 / 2 Done</span>
+          </div>
+
+          <div class="cashygo-summary__body">
+            <div class="cashygo-summary-row">
+              <span>Model</span>
+              <strong id="summaryModel">—</strong>
+            </div>
+            <div class="cashygo-summary-row">
+              <span>Storage</span>
+              <strong id="summaryStorage">—</strong>
+            </div>
+            <div class="cashygo-summary-row">
+              <span>Colour</span>
+              <strong id="summaryColor">—</strong>
+            </div>
+
+            <div class="check-list">
+              <div class="check-row" id="ageRow">
+                <div class="tick"><i class="bi bi-check-lg"></i></div>
+                <span class="check-label">Device Age</span>
+                <span class="check-val" id="ageVal">Pending</span>
+              </div>
+              <div class="check-row" id="billRow">
+                <div class="tick"><i class="bi bi-check-lg"></i></div>
+                <span class="check-label">Bill &amp; Box</span>
+                <span class="check-val" id="billVal">Pending</span>
+              </div>
+            </div>
+
+            <div class="cashygo-total">
+              <small>Estimated Value</small>
+              <div class="cashygo-price" id="estimatedPrice">₹0</div>
+              <div class="cashygo-price-sub">Final value depends on condition &amp; accessories.</div>
+            </div>
+
+            <div class="cashygo-note">
+              <i class="bi bi-info-circle"></i>
+              <span>All answers are important for accurate evaluation.</span>
+            </div>
+          </div>
+
+        </aside>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- FAQ -->
+  <section class="section" style="max-width:800px" aria-label="Frequently asked questions">
+    <div class="faq-header">
+      <h2>Frequently <span>Asked</span> Questions</h2>
+      <p>Everything you need to know before selling your device</p>
+    </div>
+    <details class="faq-item">
+      <summary>How do I sell my device? <span class="faq-icon">+</span></summary>
+      <div class="faq-answer">Select your device, check the price, schedule pickup, and get paid instantly after
+        verification.</div>
+    </details>
+    <details class="faq-item">
+      <summary>How is the price calculated? <span class="faq-icon">+</span></summary>
+      <div class="faq-answer">Price depends on device condition, market demand, and current resale value.</div>
+    </details>
+    <details class="faq-item">
+      <summary>Is pickup free? <span class="faq-icon">+</span></summary>
+      <div class="faq-answer">Yes, doorstep pickup is completely free with no hidden charges.</div>
+    </details>
+    <details class="faq-item">
+      <summary>When will I get payment? <span class="faq-icon">+</span></summary>
+      <div class="faq-answer">Payment is processed instantly after device verification during pickup.</div>
+    </details>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">
+            <img src="assets/images/project-logo/logo-new.svg" alt="Cashygo" loading="lazy">
+          </div>
+          <p class="footer-desc">India's most trusted device buyback platform. Instant pricing, free doorstep pickup,
+            and instant payment.</p>
+          <div class="social-links" aria-label="Follow us on social media">
+            <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>SELL</h4>
+          <ul>
+            <li><a href="#">Sell Mobile</a></li>
+            <li><a href="#">Sell Laptop</a></li>
+            <li><a href="#">Sell Tablet</a></li>
+            <li><a href="#">Sell MacBook</a></li>
+            <li><a href="#">Sell Smartwatch</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>COMPANY</h4>
+          <ul>
+            <li><a href="#">About Cashygo</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Partner With Us</a></li>
+            <li><a href="#">Press & Media</a></li>
+            <li><a href="#">Blog & Tips</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>SUPPORT</h4>
+          <ul>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Contact Support</a></li>
+            <li><a href="#">Return Policy</a></li>
+            <li><a href="#">Privacy & Security</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col footer-contact">
+          <h4>CONTACT</h4>
+          <address>
+            <p><i class="bi bi-envelope"></i><a href="mailto:hr@cashygo.com">hr@cashygo.com</a></p>
+            <p><i class="bi bi-telephone"></i><a href="tel:+917766071191">+91 7766071191</a></p>
+            <p><i class="bi bi-geo-alt"></i>Bangalore, Karnataka, India</p>
+          </address>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-links-row">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms & Conditions</a>
+          <a href="#">Refund Policy</a>
+          <a href="#">Sitemap</a>
+        </div>
+        <div class="payment-row" aria-label="Secure payment methods">
+          <span>Secure payments:</span>
+          <i class="bi bi-credit-card" title="Credit/Debit Card"></i>
+          <i class="bi bi-bank" title="Bank Transfer"></i>
+          <i class="bi bi-wallet2" title="Digital Wallet"></i>
+        </div>
+        <p>© 2026 Cashygo - Resale Redefined</p>
+      </div>
+    </div>
+  </footer>
+
+ <script>
+    /* ── NAV ── */
+    const cityPicker = document.getElementById("cityPicker");
+    const cityLabel  = document.getElementById("cityLabel");
+    const hamburger  = document.getElementById("hamburger");
+    const navMenu    = document.getElementById("navMenu");
+
+    cityPicker.addEventListener("click", e => { e.stopPropagation(); cityPicker.classList.toggle("open"); });
+    cityPicker.querySelectorAll("li").forEach(li => {
+      li.addEventListener("click", e => {
+        e.stopPropagation(); cityLabel.textContent = li.dataset.city; cityPicker.classList.remove("open");
+      });
+    });
+    hamburger.addEventListener("click", () => {
+      const open = navMenu.classList.toggle("open"); hamburger.setAttribute("aria-expanded", open);
+    });
+    document.querySelectorAll(".dropdown").forEach(dd => {
+      dd.querySelector(".dropdown-btn").addEventListener("click", e => {
+        e.stopPropagation();
+        const was = dd.classList.contains("open");
+        document.querySelectorAll(".dropdown").forEach(x => x.classList.remove("open"));
+        if (!was) dd.classList.add("open");
+      });
+    });
+    document.addEventListener("click", () => {
+      cityPicker.classList.remove("open");
+      document.querySelectorAll(".dropdown").forEach(x => x.classList.remove("open"));
+    });
+
+    /* ── DATA FROM SESSION ── */
+    const sel = JSON.parse(sessionStorage.getItem("cashygoSelection") || "{}");
+    const cond = { age: "", billBox: "" };
+
+    function fmt(n) { return "₹" + Number(n || 0).toLocaleString("en-IN"); }
+
+    function hydratePanel() {
+      const model   = sel.model   || "iPhone 15";
+      const storage = sel.storage || "128GB";
+      const color   = sel.color   || "—";
+      const price   = Number(sel.price || 0);
+
+      document.getElementById("panelModel").textContent   = model;
+      document.getElementById("panelSpec").textContent    = storage;
+      document.getElementById("summaryModel").textContent   = model;
+      document.getElementById("summaryStorage").textContent = storage;
+      document.getElementById("summaryColor").textContent   = color;
+
+      const lo = Math.round(price * 0.88), hi = price;
+      document.getElementById("estimatedPrice").textContent = price ? fmt(lo) + " – " + fmt(hi) : "₹0";
+    }
+
+    function updateSummary() {
+      const ageDone  = Boolean(cond.age);
+      const billDone = Boolean(cond.billBox);
+
+      const ageRow  = document.getElementById("ageRow");
+      const billRow = document.getElementById("billRow");
+
+      ageRow.classList.toggle("done", ageDone);
+      document.getElementById("ageVal").textContent = ageDone ? cond.age : "Pending";
+
+      billRow.classList.toggle("done", billDone);
+      document.getElementById("billVal").textContent = billDone ? cond.billBox : "Pending";
+
+      const count = (ageDone ? 1 : 0) + (billDone ? 1 : 0);
+      document.getElementById("progressPill").textContent = count + " / 2 Done";
+    }
+
+    /* ── OPTION INTERACTIONS ── */
+    document.querySelectorAll("[data-question]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const q = btn.dataset.question;
+        cond[q] = btn.dataset.value;
+
+        // deselect siblings
+        document.querySelectorAll('[data-question="' + q + '"]')
+          .forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        updateSummary();
+
+        if (q === "age") {
+          document.getElementById("ageSection").classList.add("is-hidden");
+          document.getElementById("billSection").classList.remove("is-hidden");
+        }
+
+        if (q === "billBox") {
+          saveAndRedirect();
+        }
+      });
+    });
+
+    function saveAndRedirect() {
+      if (!cond.age || !cond.billBox) { alert("Please complete both condition checks"); return; }
+      sessionStorage.setItem("cashygoCondition", JSON.stringify(cond));
+      window.location.href = "device_question.html";
+    }
+
+    hydratePanel();
+    updateSummary();
+  </script>
+
+</body>
+
+</html>

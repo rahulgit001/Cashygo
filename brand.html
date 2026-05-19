@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Cashygo – Sell your old mobile, laptop, tablet, camera, or smartwatch instantly. Best resale price, free doorstep pickup, instant payment in Bangalore, Delhi, Mumbai, Pune & Hyderabad.">
+  <meta name="theme-color" content="#0d8c60">
+  <meta property="og:title" content="Cashygo – Sell Old Devices. Get Instant Price & Free Pickup">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://cashygo.com/">
+  <title>Cashygo – Bangalore's Most Loved Device Buyback Platform</title>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/brand.css">
+
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-top">
+      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <i class="bi bi-list"></i>
+      </button>
+
+      <a href="/" class="nav-logo" aria-label="Cashygo – Go to homepage">
+        <img src="assets/images/project-logo/logo-new.svg" alt="Cashygo logo" width="120" height="40">
+      </a>
+
+      <div class="nav-search" role="search">
+        <div class="nav-city" id="cityPicker" tabindex="0" aria-haspopup="listbox" aria-label="Select city">
+          <i class="bi bi-geo-alt-fill"></i>
+          <span id="cityLabel">Bangalore</span>
+          <i class="bi bi-chevron-down"></i>
+          <ul class="city-drop" id="cityDrop" role="listbox" aria-label="Select your city">
+            <li role="option" data-city="Delhi">Delhi NCR</li>
+            <li role="option" data-city="Bangalore">Bangalore</li>
+            <li role="option" data-city="Mumbai">Mumbai</li>
+            <li role="option" data-city="Pune">Pune</li>
+            <li role="option" data-city="Hyderabad">Hyderabad</li>
+          </ul>
+        </div>
+        <label for="mainSearch" class="sr-only">Search devices</label>
+        <input type="search" id="mainSearch" name="search" placeholder="Search devices, brands…" autocomplete="off">
+        <div class="search-icon" aria-hidden="true"><i class="bi bi-search"></i></div>
+      </div>
+
+      <button class="nav-login" id="openLoginBtn" aria-label="Sign in to your account">
+        <i class="bi bi-person-circle"></i>
+        <span>Sign in</span>
+      </button>
+    </div>
+
+    <div class="nav-menu" id="navMenu">
+      <div class="nav-menu-inner">
+        <div class="dropdown" id="dropMobile">
+          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Mobile ⌵</button>
+          <ul class="dropdown-menu">
+            <li><a href="Apple_model.html">Apple iPhone</a></li>
+            <li><a href="samsung.html">Samsung Galaxy</a></li>
+            <li><a href="oneplus.html">OnePlus</a></li>
+            <li><a href="google.html">Google Pixel</a></li>
+            <li><a href="xiaomi.html">Xiaomi</a></li>
+            <li><a href="vivo.html">Vivo</a></li>
+          </ul>
+        </div>
+
+        <div class="dropdown" id="dropTablet">
+          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Tablet ⌵</button>
+          <ul class="dropdown-menu">
+            <li><a href="apple-tab.html">Apple Tab</a></li>
+            <li><a href="samsung-tab.html">Samsung Tab</a></li>
+            <li><a href="oneplus-tab.html">OnePlus Tab</a></li>
+            <li><a href="xiaomi-tab.html">Xiaomi Tab</a></li>
+            <li><a href="realme-tab.html">Realme Tab</a></li>
+          </ul>
+        </div>
+
+        <div class="dropdown" id="dropLaptop">
+          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Laptop ⌵</button>
+          <ul class="dropdown-menu">
+            <li><a href="dell.html">Dell</a></li>
+            <li><a href="hp.html">HP</a></li>
+            <li><a href="lenovo.html">Lenovo</a></li>
+            <li><a href="asus.html">Asus</a></li>
+            <li><a href="acer.html">Acer</a></li>
+          </ul>
+        </div>
+
+        <div class="dropdown" id="dropMac">
+          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Mac ⌵</button>
+          <ul class="dropdown-menu">
+            <li><a href="macbook.html">MacBook</a></li>
+            <li><a href="imac.html">iMac</a></li>
+            <li><a href="mac-mini.html">Mac Mini</a></li>
+            <li><a href="macbook-pro.html">MacBook Pro</a></li>
+          </ul>
+        </div>
+
+        <button class="menu-link">Corporate Deals</button>
+        <button class="menu-link">Price Calculator</button>
+        <button class="menu-link">Blog & Tips</button>
+        <button class="menu-link">Partner</button>
+      </div>
+    </div>
+  </nav>
+
+
+
+
+  <!-- HERO -->
+  <header class="cashygo-hero">
+    <div class="cashygo-hero__inner">
+      <div class="cashygo-hero__left">
+        <p class="cashygo-hero__badge">Trusted by Millions</p>
+        <h1 class="cashygo-hero__title">
+          Sell Your Old Phone, Laptop &amp; Gadgets<br>
+          <em>Doorstep Pickup. Instant Payment.</em>
+        </h1>
+        <p class="cashygo-hero__sub">Best price. Safe process. Doorstep pickup.</p>
+        <ul class="cashygo-hero__features">
+          <li class="cashygo-hero__feature">
+            <span class="cashygo-hero__feature-icon">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+              </svg>
+            </span>
+            <p>Maximum Value</p>
+          </li>
+          <li class="cashygo-hero__feature">
+            <span class="cashygo-hero__feature-icon">
+              <svg viewBox="0 0 24 24">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </span>
+            <p>Safe &amp; Hassle-free</p>
+          </li>
+          <li class="cashygo-hero__feature">
+            <span class="cashygo-hero__feature-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </span>
+            <p>Free Pickup</p>
+          </li>
+        </ul>
+        <div class="cashygo-hero__search">
+          <input type="search" class="cashygo-hero__search-input" placeholder="Search your mobile phone to sell…"
+            autocomplete="off">
+          <button class="cashygo-hero__search-btn" aria-label="Search">
+            <svg viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+          </button>
+        </div>
+        <nav>
+          <ul class="cashygo-hero__brands">
+
+            <li>
+              <a href="model.html" class="cashygo-hero__brand-btn" onclick="handleBrandClick(event,'Apple')">Apple</a>
+            </li>
+
+            <li>
+              <a href="model.html" class="cashygo-hero__brand-btn" onclick="handleBrandClick(event,'Xiaomi')">Xiaomi</a>
+            </li>
+
+            <li>
+              <a href="model.html" class="cashygo-hero__brand-btn" onclick="handleBrandClick(event,'Samsung')">Samsung</a>
+            </li>
+
+            <li>
+              <a href="model.html" class="cashygo-hero__brand-btn" onclick="handleBrandClick(event,'Vivo')">Vivo</a>
+            </li>
+
+            <li>
+              <a href="brands.html" class="cashygo-hero__brand-btn">More →</a>
+            </li>
+
+          </ul>
+        </nav>
+      </div>
+      <div class="cashygo-hero__right" aria-hidden="true">
+        <div class="cashygo-hero__ring"></div>
+        <div class="cashygo-hero__phone">
+          <img src="assets/images/brand-img/Brand-Banner.webp" alt="Brand Banner">
+        </div>
+        <ul class="cashygo-hero__tags">
+          <li class="cashygo-hero__tag">Instant Payment</li>
+          <li class="cashygo-hero__tag">100% Data Security</li>
+          <li class="cashygo-hero__tag">Quick Pickup</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- DEVICES -->
+  <section class="cashygo-devices">
+    <h2 class="section-title">Select Mobile Brand</h2>
+    <p class="cashygo-devices__sub">Get instant value for your old gadgets</p>
+    <div class="cashygo-devices__grid">
+
+      <a href="model.html" class="cashygo-devices__item"
+        onclick="handleBrandClick(event,'Apple')">
+        <span class="cashygo-devices__icon">
+          <img src="assets/images/Brand_img/Apple.avif" alt="Apple" />
+        </span>
+        <span class="cashygo-devices__label">Apple</span>
+      </a>
+
+      <a href="model.html" class="cashygo-devices__item" onclick="handleBrandClick(event,'Xiaomi')">
+        <span class="cashygo-devices__icon">
+          <img src="assets/images/Brand_img/Mi.avif" alt="Xiaomi" />
+        </span>
+        <span class="cashygo-devices__label">Xiaomi</span>
+      </a>
+
+      <a href="model.html" class="cashygo-devices__item" onclick="handleBrandClick(event,'Samsung')">
+        <span class="cashygo-devices__icon">
+          <img src="assets/images/Brand_img/sumsung.avif" alt="Samsung" />
+        </span>
+        <span class="cashygo-devices__label">Samsung</span>
+      </a>
+
+      <a href="model.html" class="cashygo-devices__item" onclick="handleBrandClick(event,'Vivo')">
+        <span class="cashygo-devices__icon">
+          <img src="assets/images/Brand_img/Vivo.avif" alt="Vivo" />
+        </span>
+        <span class="cashygo-devices__label">Vivo</span>
+      </a>
+
+      <a href="model.html" class="cashygo-devices__item" onclick="handleBrandClick(event,'OnePlus')">
+        <span class="cashygo-devices__icon">
+          <img src="assets/images/Brand_img/oneplus.avif" alt="OnePlus" />
+        </span>
+        <span class="cashygo-devices__label">OnePlus</span>
+      </a>
+
+      <a href="model.html" class="cashygo-devices__item" onclick="handleBrandClick(event,'OPPO')">
+        <span class="cashygo-devices__icon">
+          <img src="assets/images/Brand_img/Oppo.avif" alt="OPPO" />
+        </span>
+        <span class="cashygo-devices__label">OPPO</span>
+      </a>
+
+      <a href="model.html" class="cashygo-devices__item" onclick="handleBrandClick(event,'Realme')">
+        <span class="cashygo-devices__icon">
+          <img src="assets/images/Brand_img/Realme.avif" alt="Realme" />
+        </span>
+        <span class="cashygo-devices__label">Realme</span>
+      </a>
+
+      <a href="model.html" class="cashygo-devices__item"
+        onclick="handleBrandClick(event,'Motorola')">
+        <span class="cashygo-devices__icon">
+          <img src="assets/images/Brand_img/Motorala.avif" alt="Motorola" />
+        </span>
+        <span class="cashygo-devices__label">Motorola</span>
+      </a>
+
+      <a href="model.html" class="cashygo-devices__item" onclick="handleBrandClick(event,'Lenovo')">
+        <span class="cashygo-devices__icon">
+          <img src="assets/images/Brand_img/Lenavo.avif" alt="Lenovo" />
+        </span>
+        <span class="cashygo-devices__label">Lenovo</span>
+      </a>
+
+      <a href="model.html" class="cashygo-devices__item" onclick="handleBrandClick(event,'Nokia')">
+        <span class="cashygo-devices__icon">
+          <img src="assets/images/Brand_img/Nokia.avif" alt="Nokia" />
+        </span>
+        <span class="cashygo-devices__label">Nokia</span>
+      </a>
+
+      <a href="model.html" class="cashygo-devices__item" onclick="handleBrandClick(event,'Honor')">
+        <span class="cashygo-devices__icon">
+          <img src="assets/images/Brand_img/Honor.avif" alt="Honor" />
+        </span>
+        <span class="cashygo-devices__label">Honor</span>
+      </a>
+
+      <a href="model.html" class="cashygo-devices__item" onclick="handleBrandClick(event,'Asus')">
+        <span class="cashygo-devices__icon">
+          <img src="assets/images/Brand_img/Asus.avif" alt="Asus" />
+        </span>
+        <span class="cashygo-devices__label">Asus</span>
+      </a>
+
+      <a href="model.html" class="cashygo-devices__item" onclick="handleBrandClick(event,'Google')">
+        <span class="cashygo-devices__icon">
+          <img src="assets/images/Brand_img/Google.avif" alt="Google" />
+        </span>
+        <span class="cashygo-devices__label">Google</span>
+      </a>
+
+      <a href="model.html" class="cashygo-devices__item" onclick="handleBrandClick(event,'POCO')">
+        <span class="cashygo-devices__icon">
+          <img src="assets/images/Brand_img/Poco.avif" alt="POCO" />
+        </span>
+        <span class="cashygo-devices__label">POCO</span>
+      </a>
+
+      <a href="model.html" class="cashygo-devices__item" onclick="handleBrandClick(event,'LG')">
+        <span class="cashygo-devices__icon">
+          <img src="assets/images/Brand_img/Lg.avif" alt="LG" />
+        </span>
+        <span class="cashygo-devices__label">LG</span>
+      </a>
+
+      <a href="model.html" class="cashygo-devices__item" onclick="handleBrandClick(event,'Infinix')">
+        <span class="cashygo-devices__icon">
+          <img src="assets/images/Brand_img/infnix.avif" alt="Infinix" />
+        </span>
+        <span class="cashygo-devices__label">Infinix</span>
+      </a>
+
+      <a href="model.html" class="cashygo-devices__item" onclick="handleBrandClick(event,'Tecno')">
+        <span class="cashygo-devices__icon">
+          <img src="assets/images/Brand_img/Tecno.avif" alt="Tecno" />
+        </span>
+        <span class="cashygo-devices__label">Tecno</span>
+      </a>
+
+      <a href="model.html" class="cashygo-devices__item" onclick="handleBrandClick(event,'iQOO')">
+        <span class="cashygo-devices__icon">
+          <img src="assets/images/Brand_img/Iqoo.avif" alt="iQOO" />
+        </span>
+        <span class="cashygo-devices__label">iQOO</span>
+      </a>
+
+      <a href="model.html" class="cashygo-devices__item" onclick="handleBrandClick(event,'Nothing')">
+        <span class="cashygo-devices__icon">
+          <img src="assets/images/Brand_img/Nothing.avif" alt="Nothing" />
+        </span>
+        <span class="cashygo-devices__label">Nothing</span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- POPUP -->
+  <div id="locationPopup" class="popup">
+
+    <div class="card">
+
+      <div class="close-btn" onclick="closePopup()">✕</div>
+
+      <div class="header">
+        <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+            fill="#0d8c60">
+            <path
+              d="M536.5-503.5Q560-527 560-560t-23.5-56.5Q513-640 480-640t-56.5 23.5Q400-593 400-560t23.5 56.5Q447-480 480-480t56.5-23.5ZM480-186q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z" />
+          </svg></div>
+        <div>
+          <div class="title">Service Availability Check</div>
+          <div class="subtitle">Enter your pincode or use your current location</div>
+          <div id="selectedBrand" style="margin-top:5px;font-size:13px;color:#22a06b;"></div>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <div class="input-box">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#0d8c60">
+            <path
+              d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z" />
+          </svg>
+          <input type="text" id="userLocation" placeholder="Enter 6-digit pincode">
+        </div>
+        <button class="check-btn" onclick="submitLocation()">Check</button>
+      </div>
+
+      <div class="divider">OR</div>
+
+      <button type="button" class="location-box" onclick="useCurrentLocation()">
+        <div> <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960" width="18px"
+            fill="#0d8c60">
+            <path
+              d="M440-40v-80q-125-14-214.5-103.5T122-438H42v-80h80q14-125 103.5-214.5T440-836v-80h80v80q125 14 214.5 103.5T838-518h80v80h-80q-14 125-103.5 214.5T520-120v80h-80Zm238-240q82-82 82-198t-82-198q-82-82-198-82t-198 82q-82 82-82 198t82 198q82 82 198 82t198-82Z" />
+          </svg> Use Current Location</div>
+        <span>➜</span>
+      </button>
+
+      <div class="footer">
+        <div class="footer-item"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
+            width="24px" fill="#0d8c60">
+            <path
+              d="M480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 152-90.5 276.5T480-80Zm0-84q104-33 172-132t68-220v-189l-240-90-240 90v189q0 121 68 220t172 132Zm0-316Z" />
+          </svg> Secure</div>
+        <div class="footer-item"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
+            width="24px" fill="#0d8c60">
+            <path
+              d="m422-232 207-248H469l29-227-185 267h139l-30 208ZM320-80l40-280H160l360-520h80l-40 320h240L400-80h-80Zm151-390Z" />
+          </svg> Fast</div>
+        <div class="footer-item"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
+            width="24px" fill="#0d8c60">
+            <path
+              d="M160-120q-33 0-56.5-23.5T80-200v-560q0-33 23.5-56.5T160-840h640q33 0 56.5 23.5T880-760v560q0 33-23.5 56.5T800-120H160Zm0-80h640v-560H160v560Zm40-80h200v-80H200v80Zm382-80 198-198-57-57-141 142-57-57-56 57 113 113Zm-382-80h200v-80H200v80Zm0-160h200v-80H200v80Zm-40 400v-560 560Z" />
+          </svg> Reliable</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="cashygo-stats">
+    <div class="cashygo-stats__inner">
+      <div class="cashygo-stats__item">
+        <div class="cashygo-stats__num">50K+</div>
+        <div class="cashygo-stats__label">Phones sold</div>
+      </div>
+      <div class="cashygo-stats__item">
+        <div class="cashygo-stats__num">4.8★</div>
+        <div class="cashygo-stats__label">User rating</div>
+      </div>
+      <div class="cashygo-stats__item">
+        <div class="cashygo-stats__num">₹0</div>
+        <div class="cashygo-stats__label">Hidden fees</div>
+      </div>
+      <div class="cashygo-stats__item">
+        <div class="cashygo-stats__num">24hr</div>
+        <div class="cashygo-stats__label">Avg payout</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRUST -->
+  <div class="cashygo-trust">
+    <div class="cashygo-trust__item">
+      <div class="cashygo-trust__dot"></div><span>No shop visits</span>
+    </div>
+    <div class="cashygo-trust__item">
+      <div class="cashygo-trust__dot"></div><span>Free doorstep pickup</span>
+    </div>
+    <div class="cashygo-trust__item">
+      <div class="cashygo-trust__dot"></div><span>Secure bank transfer</span>
+    </div>
+    <div class="cashygo-trust__item">
+      <div class="cashygo-trust__dot"></div><span>Cancel anytime</span>
+    </div>
+  </div>
+
+  <!-- PROCESS -->
+  <section class="cashygo-process">
+    <div class="cashygo-process__inner">
+      <p class="cashygo-section-label">Process</p>
+      <h2 class="cashygo-section-title">How Cashygo works</h2>
+      <p class="cashygo-section-sub">3 simple steps — no shop visits, no bargaining</p>
+      <div class="cashygo-process__grid">
+        <div class="cashygo-process__card">
+          <span class="cashygo-process__num">01</span>
+          <div class="cashygo-process__icon"><svg xmlns="http://www.w3.org/2000/svg" height="40px"
+              viewBox="0 -960 960 960" width="40px" fill="#0d8c60">
+              <path
+                d="M266.67-361.67V-405H160v-66.67h213.33v-96.66H194q-13.67 0-23.83-9.84Q160-588 160-602.33V-765q0-14.33 9.83-23.83 9.84-9.5 23.5-9.5h73.34v-43.34h66.66v43.34H440v66.66H226.67V-635H406q14.33 0 24.17 9.5Q440-616 440-601v162.67q0 13.66-9.5 23.5Q421-405 406.67-405h-73.34v43.33h-66.66Zm291.33 240-170-170 46.67-46.66L558-215l235.33-235.33L840-403.67l-282 282Z" />
+            </svg></div>
+          <h3 class="cashygo-process__title">Check your price</h3>
+          <p class="cashygo-process__desc">Select model and condition. Get instant estimate.</p>
+        </div>
+        <div class="cashygo-process__card">
+          <span class="cashygo-process__num">02</span>
+          <div class="cashygo-process__icon"><svg xmlns="http://www.w3.org/2000/svg" height="40px"
+              viewBox="0 -960 960 960" width="40px" fill="#0d8c60">
+              <path
+                d="M147.33-146.67v-666.66V-496v-16.67 366Zm53.34-362.66V-240q0 11.67 7.5 19.17 7.5 7.5 19.16 7.5h13.34q11.66 0 19.16-7.5t7.5-19.17v-58.67h198.34q3.66-18 9.16-34.5T488-365.33H267.33V-492h354q32.67-14 68.34-18.33 35.66-4.34 71 .66l-66-191.62q-5-14.04-16.5-23.04t-25.5-9h-344q-14 0-25.5 9t-16.5 23l-66 192Zm86.66-49.34 36-108H638l36.67 108H287.33Zm73.84 153.72q9.5-9.62 9.5-23.83 0-14.22-9.62-23.72-9.62-9.5-23.83-9.5-14.22 0-23.72 9.62-9.5 9.61-9.5 23.83 0 14.22 9.62 23.72 9.61 9.5 23.83 9.5 14.22 0 23.72-9.62ZM696-163.33l141.33-142L808.67-334 696-220.67l-58-58.66L609.33-250 696-163.33Zm166.17-225.5q57.16 57.16 57.16 138.83 0 81.67-57.16 138.83Q805-54 723.33-54q-81.66 0-138.83-57.17-57.17-57.16-57.17-138.83 0-81.67 57.17-138.83Q641.67-446 723.33-446q81.67 0 138.84 57.17ZM147.33-80Q119-80 99.83-99.17q-19.16-19.16-19.16-47.5v-666.66q0-26.34 19.16-46.5Q119-880 147.33-880H814q26.33 0 46.5 20.17 20.17 20.16 20.17 46.5v353.66q-15.34-11.66-31.67-20.5Q832.67-489 814-496v-317.33H147.33v666.66h336q7.67 18.67 17.84 35Q511.33-95.33 524.33-80h-377Z" />
+            </svg></div>
+          <h3 class="cashygo-process__title">Book free pickup</h3>
+          <p class="cashygo-process__desc">Choose a time slot. We come to your door.</p>
+        </div>
+        <div class="cashygo-process__card">
+          <span class="cashygo-process__num">03</span>
+          <div class="cashygo-process__icon"><svg xmlns="http://www.w3.org/2000/svg" height="40px"
+              viewBox="0 -960 960 960" width="40px" fill="#0d8c60">
+              <path
+                d="M448.67-195.33h60v-51.34q57.33-7.66 92-38 34.66-30.33 34.66-84 0-48-27.33-81t-97.33-61Q452-533.33 427-551q-25-17.67-25-47.67Q402-628 423.17-645q21.16-17 58.83-17 30.67 0 51.33 14.5Q554-633 566.67-606.67l53.33-24q-15-35-43.5-57t-65.83-25.66V-764h-60v50.67Q400-705 371-673.67q-29 31.34-29 75 0 48.34 29.17 77.34 29.16 29 88.83 52.66 65.67 26.34 90.5 47.34 24.83 21 24.83 52.66 0 32.34-25.5 50.5Q524.33-300 486.67-300q-37 0-65.84-21.5Q392-343 380-382l-56 20q18.67 46.67 48.83 74.17 30.17 27.5 75.84 39.16v53.34ZM480-80q-82.33 0-155.33-31.5-73-31.5-127.34-85.83Q143-251.67 111.5-324.67T80-480q0-83 31.5-156t85.83-127q54.34-54 127.34-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 82.33-31.5 155.33-31.5 73-85.5 127.34Q709-143 636-111.5T480-80Zm0-66.67q139.33 0 236.33-97.33t97-236q0-139.33-97-236.33t-236.33-97q-138.67 0-236 97-97.33 97-97.33 236.33 0 138.67 97.33 236 97.33 97.33 236 97.33ZM480-480Z" />
+            </svg></div>
+          <h3 class="cashygo-process__title">Get paid</h3>
+          <p class="cashygo-process__desc">Instant bank transfer after inspection.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHONES -->
+  <section class="cashygo-phones">
+    <div class="cashygo-phones__inner">
+      <p class="cashygo-section-label">Top models</p>
+      <h2 class="cashygo-section-title">Popular phones this month</h2>
+      <div class="cashygo-phones__scroll">
+        <div class="cashygo-phones__card">
+          <div class="cashygo-phones__img"><img src="assets/images/Mobile_brand/iPhone 16 Pro.avif" alt="iPhone 13 128GB"></div>
+          <div class="cashygo-phones__body">
+            <p class="cashygo-phones__badge">5% bonus</p>
+            <h3 class="cashygo-phones__name">iPhone 13 128GB</h3>
+            <p class="cashygo-phones__sold">406+ sold</p>
+            <div class="cashygo-phones__row"><span class="cashygo-phones__price">₹30,000</span><button
+                class="cashygo-phones__sell-btn">Sell</button></div>
+          </div>
+        </div>
+        <div class="cashygo-phones__card">
+          <div class="cashygo-phones__img"><img src="assets/images/Mobile_brand/iPhone 15 Pro.avif" alt="iPhone 15"></div>
+          <div class="cashygo-phones__body">
+            <p class="cashygo-phones__badge">5% bonus</p>
+            <h3 class="cashygo-phones__name">iPhone 15</h3>
+            <p class="cashygo-phones__sold">247+ sold</p>
+            <div class="cashygo-phones__row"><span class="cashygo-phones__price">₹38,000</span><button
+                class="cashygo-phones__sell-btn">Sell</button></div>
+          </div>
+        </div>
+        <div class="cashygo-phones__card">
+          <div class="cashygo-phones__img"><img src="assets/images/Mobile_brand/Samsung S23 Ultra 5G.avif" alt="Samsung S23"></div>
+          <div class="cashygo-phones__body">
+            <p class="cashygo-phones__badge">3% bonus</p>
+            <h3 class="cashygo-phones__name">Samsung S23</h3>
+            <p class="cashygo-phones__sold">183+ sold</p>
+            <div class="cashygo-phones__row"><span class="cashygo-phones__price">₹22,000</span><button
+                class="cashygo-phones__sell-btn">Sell</button></div>
+          </div>
+        </div>
+        <div class="cashygo-phones__card">
+          <div class="cashygo-phones__img"><img src="assets/images/Mobile_brand/Google Pixel 10.avif" alt="Pixel 8"></div>
+          <div class="cashygo-phones__body">
+            <p class="cashygo-phones__badge">4% bonus</p>
+            <h3 class="cashygo-phones__name">Pixel 8</h3>
+            <p class="cashygo-phones__sold">95+ sold</p>
+            <div class="cashygo-phones__row"><span class="cashygo-phones__price">₹26,500</span><button
+                class="cashygo-phones__sell-btn">Sell</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section class="cashygo-why">
+    <div class="cashygo-why__inner">
+      <p class="cashygo-section-label">Why Cashygo</p>
+      <h2 class="cashygo-section-title">Built for sellers</h2>
+      <div class="cashygo-why__grid">
+        <div class="cashygo-why__card">
+          <span class="cashygo-why__icon"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
+              width="24px" fill="#0d8c60">
+              <path
+                d="M760-320q-72 0-127-45t-69-115H445l-48-80h167q5-22 13.5-42t22.5-38H348l-48-80h342l-44-120H440v-80h158q26 0 46 14.5t29 38.5l54 147h33q83 0 141.5 58.5T960-520q0 83-58.5 141.5T760-320Zm0-80q50 0 85-35t35-85q0-50-35-85t-85-35h-3l39 107-76 27-38-105q-20 17-31 41t-11 50q0 50 35 85t85 35ZM280-40q-50 0-85-35t-35-85H0v-80h191q15-15 38-27.5t51-12.5q25 0 48 10t41 30h111v-80H0v-80h80v-120H0v-80h280l120 200h80q33 0 56.5 23.5T560-320v80q0 33-23.5 56.5T480-160h-80q0 50-35 85t-85 35ZM160-400h147l-72-120h-75v120Zm120 280q17 0 28.5-11.5T320-160q0-17-11.5-28.5T280-200q-17 0-28.5 11.5T240-160q0 17 11.5 28.5T280-120Zm-40-160Z" />
+            </svg></span>
+          <div>
+            <h3 class="cashygo-why__title">Free pickup</h3>
+            <p class="cashygo-why__desc">We come to your doorstep.</p>
+          </div>
+        </div>
+        <div class="cashygo-why__card">
+          <span class="cashygo-why__icon"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
+              width="24px" fill="#0d8c60">
+              <path
+                d="M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Zm179-80h442L480-830 259-720ZM80-120v-80h482q2 21 5 40.5t9 39.5H80Zm600-310v-130h80v90l-80 40ZM800 0q-69-17-114.5-79.5T640-218v-102l160-80 160 80v102q0 76-45.5 138.5T800 0Zm-29-120 139-138-42-42-97 95-39-39-42 43 81 81ZM259-720h442-442Z" />
+            </svg></span>
+          <div>
+            <h3 class="cashygo-why__title">Bank transfer</h3>
+            <p class="cashygo-why__desc">Safe &amp; instant payment.</p>
+          </div>
+        </div>
+        <div class="cashygo-why__card">
+          <span class="cashygo-why__icon"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
+              width="24px" fill="#0d8c60">
+              <path
+                d="M260-361v-40H160v-80h200v-80H200q-17 0-28.5-11.5T160-601v-160q0-17 11.5-28.5T200-801h60v-40h80v40h100v80H240v80h160q17 0 28.5 11.5T440-601v160q0 17-11.5 28.5T400-401h-60v40h-80Zm298 240L388-291l56-56 114 114 226-226 56 56-282 282Z" />
+            </svg></span>
+          <div>
+            <h3 class="cashygo-why__title">Best pricing</h3>
+            <p class="cashygo-why__desc">Based on market value.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="cashygo-faq">
+    <div class="cashygo-faq__inner">
+      <div class="cashygo-faq__header">
+        <h2>Frequently <span>Asked</span> Questions</h2>
+        <p>Everything you need to know before selling your device</p>
+      </div>
+      <div class="cashygo-faq__list">
+        <div class="cashygo-faq__item">
+          <button class="cashygo-faq__question">How do I sell my device? <span
+              class="cashygo-faq__icon">+</span></button>
+          <div class="cashygo-faq__answer">Select your device, check the price, schedule pickup, and get paid instantly
+            after verification.</div>
+        </div>
+        <div class="cashygo-faq__item">
+          <button class="cashygo-faq__question">How is the price calculated? <span
+              class="cashygo-faq__icon">+</span></button>
+          <div class="cashygo-faq__answer">Price depends on device condition, market demand, and current resale value.
+          </div>
+        </div>
+        <div class="cashygo-faq__item">
+          <button class="cashygo-faq__question">Is pickup free? <span class="cashygo-faq__icon">+</span></button>
+          <div class="cashygo-faq__answer">Yes, doorstep pickup is completely free with no hidden charges.</div>
+        </div>
+        <div class="cashygo-faq__item">
+          <button class="cashygo-faq__question">When will I get payment? <span
+              class="cashygo-faq__icon">+</span></button>
+          <div class="cashygo-faq__answer">Payment is processed instantly after device verification during pickup.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">
+            <img src="assets/images/project-logo/logo-new.svg" alt="Cashygo" loading="lazy">
+          </div>
+          <p class="footer-desc">India's most trusted device buyback platform. Instant pricing, free doorstep pickup,
+            and instant payment.</p>
+          <div class="social-links" aria-label="Follow us on social media">
+            <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>SELL</h4>
+          <ul>
+            <li><a href="#">Sell Mobile</a></li>
+            <li><a href="#">Sell Laptop</a></li>
+            <li><a href="#">Sell Tablet</a></li>
+            <li><a href="#">Sell MacBook</a></li>
+            <li><a href="#">Sell Smartwatch</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>COMPANY</h4>
+          <ul>
+            <li><a href="#">About Cashygo</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Partner With Us</a></li>
+            <li><a href="#">Press & Media</a></li>
+            <li><a href="#">Blog & Tips</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>SUPPORT</h4>
+          <ul>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Contact Support</a></li>
+            <li><a href="#">Return Policy</a></li>
+            <li><a href="#">Privacy & Security</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col footer-contact">
+          <h4>CONTACT</h4>
+          <address>
+            <p><i class="bi bi-envelope"></i><a href="mailto:hr@cashygo.com">hr@cashygo.com</a></p>
+            <p><i class="bi bi-telephone"></i><a href="tel:+917766071191">+91 7766071191</a></p>
+            <p><i class="bi bi-geo-alt"></i>Bangalore, Karnataka, India</p>
+          </address>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-links-row">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms & Conditions</a>
+          <a href="#">Refund Policy</a>
+          <a href="#">Sitemap</a>
+        </div>
+        <div class="payment-row" aria-label="Secure payment methods">
+          <span>Secure payments:</span>
+          <i class="bi bi-credit-card" title="Credit/Debit Card"></i>
+          <i class="bi bi-bank" title="Bank Transfer"></i>
+          <i class="bi bi-wallet2" title="Digital Wallet"></i>
+        </div>
+        <p>© 2026 Cashygo — Resale Redefined</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- LOGIN MODAL -->
+  <div id="loginModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <button class="modal-close" id="closeModalBtn" aria-label="Close">×</button>
+      <h2 class="modal-title" id="modalTitle">🔐 Welcome Back</h2>
+
+      <div id="mobileStep">
+        <label for="mobileInput">Mobile number</label>
+        <input type="tel" id="mobileInput" name="mobile" placeholder="10-digit mobile number" autocomplete="tel"
+          maxlength="10" aria-required="true">
+        <div class="modal-terms">
+          <label><input type="checkbox" id="termsCheck" name="termsCheck"> I agree to <a href="#">Terms</a></label>
+        </div>
+        <div class="modal-err" id="mobileErr"></div>
+        <button class="modal-submit" type="button" id="sendOtpBtn">Send OTP →</button>
+      </div>
+
+      <div id="otpStep" style="display:none">
+        <label for="otpInput">6-digit OTP</label>
+        <input type="text" id="otpInput" name="otp" placeholder="Enter OTP" maxlength="6" autocomplete="one-time-code"
+          inputmode="numeric" aria-required="true">
+        <div class="modal-terms">
+          <label><input type="checkbox" id="otpTerms" name="otpTerms"> Accept T&C</label>
+        </div>
+        <div class="modal-err" id="otpErr"></div>
+        <button class="modal-submit" type="button" id="verifyOtpBtn">Verify & Login</button>
+        <button class="modal-back" type="button" id="backBtn">← Back</button>
+        <p class="modal-otp-hint">Demo OTP: 123456</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+
+  <script src="assets/js/script.js"></script>
+  <script src="assets/js/brand.js"></script>
+</body>
+
+</html>
