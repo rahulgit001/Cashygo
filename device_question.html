@@ -159,7 +159,7 @@
 
     .pips {
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
+      grid-template-columns: repeat(7, 1fr);
       gap: 8px;
     }
 
@@ -221,12 +221,12 @@
     .q-icon-box {
       display: grid;
       place-items: center;
-      width: 96px;
-      height: 96px;
+      width: 60px;
+      height: 60px;
       border-radius: 24px;
       background: linear-gradient(135deg, #e9fbf5, #f4fffb);
       color: var(--green);
-      font-size: 44px;
+      font-size: 30px;
     }
 
     .q-head {
@@ -523,11 +523,11 @@
     }
 
     .modal-head {
-      display: flex;
+      /* display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: space-between; */
       gap: 20px;
-      padding: 18px 22px;
+      padding: 5px 10px;
       border-bottom: 1px solid var(--line);
     }
 
@@ -535,6 +535,9 @@
       margin: 0;
       font-size: 22px;
       font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .close {
@@ -545,6 +548,9 @@
       background: #fff;
       cursor: pointer;
       font-size: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .modal-body {
@@ -604,8 +610,8 @@
     }
 
     .screen-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      display: flex;
+      /* grid-template-columns: repeat(3, minmax(0, 1fr)); */
       gap: 14px;
     }
 
@@ -617,10 +623,11 @@
 
     .screen-card {
       display: grid;
-      grid-template-rows: auto minmax(34px, auto) auto;
-      gap: 10px;
-      min-height: 210px;
-      padding: 12px;
+      width: 150px;
+      /* grid-template-rows: auto minmax(34px, auto) auto; */
+      /* gap: 10px; */
+      /* min-height: 210px; */
+      /* padding: 12px; */
       border: 1px solid #dcebe5;
       border-radius: 14px;
       background: #fff;
@@ -643,13 +650,13 @@
       place-items: center;
       min-height: 134px;
       border-radius: 12px;
-      background: #f5fffb;
+      /* background: #f5fffb; */
       overflow: hidden;
     }
 
     .screen-card-img img {
-      width: 82px;
-      height: 116px;
+      width: 100%;
+      height: 100%;
       object-fit: contain;
     }
 
@@ -765,6 +772,7 @@
       color: var(--muted);
       font-size: 16px;
       line-height: 1.45;
+      text-align: center;
     }
 
     .screen-selected-text {
@@ -803,7 +811,8 @@
       }
 
       .screen-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(2, 1fr);
+        display: ruby;
       }
 
       .modal {
@@ -962,7 +971,7 @@
       .modal-body {
         gap: 14px;
         padding: 14px;
-        max-height: calc(100vh - 92px);
+        max-height: calc(70vh - 80px);
       }
 
       .modal-submit {
@@ -1003,6 +1012,7 @@
 
       .screen-grid {
         grid-template-columns: repeat(2, 1fr);
+        display: grid;
       }
 
       .finish {
@@ -1182,6 +1192,21 @@
     </div>
   </div>
 
+  <div class="modal-backdrop" id="displayPopup" role="dialog" aria-modal="true" aria-labelledby="displayPopupTitle">
+    <div class="modal screen-modal">
+      <div class="modal-head">
+        <h2 id="displayPopupTitle">Select display issue</h2>
+        <button class="close" id="closeDisplayPopup" type="button" aria-label="Close display issue popup"><i
+            class="bi bi-x"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="screen-grid" id="displayIssueGrid"></div>
+        <p class="screen-selected-text" id="displayIssueText">Select all display issues that apply.</p>
+        <button class="modal-submit" id="displayIssueSubmit" type="button" disabled>Save display issues</button>
+      </div>
+    </div>
+  </div>
+
   <div class="modal-backdrop" id="bodyPopup" role="dialog" aria-modal="true" aria-labelledby="bodyPopupTitle">
     <div class="modal screen-modal">
       <div class="modal-head">
@@ -1200,12 +1225,14 @@
   <div class="modal-backdrop" id="touchPopup" role="dialog" aria-modal="true" aria-labelledby="touchPopupTitle">
     <div class="modal screen-modal">
       <div class="modal-head">
-        <h2 id="touchPopupTitle">Select touch condition</h2>
+        <h2 id="touchPopupTitle">Screen Changed Device condition</h2>
+        <p class="modal-subtitle">Pick the closest match. Each card uses your selected device image.</p>
         <button class="close" id="closeTouchPopup" type="button" aria-label="Close touch issue popup"><i
             class="bi bi-x"></i></button>
+
       </div>
       <div class="modal-body">
-        <p class="modal-subtitle">Pick the closest match. Each card uses your selected device image.</p>
+        <!-- <p class="modal-subtitle">Pick the closest match. Each card uses your selected device image.</p> -->
         <div class="screen-grid" id="touchIssueGrid"></div>
         <p class="screen-selected-text" id="touchIssueText">Pick the closest match.</p>
         <button class="modal-submit" id="touchIssueSubmit" type="button" disabled>Save touch condition</button>
@@ -1342,6 +1369,9 @@
           <i class="bi bi-credit-card" title="Credit/Debit Card"></i>
           <i class="bi bi-bank" title="Bank Transfer"></i>
           <i class="bi bi-wallet2" title="Digital Wallet"></i>
+          <i class="fa-solid fa-mobile-screen"></i>
+<i class="fa-solid fa-mobile-screen-button"></i>
+<i class="fa-solid fa-ban"></i>
         </div>
         <p>© 2026 Cashygo — Resale Redefined</p>
       </div>
@@ -1387,38 +1417,56 @@
 
     const Qs = [
       { id: "calls", title: "Are you able to make and receive calls?", hint: "Please check your device for any cellular network connectivity issues.", opts: ["Yes", "No"], score: { Yes: 0, No: -15000 }, label: "Cellular", icon: "bi-telephone-fill" },
-      { id: "touch", title: "Is your phone's screen original?", hint: "Select Yes if the screen has never been replaced or was replaced by an Authorized Service Center. Select No if the screen was replaced at a local repair shop.", opts: ["Yes", "No"], score: { Yes: 0, No: 0 }, label: "Original screen", icon: "bi-hand-index-thumb" },
-      { id: "screen", title: "Is your device's touch screen working properly?", hint: "Please check whether your phone's touchscreen is functioning correctly.", opts: ["Yes", "No"], score: { Yes: 0, No: 0 }, label: "Touch screen", icon: "bi-phone" },
-      { id: "warranty", title: "Is there any damage to your phone's body?", hint: "Check for dents, cracks, scratches, or bends on the phone body.", opts: ["Yes", "No"], score: { Yes: 0, No: 0 }, label: "Body damage", icon: "bi-shield-check" },
-      { id: "battery", title: "Is there any battery issue with your phone?", hint: "Check for fast battery drain, overheating, swelling, charging issues, or battery health below 80%.", opts: ["Yes", "No"], score: { Yes: 0, No: 0 }, label: "Battery issue", icon: "bi-battery-half" },
+      { id: "touch", title: "Is your phone's screen original?", hint: "Select Yes if the screen has never been replaced or was replaced by an Authorized Service Center. Select No if the screen was replaced at a local repair shop.", opts: ["Yes", "No"], score: { Yes: 0, No: 0 }, label: "Original screen", icon: "bi-phone" },
+      { id: "screen", title: "Is your device's touch screen working properly?", hint: "Please check whether your phone's touchscreen is functioning correctly.", opts: ["Yes", "No"], score: { Yes: 0, No: 0 }, label: "Touch screen", icon: "bi-hand-index-thumb" },
+      { id: "display", title: "Is there any display issue?", hint: "Check for spots, lines, discoloration, or background marks on the display.", opts: ["Yes", "No"], score: { Yes: 0, No: 0 }, label: "Display issue", icon: "bi-display" },
+      { id: "warranty", title: "Is there any damage to your phone's body?", hint: "Check for dents, cracks, scratches, or bends on the phone body.", opts: ["Yes", "No"], score: { Yes: 0, No: 0 }, label: "Body damage", icon: "bi-phone-vibrate" },
+      { id: "battery", title: "Is there any battery issue with your phone?", hint: "Check for fast battery drain, overheating, swelling, charging issues, or battery health below 83%.", opts: ["Yes", "No"], score: { Yes: 0, No: 0 }, label: "Battery issue", icon: "bi-battery-half" },
       { id: "esim", title: "How many eSIMs does your device support?", hint: "Select Dual eSIM if your device supports two eSIMs. Otherwise, select Single eSIM.", opts: ["Single eSIM", "Dual eSIM"], score: { "Single eSIM": 0, "Dual eSIM": 2000 }, label: "eSIM type", icon: "bi-sim-fill" }
     ];
 
     const questions = Qs;
 
     const screenIssues = [
-      { id: "crack", title: "Cracked glass", icon: "bi-bandaid", image: "assets/images/Glass section/Chipped Corners Around Screen.png", price: 4500 },
-      { id: "lines", title: "Lines / green display", icon: "bi-distribute-vertical", image: "assets/images/spot on display/lines on display.png", price: 6500 },
-      { id: "spots", title: "Black spots / bleeding", icon: "bi-circle-half", image: "assets/images/spot on display/Screen Has One or Two Small Spots.png", price: 5800 },
-      { id: "duplicate", title: "Duplicate display", icon: "bi-phone-flip", image: "assets/images/spot on display/Visible Background Issue on Screen.png", price: 7200 },
-      { id: "discoloration", title: "Heavy discoloration", icon: "bi-palette", image: "assets/images/spot on display/Heavy Discoloration Visible on Screen.png", price: 6200 },
-      { id: "scratches", title: "Multiple scratches", icon: "bi-slash-lg", image: "assets/images/Glass section/Screen Has Multiple Visible Scratches.png", price: 2600 }
+      { id: "crack", title: "1-2 scratches on screen", icon: "bi-bandaid", image: "assets/images/screen_popup/1-2 scratches on screen.png", price: 4500 },
+      { id: "lines", title: "Chipped Corners Around Screen", icon: "bi-distribute-vertical", image: "assets/images/screen_popup/Chipped Corners Around Screen.png", price: 6500 },
+      { id: "spots", title: "Screen Has Multiple Visible Scratches", icon: "bi-circle-half", image: "assets/images/screen_popup/Screen Has Multiple Visible Scratches.png", price: 5800 },
+      { id: "duplicate", title: "Screen Glass Broken or Cracked", icon: "bi-phone-flip", image: "assets/images/screen_popup/Screen Glass Broken or Cracked.jpeg", price: 7200 },
+      // { id: "discoloration", title: "Display Color Faded Along Edges", icon: "bi-palette", image: "assets/images/screen_popup/Heavy Discoloration Visible on Screen.png", price: 6200 },
+      // { id: "scratches", title: "Major Display Discoloration", icon: "bi-slash-lg", image: "assets/images/screen_popup/Heavy Discoloration Visible on Screen.png", price: 2600 }
+    ];
+
+    const displayIssues = [
+      { id: "display-lines", title: "Lines on display", icon: "bi-distribute-vertical", image: "assets/images/display_popup/lines on display.png", price: 6500 },
+      { id: "small-spots", title: "Screen has one or two small spots", icon: "bi-circle-half", image: "assets/images/display_popup/Screen Has One or Two Small Spots.png", price: 4200 },
+      { id: "multiple-spots", title: "Multiple small spots present", icon: "bi-record-circle", image: "assets/images/display_popup/Multiple Small Spots Present on Display.png", price: 5800 },
+      { id: "large-patch", title: "Large patchy spots on display", icon: "bi-bounding-box", image: "assets/images/display_popup/Large Patchy Spots on Display.png", price: 7200 },
+      { id: "light-discoloration", title: "Light discoloration visible", icon: "bi-palette", image: "assets/images/display_popup/Light Discoloration Visible on Screen.png", price: 4800 },
+      { id: "heavy-discoloration", title: "Heavy discoloration visible", icon: "bi-palette-fill", image: "assets/images/display_popup/Heavy Discoloration Visible on Screen.png", price: 6200 },
+      { id: "background-issue", title: "Visible background issue", icon: "bi-layers", image: "assets/images/display_popup/Visible Background Issue on Screen.png", price: 7000 }
     ];
 
     const bodyIssues = [
-      { id: "dent", title: "Dents / bent frame", icon: "bi-phone-vibrate", image: "assets/images/Mobile_brand/iPhone 16 Pro.avif", price: 1800 },
-      { id: "back", title: "Back panel damaged", icon: "bi-phone-flip", image: "assets/images/Mobile_brand/Sell iPhone 16 Pro Max.avif", price: 2200 },
-      { id: "buttons", title: "Buttons not working", icon: "bi-toggle2-off", image: "assets/images/functional issues/Volume Button not working.png", price: 1400 },
-      { id: "camera-glass", title: "Camera glass broken", icon: "bi-camera", image: "assets/images/functional issues/Back Camera Broken.png", price: 1600 },
-      { id: "charging-port", title: "Charging port issue", icon: "bi-usb-plug", image: "assets/images/functional issues/Charging Port not working.png", price: 1900 },
-      { id: "speaker", title: "Speaker faulty", icon: "bi-volume-mute", image: "assets/images/functional issues/Speaker Faulty.png", price: 1500 }
+            { id: "speaker", title: "Major Dents or more than 2", icon: "bi-volume-mute", image: "assets/images/Body_popup/Major Dents or more than 2.png", price: 1500 },
+      { id: "dent", title: "1-2 minor dents", icon: "bi-phone-vibrate", image: "assets/images/Body_popup/1-2 minor dents.png", price: 1800 },
+      // { id: "back", title: "1-2 Minor Dents", icon: "bi-phone-flip", image: "assets/images/Body_popup/1-2 Minor Dents.png", price: 2200 },
+      { id: "buttons", title: "1-2 scratches", icon: "bi-toggle2-off", image: "assets/images/Body_popup/1-2 scratches.png", price: 1400 },
+      { id: "camera-glass", title: "2 tO 3 Dents", icon: "bi-camera", image: "assets/images/Body_popup/2 tO 3 Dents.png", price: 1600 },
+      { id: "charging-port", title: "2 to 3 scratches", icon: "bi-usb-plug", image: "assets/images/Body_popup/2 to 3 scratches.png", price: 1900 },
+      { id: "speaker", title: "Bent_ curved panel", icon: "bi-volume-mute", image: "assets/images/Body_popup/Bent_ curved panel.png", price: 1500 },
+      { id: "speaker", title: "Broken _Cracked Side or Back Panel", icon: "bi-volume-mute", image: "assets/images/Body_popup/Broken _Cracked Side or Back Panel.png", price: 1500 },
+      { id: "speaker", title: "Loose screen (Gap in screen and body)", icon: "bi-volume-mute", image: "assets/images/Body_popup/Loose screen (Gap in screen and body).png", price: 1500 },
+      // { id: "speaker", title: "Major Dents or more than 2", icon: "bi-volume-mute", image: "assets/images/Body_popup/Major Dents or more than 2.png", price: 1500 }
+
+
+
     ];
 
     const touchIssues = [
-      { id: "duplicate-display", title: "Local / duplicate screen", desc: "Screen was replaced outside authorized service", icon: "bi-phone-flip", image: "assets/images/spot on display/Light Discoloration Visible on Screen.png", price: 10000, label: "-₹10,000" },
-      { id: "touch-lag", title: "Touch lag", desc: "Touch responds slowly or misses taps", icon: "bi-hand-index-thumb", image: "assets/images/spot on display/Multiple Small Spots Present on Display.png", price: 6000, label: "-₹6,000" },
-      { id: "ghost-touch", title: "Ghost touch", desc: "Screen taps automatically without touch", icon: "bi-hand-index", image: "assets/images/Glass section/yellow issue in display border.png", price: 8000, label: "-₹8,000" },
-      { id: "dead-zone", title: "Touch dead zone", desc: "Some part of screen is not responding", icon: "bi-bounding-box", image: "assets/images/spot on display/Large Patchy Spots on Display.png", price: 12000, label: "-₹12,000" }
+      { id: "duplicate-display", title: "100% Genuine Original Screen", desc: "Screen was replaced outside authorized service", icon: "bi-phone-flip", image: "assets/images/popup_img/secreen.jpeg", price: 10000, label: "-₹10,000" },
+      { id: "touch-lag", title: "High-Quality Compatible Screen", desc: "Touch responds slowly or misses taps", icon: "bi-hand-index-thumb", image: "assets/images/popup_img/secreen.jpeg", price: 6000, label: "-₹6,000" },
+      { id: "ghost-touch", title: "Budget Copy Screen", desc: "Screen taps automatically without touch", icon: "bi-hand-index", image: "assets/images/popup_img/secreen.jpeg", price: 8000, label: "-₹8,000" },
+      { id: "dead-zone", title: "Standard LCD Screen", desc: "Some part of screen is not responding", icon: "bi-bounding-box", image: "assets/images/popup_img/secreen.jpeg", price: 12000, label: "-₹12,000" }
     ];
 
     const warrantyDetails = [
@@ -1429,13 +1477,13 @@
     ];
 
     const batteryIssues = [
-      { id: "battery-health", title: "Battery health below 80%", desc: "Battery backup is weak or service warning is visible", icon: "bi-battery-half", image: "assets/images/Mobile_brand/iPhone 15 Pro.avif", price: 3000, label: "-₹3,000" },
-      { id: "fast-drain", title: "Fast battery drain", desc: "Charge drops quickly during normal use", icon: "bi-lightning-charge", image: "assets/images/Mobile_brand/iPhone 17e.avif", price: 2500, label: "-₹2,500" },
-      { id: "charging-issue", title: "Charging issue", desc: "Phone charges slowly or disconnects often", icon: "bi-plug", image: "assets/images/functional issues/Charging Port not working.png", price: 3500, label: "-₹3,500" },
-      { id: "heating", title: "Heating issue", desc: "Phone gets hot during charging or normal use", icon: "bi-thermometer-high", image: "assets/images/Mobile_brand/iPhone Air.avif", price: 2800, label: "-₹2,800" }
+      { id: "battery-health", title: "Battery Health 75% To 83%", desc: "Battery backup is weak or service warning is visible", icon: "bi-battery-half", image: "assets/images/battery_popup/Battery Health 75%25 To 83%25.jpeg", price: 3000, label: "-₹3,000" },
+      { id: "fast-drain", title: "Battery Health Below 70%", desc: "Charge drops quickly during normal use", icon: "bi-lightning-charge", image: "assets/images/battery_popup/Battery Health Below 70%25.jpeg", price: 2500, label: "-₹2,500" },
+      // { id: "charging-issue", title: "Charging issue", desc: "Phone charges slowly or disconnects often", icon: "bi-plug", image: "assets/images/functional issues/Charging Port not working.png", price: 3500, label: "-₹3,500" },
+      // { id: "heating", title: "Heating issue", desc: "Phone gets hot during charging or normal use", icon: "bi-thermometer-high", image: "assets/images/Mobile_brand/iPhone Air.avif", price: 2800, label: "-₹2,800" }
     ];
 
-    const state = { active: 0, answers: {}, screenIssue: [], bodyIssues: [], touchIssue: [], warrantyDetail: null, batteryIssue: [], basePrice: 64000 };
+    const state = { active: 0, answers: {}, screenIssue: [], displayIssues: [], bodyIssues: [], touchIssue: [], warrantyDetail: null, batteryIssue: [], basePrice: 64000 };
     const rupee = new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 });
     const pips = document.getElementById("pips");
     const questionWrap = document.getElementById("questions");
@@ -1448,6 +1496,10 @@
     const screenPopup = document.getElementById("screenPopup");
     const screenIssueGrid = document.getElementById("screenIssueGrid");
     const screenIssueSubmit = document.getElementById("screenIssueSubmit");
+    const displayPopup = document.getElementById("displayPopup");
+    const displayIssueGrid = document.getElementById("displayIssueGrid");
+    const displayIssueText = document.getElementById("displayIssueText");
+    const displayIssueSubmit = document.getElementById("displayIssueSubmit");
     const bodyPopup = document.getElementById("bodyPopup");
     const bodyIssueGrid = document.getElementById("bodyIssueGrid");
     const bodyIssueText = document.getElementById("bodyIssueText");
@@ -1494,6 +1546,7 @@
         if (answer) price += question.score[answer] || 0;
       });
       state.screenIssue.forEach((issue) => { price -= issue.price; });
+      state.displayIssues.forEach((issue) => { price -= issue.price; });
       state.bodyIssues.forEach((issue) => { price -= issue.price; });
       state.touchIssue.forEach((issue) => { price -= issue.price; });
       if (state.warrantyDetail) price -= state.warrantyDetail.price;
@@ -1509,6 +1562,7 @@
         if (amount < 0) deductions.push({ label: question.label, amount: Math.abs(amount) });
       });
       state.screenIssue.forEach((issue) => deductions.push({ label: issue.title, amount: issue.price }));
+      state.displayIssues.forEach((issue) => deductions.push({ label: issue.title, amount: issue.price }));
       state.bodyIssues.forEach((issue) => deductions.push({ label: issue.title, amount: issue.price }));
       state.touchIssue.forEach((issue) => deductions.push({ label: issue.title, amount: issue.price }));
       if (state.warrantyDetail?.price) deductions.push({ label: state.warrantyDetail.title, amount: state.warrantyDetail.price });
@@ -1530,7 +1584,6 @@
 
     function renderProgress() {
       const done = answeredCount();
-      const nextPopup = needsIssuePopup();
       pips.innerHTML = questions.map((_, index) => `<span class="pip ${index < done ? "done" : ""}"></span>`).join("");
       doneCount.textContent = done;
       totalCount.textContent = questions.length;
@@ -1538,14 +1591,15 @@
       remainingStat.textContent = Math.max(questions.length - done, 0);
       quotePrice.textContent = rupee.format(currentQuote());
       finishBtn.disabled = done !== questions.length;
-      finishBtn.textContent = nextPopup ? "Select issue details" : "Continue";
+      finishBtn.textContent = "Continue";
     }
 
     function needsIssuePopup() {
-      if (state.answers.screen === "Yes" && !state.screenIssue.length) return "screen";
-      if (state.answers.touch === "Yes" && !state.touchIssue.length) return "touch";
+      if (state.answers.screen === "No" && !state.screenIssue.length) return "screen";
+      if (state.answers.touch === "No" && !state.touchIssue.length) return "touch";
       if (state.answers.warranty === "Yes" && !state.bodyIssues.length) return "body";
       if (state.answers.battery === "Yes" && !state.batteryIssue.length) return "battery";
+      if (state.answers.display === "Yes" && !state.displayIssues.length) return "display";
       return "";
     }
 
@@ -1555,13 +1609,15 @@
       if (nextPopup === "touch") openTouchPopup();
       if (nextPopup === "body") openBodyPopup();
       if (nextPopup === "battery") openBatteryPopup();
+      if (nextPopup === "display") openDisplayPopup();
     }
 
     function resetDependentPopup(answerId, answerValue) {
-      if (answerId === "screen" && answerValue !== "Yes") state.screenIssue = [];
-      if (answerId === "touch" && answerValue !== "Yes") state.touchIssue = [];
+      if (answerId === "screen" && answerValue !== "No") state.screenIssue = [];
+      if (answerId === "touch" && answerValue !== "No") state.touchIssue = [];
       if (answerId === "warranty" && answerValue !== "Yes") state.bodyIssues = [];
       if (answerId === "battery" && answerValue !== "Yes") state.batteryIssue = [];
+      if (answerId === "display" && answerValue !== "Yes") state.displayIssues = [];
     }
 
     function selectedSummary(items, label) {
@@ -1599,6 +1655,37 @@
 
     function openScreenPopup() { renderScreenIssues(); screenIssueSubmit.disabled = !state.screenIssue.length; screenPopup.classList.add("show"); }
     function closeScreenPopup() { screenPopup.classList.remove("show"); }
+
+    function renderDisplayIssues() {
+      displayIssueGrid.innerHTML = displayIssues.map((issue) => {
+        const selected = state.displayIssues.some((item) => item.id === issue.id);
+        return `
+          <button class="screen-card ${selected ? "selected" : ""}" type="button" data-display-issue="${issue.id}">
+            <span class="screen-card-img">
+              <span class="card-check"><i class="bi bi-check-lg"></i></span>
+              <img src="${issue.image || screenDeviceImage}" alt="${issue.title}">
+              <i class="bi ${issue.icon}"></i>
+            </span>
+            <span class="screen-card-title">${issue.title}</span>
+            <span class="screen-card-price">-${rupee.format(issue.price)}</span>
+          </button>`;
+      }).join("");
+
+      displayIssueGrid.querySelectorAll("[data-display-issue]").forEach((card) => {
+        card.addEventListener("click", () => {
+          const issue = displayIssues.find((item) => item.id === card.dataset.displayIssue);
+          const selected = state.displayIssues.some((item) => item.id === issue.id);
+          state.displayIssues = selected ? state.displayIssues.filter((item) => item.id !== issue.id) : [...state.displayIssues, issue];
+          displayIssueText.textContent = selectedSummary(state.displayIssues, "display issue");
+          displayIssueSubmit.disabled = !state.displayIssues.length;
+          renderDisplayIssues();
+          renderProgress();
+        });
+      });
+    }
+
+    function openDisplayPopup() { renderDisplayIssues(); displayIssueText.textContent = selectedSummary(state.displayIssues, "display issue"); displayIssueSubmit.disabled = !state.displayIssues.length; displayPopup.classList.add("show"); }
+    function closeDisplayPopup() { displayPopup.classList.remove("show"); }
 
     function renderBodyIssues() {
       bodyIssueGrid.innerHTML = bodyIssues.map((issue) => {
@@ -1769,9 +1856,14 @@
           state.active = Math.min(answeredCount(), questions.length - 1);
           renderQuestions();
           renderProgress();
-          if (["screen", "touch", "warranty", "battery"].includes(answerId) && answerValue === "Yes") {
+          const shouldOpenPopup =
+            (answerId === "screen" && answerValue === "No") ||
+            (answerId === "touch" && answerValue === "No") ||
+            (answerId === "display" && answerValue === "Yes") ||
+            (["warranty", "battery"].includes(answerId) && answerValue === "Yes");
+          if (shouldOpenPopup) {
             window.setTimeout(openNextRequiredPopup, 120);
-          } else if (answeredCount() === questions.length) {
+          } else if (answerId !== "esim" && answeredCount() === questions.length) {
             window.setTimeout(openNextRequiredPopup, 220);
           }
         });
@@ -1779,12 +1871,14 @@
     }
 
     document.getElementById("closeScreenPopup").addEventListener("click", closeScreenPopup);
+    document.getElementById("closeDisplayPopup").addEventListener("click", closeDisplayPopup);
     document.getElementById("closeBodyPopup").addEventListener("click", closeBodyPopup);
     document.getElementById("closeTouchPopup").addEventListener("click", closeTouchPopup);
     document.getElementById("closeWarrantyPopup").addEventListener("click", closeWarrantyPopup);
     document.getElementById("closeBatteryPopup").addEventListener("click", closeBatteryPopup);
 
     screenIssueSubmit.addEventListener("click", () => { if (!state.screenIssue.length) return; closeScreenPopup(); renderProgress(); window.setTimeout(openNextRequiredPopup, 120); });
+    displayIssueSubmit.addEventListener("click", () => { if (!state.displayIssues.length) return; closeDisplayPopup(); renderProgress(); window.setTimeout(openNextRequiredPopup, 120); });
     bodyIssueSubmit.addEventListener("click", () => { if (!state.bodyIssues.length) return; closeBodyPopup(); renderProgress(); });
     touchIssueSubmit.addEventListener("click", () => { if (!state.touchIssue.length) return; closeTouchPopup(); renderProgress(); window.setTimeout(openNextRequiredPopup, 120); });
     warrantySubmit.addEventListener("click", () => { if (!state.warrantyDetail) return; closeWarrantyPopup(); renderProgress(); window.setTimeout(openNextRequiredPopup, 120); });

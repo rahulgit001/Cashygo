@@ -503,7 +503,7 @@
       box-shadow: 0 0 0 4px rgba(13, 140, 96, .1);
     }
 
-    .cashygo-wide-option.active::after {
+    /* .cashygo-wide-option.active::after {
       content: "\F26E";
       font-family: "bootstrap-icons";
       position: absolute;
@@ -517,9 +517,56 @@
       display: grid;
       place-items: center;
       font-size: 12px;
+    } */
+
+    .bill-continue {
+      width: 100%;
+      border: 0;
+      border-radius: 14px;
+      background: var(--primary);
+      color: #fff;
+      cursor: pointer;
+      padding: 15px 20px;
+      font-size: 15px;
+      font-weight: 800;
+      margin-top: 14px;
+      transition: background .2s, transform .2s, opacity .2s;
     }
 
-    .cashygo-wide-option i {
+    .bill-continue:hover:not(:disabled) {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .bill-continue:disabled {
+      cursor: not-allowed;
+      opacity: .55;
+    }
+
+    .bill-check {
+      width: 22px;
+      height: 22px;
+      border: 1.5px solid #b8cbc4;
+      border-radius: 6px;
+      display: grid;
+      place-items: center;
+      color: transparent;
+      flex: 0 0 auto;
+      transition: background .2s, border-color .2s, color .2s;
+    }
+
+    .cashygo-wide-option.active .bill-check {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+    }
+
+    .bill-check i {
+      color: inherit;
+      font-size: 14px;
+    }
+
+    .cashygo-wide-option > i {
       color: var(--primary);
       font-size: 28px;
       flex: 0 0 auto;
@@ -1216,22 +1263,22 @@
               <div class="option-grid" id="ageGrid">
                 <button class="cashygo-option-card" data-question="age" data-value="0 to 3 months">
                   <i class="bi bi-calendar3"></i>
-                  <strong>0 to 3 months</strong>
+                  <strong>0–3 Months Bill Required</strong>
                   <small>Best value</small>
                 </button>
                 <button class="cashygo-option-card" data-question="age" data-value="3 to 6 months">
                   <i class="bi bi-calendar3"></i>
-                  <strong>3 to 6 months</strong>
+                  <strong>3–6 Months Bill Required</strong>
                   <small>High value</small>
                 </button>
                 <button class="cashygo-option-card" data-question="age" data-value="6 to 11 months">
                   <i class="bi bi-calendar"></i>
-                  <strong>6 to 11 months</strong>
+                  <strong>6–11 Months Bill Required</strong>
                   <small>Fair value</small>
                 </button>
                 <button class="cashygo-option-card" data-question="age" data-value="More than 11 months">
                   <i class="bi bi-calendar-plus"></i>
-                  <strong>More than 11 months</strong>
+                  <strong>11 months out of warranty</strong>
                   <small>Standard value</small>
                 </button>
               </div>
@@ -1249,28 +1296,32 @@
                 Original bill and box can improve buyer trust and may help the final value.
               </p>
               <div class="wide-grid" id="billGrid">
-                <button class="cashygo-wide-option" data-question="billBox" data-value="Bill and box available">
+                <button class="cashygo-wide-option" type="button" role="checkbox" aria-checked="false" data-question="billBox" data-value="Original box with same IMEI">
+                  <span class="bill-check"><i class="bi bi-check-lg"></i></span>
                   <i class="bi bi-box-seam"></i>
                   <div class="wo-text">
-                    <strong>Bill and box available</strong>
+                    <strong>Original Box with Same IMEI</strong>
                     <span>Best for resale value</span>
                   </div>
                 </button>
-                <button class="cashygo-wide-option" data-question="billBox" data-value="Only bill available">
+                <button class="cashygo-wide-option" type="button" role="checkbox" aria-checked="false" data-question="billBox" data-value="Bill with matching IMEI number">
+                  <span class="bill-check"><i class="bi bi-check-lg"></i></span>
                   <i class="bi bi-receipt-cutoff"></i>
                   <div class="wo-text">
-                    <strong>Only bill available</strong>
+                    <strong>Bill with Matching IMEI Number</strong>
                     <span>Good for verification</span>
                   </div>
                 </button>
-                <button class="cashygo-wide-option" data-question="billBox" data-value="No bill or box">
-                  <i class="bi bi-x-circle"></i>
+                <button class="cashygo-wide-option" type="button" role="checkbox" aria-checked="false" data-question="billBox" data-value="Brand original charger available">
+                  <span class="bill-check"><i class="bi bi-check-lg"></i></span>
+                  <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#0d8c60"><path d="M338-209.33 430-356h-55.33v-110l-91.34 146.67H338v110ZM226.67-554.67H486v-218.66H226.67v218.66Zm0 368H486V-488H226.67v301.33ZM160-120v-653.33q0-27 19.83-46.84Q199.67-840 226.67-840H486q27 0 46.83 19.83 19.84 19.84 19.84 46.84V-488h60q23.47 0 40.07 16.59 16.59 16.6 16.59 40.08v207.66q0 20.34 16.34 34.67Q702-174.67 723-174.67q21.33 0 39.17-14.33Q780-203.33 780-223.67v-383h-13.33q-14.17 0-23.75-9.58-9.59-9.58-9.59-23.75v-86.67h20V-780h33.34v53.33h40V-780H860v53.33h20V-640q0 14.17-9.58 23.75-9.59 9.58-23.75 9.58h-13.34v382.8q0 42.87-32.83 73.37-32.83 30.5-77.62 30.5-43.77 0-75.33-30.5Q616-181 616-223.67v-207.66q0-1.67-.83-2.5-.84-.84-2.5-.84h-60V-120H160Zm326-66.67H226.67 486Z"/></svg>
                   <div class="wo-text">
-                    <strong>No bill or box</strong>
+                    <strong>Brand Original Charger Available</strong>
                     <span>Standard evaluation applies</span>
                   </div>
                 </button>
               </div>
+              <button class="bill-continue" id="billContinue" type="button" disabled>Continue</button>
             </div>
           </section>
 
@@ -1484,7 +1535,7 @@
 
     /* ── DATA FROM SESSION ── */
     const sel = JSON.parse(sessionStorage.getItem("cashygoSelection") || "{}");
-    const cond = { age: "", billBox: "" };
+    const cond = { age: "", billBox: [] };
 
     function fmt(n) { return "₹" + Number(n || 0).toLocaleString("en-IN"); }
 
@@ -1506,7 +1557,7 @@
 
     function updateSummary() {
       const ageDone  = Boolean(cond.age);
-      const billDone = Boolean(cond.billBox);
+      const billDone = cond.billBox.length > 0;
 
       const ageRow  = document.getElementById("ageRow");
       const billRow = document.getElementById("billRow");
@@ -1515,7 +1566,8 @@
       document.getElementById("ageVal").textContent = ageDone ? cond.age : "Pending";
 
       billRow.classList.toggle("done", billDone);
-      document.getElementById("billVal").textContent = billDone ? cond.billBox : "Pending";
+      document.getElementById("billVal").textContent = billDone ? cond.billBox.join(", ") : "Pending";
+      document.getElementById("billContinue").disabled = !billDone;
 
       const count = (ageDone ? 1 : 0) + (billDone ? 1 : 0);
       document.getElementById("progressPill").textContent = count + " / 2 Done";
@@ -1525,9 +1577,21 @@
     document.querySelectorAll("[data-question]").forEach(btn => {
       btn.addEventListener("click", () => {
         const q = btn.dataset.question;
+
+        if (q === "billBox") {
+          const value = btn.dataset.value;
+          const selected = cond.billBox.includes(value);
+          cond.billBox = selected
+            ? cond.billBox.filter(item => item !== value)
+            : [...cond.billBox, value];
+          btn.classList.toggle("active", !selected);
+          btn.setAttribute("aria-checked", String(!selected));
+          updateSummary();
+          return;
+        }
+
         cond[q] = btn.dataset.value;
 
-        // deselect siblings
         document.querySelectorAll('[data-question="' + q + '"]')
           .forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
@@ -1538,16 +1602,17 @@
           document.getElementById("ageSection").classList.add("is-hidden");
           document.getElementById("billSection").classList.remove("is-hidden");
         }
-
-        if (q === "billBox") {
-          saveAndRedirect();
-        }
       });
     });
 
+    document.getElementById("billContinue").addEventListener("click", saveAndRedirect);
+
     function saveAndRedirect() {
-      if (!cond.age || !cond.billBox) { alert("Please complete both condition checks"); return; }
-      sessionStorage.setItem("cashygoCondition", JSON.stringify(cond));
+      if (!cond.age || !cond.billBox.length) { alert("Please complete both condition checks"); return; }
+      sessionStorage.setItem("cashygoCondition", JSON.stringify({
+        ...cond,
+        billBox: cond.billBox.join(", ")
+      }));
       window.location.href = "device_question.html";
     }
 

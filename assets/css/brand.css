@@ -51,11 +51,12 @@
    /* ── HERO ── */
    .cashygo-hero {
        background: linear-gradient(135deg, #f0fdf4 0%, #fff 60%);
-       overflow: hidden
+       overflow: hidden;
+       padding: 10px 20px;
    }
 
    .cashygo-hero__inner {
-       max-width: var(--cg-max);
+       /* max-width: var(--cg-max); */
        margin: 0 auto;
        padding: 5px 10px;
        display: flex;
@@ -65,8 +66,7 @@
    }
 
    .cashygo-hero__left {
-       flex: 1;
-       min-width: 0
+       margin-left: 30px;
    }
 
    .cashygo-hero__badge {
@@ -104,7 +104,7 @@
    .cashygo-hero__sub {
        color: var(--cg-gray-600);
        font-size: 1rem;
-       margin-bottom: 15px
+       /* margin-bottom: 15px */
    }
 
    .cashygo-hero__features {
@@ -293,7 +293,7 @@
    .cashygo-devices {
        max-width: var(--cg-max);
        margin: 0 auto;
-       padding: 5px 10px;
+       padding: 10px 20px;
    }
 
    .cashygo-devices__heading {
@@ -420,7 +420,7 @@
    .cashygo-process__inner {
        max-width: var(--cg-max);
        margin: 0 auto;
-       padding: var(--cg-pad)
+       padding: 10px 20px;
    }
 
    .cashygo-process__grid {
@@ -491,104 +491,105 @@
 
    /* ───────── POPULAR PHONES ───────── */
 
-.cashygo-phones {
-  background: #ffffff;
-  padding: 40px 0;
-}
+   .cashygo-phones {
+       background: #ffffff;
+       padding: 10px 20px;
+   }
 
-.cashygo-phones__inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 16px;
-}
+   .cashygo-phones__inner {
+       max-width: 1280px;
+       margin: 0 auto;
+       padding: 0 16px;
+   }
 
-.cashygo-section-label {
-  font-size: 13px;
-  font-weight: 600;
-  color: #16a34a;
-  text-transform: uppercase;
-  letter-spacing: .6px;
-  margin-bottom: 6px;
-}
+   .cashygo-section-label {
+       font-size: 13px;
+       font-weight: 600;
+       color: #16a34a;
+       text-transform: uppercase;
+       letter-spacing: .6px;
+       margin-bottom: 6px;
+   }
 
-.cashygo-section-title {
-  font-size: 32px;
-  line-height: 1.2;
-  font-weight: 800;
-  color: #111827;
-  margin-bottom: 24px;
-}
+   .cashygo-section-title {
+       font-size: 32px;
+       line-height: 1.2;
+       font-weight: 800;
+       color: #111827;
+       margin-bottom: 24px;
+   }
 
-/* Scroll Row */
-.cashygo-phones__scroll {
-  display: flex;
-  gap: 18px;
-  overflow-x: auto;
-  padding: 6px 2px 14px;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
-}
+   /* Scroll Row */
+   .cashygo-phones__scroll {
+       display: flex;
+       gap: 18px;
+       overflow-x: auto;
+       padding: 6px 2px 14px;
+       scroll-behavior: smooth;
+       scrollbar-width: none;
+   }
 
-.cashygo-phones__scroll::-webkit-scrollbar {
-  display: none;
-}
+   .cashygo-phones__scroll::-webkit-scrollbar {
+       display: none;
+   }
 
-/* Card */
-.cashygo-phones__card {
-  min-width: 260px;
-  max-width: 260px;
-  background: #fff;
-  border-radius: 24px;
-  border: 1px solid #e5e7eb;
-  overflow: hidden;
-  flex-shrink: 0;
-  transition: .3s ease;
-  position: relative;
-}
+   /* Card */
+   .cashygo-phones__card {
+       min-width: 200px;
+       max-width: 200px;
+       background: #fff;
+       border-radius: 24px;
+       border: 1px solid #e5e7eb;
+       overflow: hidden;
+       flex-shrink: 0;
+       transition: .3s ease;
+       position: relative;
+   }
 
-.cashygo-phones__card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
-}
+   .cashygo-phones__card:hover {
+       transform: translateY(-6px);
+       box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+   }
 
-/* Image */
-.cashygo-phones__img {
-  height: 210px;
-  background: linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 18px;
-}
+   /* Image */
+   .cashygo-phones__img {
+       height: 150px;
+       background: linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       /* padding: 18px; */
+   }
 
-.cashygo-phones__img img {
-  width: 100%;
-  max-width: 160px;
-  height: auto;
-  object-fit: contain;
-  transition: transform .35s ease;
-}
+   .cashygo-phones__img img {
+       width: 100%;
+       max-width: 160px;
+       height: auto;
+       object-fit: contain;
+       transition: transform .35s ease;
+   }
 
-.cashygo-phones__card:hover .cashygo-phones__img img {
-  transform: scale(1.06);
-}
+   .cashygo-phones__card:hover .cashygo-phones__img img {
+       transform: scale(1.06);
+   }
 
-/* Content */
-.cashygo-phones__body {
-  padding: 18px;
-}
+   /* Content */
+   .cashygo-phones__body {
+       padding: 5px;
+   }
 
-.cashygo-phones__badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  background: #ecfdf3;
-  color: #15803d;
-  font-size: 12px;
-  font-weight: 700;
-  padding: 6px 10px;
-  border-radius: 999px;
-  margin-bottom: 12px;
+   .cashygo-phones__badge {
+       display: inline-flex;
+       align-items: center;
+       gap: 5px;
+       background: #ecfdf3;
+       color: #15803d;
+       font-size: 10px;
+       font-weight: 500;
+       padding: 1px 2px;
+       border-radius: 999px;
+
+        /* margin-bottom: 12px; */
 }
 
 .cashygo-phones__badge::before {
@@ -597,637 +598,655 @@
 }
 
 .cashygo-phones__name {
-  font-size: 18px;
-  font-weight: 700;
-  color: #111827;
-  line-height: 1.35;
-  margin-bottom: 6px;
+  font-size: 12px;
+    font-weight: 700;
+    color: #111827;
+    line-height: 1.35;
+    margin-bottom: 0px;
 }
-
+.cashygo-hero__title{
+    margin-top: 10px;
+}
 .cashygo-phones__sold {
   font-size: 13px;
-  color: #6b7280;
-  margin-bottom: 16px;
+    color: #6b7280;
+  /* margin-bottom: 16px; */
 }
 
 /* Bottom Row */
-.cashygo-phones__row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.cashygo-phones__price {
-  font-size: 22px;
-  font-weight: 800;
-  color: #111827;
-}
-
-/* Button */
-.cashygo-phones__sell-btn {
-  border: none;
-  background: #16a34a;
-  color: #fff;
-  padding: 10px 18px;
-  border-radius: 12px;
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: .25s ease;
-  white-space: nowrap;
-}
-
-.cashygo-phones__sell-btn:hover {
-  background: #15803d;
-  transform: translateY(-1px);
-}
-
-/* Tablet */
-@media (max-width: 992px) {
-  .cashygo-section-title {
-    font-size: 26px;
-  }
-
-  .cashygo-phones__card {
-    min-width: 230px;
-    max-width: 230px;
-  }
-
-  .cashygo-phones__img {
-    height: 190px;
-  }
-}
-
-/* Mobile */
-@media (max-width: 576px) {
-  .cashygo-phones {
-    padding: 28px 0;
-  }
-
-  .cashygo-section-title {
-    font-size: 22px;
-    margin-bottom: 18px;
-  }
-
-  .cashygo-phones__scroll {
-    gap: 14px;
-    padding-bottom: 6px;
-  }
-
-  .cashygo-phones__card {
-    min-width: 180px;
-    max-width: 180px;
-    border-radius: 18px;
-  }
-
-  .cashygo-phones__img {
-    height: 150px;
-    padding: 12px;
-  }
-
-  .cashygo-phones__img img {
-    max-width: 110px;
-  }
-
-  .cashygo-phones__body {
-    padding: 14px;
-  }
-
-  .cashygo-phones__badge {
-    font-size: 10px;
-    padding: 4px 8px;
-    margin-bottom: 10px;
-  }
-
-  .cashygo-phones__name {
-    font-size: 15px;
-  }
-
-  .cashygo-phones__sold {
-    font-size: 11px;
-    margin-bottom: 12px;
-  }
-
-  .cashygo-phones__price {
-    font-size: 17px;
-  }
-
-  .cashygo-phones__sell-btn {
-    padding: 8px 12px;
-    font-size: 12px;
-    border-radius: 10px;
-  }
-  .cashygo-hero__badge{
-    display: none;
-  }
-}
-   /* ── WHY ── */
-   .cashygo-why {
-       background: var(--cg-gray-50)
-   }
-
-   .cashygo-why__inner {
-       max-width: var(--cg-max);
-       margin: 0 auto;
-       padding: var(--cg-pad)
-   }
-
-   .cashygo-why__grid {
-       display: grid;
-       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-       gap: 18px
-   }
-
-   .cashygo-why__card {
-       background: #fff;
-       padding: 18px;
-       border-radius: var(--cg-radius-md);
-       display: flex;
-       gap: 14px;
-       border: 1px solid var(--cg-gray-200);
-       align-items: flex-start;
-       transition: .2s
-   }
-
-   .cashygo-why__card:hover {
-       border-color: var(--cg-green);
-       box-shadow: 0 6px 16px rgba(0, 0, 0, .06)
-   }
-
-   .cashygo-why__icon {
-       flex-shrink: 0;
-       margin-top: 2px;
-       display: flex
-   }
-
-   .cashygo-why__title {
-       font-size: 15px;
-       font-weight: 600;
-       margin-bottom: 3px
-   }
-
-   .cashygo-why__desc {
-       font-size: 13px;
-       color: var(--cg-gray-600)
-   }
-
-   /* ── FAQ ── */
-   .cashygo-faq {
-       background: #fff
-   }
-
-   .cashygo-faq__inner {
-       max-width: var(--cg-max);
-       margin: 0 auto;
-       padding: 5px 10px;
-   }
-
-   .cashygo-faq__header {
-       text-align: center;
-       margin-bottom: 30px
-   }
-
-   .cashygo-faq__header h2 {
-       font-size: 26px;
-       font-weight: 700;
-       color: var(--cg-gray-900)
-   }
-
-   .cashygo-faq__header h2 span {
-       color: var(--cg-green-dark)
-   }
-
-   .cashygo-faq__header p {
-       color: var(--cg-gray-600);
-       margin-top: 6px;
-       font-size: 14px
-   }
-
-   .cashygo-faq__list {
-       max-width: 800px;
-       margin: 0 auto
-   }
-
-   .cashygo-faq__item {
-       border: 1px solid var(--cg-gray-200);
-       border-radius: var(--cg-radius-md);
-       margin-bottom: 12px;
-       background: #fff;
-       overflow: hidden
-   }
-
-   .cashygo-faq__question {
-       width: 100%;
-       padding: 16px;
-       font-size: 15px;
-       font-weight: 600;
-       text-align: left;
-       background: none;
-       border: none;
-       cursor: pointer;
-       color: var(--cg-gray-900);
-       display: flex;
-       justify-content: space-between;
-       align-items: center
-   }
-
-   .cashygo-faq__question:hover {
-       color: var(--cg-green-dark)
-   }
-
-   .cashygo-faq__icon {
-       font-size: 20px;
-       transition: .3s;
-       flex-shrink: 0;
-       color: var(--cg-gray-600)
-   }
-
-   .cashygo-faq__answer {
-       max-height: 0;
-       overflow: hidden;
-       transition: max-height .3s ease, padding .3s ease;
-       padding: 0 16px;
-       color: var(--cg-gray-600);
-       font-size: 14px;
-       line-height: 1.6
-   }
-
-   .cashygo-faq__item.cashygo-open .cashygo-faq__answer {
-       max-height: 150px;
-       padding: 0 16px 16px
-   }
-
-   .cashygo-faq__item.cashygo-open .cashygo-faq__icon {
-       transform: rotate(45deg);
-       color: var(--cg-green-dark)
-   }
-
-   /* ── RESPONSIVE ── */
-   @media (max-width: 1024px) {
-       :root {
-           --cg-pad: 26px 28px
+       .cashygo-phones__row {
+           display: flex;
+           align-items: center;
+           justify-content: space-between;
+           gap: 10px;
        }
 
-       .cashygo-hero__inner {
-           gap: 28px
+       .cashygo-phones__price {
+           font-size: 15px;
+           font-weight: 600;
+           color: #111827;
        }
 
-       .cashygo-hero__right {
-           min-width: 280px
+       /* Button */
+       .cashygo-phones__sell-btn {
+           border: none;
+           background: #16a34a;
+           color: #fff;
+           padding: 5px 30px;
+           border-radius: 12px;
+           font-size: 12px;
+           font-weight: 700;
+           cursor: pointer;
+           transition: .25s ease;
+           white-space: nowrap;
        }
 
-       .cashygo-hero__tags {
-           right: -8px
-       }
-   }
-
-   @media(max-width:768px) {
-       /* :root {
-           --cg-pad: 24px 20px
-       } */
-
-       .cashygo-hero__inner {
-           flex-direction: column;
-           align-items: stretch;
-           text-align: center;
-           /* padding: 28px 20px 24px; */
-           gap: 22px
+       .cashygo-phones__sell-btn:hover {
+           background: #15803d;
+           transform: translateY(-1px);
        }
 
-       .cashygo-hero__left {
-           width: 100%
+       /* Tablet */
+       @media (max-width: 992px) {
+           .cashygo-section-title {
+               font-size: 26px;
+           }
+
+           .cashygo-phones__card {
+               min-width: 230px;
+               max-width: 230px;
+           }
+
+           .cashygo-phones__img {
+               height: 190px;
+           }
        }
 
-       .cashygo-hero__title {
-           font-size: 20px;
-           line-height: 1.14
+       /* Mobile */
+       @media (max-width: 576px) {
+           .cashygo-phones {
+               padding: 28px 0;
+           }
+
+           .cashygo-section-title {
+               font-size: 22px;
+               margin-bottom: 18px;
+           }
+           .cashygo-hero{
+            padding: 0;
+           }
+
+           .cashygo-phones__scroll {
+               gap: 14px;
+               padding-bottom: 6px;
+           }
+
+           .cashygo-phones__card {
+               min-width: 180px;
+               max-width: 180px;
+               border-radius: 18px;
+           }
+
+           .cashygo-phones__img {
+               height: 150px;
+               padding: 12px;
+           }
+
+           .cashygo-phones__img img {
+               /* max-width: 110px; */
+           }
+
+           .cashygo-phones__body {
+               /* padding: 14px; */
+           }
+
+           .cashygo-phones__badge {
+               font-size: 10px;
+               padding: 4px 8px;
+               /* margin-bottom: 10px; */
+           }
+
+           .cashygo-phones__name {
+               font-size: 15px;
+           }
+
+           .cashygo-phones__sold {
+               font-size: 11px;
+               /* margin-bottom: 12px; */
+           }
+
+           .cashygo-phones__price {
+               font-size: 17px;
+           }
+
+           .cashygo-phones__sell-btn {
+               padding: 8px 12px;
+               font-size: 12px;
+               border-radius: 10px;
+           }
+
+           .cashygo-hero__badge {
+               display: none;
+           }
        }
 
-       .cashygo-hero__features,
-       .cashygo-hero__brands {
-           justify-content: center;
-           width: 100%;
+       /* ── WHY ── */
+       .cashygo-why {
+           background: var(--cg-gray-50);
+           padding: 10px 20px;
        }
 
-       .cashygo-hero__features {
-           gap: 12px;
+       .cashygo-why__inner {
+           max-width: var(--cg-max);
+           margin: 0 auto;
+           padding: var(--cg-pad)
        }
 
-       .hero-search {
-           max-width: 560px;
-           margin-left: auto;
-           margin-right: auto;
-       }
-
-       .cashygo-hero__right {
-           display: none;
-       }
-
-       .cashygo-devices__grid {
-           grid-template-columns: repeat(3, minmax(0, 1fr));
-           gap: 12px
-       }
-
-       .cashygo-stats__inner {
-           grid-template-columns: repeat(2, 1fr);
-           border-radius: 18px
-       }
-
-       .cashygo-process__grid,
        .cashygo-why__grid {
-           grid-template-columns: 1fr
+           display: grid;
+           grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+           gap: 18px
        }
 
-       .cashygo-faq__header h2,
-       .cashygo-section-title {
-           font-size: 24px
-       }
-   }
-
-   @media(max-width:480px) {
-       :root {
-           --cg-pad: 22px 14px
-       }
-
-       .cashygo-hero__inner {
-           /* padding: 24px 14px 22px */
+       .cashygo-why__card {
+           background: #fff;
+           padding: 18px;
+           border-radius: var(--cg-radius-md);
+           display: flex;
+           gap: 14px;
+           border: 1px solid var(--cg-gray-200);
+           align-items: flex-start;
+           transition: .2s
        }
 
-       .cashygo-hero__title {
-           font-size: 18px
+       .cashygo-why__card:hover {
+           border-color: var(--cg-green);
+           box-shadow: 0 6px 16px rgba(0, 0, 0, .06)
        }
 
-       .cashygo-hero__sub {
+       .cashygo-why__icon {
+           flex-shrink: 0;
+           margin-top: 2px;
+           display: flex
+       }
+
+       .cashygo-why__title {
+           font-size: 15px;
+           font-weight: 600;
+           margin-bottom: 3px
+       }
+
+       .cashygo-why__desc {
+           font-size: 13px;
+           color: var(--cg-gray-600)
+       }
+
+       /* ── FAQ ── */
+       .cashygo-faq {
+           background: #fff
+       }
+
+       .cashygo-faq__inner {
+           max-width: var(--cg-max);
+           margin: 0 auto;
+           padding: 5px 10px;
+       }
+
+       .cashygo-faq__header {
+           text-align: center;
+           margin-bottom: 30px
+       }
+
+       .cashygo-faq__header h2 {
+           font-size: 26px;
+           font-weight: 700;
+           color: var(--cg-gray-900)
+       }
+
+       .cashygo-faq__header h2 span {
+           color: var(--cg-green-dark)
+       }
+
+       .cashygo-faq__header p {
+           color: var(--cg-gray-600);
+           margin-top: 6px;
            font-size: 14px
        }
 
-       .cashygo-hero__features {
-           display: grid;
-           grid-template-columns: repeat(3, minmax(0, 1fr));
-           gap: 8px
+       .cashygo-faq__list {
+           max-width: 800px;
+           margin: 0 auto
        }
 
-       .cashygo-hero__feature {
-           min-width: 0;
-           font-size: 12px
+       .cashygo-faq__item {
+           border: 1px solid var(--cg-gray-200);
+           border-radius: var(--cg-radius-md);
+           margin-bottom: 12px;
+           background: #fff;
+           overflow: hidden
        }
 
-       .hero-search {
-           border-radius: 12px
+       .cashygo-faq__question {
+           width: 100%;
+           padding: 16px;
+           font-size: 15px;
+           font-weight: 600;
+           text-align: left;
+           background: none;
+           border: none;
+           cursor: pointer;
+           color: var(--cg-gray-900);
+           display: flex;
+           justify-content: space-between;
+           align-items: center
        }
 
-       .hero-search input {
-           min-width: 0;
-           padding: 11px 12px
+       .cashygo-faq__question:hover {
+           color: var(--cg-green-dark)
        }
 
-       .hero-search button {
-           padding: 0 14px
+       .cashygo-faq__icon {
+           font-size: 20px;
+           transition: .3s;
+           flex-shrink: 0;
+           color: var(--cg-gray-600)
        }
 
-       .cashygo-hero__brand-btn {
-           padding: 8px 12px
+       .cashygo-faq__answer {
+           max-height: 0;
+           overflow: hidden;
+           transition: max-height .3s ease, padding .3s ease;
+           padding: 0 16px;
+           color: var(--cg-gray-600);
+           font-size: 14px;
+           line-height: 1.6
        }
 
-       .cashygo-devices__grid {
-           grid-template-columns: repeat(2, minmax(0, 1fr));
-           gap: 10px
+       .cashygo-faq__item.cashygo-open .cashygo-faq__answer {
+           max-height: 150px;
+           padding: 0 16px 16px
        }
 
-       .cashygo-devices__item {
-           padding: 14px 8px
+       .cashygo-faq__item.cashygo-open .cashygo-faq__icon {
+           transform: rotate(45deg);
+           color: var(--cg-green-dark)
        }
 
-       .cashygo-stats__inner {
-           grid-template-columns: 1fr
+       /* ── RESPONSIVE ── */
+       @media (max-width: 1024px) {
+           :root {
+               --cg-pad: 26px 28px
+           }
+
+           .cashygo-hero__inner {
+               gap: 28px
+           }
+
+           .cashygo-hero__right {
+               min-width: 280px
+           }
+
+           .cashygo-hero__tags {
+               right: -8px
+           }
        }
 
-       .cashygo-trust {
-           flex-direction: column;
-           align-items: flex-start
+       @media(max-width:768px) {
+           /* :root {
+           --cg-pad: 24px 20px
+       } */
+
+           .cashygo-hero__inner {
+               flex-direction: column;
+               align-items: stretch;
+               text-align: center;
+               /* padding: 28px 20px 24px; */
+               gap: 22px
+           }
+
+           .cashygo-hero__left {
+               width: 100%;
+               margin-left: 0;
+           }
+
+           .cashygo-hero__title {
+               font-size: 20px;
+               line-height: 1.14
+           }
+
+           .cashygo-hero__features,
+           .cashygo-hero__brands {
+               justify-content: center;
+               width: 100%;
+           }
+
+           .cashygo-hero__features {
+               gap: 12px;
+           }
+
+           .hero-search {
+               max-width: 560px;
+               margin-left: auto;
+               margin-right: auto;
+           }
+
+           .cashygo-hero__right {
+               display: none;
+           }
+
+           .cashygo-devices__grid {
+               grid-template-columns: repeat(3, minmax(0, 1fr));
+               gap: 12px
+           }
+
+           .cashygo-stats__inner {
+               grid-template-columns: repeat(2, 1fr);
+               border-radius: 18px
+           }
+
+           .cashygo-process__grid,
+           .cashygo-why__grid {
+               grid-template-columns: 1fr
+           }
+
+           .cashygo-faq__header h2,
+           .cashygo-section-title {
+               font-size: 24px
+           }
        }
 
-       .cashygo-phones__card {
-           min-width: min(78vw, 240px);
-           max-width: min(78vw, 240px)
+       @media(max-width:480px) {
+           :root {
+               --cg-pad: 22px 14px
+           }
+
+           .cashygo-hero__inner {
+               /* padding: 24px 14px 22px */
+           }
+
+           .cashygo-hero__title {
+               font-size: 18px
+           }
+
+           .cashygo-hero__sub {
+               font-size: 14px
+           }
+
+           .cashygo-hero__features {
+               display: grid;
+               grid-template-columns: repeat(3, minmax(0, 1fr));
+               gap: 8px
+           }
+
+           .cashygo-hero__feature {
+               min-width: 0;
+               font-size: 12px
+           }
+
+           .hero-search {
+               border-radius: 12px
+           }
+
+           .hero-search input {
+               min-width: 0;
+               padding: 11px 12px
+           }
+
+           .hero-search button {
+               padding: 0 14px
+           }
+
+           .cashygo-hero__brand-btn {
+               padding: 8px 12px
+           }
+
+           .cashygo-devices__grid {
+               grid-template-columns: repeat(2, minmax(0, 1fr));
+               gap: 10px
+           }
+
+           .cashygo-devices__item {
+               padding: 14px 8px
+           }
+
+           .cashygo-stats__inner {
+               grid-template-columns: 1fr
+           }
+
+           .cashygo-trust {
+               flex-direction: column;
+               align-items: flex-start
+           }
+
+           .cashygo-phones__card {
+               min-width: min(50vw, 200px);
+               max-width: min(50vw, 200px)
+           }
        }
-   }
 
-   .popup-overlay {
-  display: none; /* VERY IMPORTANT */
-}
+       .popup-overlay {
+           display: none;
+           /* VERY IMPORTANT */
+       }
 
 
 
-/* POPUP */
-.popup{
-  position:fixed;
-  inset:0;
-  width:100%;
-  min-height:100%;
-  background:rgba(0,0,0,0.4);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:16px;
-  z-index: 1000;
-}
+       /* POPUP */
+       .popup {
+           position: fixed;
+           inset: 0;
+           width: 100%;
+           min-height: 100%;
+           background: rgba(0, 0, 0, 0.4);
+           display: none;
+           align-items: center;
+           justify-content: center;
+           padding: 16px;
+           z-index: 1000;
+       }
 
-.card{
-  width:min(550px, 100%);
-  max-height:calc(100vh - 32px);
-  overflow:auto;
-  background:#fff;
-  border-radius:20px;
-  padding:18px;
-  box-shadow:0 20px 40px rgba(0,0,0,0.08);
-  position:relative;
-}
+       .card {
+           width: min(550px, 100%);
+           max-height: calc(100vh - 32px);
+           overflow: auto;
+           background: #fff;
+           border-radius: 20px;
+           padding: 18px;
+           box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+           position: relative;
+       }
 
-.close-btn{
-  position:absolute;
-  top:20px;
-  right:20px;
-  width:40px;
-  height:40px;
-  border-radius:50%;
-  background:#f3f4f6;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
-}
+       .close-btn {
+           position: absolute;
+           top: 20px;
+           right: 20px;
+           width: 40px;
+           height: 40px;
+           border-radius: 50%;
+           background: #f3f4f6;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           cursor: pointer;
+       }
 
-.header{
-  display:flex;
-  gap:20px;
-  align-items:center;
-  padding-right:46px;
-}
+       .header {
+           display: flex;
+           gap: 20px;
+           align-items: center;
+           padding-right: 46px;
+       }
 
-.icon{
-  width:45px;
-  height:45px;
-  background:#e6f4ea;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
+       .icon {
+           width: 45px;
+           height: 45px;
+           background: #e6f4ea;
+           border-radius: 50%;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+       }
 
-.title{
-  font-size:20px;
-  font-weight:700;
-}
+       .title {
+           font-size: 20px;
+           font-weight: 700;
+       }
 
-.subtitle{
-  /* margin-top:5px; */
-  color:#6b7280;
-  font-size:14px;
-}
+       .subtitle {
+           /* margin-top:5px; */
+           color: #6b7280;
+           font-size: 14px;
+       }
 
-.input-row{
-  display:flex;
-  gap:10px;
-  margin-top:20px;
-}
+       .input-row {
+           display: flex;
+           gap: 10px;
+           margin-top: 20px;
+       }
 
-.input-box{
-  flex:1;
-  display:flex;
-  align-items:center;
-  gap:10px;
-  border:1px solid #e5e7eb;
-  border-radius:12px;
-  padding:8px;
-}
+       .input-box {
+           flex: 1;
+           display: flex;
+           align-items: center;
+           gap: 10px;
+           border: 1px solid #e5e7eb;
+           border-radius: 12px;
+           padding: 8px;
+       }
 
-.input-box input{
-  border:none;
-  outline:none;
-  width:100%;
-}
+       .input-box input {
+           border: none;
+           outline: none;
+           width: 100%;
+       }
 
-.check-btn{
-  background:linear-gradient(135deg,#22a06b,#1b8c5a);
-  color:#fff;
-  border:none;
-  padding:0 25px;
-  border-radius:12px;
-  cursor:pointer;
-}
+       .check-btn {
+           background: linear-gradient(135deg, #22a06b, #1b8c5a);
+           color: #fff;
+           border: none;
+           padding: 0 25px;
+           border-radius: 12px;
+           cursor: pointer;
+       }
 
-.divider{
-  text-align:center;
-  margin:25px 0;
-  color:#9ca3af;
-  position:relative;
-}
+       .divider {
+           text-align: center;
+           margin: 25px 0;
+           color: #9ca3af;
+           position: relative;
+       }
 
-.divider::before,
-.divider::after{
-  content:'';
-  position:absolute;
-  top:50%;
-  width:40%;
-  height:1px;
-  background:#e5e7eb;
-}
+       .divider::before,
+       .divider::after {
+           content: '';
+           position: absolute;
+           top: 50%;
+           width: 40%;
+           height: 1px;
+           background: #e5e7eb;
+       }
 
-.divider::before{ left:0; }
-.divider::after{ right:0; }
+       .divider::before {
+           left: 0;
+       }
 
-.location-box{
-  border:1px solid #d1fae5;
-  background:#f0fdf4;
-  width:100%;
-  padding:10px;
-  border-radius:12px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  font:inherit;
-  color:inherit;
-  text-align:left;
-  cursor:pointer;
-}
+       .divider::after {
+           right: 0;
+       }
 
-.popup-footer{
-  display:flex;
-  justify-content:space-between;
-  gap:12px;
-  margin-top:15px;
-  margin-bottom: 15px;
-  padding: 1px 10px;
-}
+       .location-box {
+           border: 1px solid #d1fae5;
+           background: #f0fdf4;
+           width: 100%;
+           padding: 10px;
+           border-radius: 12px;
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+           font: inherit;
+           color: inherit;
+           text-align: left;
+           cursor: pointer;
+       }
 
-.footer-item{
-  display:flex;
-  gap:10px;
-  align-items:center;
-}
+       .popup-footer {
+           display: flex;
+           justify-content: space-between;
+           gap: 12px;
+           margin-top: 15px;
+           margin-bottom: 15px;
+           padding: 1px 10px;
+       }
 
-.footer-sub{
-  font-size:12px;
-  color:#6b7280;
-}
+       .footer-item {
+           display: flex;
+           gap: 10px;
+           align-items: center;
+       }
 
-@media (max-width: 576px) {
-  .card {
-    border-radius: 16px;
-    padding: 16px;
-  }
+       .footer-sub {
+           font-size: 12px;
+           color: #6b7280;
+       }
 
-  .close-btn {
-    top: 12px;
-    right: 12px;
-    width: 34px;
-    height: 34px;
-  }
+       @media (max-width: 576px) {
+           .card {
+               border-radius: 16px;
+               padding: 16px;
+           }
 
-  .header {
-    gap: 12px;
-    align-items: flex-start;
-  }
+           .close-btn {
+               top: 12px;
+               right: 12px;
+               width: 34px;
+               height: 34px;
+           }
 
-  .icon {
-    width: 40px;
-    height: 40px;
-    flex: 0 0 40px;
-  }
+           .header {
+               gap: 12px;
+               align-items: flex-start;
+           }
 
-  .title {
-    font-size: 17px;
-    line-height: 1.25;
-  }
+           .cashygo-model-page__top-body{
+            padding: 0;
+           }
+           .icon {
+               width: 40px;
+               height: 40px;
+               flex: 0 0 40px;
+           }
 
-  .subtitle {
-    font-size: 13px;
-  }
+           .title {
+               font-size: 17px;
+               line-height: 1.25;
+           }
 
-  .input-row {
-    flex-direction: column;
-  }
+           .subtitle {
+               font-size: 13px;
+           }
 
-  .check-btn {
-    min-height: 44px;
-    padding: 0 18px;
-  }
+           .input-row {
+               flex-direction: column;
+           }
 
-  .divider {
-    margin: 18px 0;
-  }
+           .check-btn {
+               min-height: 44px;
+               padding: 0 18px;
+           }
 
-  .popup-footer {
-    padding: 0;
-    flex-wrap: wrap;
-  }
+           .divider {
+               margin: 18px 0;
+           }
 
-  .footer-item {
-    flex: 1 1 30%;
-    justify-content: center;
-    gap: 6px;
-    font-size: 12px;
-  }
-}
+           .popup-footer {
+               padding: 0;
+               flex-wrap: wrap;
+           }
+
+           .footer-item {
+               flex: 1 1 30%;
+               justify-content: center;
+               gap: 6px;
+               font-size: 12px;
+           }
+       }

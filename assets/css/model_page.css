@@ -709,6 +709,9 @@
           font-size: 16px;
           margin-top: 0;
       }
+      .cashygo-model-page__top-sold{
+        margin: 0;
+      }
 
       .cashygo-model-page__steps-grid {
           grid-template-columns: 1fr
