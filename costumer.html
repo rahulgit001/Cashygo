@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Reviews | CashyGo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --green: #07984f;
+      --green-dark: #075b34;
+      --green-soft: #eaf8f0;
+      --text: #111827;
+      --muted: #667085;
+      --line: #e9edf2;
+      --star: #ffc107;
+      --bg: #fbfcfd;
+      --white: #fff;
+      --shadow: 0 14px 34px rgba(15, 23, 42, .07);
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Barlow", Arial, sans-serif;
+      line-height: 1.45;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      border: 0;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .container {
+      width: min(1130px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      background: var(--white);
+      border-bottom: 1px solid var(--line);
+      box-shadow: 0 2px 16px rgba(15, 23, 42, .03);
+    }
+
+    .nav-main {
+      height: 72px;
+      display: grid;
+      grid-template-columns: 220px 1fr 290px;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .logo img {
+      width: 178px;
+      height: auto;
+      display: block;
+    }
+
+    .search {
+      height: 44px;
+      display: grid;
+      grid-template-columns: 1fr 54px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .search label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-left: 18px;
+      color: #6b7280;
+      min-width: 0;
+    }
+
+    .search input {
+      width: 100%;
+      border: 0;
+      outline: 0;
+      font: inherit;
+      color: var(--text);
+    }
+
+    .search button {
+      background: var(--green);
+      color: #fff;
+      font-size: 19px;
+    }
+
+    .nav-actions {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 22px;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .nav-actions span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+
+    .nav-menu {
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      font-weight: 600;
+      font-size: 14px;
+      color: #172033;
+    }
+
+    .nav-menu a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+
+    .crumbs {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 24px 0 10px;
+      color: #667085;
+      font-size: 13px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(330px, 1fr) minmax(420px, 1.25fr);
+      gap: 34px;
+      align-items: center;
+      padding: 4px 0 24px;
+    }
+
+    .hero h1 {
+      max-width: 480px;
+      font-size: clamp(34px, 4vw, 48px);
+      line-height: 1.03;
+      letter-spacing: 0;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 span {
+      color: var(--green);
+    }
+
+    .hero p {
+      color: #42526b;
+      font-size: 18px;
+    }
+
+    .hero-art {
+      min-height: 235px;
+      position: relative;
+      display: flex;
+      align-items: end;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .blob {
+      position: absolute;
+      width: 470px;
+      height: 180px;
+      bottom: 20px;
+      border-radius: 60% 40% 50% 50%;
+      background: linear-gradient(135deg, #edf8f2, #f7fbf9);
+    }
+
+    .laptop,
+    .phone,
+    .watch,
+    .buds,
+    .plant,
+    .google-badge {
+      position: relative;
+      z-index: 1;
+    }
+
+    .laptop {
+      width: 210px;
+      height: 132px;
+      margin: 0 -16px 15px 0;
+      border: 9px solid #151515;
+      border-radius: 10px 10px 4px 4px;
+      background: linear-gradient(135deg, #062214, #0b6b3d);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      box-shadow: var(--shadow);
+    }
+
+    .laptop::after {
+      content: "";
+      position: absolute;
+      left: -24px;
+      right: -24px;
+      bottom: -17px;
+      height: 16px;
+      background: #cfd5dc;
+      border-radius: 3px 3px 18px 18px;
+    }
+
+    .phone {
+      width: 118px;
+      height: 210px;
+      border: 9px solid #111;
+      border-radius: 24px;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .phone::before {
+      content: "";
+      position: absolute;
+      top: 6px;
+      width: 48px;
+      height: 10px;
+      border-radius: 0 0 9px 9px;
+      background: #111;
+    }
+
+    .phone small {
+      color: var(--green);
+      font-weight: 700;
+      font-size: 11px;
+    }
+
+    .phone strong {
+      max-width: 80px;
+      font-size: 18px;
+      line-height: 1.1;
+    }
+
+    .phone a {
+      padding: 8px 13px;
+      border-radius: 18px;
+      background: var(--green);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .plant {
+      width: 58px;
+      height: 86px;
+      margin-left: 18px;
+      background: linear-gradient(#f4eee4 58%, #b9aa9b 58%);
+      border-radius: 34px 34px 10px 10px;
+    }
+
+    .plant::before {
+      content: "";
+      position: absolute;
+      left: 8px;
+      top: -48px;
+      width: 46px;
+      height: 58px;
+      background: var(--green);
+      clip-path: polygon(48% 0, 66% 45%, 100% 20%, 72% 70%, 96% 100%, 48% 73%, 0 100%, 25% 66%, 0 28%, 35% 44%);
+    }
+
+    .watch {
+      width: 58px;
+      height: 58px;
+      margin-left: -18px;
+      margin-bottom: 12px;
+      border-radius: 16px;
+      background: #111;
+      color: #fff;
+      display: grid;
+      place-items: center;
+      border: 4px solid #242424;
+      box-shadow: var(--shadow);
+    }
+
+    .buds {
+      width: 70px;
+      height: 34px;
+      margin-right: 6px;
+      margin-bottom: 12px;
+    }
+
+    .buds::before,
+    .buds::after {
+      content: "";
+      position: absolute;
+      width: 24px;
+      height: 31px;
+      border-radius: 50% 50% 9px 9px;
+      background: #fff;
+      border: 1px solid #d8dee6;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, .08);
+    }
+
+    .buds::before {
+      left: 8px;
+      transform: rotate(-22deg);
+    }
+
+    .buds::after {
+      right: 8px;
+      transform: rotate(22deg);
+    }
+
+    .google-badge {
+      align-self: flex-start;
+      margin-left: 10px;
+      margin-top: 12px;
+      padding: 18px 24px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .google-word {
+      font-size: 26px;
+      letter-spacing: 0;
+      font-weight: 500;
+    }
+
+    .g-blue {
+      color: #4285f4;
+    }
+
+    .g-red {
+      color: #ea4335;
+    }
+
+    .g-yellow {
+      color: #fbbc05;
+    }
+
+    .g-green {
+      color: #34a853;
+    }
+
+    .stars {
+      color: var(--star);
+      letter-spacing: 2px;
+      white-space: nowrap;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, .035);
+    }
+
+    .rating-card {
+      display: grid;
+      grid-template-columns: 230px 1fr 160px;
+      gap: 28px;
+      align-items: center;
+      padding: 26px;
+      margin-bottom: 26px;
+    }
+
+    .score {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .google-circle {
+      width: 66px;
+      height: 66px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #fff;
+      box-shadow: 0 8px 18px rgba(15, 23, 42, .08);
+      font-size: 35px;
+      font-weight: 700;
+    }
+
+    .score-number {
+      font-size: 42px;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .score small {
+      display: block;
+      margin-top: 8px;
+      color: #283549;
+      font-weight: 600;
+    }
+
+    .place h2 {
+      font-size: 20px;
+      line-height: 1.25;
+      margin-bottom: 11px;
+    }
+
+    .verified {
+      color: var(--green);
+      font-size: 15px;
+    }
+
+    .place p {
+      color: #344054;
+      margin-bottom: 8px;
+    }
+
+    .place .location {
+      color: #667085;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .rating-actions {
+      display: grid;
+      gap: 14px;
+    }
+
+    .btn {
+      height: 44px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 14px;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: #fff;
+      border-color: var(--green);
+    }
+
+    .filters {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .filter {
+      height: 38px;
+      padding: 0 20px;
+      border-radius: 6px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: #263142;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .filter.active {
+      background: var(--green);
+      color: #fff;
+      border-color: var(--green);
+    }
+
+    .review-list {
+      overflow: hidden;
+    }
+
+    .review {
+      display: grid;
+      grid-template-columns: 188px 1fr 35px;
+      gap: 20px;
+      padding: 22px 24px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .review:last-child {
+      border-bottom: 0;
+    }
+
+    .person {
+      display: grid;
+      grid-template-columns: 45px 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .avatar {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: var(--green);
+      font-weight: 700;
+      font-size: 20px;
+    }
+
+    .avatar.light {
+      color: var(--green);
+      background: #dff4e6;
+    }
+
+    .name {
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .date {
+      color: #667085;
+      font-size: 13px;
+    }
+
+    .review-text p {
+      margin: 8px 0 12px;
+      color: #283549;
+    }
+
+    .helpful {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #667085;
+      font-size: 13px;
+    }
+
+    .helpful i {
+      color: var(--green);
+    }
+
+    .review-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 26px;
+      font-size: 22px;
+    }
+
+    .review-brand button {
+      background: transparent;
+      color: #3b4453;
+      font-size: 20px;
+    }
+
+    .pages {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+      padding: 20px 0 24px;
+    }
+
+    .page {
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: #fff;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      color: #1d2939;
+    }
+
+    .page.active {
+      background: var(--green);
+      color: #fff;
+      border-color: var(--green);
+    }
+
+    .sidebar {
+      display: grid;
+      gap: 16px;
+    }
+
+    .side-card {
+      padding: 21px;
+    }
+
+    .side-card h3 {
+      font-size: 18px;
+      margin-bottom: 18px;
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 55px 1fr 34px;
+      gap: 10px;
+      align-items: center;
+      margin: 13px 0;
+      color: #344054;
+      font-size: 14px;
+    }
+
+    .bar {
+      height: 8px;
+      border-radius: 99px;
+      background: #eef0f2;
+      overflow: hidden;
+    }
+
+    .bar span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--green);
+    }
+
+    .highlight {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin: 16px 0;
+      color: #344054;
+      font-size: 14px;
+    }
+
+    .highlight span:first-child {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .highlight i,
+    .about-line i {
+      color: var(--green);
+      font-size: 18px;
+    }
+
+    .about-copy {
+      color: #475467;
+      margin-bottom: 18px;
+    }
+
+    .about-line {
+      display: grid;
+      grid-template-columns: 24px 1fr;
+      gap: 10px;
+      margin: 16px 0;
+      color: #344054;
+    }
+
+    .about-line strong {
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .cta-card {
+      min-height: 170px;
+      padding: 22px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #eaf8f0, #f7fbf8);
+      position: relative;
+    }
+
+    .cta-card h3 {
+      margin-bottom: 7px;
+    }
+
+    .cta-card p {
+      max-width: 170px;
+      color: #344054;
+      margin-bottom: 16px;
+    }
+
+    .scooter {
+      position: absolute;
+      right: 12px;
+      bottom: 10px;
+      width: 112px;
+      height: 68px;
+    }
+
+    .scooter::before {
+      content: "";
+      position: absolute;
+      left: 17px;
+      right: 14px;
+      bottom: 19px;
+      height: 30px;
+      border-radius: 24px 24px 12px 12px;
+      background: var(--green);
+    }
+
+    .scooter::after {
+      content: "";
+      position: absolute;
+      left: 11px;
+      bottom: 0;
+      width: 84px;
+      height: 25px;
+      background:
+        radial-gradient(circle at 16px 13px, #263142 0 12px, transparent 13px),
+        radial-gradient(circle at 72px 13px, #263142 0 12px, transparent 13px);
+    }
+
+    .trust-strip {
+      display: grid;
+      grid-template-columns: 210px repeat(4, 1fr);
+      align-items: center;
+      margin: 22px 0 34px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .trust-title {
+      padding: 20px 28px;
+      color: var(--green);
+      font-size: 19px;
+      font-weight: 700;
+      border-right: 1px solid var(--line);
+    }
+
+    .trust-item {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 16px 22px;
+      font-weight: 600;
+    }
+
+    .trust-item i {
+      color: var(--green);
+      font-size: 26px;
+    }
+
+    footer {
+      background: #fff;
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 230px repeat(4, 1fr) 170px;
+      gap: 36px;
+      padding: 34px 0;
+    }
+
+    .footer-brand img {
+      width: 142px;
+      margin-bottom: 12px;
+    }
+
+    .footer-brand p,
+    footer li,
+    .store-note {
+      color: #475467;
+      font-size: 14px;
+    }
+
+    .socials {
+      display: flex;
+      gap: 11px;
+      margin-top: 16px;
+    }
+
+    .socials span {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: #1877f2;
+      font-size: 14px;
+    }
+
+    .socials span:nth-child(2) {
+      background: #e4405f;
+    }
+
+    .socials span:nth-child(3) {
+      background: #ff0000;
+    }
+
+    .socials span:nth-child(4) {
+      background: #0a66c2;
+    }
+
+    footer h4 {
+      margin-bottom: 15px;
+      font-size: 15px;
+    }
+
+    footer li + li {
+      margin-top: 10px;
+    }
+
+    .store {
+      width: 140px;
+      height: 42px;
+      border-radius: 6px;
+      background: #111;
+      color: #fff;
+      display: grid;
+      place-items: center;
+      margin-top: 10px;
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .footer-safe,
+    .footer-bottom {
+      border-top: 1px solid var(--line);
+      color: #667085;
+      font-size: 13px;
+    }
+
+    .footer-safe .container {
+      min-height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .footer-safe span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-bottom .container {
+      min-height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 22px;
+    }
+
+    @media (max-width: 980px) {
+      .container {
+        width: min(100% - 24px, 760px);
+      }
+
+      .nav-main {
+        height: auto;
+        padding: 16px 0;
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .nav-actions {
+        justify-content: flex-start;
+      }
+
+      .nav-menu {
+        height: auto;
+        padding: 14px 0;
+        overflow-x: auto;
+        justify-content: flex-start;
+      }
+
+      .hero,
+      .content-grid,
+      .rating-card {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-art {
+        justify-content: flex-start;
+        transform-origin: left bottom;
+        transform: scale(.92);
+        width: 108%;
+      }
+
+      .rating-actions {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .review {
+        grid-template-columns: 1fr;
+      }
+
+      .review-brand {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      .trust-strip,
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .trust-title {
+        grid-column: 1 / -1;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+    }
+
+    @media (max-width: 620px) {
+      .logo img {
+        width: 145px;
+      }
+
+      .hero-art {
+        min-height: 200px;
+        transform: scale(.72);
+        width: 138%;
+      }
+
+      .rating-card,
+      .review,
+      .side-card {
+        padding: 18px;
+      }
+
+      .rating-actions,
+      .trust-strip,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .score {
+        grid-template-columns: 58px 1fr;
+      }
+
+      .google-circle {
+        width: 54px;
+        height: 54px;
+        font-size: 29px;
+      }
+
+      .filters,
+      .pages {
+        gap: 8px;
+      }
+
+      .filter {
+        padding: 0 12px;
+      }
+
+      .footer-safe .container,
+      .footer-bottom .container {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 14px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container nav-main">
+      <a class="logo" href="index.html" aria-label="CashyGo home">
+        <img src="assets/images/project-logo/logo-new.svg" alt="CashyGo">
+      </a>
+
+      <form class="search">
+        <label>
+          <i class="bi bi-search"></i>
+          <input type="search" placeholder="Search for mobiles, accessories & more" aria-label="Search">
+        </label>
+        <button type="submit" aria-label="Search"><i class="bi bi-search"></i></button>
+      </form>
+
+      <div class="nav-actions">
+        <span><i class="bi bi-geo-alt"></i> Bangalore <i class="bi bi-chevron-down"></i></span>
+        <span><i class="bi bi-person"></i> Rahul <i class="bi bi-chevron-down"></i></span>
+      </div>
+    </div>
+
+    <nav class="container nav-menu" aria-label="Main navigation">
+      <a href="brand.html">Sell Phone <i class="bi bi-chevron-down"></i></a>
+      <a href="#">Sell Gadgets <i class="bi bi-chevron-down"></i></a>
+      <a href="#">Buy Refurbished Devices <i class="bi bi-chevron-down"></i></a>
+      <a href="laptop_page/laptop_brand.html">Buy Laptop <i class="bi bi-chevron-down"></i></a>
+      <a href="#">CashyGo Store <i class="bi bi-chevron-down"></i></a>
+      <a href="#">More <i class="bi bi-chevron-down"></i></a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="crumbs">
+      <a href="index.html">Home</a>
+      <i class="bi bi-chevron-right"></i>
+      <span>Reviews</span>
+    </div>
+
+    <section class="hero">
+      <div>
+        <h1>Customer Reviews That Build <span>Trust</span></h1>
+        <p>Real feedback from real customers.<br>See why thousands choose CashyGo.</p>
+      </div>
+
+      <div class="hero-art" aria-label="CashyGo review illustration">
+        <div class="blob"></div>
+        <div class="buds"></div>
+        <div class="laptop">CASHYGO</div>
+        <div class="phone">
+          <small>CASHYGO</small>
+          <strong>Sell Old Devices</strong>
+          <a href="brand.html">Get Quote</a>
+        </div>
+        <div class="plant"></div>
+        <div class="watch"><i class="bi bi-clock"></i></div>
+        <div class="google-badge">
+          <div class="google-word">
+            <span class="g-blue">G</span><span class="g-red">o</span><span class="g-yellow">o</span><span
+              class="g-blue">g</span><span class="g-green">l</span><span class="g-red">e</span>
+          </div>
+          <div>Verified Reviews</div>
+          <div class="stars">★★★★★</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-grid" aria-label="Customer reviews">
+      <div>
+        <div class="card rating-card">
+          <div class="score">
+            <div class="google-circle">
+              <span class="g-blue">G</span>
+            </div>
+            <div>
+              <div class="score-number">4.8</div>
+              <div class="stars">★★★★★</div>
+              <small>659+ Google Reviews</small>
+            </div>
+          </div>
+
+          <div class="place">
+            <h2>CashyGo - Sell Old Phone, Laptops & Gadgets | Doorstep Pickup <i
+                class="bi bi-patch-check-fill verified"></i></h2>
+            <p>No. 36/2, 1st Floor, 8th Cross Rd, BTM 2nd Stage, Bengaluru, Karnataka 560076</p>
+            <span class="location"><i class="bi bi-geo-alt"></i> Bangalore, Karnataka, India</span>
+          </div>
+
+          <div class="rating-actions">
+            <a class="btn btn-primary" href="#">View on Google <i class="bi bi-box-arrow-up-right"></i></a>
+            <a class="btn" href="#"><i class="bi bi-pencil"></i> Write a Review</a>
+          </div>
+        </div>
+
+        <div class="filters" aria-label="Review filters">
+          <button class="filter active">All Reviews (659)</button>
+          <button class="filter">5 <span class="stars">★</span> (561)</button>
+          <button class="filter">4 <span class="stars">★</span> (65)</button>
+          <button class="filter">3 <span class="stars">★</span> (18)</button>
+          <button class="filter">2 <span class="stars">★</span> (7)</button>
+          <button class="filter">1 <span class="stars">★</span> (8)</button>
+        </div>
+
+        <div class="card review-list">
+          <article class="review">
+            <div class="person">
+              <div class="avatar">R</div>
+              <div>
+                <div class="name">Rahul Sharma</div>
+                <div class="date">2 days ago</div>
+              </div>
+            </div>
+            <div class="review-text">
+              <div class="stars">★★★★★</div>
+              <p>Great experience selling my iPhone 13. They offered the best price and pickup was super quick. Payment
+                received instantly. Highly recommended!</p>
+              <span class="helpful"><i class="bi bi-hand-thumbs-up-fill"></i> Helpful (12)</span>
+            </div>
+            <div class="review-brand">
+              <span class="g-blue">G</span>
+              <button aria-label="More options"><i class="bi bi-three-dots-vertical"></i></button>
+            </div>
+          </article>
+
+          <article class="review">
+            <div class="person">
+              <div class="avatar light">P</div>
+              <div>
+                <div class="name">Rahul sharma</div>
+                <div class="date">5 days ago</div>
+              </div>
+            </div>
+            <div class="review-text">
+              <div class="stars">★★★★★</div>
+              <p>Very smooth process! The executive arrived on time, checked the device and paid the amount immediately.
+                Truly a hassle-free experience.</p>
+              <span class="helpful"><i class="bi bi-hand-thumbs-up-fill"></i> Helpful (9)</span>
+            </div>
+            <div class="review-brand">
+              <span class="g-blue">G</span>
+              <button aria-label="More options"><i class="bi bi-three-dots-vertical"></i></button>
+            </div>
+          </article>
+
+          <article class="review">
+            <div class="person">
+              <div class="avatar light">A</div>
+              <div>
+                <div class="name">Rahul Kumar</div>
+                <div class="date">1 week ago</div>
+              </div>
+            </div>
+            <div class="review-text">
+              <div class="stars">★★★★★</div>
+              <p>Best place to sell old phones. Got a better price than other platforms. Doorstep pickup is very
+                convenient.</p>
+              <span class="helpful"><i class="bi bi-hand-thumbs-up-fill"></i> Helpful (8)</span>
+            </div>
+            <div class="review-brand">
+              <span class="g-blue">G</span>
+              <button aria-label="More options"><i class="bi bi-three-dots-vertical"></i></button>
+            </div>
+          </article>
+
+          <article class="review">
+            <div class="person">
+              <div class="avatar light">S</div>
+              <div>
+                <div class="name">mj sharma</div>
+                <div class="date">1 week ago</div>
+              </div>
+            </div>
+            <div class="review-text">
+              <div class="stars">★★★★☆</div>
+              <p>Good service and professional team. They explained everything clearly and the payment was done
+                instantly. Keep up the good work!</p>
+              <span class="helpful"><i class="bi bi-hand-thumbs-up-fill"></i> Helpful (6)</span>
+            </div>
+            <div class="review-brand">
+              <span class="g-blue">G</span>
+              <button aria-label="More options"><i class="bi bi-three-dots-vertical"></i></button>
+            </div>
+          </article>
+
+          <article class="review">
+            <div class="person">
+              <div class="avatar light">V</div>
+              <div>
+                <div class="name">sud kumar</div>
+                <div class="date">2 weeks ago</div>
+              </div>
+            </div>
+            <div class="review-text">
+              <div class="stars">★★★★★</div>
+              <p>Sold my laptop to CashyGo. The price was fair and the pickup was done on the same day. Very trustworthy
+                platform.</p>
+              <span class="helpful"><i class="bi bi-hand-thumbs-up-fill"></i> Helpful (7)</span>
+            </div>
+            <div class="review-brand">
+              <span class="g-blue">G</span>
+              <button aria-label="More options"><i class="bi bi-three-dots-vertical"></i></button>
+            </div>
+          </article>
+        </div>
+
+        <nav class="pages" aria-label="Review pages">
+          <a class="page" href="#"><i class="bi bi-chevron-left"></i></a>
+          <a class="page active" href="#">1</a>
+          <a class="page" href="#">2</a>
+          <a class="page" href="#">3</a>
+          <a class="page" href="#">4</a>
+          <a class="page" href="#">5</a>
+          <span>...</span>
+          <a class="page" href="#">33</a>
+          <a class="page" href="#"><i class="bi bi-chevron-right"></i></a>
+        </nav>
+      </div>
+
+      <aside class="sidebar">
+        <section class="card side-card">
+          <h3>Google Rating Summary</h3>
+          <div class="bar-row"><span>5 Stars</span>
+            <div class="bar"><span style="width:85%"></span></div><span>85%</span>
+          </div>
+          <div class="bar-row"><span>4 Stars</span>
+            <div class="bar"><span style="width:18%"></span></div><span>10%</span>
+          </div>
+          <div class="bar-row"><span>3 Stars</span>
+            <div class="bar"><span style="width:8%"></span></div><span>3%</span>
+          </div>
+          <div class="bar-row"><span>2 Stars</span>
+            <div class="bar"><span style="width:4%"></span></div><span>1%</span>
+          </div>
+          <div class="bar-row"><span>1 Star</span>
+            <div class="bar"><span style="width:4%"></span></div><span>1%</span>
+          </div>
+        </section>
+
+        <section class="card side-card">
+          <h3>Review Highlights</h3>
+          <div class="highlight"><span><i class="bi bi-truck"></i> Doorstep Pickup</span><strong>95%</strong></div>
+          <div class="highlight"><span><i class="bi bi-cash-coin"></i> Best Price Offered</span><strong>92%</strong>
+          </div>
+          <div class="highlight"><span><i class="bi bi-wallet2"></i> Quick Payment</span><strong>93%</strong></div>
+          <div class="highlight"><span><i class="bi bi-shield-check"></i> Safe & Secure</span><strong>91%</strong>
+          </div>
+          <div class="highlight"><span><i class="bi bi-headset"></i> Great Customer Support</span><strong>89%</strong>
+          </div>
+        </section>
+
+        <section class="card side-card">
+          <h3>About CashyGo</h3>
+          <p class="about-copy">India's most trusted platform to sell old phones, laptops & gadgets at the best price.
+            Enjoy free doorstep pickup, instant payment & a hassle-free experience.</p>
+          <div class="about-line"><i class="bi bi-geo-alt"></i>
+            <div><strong>Service Area</strong>Bangalore & Nearby Areas</div>
+          </div>
+          <div class="about-line"><i class="bi bi-clock"></i>
+            <div><strong>Business Hours</strong>Mon - Sun: 9:00 AM - 9:00 PM</div>
+          </div>
+          <div class="about-line"><span class="g-blue" style="font-weight:700;font-size:22px;">G</span>
+            <div><strong>Google Business Profile</strong>659+ reviews · 4.8 <span class="stars">★</span></div>
+          </div>
+        </section>
+
+        <section class="card cta-card">
+          <h3>Ready to Sell Your Device?</h3>
+          <p>Get the best price, free pickup & instant payment.</p>
+          <a class="btn btn-primary" href="brand.html">Sell Now <i class="bi bi-arrow-up-right"></i></a>
+          <div class="scooter" aria-hidden="true"></div>
+        </section>
+      </aside>
+    </section>
+
+    <section class="trust-strip" aria-label="Why customers love CashyGo">
+      <div class="trust-title">Why Customers Love CashyGo?</div>
+      <div class="trust-item"><i class="bi bi-truck"></i> Free Doorstep Pickup</div>
+      <div class="trust-item"><i class="bi bi-shield-check"></i> Best Price Guaranteed</div>
+      <div class="trust-item"><i class="bi bi-wallet2"></i> Instant Payment</div>
+      <div class="trust-item"><i class="bi bi-patch-check"></i> 100% Safe & Secure</div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <img src="assets/images/project-logo/logo-new.svg" alt="CashyGo">
+        <p>India's most trusted platform to sell old phones, laptops & gadgets for instant cash with free doorstep
+          pickup.</p>
+        <div class="socials">
+          <span><i class="bi bi-facebook"></i></span>
+          <span><i class="bi bi-instagram"></i></span>
+          <span><i class="bi bi-youtube"></i></span>
+          <span><i class="bi bi-linkedin"></i></span>
+        </div>
+      </div>
+
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="blogs.html">Blog</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Sell With Us</h4>
+        <ul>
+          <li><a href="brand.html">Sell Phone</a></li>
+          <li><a href="#">Sell Gadgets</a></li>
+          <li><a href="#">How It Works</a></li>
+          <li><a href="#">Partner With Us</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Buy With Us</h4>
+        <ul>
+          <li><a href="#">Refurbished Phones</a></li>
+          <li><a href="#">Refurbished Laptops</a></li>
+          <li><a href="#">Accessories</a></li>
+          <li><a href="#">CashyGo Store</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Track Order</a></li>
+          <li><a href="#">Cancellation & Refund</a></li>
+          <li><a href="#">Bulk Orders</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Download Our App</h4>
+        <div class="store-note">Get it on</div>
+        <div class="store"><i class="bi bi-google-play"></i> Google Play</div>
+        <div class="store"><i class="bi bi-apple"></i> App Store</div>
+      </div>
+    </div>
+
+    <div class="footer-safe">
+      <div class="container">
+        <span><i class="bi bi-shield-check"></i> ISO 27001 Certified</span>
+        <span><i class="bi bi-lock"></i> 256-bit SSL Secure</span>
+        <span><i class="bi bi-person-check"></i> 100% Data Protection</span>
+        <span><i class="bi bi-patch-check"></i> Privacy Guaranteed</span>
+        <span><i class="bi bi-house-check"></i> Trusted Since 2015</span>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+        <span>© 2024 CashyGo. All rights reserved.</span>
+        <div class="footer-links">
+          <a href="#">Terms & Conditions</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

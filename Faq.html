@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CashyGo FAQ - quick answers about selling old phones, laptops, gadgets, pickup, pricing and payments.">
+  <title>FAQ - CashyGo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="blogs.css">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --cashygo_faq_green: #079455;
+      --cashygo_faq_green_dark: #063c2b;
+      --cashygo_faq_green_soft: #edf8f3;
+      --cashygo_faq_ink: #12172a;
+      --cashygo_faq_text: #263143;
+      --cashygo_faq_muted: #6b7280;
+      --cashygo_faq_line: #e7ece9;
+      --cashygo_faq_bg: #fbfcfb;
+      --cashygo_faq_shadow: 0 18px 48px rgba(15, 23, 42, .08);
+    }
+
+    body {
+      font-family: "Barlow", Arial, sans-serif;
+      color: var(--cashygo_faq_text);
+      background: var(--cashygo_faq_bg);
+      line-height: 1.45;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    .cashygo_faq_section_head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .cashygo_faq_section_head h2 {
+      color: var(--cashygo_faq_ink);
+      font-size: 23px;
+      font-weight: 800;
+    }
+
+    .cashygo_faq_view_all {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--cashygo_faq_green);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .cashygo_faq_main {
+      padding: 5px 10px;
+    }
+
+    .cashygo_faq_shell {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .cashygo_faq_category_grid {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .cashygo_faq_category {
+      min-height: 116px;
+      display: grid;
+      place-items: center;
+      gap: 9px;
+      padding: 14px 8px;
+      border: 1px solid var(--cashygo_faq_line);
+      border-radius: 8px;
+      background: #fff;
+      color: #152033;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, .03);
+    }
+
+    .cashygo_faq_category i {
+      color: var(--cashygo_faq_green);
+      font-size: 34px;
+      line-height: 1;
+    }
+
+    .cashygo_faq_category strong {
+      display: block;
+      font-size: 13px;
+      line-height: 1.2;
+    }
+
+    .cashygo_faq_category span {
+      display: block;
+      margin-top: 3px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .cashygo_faq_question_search {
+      display: grid;
+      grid-template-columns: 48px 1fr 116px;
+      align-items: center;
+      height: 48px;
+      margin: 26px 0 18px;
+      overflow: hidden;
+      border: 1px solid var(--cashygo_faq_line);
+      border-radius: 7px;
+      background: #fff;
+      box-shadow: 0 10px 28px rgba(15, 23, 42, .04);
+    }
+
+    .cashygo_faq_question_search i {
+      color: #8a95a4;
+      text-align: center;
+      font-size: 18px;
+    }
+
+    .cashygo_faq_question_search input {
+      border: 0;
+      outline: 0;
+      color: var(--cashygo_faq_text);
+      font-size: 14px;
+      background: transparent;
+    }
+
+    .cashygo_faq_question_search button {
+      height: 48px;
+      border: 0;
+      color: #fff;
+      background: var(--cashygo_faq_green);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .cashygo_faq_content_grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .cashygo_faq_card {
+      border: 1px solid var(--cashygo_faq_line);
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 12px 32px rgba(15, 23, 42, .04);
+    }
+
+    .cashygo_faq_ai_card {
+      min-height: 258px;
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cashygo_faq_ai_title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #111827;
+      font-size: 19px;
+      font-weight: 800;
+    }
+
+    .cashygo_faq_google {
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: conic-gradient(#4285f4 0 25%, #34a853 0 50%, #fbbc05 0 75%, #ea4335 0);
+      color: #fff;
+      font-weight: 800;
+    }
+
+    .cashygo_faq_ai_text {
+      max-width: 690px;
+      margin-top: 18px;
+      color: #202939;
+      font-size: 15px;
+      line-height: 1.65;
+      font-weight: 500;
+    }
+
+    .cashygo_faq_result {
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: 12px;
+      align-items: center;
+      margin-top: 18px;
+      max-width: 560px;
+    }
+
+    .cashygo_faq_result_icon {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #64748b;
+      background: #eef2f7;
+      font-weight: 800;
+    }
+
+    .cashygo_faq_result small {
+      display: block;
+      color: #0f172a;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .cashygo_faq_result span {
+      color: #64748b;
+      font-size: 12px;
+    }
+
+    .cashygo_faq_result_link {
+      display: block;
+      grid-column: 1 / -1;
+      margin-top: 2px;
+      color: #1769aa;
+      font-size: 17px;
+      font-weight: 500;
+    }
+
+    .cashygo_faq_snippet_art {
+      position: absolute;
+      right: 32px;
+      bottom: 76px;
+      width: 100px;
+      height: 92px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, #f0efff, #fff);
+      box-shadow: 0 12px 28px rgba(79, 70, 229, .12);
+    }
+
+    .cashygo_faq_snippet_art::before,
+    .cashygo_faq_snippet_art::after {
+      content: "";
+      position: absolute;
+      left: 20px;
+      right: 18px;
+      height: 9px;
+      border-radius: 999px;
+      background: #d8d7ff;
+    }
+
+    .cashygo_faq_snippet_art::before { top: 28px; }
+    .cashygo_faq_snippet_art::after  { top: 52px; right: 34px; }
+
+    .cashygo_faq_check {
+      position: absolute;
+      right: 12px;
+      bottom: 4px;
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #fff;
+      background: var(--cashygo_faq_green);
+      box-shadow: 0 8px 20px rgba(7, 148, 85, .28);
+    }
+
+    .cashygo_faq_snippet_footer {
+      position: absolute;
+      right: 25px;
+      bottom: 22px;
+      display: flex;
+      gap: 28px;
+      color: #6b7280;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .cashygo_faq_side_stack {
+      display: grid;
+      gap: 16px;
+    }
+
+    .cashygo_faq_support_card,
+    .cashygo_faq_choose_card,
+    .cashygo_faq_popular_card {
+      padding: 22px;
+    }
+
+    .cashygo_faq_side_stack h3 {
+      color: #111827;
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .cashygo_faq_side_stack p {
+      margin-top: 8px;
+      color: #3f4857;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .cashygo_faq_support_list {
+      display: grid;
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .cashygo_faq_support_item {
+      display: grid;
+      grid-template-columns: 43px 1fr;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .cashygo_faq_support_icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--cashygo_faq_green);
+      background: #f0faf5;
+      font-size: 20px;
+    }
+
+    .cashygo_faq_support_item strong {
+      display: block;
+      color: #111827;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .cashygo_faq_support_item span {
+      display: block;
+      margin-top: 2px;
+      color: #64748b;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .cashygo_faq_all_title {
+      margin: 28px 0 14px;
+      color: var(--cashygo_faq_ink);
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .cashygo_faq_accordion { overflow: hidden; }
+
+    .cashygo_faq_accordion_item + .cashygo_faq_accordion_item {
+      border-top: 1px solid var(--cashygo_faq_line);
+    }
+
+    .cashygo_faq_accordion_btn {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 46px 1fr 36px;
+      gap: 16px;
+      align-items: center;
+      min-height: 72px;
+      padding: 10px 18px;
+      border: 0;
+      background: #fff;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .cashygo_faq_accordion_icon {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border-radius: 9px;
+      color: #fff;
+      background: var(--cashygo_faq_green);
+      font-size: 20px;
+    }
+
+    .cashygo_faq_accordion_text strong {
+      display: block;
+      color: #111827;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .cashygo_faq_accordion_text span {
+      display: block;
+      margin-top: 4px;
+      color: #4b5563;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .cashygo_faq_accordion_chevron {
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--cashygo_faq_line);
+      border-radius: 50%;
+      color: #111827;
+      justify-self: end;
+      transition: transform .2s ease;
+    }
+
+    .cashygo_faq_accordion_item.is-open .cashygo_faq_accordion_chevron {
+      transform: rotate(180deg);
+    }
+
+    .cashygo_faq_accordion_panel {
+      display: none;
+      padding: 0 68px 18px 80px;
+      color: #4b5563;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .cashygo_faq_accordion_item.is-open .cashygo_faq_accordion_panel {
+      display: block;
+    }
+
+    .cashygo_faq_choose_list {
+      display: grid;
+      gap: 11px;
+      margin-top: 14px;
+      list-style: none;
+    }
+
+    .cashygo_faq_choose_list li {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: #253143;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .cashygo_faq_choose_list i { color: var(--cashygo_faq_green); }
+
+    .cashygo_faq_rating {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 16px;
+      align-items: center;
+      margin-top: 26px;
+      padding: 16px;
+      border-radius: 7px;
+      background: #fff;
+      box-shadow: var(--cashygo_faq_shadow);
+    }
+
+    .cashygo_faq_rating .cashygo_faq_google {
+      width: 42px;
+      height: 42px;
+      font-size: 26px;
+    }
+
+    .cashygo_faq_rating strong {
+      display: block;
+      color: #111827;
+      font-size: 30px;
+      line-height: 1;
+      font-weight: 800;
+    }
+
+    .cashygo_faq_stars {
+      color: #f5b301;
+      letter-spacing: 1px;
+      font-size: 18px;
+      line-height: 1.2;
+    }
+
+    .cashygo_faq_rating span {
+      color: #475569;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .cashygo_faq_tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .cashygo_faq_tag {
+      padding: 9px 14px;
+      border: 1px solid var(--cashygo_faq_line);
+      border-radius: 999px;
+      color: #334155;
+      background: #fff;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 1050px) {
+      .cashygo_faq_category_grid { grid-template-columns: repeat(4, 1fr); }
+      .cashygo_faq_content_grid  { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 760px) {
+      .cashygo_faq_shell { width: min(100% - 22px, 1120px); }
+
+      .cashygo_faq_section_head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .cashygo_faq_category_grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+
+      .cashygo_faq_question_search { grid-template-columns: 42px 1fr 92px; }
+
+      .cashygo_faq_ai_card { padding: 18px; }
+
+      .cashygo_faq_snippet_art,
+      .cashygo_faq_snippet_footer { display: none; }
+
+      .cashygo_faq_accordion_btn {
+        grid-template-columns: 40px 1fr 30px;
+        gap: 12px;
+        padding: 12px;
+      }
+
+      .cashygo_faq_accordion_panel { padding: 0 16px 18px 64px; }
+    }
+
+    @media (max-width: 480px) {
+      .cashygo_faq_category_grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── Navigation ── -->
+  <nav class="blog-nav" role="navigation" aria-label="Main navigation">
+    <div class="blog-nav-top">
+      <a href="index.html" class="blog-logo" aria-label="Cashygo home">
+        <img src="assets/images/project-logo/logo-new.svg" alt="Cashygo logo">
+      </a>
+      <div class="blog-nav-actions">
+        <button type="button" class="location-btn"><i class="bi bi-geo-alt"></i>Bangalore <i class="bi bi-chevron-down"></i></button>
+        <button type="button" class="account-btn" id="openLoginBtn"><i class="bi bi-person"></i>Rahul <i class="bi bi-chevron-down"></i></button>
+        <button type="button" class="mobile-menu-btn" id="blogMenuBtn" aria-label="Toggle menu" aria-expanded="false"><i class="bi bi-list"></i></button>
+      </div>
+    </div>
+    <div class="blog-nav-menu" id="blogNavMenu">
+      <a href="brand.html">Sell Phone <i class="bi bi-chevron-down"></i></a>
+      <a href="#">Sell Gadgets <i class="bi bi-chevron-down"></i></a>
+      <a href="#">Buy Refurbished Devices <i class="bi bi-chevron-down"></i></a>
+      <a href="#">Buy Laptop <i class="bi bi-chevron-down"></i></a>
+      <a href="#">CashyGo Store <i class="bi bi-chevron-down"></i></a>
+      <a href="#">More <i class="bi bi-chevron-down"></i></a>
+    </div>
+  </nav>
+
+  <!-- ── Main ── -->
+  <main class="blog-page">
+
+    <div class="breadcrumb"><a href="index.html">Home</a><i class="bi bi-chevron-right"></i><span>FAQ</span></div>
+
+    <!-- Hero -->
+    <section class="blog-hero" aria-labelledby="blogTitle">
+      <div class="blog-hero-copy">
+        <h1 id="blogTitle">CashyGo <span>FAQ</span></h1>
+        <p>Quick answers about selling phones, laptops, gadgets, pickup, pricing and payments.</p>
+      </div>
+      <div class="blog-hero-art">
+        <img src="assets/images/brand-img/Brand-Banner.webp" alt="CashyGo FAQ Banner">
+      </div>
+    </section>
+
+    <!-- FAQ body -->
+    <div class="cashygo_faq_main">
+      <div class="cashygo_faq_shell">
+
+        <!-- Categories -->
+        <section aria-labelledby="cashygo_faq_category_title">
+          <div class="cashygo_faq_section_head">
+            <h2 id="cashygo_faq_category_title">Browse by Category</h2>
+            <a class="cashygo_faq_view_all" href="#">View all categories <i class="bi bi-arrow-right"></i></a>
+          </div>
+          <div class="cashygo_faq_category_grid">
+            <a class="cashygo_faq_category" href="#"><i class="bi bi-phone"></i><strong>Sell Old Phone<span>(28)</span></strong></a>
+            <a class="cashygo_faq_category" href="#"><i class="bi bi-laptop"></i><strong>Sell Old Laptop<span>(16)</span></strong></a>
+            <a class="cashygo_faq_category" href="#"><i class="bi bi-smartwatch"></i><strong>Sell Smartwatch<span>(10)</span></strong></a>
+            <a class="cashygo_faq_category" href="#"><i class="bi bi-earbuds"></i><strong>Sell Accessories<span>(8)</span></strong></a>
+            <a class="cashygo_faq_category" href="#"><i class="bi bi-recycle"></i><strong>Recycling<span>(12)</span></strong></a>
+            <a class="cashygo_faq_category" href="#"><i class="bi bi-journal-text"></i><strong>Tech Guides<span>(15)</span></strong></a>
+            <a class="cashygo_faq_category" href="#"><i class="bi bi-shield-check"></i><strong>Company &amp; Policies<span>(9)</span></strong></a>
+            <a class="cashygo_faq_category" href="#"><i class="bi bi-currency-rupee"></i><strong>Payments &amp; Pricing<span>(11)</span></strong></a>
+          </div>
+        </section>
+
+        <!-- Search bar -->
+        <form class="cashygo_faq_question_search" role="search">
+          <i class="bi bi-search" aria-hidden="true"></i>
+          <label for="cashygo_faq_question_input" hidden>Search questions</label>
+          <input id="cashygo_faq_question_input" type="search" placeholder="Search for questions (e.g. How do I sell my old phone?)">
+          <button type="submit"><i class="bi bi-search"></i> Search</button>
+        </form>
+
+        <!-- Content grid -->
+        <div class="cashygo_faq_content_grid">
+
+          <!-- Left: AI snippet + accordion -->
+          <div>
+            <section class="cashygo_faq_card cashygo_faq_ai_card" aria-labelledby="cashygo_faq_ai_title">
+              <h2 class="cashygo_faq_ai_title" id="cashygo_faq_ai_title"><span class="cashygo_faq_google">G</span> AI Answer (Google Snippet Optimized)</h2>
+              <p class="cashygo_faq_ai_text">You can sell your old phone on CashyGo by getting an instant quote, scheduling a free pickup, completing a quick inspection, and receiving instant payment. CashyGo offers the best price with a 100% secure process and doorstep pickup.</p>
+              <div class="cashygo_faq_result">
+                <span class="cashygo_faq_result_icon">C</span>
+                <div>
+                  <small>CashyGo</small>
+                  <span>https://www.cashygo.in/faq</span>
+                </div>
+                <a class="cashygo_faq_result_link" href="#">Sell Old Phones Online - CashyGo | Get the Best Price</a>
+              </div>
+              <div class="cashygo_faq_snippet_art">
+                <span class="cashygo_faq_check"><i class="bi bi-check-lg"></i></span>
+              </div>
+              <div class="cashygo_faq_snippet_footer">
+                <span><i class="bi bi-info-circle"></i> About featured snippets</span>
+                <span><i class="bi bi-chat-left-text"></i> Feedback</span>
+              </div>
+            </section>
+
+            <h2 class="cashygo_faq_all_title">All Frequently Asked Questions</h2>
+
+            <section class="cashygo_faq_card cashygo_faq_accordion" aria-label="All FAQ categories">
+
+              <div class="cashygo_faq_accordion_item">
+                <button class="cashygo_faq_accordion_btn" type="button" aria-expanded="false">
+                  <span class="cashygo_faq_accordion_icon"><i class="bi bi-phone"></i></span>
+                  <span class="cashygo_faq_accordion_text"><strong>Sell Old Phone</strong><span>Questions about selling your old smartphone, getting quotes, pickup, and payment.</span></span>
+                  <span class="cashygo_faq_accordion_chevron"><i class="bi bi-chevron-down"></i></span>
+                </button>
+                <div class="cashygo_faq_accordion_panel">Search your phone model, choose the exact condition, confirm the quote and schedule a doorstep pickup. Payment is released after pickup inspection.</div>
+              </div>
+
+              <div class="cashygo_faq_accordion_item">
+                <button class="cashygo_faq_accordion_btn" type="button" aria-expanded="false">
+                  <span class="cashygo_faq_accordion_icon"><i class="bi bi-laptop"></i></span>
+                  <span class="cashygo_faq_accordion_text"><strong>Sell Old Laptop</strong><span>Find answers about laptop valuation, condition check, pickup, and payment.</span></span>
+                  <span class="cashygo_faq_accordion_chevron"><i class="bi bi-chevron-down"></i></span>
+                </button>
+                <div class="cashygo_faq_accordion_panel">Laptop pricing depends on brand, model, processor, RAM, storage, physical condition, battery health and accessories.</div>
+              </div>
+
+              <div class="cashygo_faq_accordion_item">
+                <button class="cashygo_faq_accordion_btn" type="button" aria-expanded="false">
+                  <span class="cashygo_faq_accordion_icon"><i class="bi bi-smartwatch"></i></span>
+                  <span class="cashygo_faq_accordion_text"><strong>Sell Smartwatch</strong><span>Know how to sell your smartwatch, supported brands, and payment details.</span></span>
+                  <span class="cashygo_faq_accordion_chevron"><i class="bi bi-chevron-down"></i></span>
+                </button>
+                <div class="cashygo_faq_accordion_panel">CashyGo supports popular smartwatch brands and checks display, sensors, buttons, charger availability and pairing status.</div>
+              </div>
+
+              <div class="cashygo_faq_accordion_item">
+                <button class="cashygo_faq_accordion_btn" type="button" aria-expanded="false">
+                  <span class="cashygo_faq_accordion_icon"><i class="bi bi-earbuds"></i></span>
+                  <span class="cashygo_faq_accordion_text"><strong>Sell Accessories</strong><span>Questions about selling accessories like earbuds, chargers, tablets and more.</span></span>
+                  <span class="cashygo_faq_accordion_chevron"><i class="bi bi-chevron-down"></i></span>
+                </button>
+                <div class="cashygo_faq_accordion_panel">Accessories should be original, working and clean. Final value depends on brand, condition and included charging case or cable.</div>
+              </div>
+
+              <div class="cashygo_faq_accordion_item">
+                <button class="cashygo_faq_accordion_btn" type="button" aria-expanded="false">
+                  <span class="cashygo_faq_accordion_icon"><i class="bi bi-recycle"></i></span>
+                  <span class="cashygo_faq_accordion_text"><strong>Recycling</strong><span>Learn how device recycling works and how it helps the environment.</span></span>
+                  <span class="cashygo_faq_accordion_chevron"><i class="bi bi-chevron-down"></i></span>
+                </button>
+                <div class="cashygo_faq_accordion_panel">Devices that cannot be reused are routed through responsible recycling partners to reduce e-waste.</div>
+              </div>
+
+              <div class="cashygo_faq_accordion_item">
+                <button class="cashygo_faq_accordion_btn" type="button" aria-expanded="false">
+                  <span class="cashygo_faq_accordion_icon"><i class="bi bi-journal-text"></i></span>
+                  <span class="cashygo_faq_accordion_text"><strong>Tech Guides</strong><span>Helpful guides, tips, and how-to articles for smart selling.</span></span>
+                  <span class="cashygo_faq_accordion_chevron"><i class="bi bi-chevron-down"></i></span>
+                </button>
+                <div class="cashygo_faq_accordion_panel">Before pickup, back up your data, remove accounts, disable screen locks and keep the original charger ready if available.</div>
+              </div>
+
+              <div class="cashygo_faq_accordion_item">
+                <button class="cashygo_faq_accordion_btn" type="button" aria-expanded="false">
+                  <span class="cashygo_faq_accordion_icon"><i class="bi bi-shield-check"></i></span>
+                  <span class="cashygo_faq_accordion_text"><strong>Company &amp; Policies</strong><span>Know more about CashyGo, our policies, terms and data security.</span></span>
+                  <span class="cashygo_faq_accordion_chevron"><i class="bi bi-chevron-down"></i></span>
+                </button>
+                <div class="cashygo_faq_accordion_panel">CashyGo follows secure handling practices for pickup, inspection, customer information and device data.</div>
+              </div>
+
+              <div class="cashygo_faq_accordion_item">
+                <button class="cashygo_faq_accordion_btn" type="button" aria-expanded="false">
+                  <span class="cashygo_faq_accordion_icon"><i class="bi bi-currency-rupee"></i></span>
+                  <span class="cashygo_faq_accordion_text"><strong>Payments &amp; Pricing</strong><span>Questions about pricing, payments, refund and settlement timelines.</span></span>
+                  <span class="cashygo_faq_accordion_chevron"><i class="bi bi-chevron-down"></i></span>
+                </button>
+                <div class="cashygo_faq_accordion_panel">The quoted price is confirmed after physical inspection. Once approved, payment is settled instantly through the selected payment mode.</div>
+              </div>
+
+            </section>
+          </div><!-- /left col -->
+
+          <!-- Right: sidebar -->
+          <aside class="cashygo_faq_side_stack" aria-label="FAQ support information">
+
+            <section class="cashygo_faq_card cashygo_faq_support_card">
+              <h3>Can't find your answer?</h3>
+              <p>Our support team is here to help you.</p>
+              <div class="cashygo_faq_support_list">
+                <a class="cashygo_faq_support_item" href="#">
+                  <span class="cashygo_faq_support_icon"><i class="bi bi-chat-dots"></i></span>
+                  <span><strong>Live Chat</strong><span>Chat with our support team</span></span>
+                </a>
+                <a class="cashygo_faq_support_item" href="tel:08068266826">
+                  <span class="cashygo_faq_support_icon"><i class="bi bi-telephone"></i></span>
+                  <span><strong>Call Us</strong><span>080-6826-6826</span></span>
+                </a>
+                <a class="cashygo_faq_support_item" href="mailto:support@cashygo.in">
+                  <span class="cashygo_faq_support_icon"><i class="bi bi-envelope"></i></span>
+                  <span><strong>Email Us</strong><span>support@cashygo.in</span></span>
+                </a>
+              </div>
+            </section>
+
+            <section class="cashygo_faq_card cashygo_faq_choose_card">
+              <h3>Why Choose CashyGo?</h3>
+              <ul class="cashygo_faq_choose_list">
+                <li><i class="bi bi-check-circle-fill"></i> Best Price Guaranteed</li>
+                <li><i class="bi bi-check-circle-fill"></i> Free Doorstep Pickup</li>
+                <li><i class="bi bi-check-circle-fill"></i> Instant &amp; Secure Payment</li>
+                <li><i class="bi bi-check-circle-fill"></i> Safe &amp; Transparent Process</li>
+                <li><i class="bi bi-check-circle-fill"></i> 100% Data Protection</li>
+              </ul>
+              <div class="cashygo_faq_rating">
+                <span class="cashygo_faq_google">G</span>
+                <div>
+                  <strong>4.8/5</strong>
+                  <div class="cashygo_faq_stars">★★★★★</div>
+                  <span>(10,000+ Reviews)</span>
+                </div>
+              </div>
+            </section>
+
+            <section class="cashygo_faq_card cashygo_faq_popular_card">
+              <h3>Popular Searches</h3>
+              <div class="cashygo_faq_tags">
+                <a class="cashygo_faq_tag" href="#">how to sell old phone</a>
+                <a class="cashygo_faq_tag" href="#">pickup process</a>
+                <a class="cashygo_faq_tag" href="#">payment time</a>
+                <a class="cashygo_faq_tag" href="#">best price for old phone</a>
+                <a class="cashygo_faq_tag" href="#">supported brands</a>
+                <a class="cashygo_faq_tag" href="#">is it safe to sell online</a>
+              </div>
+            </section>
+
+          </aside>
+        </div><!-- /content-grid -->
+
+        <!-- CTA -->
+        <section class="sell-cta" aria-label="Ready to sell">
+          <div class="cta-illustration">
+            <img src="assets/images/bloge-page-img/bike_img.jpeg" alt="CashyGo doorstep pickup">
+          </div>
+          <div>
+            <h2>Ready to Sell Your Old Device?</h2>
+            <p>Get the best price, free pickup &amp; instant payment.</p>
+            <a href="brand.html">Sell Now <i class="bi bi-arrow-up-right"></i></a>
+          </div>
+          <ul>
+            <li><i class="bi bi-truck"></i>Free Doorstep Pickup</li>
+            <li><i class="bi bi-shield-check"></i>Best Price Guaranteed</li>
+            <li><i class="bi bi-cash-coin"></i>Instant Payment</li>
+          </ul>
+        </section>
+
+      </div><!-- /shell -->
+    </div><!-- /faq_main -->
+
+  </main><!-- /blog-page -->
+
+  <script>
+    const blogMenuBtn = document.getElementById("blogMenuBtn");
+    const blogNavMenu = document.getElementById("blogNavMenu");
+
+    if (blogMenuBtn && blogNavMenu) {
+      blogMenuBtn.addEventListener("click", () => {
+        const isOpen = blogNavMenu.classList.toggle("open");
+        blogMenuBtn.setAttribute("aria-expanded", String(isOpen));
+      });
+    }
+
+    document.querySelectorAll(".cashygo_faq_accordion_btn").forEach((button) => {
+      button.addEventListener("click", () => {
+        const item = button.closest(".cashygo_faq_accordion_item");
+        const isOpen = item.classList.toggle("is-open");
+        button.setAttribute("aria-expanded", String(isOpen));
+      });
+    });
+  </script>
+
+</body>
+</html>
