@@ -52,13 +52,13 @@
    .cashygo-hero {
        background: linear-gradient(135deg, #f0fdf4 0%, #fff 60%);
        overflow: hidden;
-       padding: 10px 20px;
+       padding: 10px 0;
    }
 
    .cashygo-hero__inner {
-       /* max-width: var(--cg-max); */
+       width: min(var(--cg-max), calc(100% - 48px));
        margin: 0 auto;
-       padding: 5px 10px;
+       padding: 5px 0;
        display: flex;
        align-items: center;
        justify-content: space-between;
@@ -66,7 +66,8 @@
    }
 
    .cashygo-hero__left {
-       margin-left: 30px;
+       flex: 1 1 520px;
+       min-width: 0;
    }
 
    .cashygo-hero__badge {
@@ -93,6 +94,7 @@
        font-size: 20px;
        line-height: 1.12;
        color: var(--cg-gray-900);
+       overflow-wrap: anywhere;
        /* margin: 12px 0 12px */
    }
 
@@ -214,13 +216,13 @@
    }
 
    .cashygo-hero__right {
-       flex: 1;
+       flex: 1 1 420px;
        position: relative;
        min-height: 360px;
        display: flex;
        align-items: center;
        justify-content: center;
-       min-width: 320px
+       min-width: 0
    }
 
    .cashygo-hero__ring {
@@ -238,7 +240,7 @@
    }
 
    .cashygo-hero__phone img {
-       width: min(500px, 42vw);
+       width: min(500px, 100%);
        height: auto
    }
 
@@ -879,11 +881,12 @@
            }
 
            .cashygo-hero__inner {
+               width: min(100% - 36px, var(--cg-max));
                gap: 28px
            }
 
            .cashygo-hero__right {
-               min-width: 280px
+               flex-basis: 340px
            }
 
            .cashygo-hero__tags {
@@ -900,7 +903,8 @@
                flex-direction: column;
                align-items: stretch;
                text-align: center;
-               /* padding: 28px 20px 24px; */
+               width: min(100% - 32px, 680px);
+               padding: 18px 0 22px;
                gap: 22px
            }
 
@@ -918,6 +922,10 @@
            .cashygo-hero__brands {
                justify-content: center;
                width: 100%;
+           }
+
+           .cashygo-hero__brands li {
+               min-width: 0;
            }
 
            .cashygo-hero__features {
@@ -961,7 +969,8 @@
            }
 
            .cashygo-hero__inner {
-               /* padding: 24px 14px 22px */
+               width: calc(100% - 24px);
+               padding: 14px 0 18px
            }
 
            .cashygo-hero__title {
@@ -997,7 +1006,8 @@
            }
 
            .cashygo-hero__brand-btn {
-               padding: 8px 12px
+               padding: 8px 10px;
+               font-size: 12px
            }
 
            .cashygo-devices__grid {
