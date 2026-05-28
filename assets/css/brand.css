@@ -900,12 +900,15 @@
        } */
 
            .cashygo-hero__inner {
-               flex-direction: column;
+               /* flex-direction: column; */
                align-items: stretch;
                text-align: center;
                width: min(100% - 32px, 680px);
                padding: 18px 0 22px;
                gap: 22px
+           }
+           .cashygo-hero__phone img{
+            display: none;
            }
 
            .cashygo-hero__left {

@@ -725,6 +725,7 @@
       .cashygo-hero__phone_img {
           width: min(86vw, 360px);
           margin: 0 auto;
+          display: none;
       }
 
       .cashygo-model-page__top-sold{
