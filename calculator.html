@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cashygo price calculator - check your old phone resale value instantly with device model, storage, age and condition.">
+  <title>Cashygo Price Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --cashygo_price_green: #0d8c60;
+      --cashygo_price_green_dark: #075f43;
+      --cashygo_price_mint: #e9f8f1;
+      --cashygo_price_lime: #c8f7dc;
+      --cashygo_price_ink: #10201a;
+      --cashygo_price_text: #334155;
+      --cashygo_price_muted: #64748b;
+      --cashygo_price_line: #dbe6df;
+      --cashygo_price_soft: #f6faf8;
+      --cashygo_price_white: #ffffff;
+      --cashygo_price_shadow: 0 22px 70px rgba(15, 23, 42, .12);
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: "Barlow", Arial, sans-serif;
+      background:
+        linear-gradient(135deg, rgba(13, 140, 96, .08), transparent 32%),
+        linear-gradient(180deg, #ffffff 0%, #f4faf7 100%);
+      color: var(--cashygo_price_ink);
+      line-height: 1.5;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .cashygo_price {
+      width: min(1180px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 24px 0 48px;
+    }
+
+    .cashygo_price__hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(320px, .95fr);
+      gap: 28px;
+      align-items: stretch;
+      padding: 28px 0 18px;
+    }
+
+    .cashygo_price__intro {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 0;
+      padding: 28px;
+      border: 1px solid rgba(13, 140, 96, .12);
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, .95), rgba(233, 248, 241, .82)),
+        url("assets/images/home-page-img/Homepage-Banner.webp") center right / cover;
+      box-shadow: 0 20px 55px rgba(13, 140, 96, .08);
+    }
+
+    .cashygo_price__brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: max-content;
+      padding: 7px 12px;
+      border: 1px solid rgba(13, 140, 96, .18);
+      border-radius: 999px;
+      background: var(--cashygo_price_mint);
+      color: var(--cashygo_price_green_dark);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .cashygo_price__title {
+      max-width: 760px;
+      margin-top: 18px;
+      font-size: clamp(32px, 5vw, 62px);
+      line-height: .98;
+      letter-spacing: 0;
+      color: var(--cashygo_price_ink);
+    }
+
+    .cashygo_price__copy {
+      max-width: 650px;
+      margin-top: 16px;
+      font-size: 17px;
+      color: var(--cashygo_price_text);
+    }
+
+    .cashygo_price__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .cashygo_price__action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 44px;
+      border-radius: 8px;
+      padding: 0 16px;
+      border: 1px solid var(--cashygo_price_line);
+      background: #fff;
+      color: var(--cashygo_price_green_dark);
+      font-size: 14px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .cashygo_price__action--primary {
+      border-color: var(--cashygo_price_green);
+      background: var(--cashygo_price_green);
+      color: #fff;
+    }
+
+    .cashygo_price__stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 24px;
+      max-width: 640px;
+    }
+
+    .cashygo_price__stat {
+      border: 1px solid var(--cashygo_price_line);
+      border-radius: 8px;
+      padding: 14px;
+      background: rgba(255, 255, 255, .78);
+    }
+
+    .cashygo_price__stat strong {
+      display: block;
+      font-size: 20px;
+      color: var(--cashygo_price_green_dark);
+    }
+
+    .cashygo_price__stat span {
+      display: block;
+      margin-top: 2px;
+      font-size: 12px;
+      color: var(--cashygo_price_muted);
+    }
+
+    .cashygo_price__panel {
+      position: relative;
+      border: 1px solid rgba(13, 140, 96, .16);
+      border-radius: 8px;
+      background: var(--cashygo_price_white);
+      box-shadow: var(--cashygo_price_shadow);
+      overflow: hidden;
+    }
+
+    .cashygo_price__device_preview {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 0 24px;
+      padding: 14px;
+      border-bottom: 1px solid var(--cashygo_price_line);
+      background: linear-gradient(135deg, #f8fffb, #ffffff);
+    }
+
+    .cashygo_price__device_preview img {
+      width: 58px;
+      height: 58px;
+      object-fit: contain;
+    }
+
+    .cashygo_price__device_preview strong {
+      display: block;
+      font-size: 15px;
+    }
+
+    .cashygo_price__device_preview span {
+      display: block;
+      margin-top: 2px;
+      color: var(--cashygo_price_muted);
+      font-size: 13px;
+    }
+
+    .cashygo_price__panel::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 6px;
+      background: linear-gradient(90deg, var(--cashygo_price_green), #64d98e, #111827);
+    }
+
+    .cashygo_price__panel_head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 26px 24px 18px;
+      border-bottom: 1px solid var(--cashygo_price_line);
+    }
+
+    .cashygo_price__panel_title {
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .cashygo_price__badge {
+      white-space: nowrap;
+      border-radius: 999px;
+      padding: 7px 10px;
+      background: #111827;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .cashygo_price__form {
+      padding: 22px 24px 24px;
+    }
+
+    .cashygo_price__field {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .cashygo_price__label {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--cashygo_price_text);
+    }
+
+    .cashygo_price__required {
+      color: #e11d48;
+    }
+
+    .cashygo_price__select,
+    .cashygo_price__input {
+      width: 100%;
+      border: 1px solid var(--cashygo_price_line);
+      border-radius: 8px;
+      background: var(--cashygo_price_soft);
+      color: var(--cashygo_price_ink);
+      padding: 13px 14px;
+      outline: none;
+      transition: border-color .2s, box-shadow .2s, background .2s;
+    }
+
+    .cashygo_price__select:focus,
+    .cashygo_price__input:focus {
+      border-color: var(--cashygo_price_green);
+      background: #fff;
+      box-shadow: 0 0 0 4px rgba(13, 140, 96, .12);
+    }
+
+    .cashygo_price__question {
+      border-top: 1px solid var(--cashygo_price_line);
+      padding: 15px 0;
+    }
+
+    .cashygo_price__question_top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      width: 100%;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      text-align: left;
+    }
+
+    .cashygo_price__question_hint {
+      display: block;
+      margin-top: 2px;
+      color: var(--cashygo_price_muted);
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .cashygo_price__question_icon {
+      flex: 0 0 auto;
+      color: var(--cashygo_price_green);
+      transition: transform .2s;
+    }
+
+    .cashygo_price__question.is-open .cashygo_price__question_icon {
+      transform: rotate(180deg);
+    }
+
+    .cashygo_price__options {
+      display: none;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      padding-top: 12px;
+    }
+
+    .cashygo_price__question.is-open .cashygo_price__options {
+      display: grid;
+    }
+
+    .cashygo_price__option {
+      border: 1px solid var(--cashygo_price_line);
+      border-radius: 8px;
+      padding: 10px;
+      background: #fff;
+      color: var(--cashygo_price_text);
+      font-size: 13px;
+      font-weight: 700;
+      text-align: center;
+      transition: .2s;
+    }
+
+    .cashygo_price__option:hover,
+    .cashygo_price__option.is-selected {
+      border-color: var(--cashygo_price_green);
+      background: var(--cashygo_price_mint);
+      color: var(--cashygo_price_green_dark);
+    }
+
+    .cashygo_price__quote {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
+      margin-top: 4px;
+      padding: 16px;
+      border-radius: 8px;
+      background: #101827;
+      color: #fff;
+    }
+
+    .cashygo_price__quote span {
+      display: block;
+      color: #b9c5d4;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .cashygo_price__amount {
+      font-size: 30px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .cashygo_price__submit {
+      border: 0;
+      border-radius: 8px;
+      padding: 13px 18px;
+      background: var(--cashygo_price_green);
+      color: #fff;
+      font-weight: 800;
+      transition: background .2s, transform .2s;
+    }
+
+    .cashygo_price__submit:hover {
+      background: var(--cashygo_price_green_dark);
+      transform: translateY(-1px);
+    }
+
+    .cashygo_price__note {
+      margin-top: 12px;
+      color: var(--cashygo_price_muted);
+      font-size: 12px;
+    }
+
+    .cashygo_price__section {
+      margin-top: 34px;
+      padding: 30px;
+      border: 1px solid var(--cashygo_price_line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .8);
+    }
+
+    .cashygo_price__section_head {
+      max-width: 720px;
+      margin-bottom: 22px;
+    }
+
+    .cashygo_price__eyebrow {
+      color: var(--cashygo_price_green);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .cashygo_price__section_title {
+      margin-top: 6px;
+      font-size: clamp(24px, 3vw, 36px);
+      line-height: 1.1;
+    }
+
+    .cashygo_price__steps {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .cashygo_price__step {
+      min-height: 178px;
+      border: 1px solid var(--cashygo_price_line);
+      border-radius: 8px;
+      padding: 16px;
+      background: #fff;
+    }
+
+    .cashygo_price__step_num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--cashygo_price_mint);
+      color: var(--cashygo_price_green_dark);
+      font-weight: 800;
+    }
+
+    .cashygo_price__step h3 {
+      margin-top: 14px;
+      font-size: 16px;
+    }
+
+    .cashygo_price__step p {
+      margin-top: 8px;
+      color: var(--cashygo_price_muted);
+      font-size: 13px;
+    }
+
+    .cashygo_price__faq_grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .cashygo_price__faq_item {
+      border: 1px solid var(--cashygo_price_line);
+      border-radius: 8px;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .cashygo_price__faq_q {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      width: 100%;
+      border: 0;
+      background: #fff;
+      padding: 16px;
+      color: var(--cashygo_price_ink);
+      text-align: left;
+      font-weight: 800;
+    }
+
+    .cashygo_price__faq_a {
+      display: none;
+      padding: 0 16px 16px;
+      color: var(--cashygo_price_muted);
+      font-size: 14px;
+    }
+
+    .cashygo_price__faq_item.is-open .cashygo_price__faq_a {
+      display: block;
+    }
+
+    .cashygo_price__seo {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .cashygo_price__seo_card {
+      border-left: 3px solid var(--cashygo_price_green);
+      padding: 14px 16px;
+      background: #fff;
+      border-radius: 8px;
+      color: var(--cashygo_price_text);
+      font-size: 14px;
+    }
+
+    .cashygo_price__seo_card h3 {
+      margin-bottom: 6px;
+      color: var(--cashygo_price_ink);
+      font-size: 15px;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 980px) {
+      .cashygo_price__hero {
+        grid-template-columns: 1fr;
+      }
+
+      .cashygo_price__steps {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .cashygo_price__seo {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .cashygo_price {
+        width: min(100% - 20px, 1180px);
+        padding-top: 12px;
+      }
+
+      .cashygo_price__hero {
+        padding-top: 12px;
+      }
+
+      .cashygo_price__stats,
+      .cashygo_price__steps,
+      .cashygo_price__faq_grid,
+      .cashygo_price__options,
+      .cashygo_price__quote {
+        grid-template-columns: 1fr;
+      }
+
+      .cashygo_price__panel_head,
+      .cashygo_price__device_preview,
+      .cashygo_price__form,
+      .cashygo_price__section {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .cashygo_price__device_preview {
+        margin-left: 16px;
+        margin-right: 16px;
+      }
+
+      .cashygo_price__panel_head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .cashygo_price__submit {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-top">
+      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <i class="bi bi-list"></i>
+      </button>
+
+      <a href="index.html" class="nav-logo" aria-label="Cashygo - Go to homepage">
+        <img src="assets/images/project-logo/logo-new.svg" alt="Cashygo logo" width="120" height="40">
+      </a>
+
+      <div class="nav-search" role="search">
+        <div class="nav-city" id="cityPicker" tabindex="0" aria-haspopup="listbox" aria-label="Select city">
+          <i class="bi bi-geo-alt-fill"></i>
+          <span id="cityLabel">Bangalore</span>
+          <i class="bi bi-chevron-down"></i>
+          <ul class="city-drop" id="cityDrop" role="listbox" aria-label="Select your city">
+            <li role="option" data-city="Delhi NCR">Delhi NCR</li>
+            <li role="option" data-city="Bangalore">Bangalore</li>
+            <li role="option" data-city="Mumbai">Mumbai</li>
+            <li role="option" data-city="Pune">Pune</li>
+            <li role="option" data-city="Hyderabad">Hyderabad</li>
+          </ul>
+        </div>
+        <label for="mainSearch" class="sr-only">Search devices</label>
+        <input type="search" id="mainSearch" name="search" placeholder="Search devices, brands..." autocomplete="off">
+        <div class="search-icon" aria-hidden="true"><i class="bi bi-search"></i></div>
+      </div>
+
+      <button class="nav-login" id="openLoginBtn" aria-label="Sign in to your account">
+        <i class="bi bi-person-circle"></i>
+        <span>Sign in</span>
+      </button>
+    </div>
+
+    <div class="nav-menu" id="navMenu">
+      <div class="nav-menu-inner">
+        <div class="dropdown">
+          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Mobile ⌵</button>
+          <ul class="dropdown-menu">
+            <li><a href="brand.html">All Brands</a></li>
+            <li><a href="model.html">Apple iPhone</a></li>
+            <li><a href="samsung.html">Samsung Galaxy</a></li>
+            <li><a href="oneplus.html">OnePlus</a></li>
+            <li><a href="google.html">Google Pixel</a></li>
+          </ul>
+        </div>
+        <div class="dropdown">
+          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Laptop ⌵</button>
+          <ul class="dropdown-menu">
+            <li><a href="laptop_brand.html">All Laptops</a></li>
+            <li><a href="dell.html">Dell</a></li>
+            <li><a href="hp.html">HP</a></li>
+            <li><a href="lenovo.html">Lenovo</a></li>
+            <li><a href="asus.html">Asus</a></li>
+          </ul>
+        </div>
+        <a href="camera_brand.html" class="menu-link">Sell Camera</a>
+        <a href="calculator.html" class="menu-link">Price Calculator</a>
+        <a href="blogs.html" class="menu-link">Blog & Tips</a>
+        <a href="contact.html" class="menu-link">Contact</a>
+        <a href="Faq.html" class="menu-link">FAQ's</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="cashygo_price">
+    <section class="cashygo_price__hero" aria-labelledby="cashygoPriceTitle">
+      <div class="cashygo_price__intro">
+        <span class="cashygo_price__brand"><i class="bi bi-phone"></i> Cashygo Price Calculator</span>
+        <h1 class="cashygo_price__title" id="cashygoPriceTitle">Check your phone resale value instantly</h1>
+        <p class="cashygo_price__copy">Select your phone model, storage, age, and condition to get a real-time Cashygo price estimate based on current resale demand.</p>
+
+        <div class="cashygo_price__actions">
+          <a class="cashygo_price__action cashygo_price__action--primary" href="#cashygoPriceForm"><i class="bi bi-lightning-charge-fill"></i> Start estimate</a>
+          <a class="cashygo_price__action" href="brand.html"><i class="bi bi-phone"></i> Browse brands</a>
+        </div>
+
+        <div class="cashygo_price__stats" aria-label="Cashygo benefits">
+          <div class="cashygo_price__stat">
+            <strong>2 min</strong>
+            <span>Quick price check</span>
+          </div>
+          <div class="cashygo_price__stat">
+            <strong>Free</strong>
+            <span>Doorstep pickup</span>
+          </div>
+          <div class="cashygo_price__stat">
+            <strong>Secure</strong>
+            <span>Data handling</span>
+          </div>
+        </div>
+      </div>
+
+      <section class="cashygo_price__panel" aria-label="Phone price calculator">
+        <div class="cashygo_price__panel_head">
+          <div>
+            <h2 class="cashygo_price__panel_title">Get best price</h2>
+            <p class="cashygo_price__note">Answer the required details to unlock your estimate.</p>
+          </div>
+          <span class="cashygo_price__badge">Live estimate</span>
+        </div>
+
+        <div class="cashygo_price__device_preview">
+          <img id="cashygoPricePreviewImg" src="assets/images/Mobile_brand/iPhone 15 Pro.avif" alt="Selected phone preview">
+          <div>
+            <strong id="cashygoPricePreviewName">Apple iPhone 15</strong>
+            <span>Quote changes instantly as you select condition details.</span>
+          </div>
+        </div>
+
+        <form class="cashygo_price__form" id="cashygoPriceForm">
+          <label class="cashygo_price__field">
+            <span class="cashygo_price__label">Device Model <span class="cashygo_price__required">*</span></span>
+            <select class="cashygo_price__select" id="cashygoPriceModel" required>
+              <option value="52000" data-image="assets/images/Mobile_brand/iPhone 15 Pro.avif">Apple iPhone 15</option>
+              <option value="64000" data-image="assets/images/Mobile_brand/iPhone 16 Pro.avif">Apple iPhone 16 Pro</option>
+              <option value="41000" data-image="assets/images/Mobile_brand/Samsung S23 Ultra 5G.avif">Samsung Galaxy S23 Ultra</option>
+              <option value="36000" data-image="assets/images/Mobile_brand/Google Pixel 10.avif">Google Pixel 10</option>
+              <option value="30000" data-image="assets/images/Mobile_brand/OnePlus 13s 5G.avif">OnePlus 13s 5G</option>
+            </select>
+          </label>
+
+          <label class="cashygo_price__field">
+            <span class="cashygo_price__label">Storage Size <span class="cashygo_price__required">*</span></span>
+            <select class="cashygo_price__select" id="cashygoPriceStorage" required>
+              <option value="-4000">128 GB</option>
+              <option value="0" selected>256 GB</option>
+              <option value="7000">512 GB</option>
+              <option value="14000">1 TB</option>
+            </select>
+          </label>
+
+          <div class="cashygo_price__question is-open">
+            <button class="cashygo_price__question_top" type="button">
+              <span>
+                <span class="cashygo_price__label">Device Age <span class="cashygo_price__required">*</span></span>
+                <span class="cashygo_price__question_hint" data-summary="age">Less than 1 year</span>
+              </span>
+              <i class="bi bi-chevron-down cashygo_price__question_icon"></i>
+            </button>
+            <div class="cashygo_price__options" data-group="age">
+              <button class="cashygo_price__option is-selected" type="button" data-value="0">Less than 1 year</button>
+              <button class="cashygo_price__option" type="button" data-value="-3500">1 to 2 years</button>
+              <button class="cashygo_price__option" type="button" data-value="-7500">2 to 3 years</button>
+              <button class="cashygo_price__option" type="button" data-value="-12000">More than 3 years</button>
+            </div>
+          </div>
+
+          <div class="cashygo_price__question">
+            <button class="cashygo_price__question_top" type="button">
+              <span>
+                <span class="cashygo_price__label">Screen Condition <span class="cashygo_price__required">*</span></span>
+                <span class="cashygo_price__question_hint" data-summary="screen">Original and clean</span>
+              </span>
+              <i class="bi bi-chevron-down cashygo_price__question_icon"></i>
+            </button>
+            <div class="cashygo_price__options" data-group="screen">
+              <button class="cashygo_price__option is-selected" type="button" data-value="0">Original and clean</button>
+              <button class="cashygo_price__option" type="button" data-value="-4500">Light scratches</button>
+              <button class="cashygo_price__option" type="button" data-value="-11000">Cracked glass</button>
+              <button class="cashygo_price__option" type="button" data-value="-17000">Display issue</button>
+            </div>
+          </div>
+
+          <div class="cashygo_price__question">
+            <button class="cashygo_price__question_top" type="button">
+              <span>
+                <span class="cashygo_price__label">Body Condition <span class="cashygo_price__required">*</span></span>
+                <span class="cashygo_price__question_hint" data-summary="body">Excellent</span>
+              </span>
+              <i class="bi bi-chevron-down cashygo_price__question_icon"></i>
+            </button>
+            <div class="cashygo_price__options" data-group="body">
+              <button class="cashygo_price__option is-selected" type="button" data-value="0">Excellent</button>
+              <button class="cashygo_price__option" type="button" data-value="-2500">Minor scratches</button>
+              <button class="cashygo_price__option" type="button" data-value="-6500">Visible dents</button>
+              <button class="cashygo_price__option" type="button" data-value="-12000">Broken panel</button>
+            </div>
+          </div>
+
+          <div class="cashygo_price__question">
+            <button class="cashygo_price__question_top" type="button">
+              <span>
+                <span class="cashygo_price__label">Accessories <span class="cashygo_price__required">*</span></span>
+                <span class="cashygo_price__question_hint" data-summary="accessories">Box and charger</span>
+              </span>
+              <i class="bi bi-chevron-down cashygo_price__question_icon"></i>
+            </button>
+            <div class="cashygo_price__options" data-group="accessories">
+              <button class="cashygo_price__option is-selected" type="button" data-value="1500">Box and charger</button>
+              <button class="cashygo_price__option" type="button" data-value="700">Only charger</button>
+              <button class="cashygo_price__option" type="button" data-value="300">Only box</button>
+              <button class="cashygo_price__option" type="button" data-value="0">No accessories</button>
+            </div>
+          </div>
+
+          <div class="cashygo_price__quote" aria-live="polite">
+            <div>
+              <span>Estimated Cashygo price</span>
+              <div class="cashygo_price__amount" id="cashygoPriceAmount">₹53,500</div>
+            </div>
+            <button class="cashygo_price__submit" type="submit">Get Best Price</button>
+          </div>
+          <p class="cashygo_price__note">Final value may change after physical verification during pickup.</p>
+        </form>
+      </section>
+    </section>
+
+    <section class="cashygo_price__section">
+      <div class="cashygo_price__section_head">
+        <span class="cashygo_price__eyebrow">How it works</span>
+        <h2 class="cashygo_price__section_title">A cleaner way to calculate your mobile resale price</h2>
+      </div>
+
+      <div class="cashygo_price__steps">
+        <article class="cashygo_price__step">
+          <span class="cashygo_price__step_num">1</span>
+          <h3>Choose brand</h3>
+          <p>Start with the gadget brand so Cashygo can match the right resale market.</p>
+        </article>
+        <article class="cashygo_price__step">
+          <span class="cashygo_price__step_num">2</span>
+          <h3>Select model</h3>
+          <p>Pick the exact device model and storage for a sharper price estimate.</p>
+        </article>
+        <article class="cashygo_price__step">
+          <span class="cashygo_price__step_num">3</span>
+          <h3>Add age</h3>
+          <p>Tell us when the device was purchased to calculate current resale value.</p>
+        </article>
+        <article class="cashygo_price__step">
+          <span class="cashygo_price__step_num">4</span>
+          <h3>Check condition</h3>
+          <p>Share screen, body, and functionality details to adjust the quote clearly.</p>
+        </article>
+        <article class="cashygo_price__step">
+          <span class="cashygo_price__step_num">5</span>
+          <h3>Sell faster</h3>
+          <p>Review your price and schedule a free doorstep pickup when ready.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="cashygo_price__section">
+      <div class="cashygo_price__section_head">
+        <span class="cashygo_price__eyebrow">FAQ</span>
+        <h2 class="cashygo_price__section_title">Frequently asked questions</h2>
+      </div>
+
+      <div class="cashygo_price__faq_grid">
+        <article class="cashygo_price__faq_item is-open">
+          <button class="cashygo_price__faq_q" type="button">How does the mobile price calculator work? <i class="bi bi-chevron-down"></i></button>
+          <p class="cashygo_price__faq_a">It asks for model, storage, age, and condition, then estimates resale value using those inputs.</p>
+        </article>
+        <article class="cashygo_price__faq_item">
+          <button class="cashygo_price__faq_q" type="button">Can I check value without selling? <i class="bi bi-chevron-down"></i></button>
+          <p class="cashygo_price__faq_a">Yes. You can check an estimated phone value without booking a pickup.</p>
+        </article>
+        <article class="cashygo_price__faq_item">
+          <button class="cashygo_price__faq_q" type="button">Is the calculator free? <i class="bi bi-chevron-down"></i></button>
+          <p class="cashygo_price__faq_a">Yes, Cashygo price checking is free and does not require payment.</p>
+        </article>
+        <article class="cashygo_price__faq_item">
+          <button class="cashygo_price__faq_q" type="button">Is this the final price? <i class="bi bi-chevron-down"></i></button>
+          <p class="cashygo_price__faq_a">It is an estimate. Final price depends on verification during doorstep pickup.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="cashygo_price__section">
+      <div class="cashygo_price__seo">
+        <div class="cashygo_price__seo_card">
+          <h3>What is Cashygo calculator?</h3>
+          <p>A quick tool to check used phone market value before selling, trading, or exchanging.</p>
+        </div>
+        <div class="cashygo_price__seo_card">
+          <h3>Why use it?</h3>
+          <p>It supports major brands, adjusts for condition, and helps you stop guessing the price.</p>
+        </div>
+        <div class="cashygo_price__seo_card">
+          <h3>Phones supported</h3>
+          <p>iPhone, Samsung, OnePlus, Xiaomi, Vivo, Oppo, Realme, Google Pixel, and more.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">
+            <img src="assets/images/project-logo/logo-new.svg" alt="Cashygo" loading="lazy">
+          </div>
+          <p class="footer-desc">India's trusted device buyback platform. Instant pricing, free doorstep pickup, and fast payment.</p>
+          <div class="social-links" aria-label="Follow us on social media">
+            <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=61582722784700" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>SELL</h4>
+          <ul>
+            <li><a href="brand.html">Sell Mobile</a></li>
+            <li><a href="laptop_brand.html">Sell Laptop</a></li>
+            <li><a href="#">Sell Tablet</a></li>
+            <li><a href="camera_brand.html">Sell Camera</a></li>
+            <li><a href="#">Sell Smartwatch</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>TOOLS</h4>
+          <ul>
+            <li><a href="calculator.html">Price Calculator</a></li>
+            <li><a href="model.html">iPhone Models</a></li>
+            <li><a href="verient.html">Variant Price</a></li>
+            <li><a href="Device_condation.html">Condition Check</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>COMPANY</h4>
+          <ul>
+            <li><a href="#">About Cashygo</a></li>
+            <li><a href="blogs.html">Blog & Tips</a></li>
+            <li><a href="costumer.html">Customer Reviews</a></li>
+            <li><a href="contact.html">Contact Support</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col footer-contact">
+          <h4>CONTACT</h4>
+          <address>
+            <p><i class="bi bi-envelope"></i><a href="mailto:hr@cashygo.com">hr@cashygo.com</a></p>
+            <p><i class="bi bi-telephone"></i><a href="tel:+917766071191">+91 7766071191</a></p>
+            <p><i class="bi bi-geo-alt"></i>Bangalore, Karnataka, India</p>
+          </address>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-links-row">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms & Conditions</a>
+          <a href="#">Refund Policy</a>
+          <a href="#">Sitemap</a>
+        </div>
+        <div class="payment-row" aria-label="Secure payment methods">
+          <span>Secure payments:</span>
+          <i class="bi bi-credit-card" title="Credit/Debit Card"></i>
+          <i class="bi bi-bank" title="Bank Transfer"></i>
+          <i class="bi bi-wallet2" title="Digital Wallet"></i>
+        </div>
+        <p>© 2026 Cashygo - Resale Redefined</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const rupee = new Intl.NumberFormat("en-IN", {
+      style: "currency",
+      currency: "INR",
+      maximumFractionDigits: 0
+    });
+
+    const state = {
+      age: 0,
+      screen: 0,
+      body: 0,
+      accessories: 1500
+    };
+
+    const modelSelect = document.getElementById("cashygoPriceModel");
+    const storageSelect = document.getElementById("cashygoPriceStorage");
+    const amountEl = document.getElementById("cashygoPriceAmount");
+    const previewImg = document.getElementById("cashygoPricePreviewImg");
+    const previewName = document.getElementById("cashygoPricePreviewName");
+
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 2200);
+    }
+
+    function updatePrice() {
+      const base = Number(modelSelect.value) || 0;
+      const storage = Number(storageSelect.value) || 0;
+      const total = Math.max(base + storage + state.age + state.screen + state.body + state.accessories, 0);
+      amountEl.textContent = rupee.format(total);
+      const selected = modelSelect.options[modelSelect.selectedIndex];
+      previewName.textContent = selected.textContent;
+      previewImg.src = selected.dataset.image;
+      previewImg.alt = selected.textContent + " preview";
+    }
+
+    document.querySelectorAll(".cashygo_price__question_top").forEach((button) => {
+      button.addEventListener("click", () => {
+        button.closest(".cashygo_price__question").classList.toggle("is-open");
+      });
+    });
+
+    document.querySelectorAll(".cashygo_price__option").forEach((button) => {
+      button.addEventListener("click", () => {
+        const group = button.closest(".cashygo_price__options").dataset.group;
+        const label = button.textContent.trim();
+        state[group] = Number(button.dataset.value) || 0;
+        button.parentElement.querySelectorAll(".cashygo_price__option").forEach((option) => {
+          option.classList.remove("is-selected");
+        });
+        button.classList.add("is-selected");
+        document.querySelector(`[data-summary="${group}"]`).textContent = label;
+        updatePrice();
+      });
+    });
+
+    document.querySelectorAll(".cashygo_price__faq_q").forEach((button) => {
+      button.addEventListener("click", () => {
+        button.closest(".cashygo_price__faq_item").classList.toggle("is-open");
+      });
+    });
+
+    modelSelect.addEventListener("change", updatePrice);
+    storageSelect.addEventListener("change", updatePrice);
+
+    document.getElementById("cashygoPriceForm").addEventListener("submit", (event) => {
+      event.preventDefault();
+      showToast("Cashygo price request saved");
+    });
+
+    const cityPicker = document.getElementById("cityPicker");
+    const cityLabel = document.getElementById("cityLabel");
+    cityPicker.addEventListener("click", (event) => {
+      event.stopPropagation();
+      cityPicker.classList.toggle("open");
+    });
+    cityPicker.querySelectorAll("li").forEach((item) => {
+      item.addEventListener("click", (event) => {
+        event.stopPropagation();
+        cityLabel.textContent = item.dataset.city;
+        cityPicker.classList.remove("open");
+      });
+    });
+
+    const hamburger = document.getElementById("hamburger");
+    const navMenu = document.getElementById("navMenu");
+    hamburger.addEventListener("click", () => {
+      const isOpen = navMenu.classList.toggle("open");
+      hamburger.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    document.querySelectorAll(".dropdown").forEach((dropdown) => {
+      dropdown.querySelector(".dropdown-btn").addEventListener("click", (event) => {
+        event.stopPropagation();
+        const wasOpen = dropdown.classList.contains("open");
+        document.querySelectorAll(".dropdown").forEach((item) => item.classList.remove("open"));
+        if (!wasOpen) dropdown.classList.add("open");
+      });
+    });
+
+    document.getElementById("openLoginBtn").addEventListener("click", () => {
+      showToast("Login flow can be connected here");
+    });
+
+    document.addEventListener("click", () => {
+      cityPicker.classList.remove("open");
+      document.querySelectorAll(".dropdown").forEach((item) => item.classList.remove("open"));
+    });
+
+    updatePrice();
+  </script>
+</body>
+</html>
