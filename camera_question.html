@@ -570,11 +570,15 @@
       background: #f8faf9;
     }
 
-    .issue-grid {
-      display: flex;
+    /* .issue-grid {
+      display: ruby;
       gap: 14px;
-    }
-
+    } */
+     .issue-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 14px;
+}
     .issue-card {
       position: relative;
       display: grid;
