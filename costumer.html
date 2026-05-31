@@ -151,15 +151,22 @@
 
     .hero {
       display: grid;
-      grid-template-columns: minmax(330px, 1fr) minmax(420px, 1.25fr);
-      gap: 34px;
+      grid-template-columns: minmax(320px, .9fr) minmax(420px, 1.1fr);
+      gap: clamp(24px, 4vw, 48px);
       align-items: center;
-      padding: 4px 0 24px;
+      padding: clamp(22px, 4vw, 44px);
+      margin-bottom: 26px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background:
+        radial-gradient(circle at 92% 8%, rgba(7, 152, 79, .1), transparent 34%),
+        linear-gradient(135deg, #fff 0%, #f8fcfa 100%);
+      box-shadow: var(--shadow);
     }
 
     .hero h1 {
-      max-width: 480px;
-      font-size: clamp(34px, 4vw, 48px);
+      max-width: 560px;
+      font-size: clamp(36px, 4.5vw, 58px);
       line-height: 1.03;
       letter-spacing: 0;
       margin-bottom: 16px;
@@ -170,176 +177,58 @@
     }
 
     .hero p {
+      max-width: 460px;
       color: #42526b;
-      font-size: 18px;
+      font-size: clamp(17px, 1.6vw, 21px);
     }
 
     .hero-art {
-      min-height: 235px;
+      min-height: 320px;
       position: relative;
-      display: flex;
-      align-items: end;
-      justify-content: center;
+      display: grid;
+      place-items: center;
+      padding: 28px;
+      border: 1px solid #dcebe3;
+      border-radius: 8px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, .72), rgba(234, 248, 240, .82)),
+        #fff;
+      box-shadow: 0 18px 38px rgba(15, 23, 42, .08);
       overflow: hidden;
     }
 
-    .blob {
-      position: absolute;
-      width: 470px;
-      height: 180px;
-      bottom: 20px;
-      border-radius: 60% 40% 50% 50%;
-      background: linear-gradient(135deg, #edf8f2, #f7fbf9);
+    .hero-art img {
+      width: min(100%, 520px);
+      max-height: 280px;
+      object-fit: contain;
+      object-position: center;
+      filter: drop-shadow(0 18px 18px rgba(15, 23, 42, .12));
     }
 
-    .laptop,
-    .phone,
-    .watch,
-    .buds,
-    .plant,
-    .google-badge {
-      position: relative;
-      z-index: 1;
-    }
-
-    .laptop {
-      width: 210px;
-      height: 132px;
-      margin: 0 -16px 15px 0;
-      border: 9px solid #151515;
-      border-radius: 10px 10px 4px 4px;
-      background: linear-gradient(135deg, #062214, #0b6b3d);
-      color: #fff;
+    .hero-trust {
       display: flex;
       align-items: center;
-      justify-content: center;
+      gap: 12px;
+      margin-top: 24px;
+      color: #344054;
       font-weight: 700;
-      box-shadow: var(--shadow);
     }
 
-    .laptop::after {
-      content: "";
-      position: absolute;
-      left: -24px;
-      right: -24px;
-      bottom: -17px;
-      height: 16px;
-      background: #cfd5dc;
-      border-radius: 3px 3px 18px 18px;
-    }
-
-    .phone {
-      width: 118px;
-      height: 210px;
-      border: 9px solid #111;
-      border-radius: 24px;
-      background: #fff;
-      display: flex;
-      flex-direction: column;
+    .hero-trust span {
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      text-align: center;
-      box-shadow: var(--shadow);
-    }
-
-    .phone::before {
-      content: "";
-      position: absolute;
-      top: 6px;
-      width: 48px;
-      height: 10px;
-      border-radius: 0 0 9px 9px;
-      background: #111;
-    }
-
-    .phone small {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--green-soft);
       color: var(--green);
-      font-weight: 700;
-      font-size: 11px;
-    }
-
-    .phone strong {
-      max-width: 80px;
-      font-size: 18px;
-      line-height: 1.1;
-    }
-
-    .phone a {
-      padding: 8px 13px;
-      border-radius: 18px;
-      background: var(--green);
-      color: #fff;
-      font-size: 11px;
-      font-weight: 700;
-    }
-
-    .plant {
-      width: 58px;
-      height: 86px;
-      margin-left: 18px;
-      background: linear-gradient(#f4eee4 58%, #b9aa9b 58%);
-      border-radius: 34px 34px 10px 10px;
-    }
-
-    .plant::before {
-      content: "";
-      position: absolute;
-      left: 8px;
-      top: -48px;
-      width: 46px;
-      height: 58px;
-      background: var(--green);
-      clip-path: polygon(48% 0, 66% 45%, 100% 20%, 72% 70%, 96% 100%, 48% 73%, 0 100%, 25% 66%, 0 28%, 35% 44%);
-    }
-
-    .watch {
-      width: 58px;
-      height: 58px;
-      margin-left: -18px;
-      margin-bottom: 12px;
-      border-radius: 16px;
-      background: #111;
-      color: #fff;
-      display: grid;
-      place-items: center;
-      border: 4px solid #242424;
-      box-shadow: var(--shadow);
-    }
-
-    .buds {
-      width: 70px;
-      height: 34px;
-      margin-right: 6px;
-      margin-bottom: 12px;
-    }
-
-    .buds::before,
-    .buds::after {
-      content: "";
-      position: absolute;
-      width: 24px;
-      height: 31px;
-      border-radius: 50% 50% 9px 9px;
-      background: #fff;
-      border: 1px solid #d8dee6;
-      box-shadow: 0 8px 18px rgba(0, 0, 0, .08);
-    }
-
-    .buds::before {
-      left: 8px;
-      transform: rotate(-22deg);
-    }
-
-    .buds::after {
-      right: 8px;
-      transform: rotate(22deg);
     }
 
     .google-badge {
-      align-self: flex-start;
-      margin-left: 10px;
-      margin-top: 12px;
+      position: absolute;
+      right: 22px;
+      top: 20px;
       padding: 18px 24px;
       background: #fff;
       border: 1px solid var(--line);
@@ -353,6 +242,13 @@
       font-size: 26px;
       letter-spacing: 0;
       font-weight: 500;
+    }
+
+    .google-word span,
+    .google-circle span,
+    .review-brand span {
+      display: inline-block;
+      line-height: 1;
     }
 
     .g-blue {
@@ -706,38 +602,6 @@
     .cta-card p {
       max-width: 170px;
       color: #344054;
-      margin-bottom: 16px;
-    }
-
-    .scooter {
-      position: absolute;
-      right: 12px;
-      bottom: 10px;
-      width: 112px;
-      height: 68px;
-    }
-
-    .scooter::before {
-      content: "";
-      position: absolute;
-      left: 17px;
-      right: 14px;
-      bottom: 19px;
-      height: 30px;
-      border-radius: 24px 24px 12px 12px;
-      background: var(--green);
-    }
-
-    .scooter::after {
-      content: "";
-      position: absolute;
-      left: 11px;
-      bottom: 0;
-      width: 84px;
-      height: 25px;
-      background:
-        radial-gradient(circle at 16px 13px, #263142 0 12px, transparent 13px),
-        radial-gradient(circle at 72px 13px, #263142 0 12px, transparent 13px);
     }
 
     .trust-strip {
@@ -914,10 +778,7 @@
       }
 
       .hero-art {
-        justify-content: flex-start;
-        transform-origin: left bottom;
-        transform: scale(.92);
-        width: 108%;
+        min-height: 280px;
       }
 
       .rating-actions {
@@ -951,9 +812,18 @@
       }
 
       .hero-art {
-        min-height: 200px;
-        transform: scale(.72);
-        width: 138%;
+        min-height: 240px;
+        padding: 18px;
+      }
+
+      .google-badge {
+        position: static;
+        margin-top: 14px;
+        width: 100%;
+      }
+
+      .hero-art {
+        align-content: center;
       }
 
       .rating-card,
@@ -1036,22 +906,17 @@
     </div>
 
     <section class="hero">
-      <div>
+      <div class="hero-copy">
         <h1>Customer Reviews That Build <span>Trust</span></h1>
         <p>Real feedback from real customers.<br>See why thousands choose CashyGo.</p>
+        <div class="hero-trust">
+          <span><i class="bi bi-patch-check-fill"></i></span>
+          659+ verified reviews with free pickup and instant payment experiences.
+        </div>
       </div>
 
       <div class="hero-art" aria-label="CashyGo review illustration">
-        <div class="blob"></div>
-        <div class="buds"></div>
-        <div class="laptop">CASHYGO</div>
-        <div class="phone">
-          <small>CASHYGO</small>
-          <strong>Sell Old Devices</strong>
-          <a href="brand.html">Get Quote</a>
-        </div>
-        <div class="plant"></div>
-        <div class="watch"><i class="bi bi-clock"></i></div>
+        <img src="assets/images/brand-img/Brand-Banner.webp" alt="CashyGo device buyback preview">
         <div class="google-badge">
           <div class="google-word">
             <span class="g-blue">G</span><span class="g-red">o</span><span class="g-yellow">o</span><span
@@ -1085,8 +950,7 @@
           </div>
 
           <div class="rating-actions">
-            <a class="btn btn-primary" href="#">View on Google <i class="bi bi-box-arrow-up-right"></i></a>
-            <a class="btn" href="#"><i class="bi bi-pencil"></i> Write a Review</a>
+            <a class="btn btn-primary" href="https://g.page/r/Ce_Nk1_IktyjEAE/review">View on Google <i class="bi bi-box-arrow-up-right"></i></a>
           </div>
         </div>
 
@@ -1265,7 +1129,6 @@
           <h3>Ready to Sell Your Device?</h3>
           <p>Get the best price, free pickup & instant payment.</p>
           <a class="btn btn-primary" href="brand.html">Sell Now <i class="bi bi-arrow-up-right"></i></a>
-          <div class="scooter" aria-hidden="true"></div>
         </section>
       </aside>
     </section>
