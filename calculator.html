@@ -883,6 +883,7 @@
         transform: none;
       }
     }
+<<<<<<< HEAD
     }
 
     /* Additional breakpoints for tablet and laptop to improve layout */
@@ -985,6 +986,299 @@
       .toast { left: 12px; right: 12px; width: auto; max-width: none; }
     }
 
+=======
+    /* =========================
+   RESPONSIVE - TABLET
+========================= */
+
+@media (max-width: 1024px) {
+
+  .calc_page{
+    overflow:hidden;
+  }
+
+  .calc_hero{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:32px;
+  }
+
+  .calc_copy,
+  .phone_aside,
+  .calc_panel,
+  .quick_card,
+  .laptop_mock,
+  .desktop_preview{
+    width:100%;
+  }
+
+  .phone_aside{
+    display:none;
+  }
+
+  .calc_title{
+    font-size:48px;
+    line-height:1.2;
+  }
+
+  .calc_intro{
+    font-size:16px;
+  }
+
+  .device_strip{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+  }
+
+  .device_strip button{
+    width:100%;
+  }
+
+  .calc_panel{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:24px;
+  }
+
+  .quick_grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+  }
+
+  .quick_field{
+    width:100%;
+  }
+
+  .quick_field select{
+    width:100%;
+  }
+
+  .feature_bar{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+  }
+
+  .feature_item{
+    width:100%;
+  }
+
+  .steps_grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+  }
+
+  .step_card{
+    width:100%;
+  }
+
+  .support_row{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:20px;
+  }
+
+  .support_card{
+    width:100%;
+  }
+
+  .trust_bar{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+  }
+
+  .trust_item{
+    width:100%;
+  }
+
+  .mock_screen img,
+  .mock_laptop_img,
+  .mock_phone_img{
+    width:100%;
+    height:auto;
+    object-fit:contain;
+  }
+}
+
+/* =========================
+   RESPONSIVE - MOBILE
+========================= */
+
+@media (max-width: 767px) {
+
+  .calc_page{
+    overflow:hidden;
+  }
+
+  .calc_hero{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:24px;
+  }
+
+  .calc_copy{
+    width:100%;
+  }
+
+  .calc_title{
+    font-size:29px;
+    line-height:1.2;
+    text-align:center;
+  }
+
+  .calc_pill{
+    /* margin:auto; */
+    font-size: 15px;
+  }
+  .quote_value strong{
+    font-size: 20px;
+  }
+  .calc_intro{
+    text-align:center;
+    font-size:15px;
+  }
+
+  .device_strip{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+  }
+
+  .device_strip button{
+    width:100%;
+    min-height:80px;
+  }
+
+  .calc_panel{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:20px;
+  }
+
+  .quick_card{
+    width:100%;
+    padding:20px;
+  }
+
+  .quick_grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:14px;
+  }
+
+  .quick_field{
+    width:100%;
+  }
+
+  .quick_field select{
+    width:100%;
+  }
+
+  .calc_btn{
+    width:100%;
+  }
+
+  .quote_value{
+    text-align:center;
+  }
+
+  .laptop_mock,
+  .phone_aside,
+  .desktop_preview{
+    display:none;
+  }
+
+  .feature_bar{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:14px;
+  }
+
+  .feature_item{
+    width:100%;
+  }
+
+  .steps_head{
+    text-align:center;
+  }
+
+  .steps_grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:16px;
+  }
+
+  .step_card{
+    width:100%;
+  }
+
+  .step_icon{
+    margin:auto;
+  }
+
+  .support_row{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:16px;
+  }
+
+  .support_card{
+    width:100%;
+  }
+
+  .support_card img{
+    width:70px;
+    height:70px;
+  }
+
+  .trust_bar{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:14px;
+  }
+
+  .trust_item{
+    width:100%;
+  }
+
+  .mock_screen,
+  .visual_mock{
+    width:100%;
+  }
+
+  .mock_screen img,
+  .mock_laptop_img,
+  .mock_phone_img{
+    width:100%;
+    height:auto;
+    object-fit:contain;
+  }
+}
+/* Tablet */
+@media (max-width: 1024px) {
+  .calc_hero::before {
+    width: 300px;
+    height: 300px;
+    top: -100px;
+    right: -100px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .calc_hero::before {
+    width: 200px;
+    height: 200px;
+    top: -60px;
+    right: -60px;
+    opacity: 0.4;
+  }
+}
+>>>>>>> 7e275f9 (responsive fix)
   </style>
 </head>
 <body>
