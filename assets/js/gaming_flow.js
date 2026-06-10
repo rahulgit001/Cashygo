@@ -70,7 +70,9 @@ function calculateGamingPrice(selection) {
   if (selection.age === "Under 1 year") price += 3000;
   if (selection.age === "3 years+") price -= 2500;
   if (selection.condition === "Excellent") price += 1800;
+  if (selection.condition === "Good") price += 600;
   if (selection.condition === "Average") price -= 1800;
+  if (selection.condition === "Below Average") price -= 4000;
   if (selection.condition === "Damaged") price -= 6500;
   if (selection.power === "Power issue") price -= 5500;
   if (selection.power === "Overheating") price -= 3000;
@@ -102,6 +104,13 @@ function renderGamingSelection(selection = getGamingSelection()) {
 
 function setupGamingOptions(groupName) {
   document.querySelectorAll(`[data-group="${groupName}"]`).forEach(option => {
+    if (option.tagName === "SELECT") {
+      option.addEventListener("change", () => {
+        saveGamingSelection({ [groupName]: option.value });
+      });
+      return;
+    }
+
     option.addEventListener("click", () => {
       document.querySelectorAll(`[data-group="${groupName}"]`).forEach(item => item.classList.remove("is-selected"));
       option.classList.add("is-selected");
@@ -129,9 +138,9 @@ if (gamingPage === "gaming-variant") {
     image: modelData.image,
     basePrice: modelData.base
   });
-  ["console", "storage", "controllers", "age"].forEach(setupGamingOptions);
+  ["storage", "controllers", "age"].forEach(setupGamingOptions);
   const next = document.getElementById("continueBtn");
-  enableGamingButtonWhen(["console", "storage", "controllers", "age"], next);
+  enableGamingButtonWhen(["storage", "controllers", "age"], next);
   next.addEventListener("click", () => {
     window.location.href = "Gaming_Device_condation.html";
   });
@@ -147,9 +156,9 @@ if (gamingPage === "gaming-condition") {
 }
 
 if (gamingPage === "gaming-question") {
-  ["bill", "account", "reset"].forEach(setupGamingOptions);
+  ["bill", "account", "reset", "cds"].forEach(setupGamingOptions);
   const next = document.getElementById("continueBtn");
-  enableGamingButtonWhen(["bill", "account", "reset"], next);
+  enableGamingButtonWhen(["bill", "account", "reset", "cds"], next);
   next.addEventListener("click", () => {
     window.location.href = "Gaming_device_issu.html";
   });

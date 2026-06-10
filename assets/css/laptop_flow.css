@@ -76,9 +76,9 @@ input {
 
 .laptop-flow__head h1 {
   margin: 0 0 10px;
-  font-size: clamp(28px, 4vw, 42px);
+  font-size: 22px;
   line-height: 1.08;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .laptop-flow__head p {
@@ -241,6 +241,60 @@ input {
 
 .laptop-option-grid.is-three {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.laptop-option-grid.is-four {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.laptop-option-grid.is-one {
+  grid-template-columns: 1fr;
+}
+
+.laptop-select-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 16px;
+  align-items: center;
+  min-height: 118px;
+  padding: 16px;
+  border: 1.5px solid var(--cg-line);
+  border-radius: 14px;
+  background: #fff;
+}
+
+.laptop-select-card__media {
+  width: 110px;
+  min-height: 110px;
+  display: grid;
+  place-items: center;
+  padding: 10px;
+  border-radius: 14px;
+  background: #f5faf7;
+}
+
+.laptop-select-card__media img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.laptop-select {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid #d7e5df;
+  border-radius: 12px;
+  background: #fff;
+  color: inherit;
+  appearance: none;
+}
+
+.laptop-select-description {
+  margin-top: 10px;
+  color: #667085;
+  font-size: 13px;
+  line-height: 1.5;
 }
 
 .laptop-option {
@@ -426,7 +480,7 @@ input {
   }
 
   .laptop-flow__head h1 {
-    font-size: 28px;
+    font-size: 22px;
   }
 
   .laptop-panel {

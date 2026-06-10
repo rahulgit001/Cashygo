@@ -29,7 +29,7 @@
 
 .tab-hero h1 {
   margin: 14px 0 10px;
-  font-size: clamp(32px, 5vw, 56px);
+  font-size: 24px;
   line-height: 1.02;
   font-weight: 800;
 }
@@ -38,7 +38,7 @@
   max-width: 640px;
   margin: 0;
   color: #4d5562;
-  font-size: 16px;
+  font-size: 12px;
   line-height: 1.65;
   font-weight: 500;
 }
@@ -47,7 +47,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 22px;
+  margin-top: 10px;
 }
 
 .tab-btn {
@@ -55,13 +55,13 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  min-height: 46px;
-  padding: 12px 18px;
+  min-height: 36px;
+  padding: 5px 8px;
   border-radius: 12px;
   border: 1px solid #078f61;
   background: #078f61;
   color: #fff;
-  font-weight: 800;
+  font-weight: 500;
   text-decoration: none;
 }
 
@@ -74,18 +74,20 @@
   display: grid;
   place-items: center;
   min-height: 330px;
-  border: 1px solid #e3ebe7;
-  border-radius: 22px;
+  /* border: 1px solid #e3ebe7; */
+  border-radius: 50%;
   background: radial-gradient(circle at 50% 38%, #dff8ea, #fff 66%);
   box-shadow: 0 18px 42px rgba(13, 72, 54, .11);
 }
 
 .tab-hero__media img {
-  width: min(270px, 78%);
-  max-height: 250px;
+  width: 100%;
   object-fit: contain;
+  border-radius: 50%;
 }
-
+/* .tab-hero-img{
+  border-radius: 50%;
+} */
 .tab-section {
   width: min(1240px, calc(100% - 48px));
   margin: 0 auto;
@@ -97,12 +99,12 @@
   justify-content: space-between;
   gap: 20px;
   align-items: end;
-  margin-bottom: 18px;
+  margin-bottom: 10px;
 }
 
 .tab-section__head h2 {
-  margin: 0 0 6px;
-  font-size: 26px;
+  /* margin: 0 0 6px; */
+  font-size: 22px;
 }
 
 .tab-section__head p {
@@ -138,7 +140,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-bottom: 18px;
+  margin-bottom: 10px;
 }
 
 .tab-filter {
@@ -161,14 +163,14 @@
 .tab-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-  gap: 16px;
+  gap: 5px;
 }
 
 .tab-card {
   display: grid;
-  gap: 12px;
+  gap: 5px;
   min-height: 210px;
-  padding: 16px;
+  padding: 5px;
   border: 1px solid #e3ebe7;
   border-radius: 16px;
   background: #fff;
@@ -189,18 +191,19 @@
   place-items: center;
   min-height: 118px;
   border-radius: 12px;
-  background: #f5faf7;
+  /* background: #f5faf7; */
 }
 
 .tab-card__image img {
-  width: 96px;
-  height: 96px;
+  width: 100%;
+  /* height: 96px; */
   object-fit: contain;
 }
 
 .tab-card h3 {
   margin: 0;
-  font-size: 16px;
+  font-size: 12px;
+  text-align: center;
   line-height: 1.3;
 }
 
@@ -272,4 +275,47 @@
   .tab-stats {
     grid-template-columns: 1fr;
   }
+}
+
+.gaming-brands{
+    display:flex;
+    gap:15px;
+    margin-top: 10px;
+}
+
+.gaming-brands a{
+    width:96px;
+    height:96px;
+    background:#fff;
+    border-radius:18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.gaming-banner__image{
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.gaming-divider{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin-bottom:12px;
+}
+
+.gaming-divider::before,
+.gaming-divider::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:#ddd;
+}
+
+.gaming-divider span{
+    font-size: 15px;
+    font-weight:600;
 }

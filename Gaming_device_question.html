@@ -84,6 +84,25 @@
           <button class="laptop-option" data-group="reset" data-value="Console reset"><i class="bi bi-check2-circle"></i><strong>Yes, reset</strong><span>Console is ready for pickup verification.</span></button>
           <button class="laptop-option" data-group="reset" data-value="Console not reset"><i class="bi bi-arrow-clockwise"></i><strong>Not yet</strong><span>Please reset after backing up game saves.</span></button>
         </div>
+
+        <h2 class="laptop-panel__title"><span class="laptop-panel__num">4</span> How many game CDs do you have?</h2>
+        <div class="laptop-option-grid is-one">
+          <div class="laptop-select-card">
+            <div class="laptop-select-card__media">
+              <img src="assets/images/home-page-img/brand-img/game.webp" alt="Game CDs">
+            </div>
+            <div>
+              <label for="cdCountSelect" class="sr-only">Select number of game CDs</label>
+              <select id="cdCountSelect" class="laptop-select" data-group="cds">
+                <option value="0">0</option>
+                <option value="1-2">1-2</option>
+                <option value="3-5">3-5</option>
+                <option value="6+">6+</option>
+              </select>
+              <p class="laptop-select-description">The games should be compatible with the console.</p>
+            </div>
+          </div>
+        </div>
       </section>
 
       <aside class="laptop-flow__card laptop-summary">
@@ -96,6 +115,7 @@
           <div class="laptop-summary__row"><span>Bill</span><strong data-summary="bill">-</strong></div>
           <div class="laptop-summary__row"><span>Account</span><strong data-summary="account">-</strong></div>
           <div class="laptop-summary__row"><span>Reset</span><strong data-summary="reset">-</strong></div>
+          <div class="laptop-summary__row"><span>Game CDs</span><strong data-summary="cds">-</strong></div>
           <div class="laptop-total"><small>Expected Price</small><strong data-summary-price>₹0</strong></div>
           <button class="laptop-action" id="continueBtn" disabled>Continue <i class="bi bi-arrow-right"></i></button>
           <div class="laptop-note"><i class="bi bi-info-circle"></i><span>Remove profiles, accounts, and saved payment methods before pickup.</span></div>
