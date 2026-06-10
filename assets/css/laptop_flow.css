@@ -75,7 +75,7 @@ input {
 }
 
 .laptop-flow__head h1 {
-  margin: 0 0 10px;
+  /* margin: 0 0 10px; */
   font-size: 22px;
   line-height: 1.08;
   font-weight: 600;
@@ -85,7 +85,7 @@ input {
   margin: 0;
   max-width: 650px;
   color: #4d5562;
-  font-size: 15px;
+  font-size: 12px;
   line-height: 1.65;
   font-weight: 500;
 }
@@ -97,8 +97,8 @@ input {
 }
 
 .laptop-flow__step {
-  min-height: 76px;
-  padding: 12px;
+  min-height: 50px;
+  padding: 5px;
   border: 1px solid var(--cg-line);
   border-radius: 12px;
   background: #fff;
@@ -111,13 +111,13 @@ input {
 }
 
 .laptop-flow__step strong {
-  margin-bottom: 4px;
-  font-size: 13px;
+  /* margin-bottom: 4px; */
+  font-size: 12px;
 }
 
 .laptop-flow__step span {
   color: var(--cg-muted);
-  font-size: 12px;
+  font-size: 10px;
 }
 
 .laptop-flow__step.is-active {
@@ -216,7 +216,7 @@ input {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin: 0 0 18px;
+  margin: 0 0 5px;
   font-size: 20px;
   font-weight: 800;
 }
@@ -300,8 +300,8 @@ input {
 .laptop-option {
   position: relative;
   display: grid;
-  gap: 8px;
-  min-height: 94px;
+  /* gap: 8px; */
+  min-height: 70px;
   padding: 16px;
   border: 1.5px solid var(--cg-line);
   border-radius: 14px;
@@ -472,7 +472,6 @@ input {
     padding-top: 16px;
   }
 
-  .laptop-flow__steps,
   .laptop-option-grid,
   .laptop-option-grid.is-three,
   .laptop-issue-grid {
@@ -480,7 +479,7 @@ input {
   }
 
   .laptop-flow__head h1 {
-    font-size: 22px;
+    font-size: 20px;
   }
 
   .laptop-panel {

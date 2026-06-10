@@ -260,6 +260,25 @@
     align-items: stretch;
   }
 
+  .tab-hero__media {
+    display: none;
+  }
+
+  .gaming-brands {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .gaming-brands a {
+    width: 84px;
+    height: 84px;
+  }
+
+  .tab-search {
+    width: 100%;
+  }
+
   .tab-stats {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -270,6 +289,31 @@
   .tab-section,
   .tab-stats {
     width: min(100% - 28px, 1240px);
+  }
+
+  .tab-section__head {
+    gap: 14px;
+  }
+
+  .tab-hero__badge,
+  .tab-hero h1,
+  .tab-hero p,
+  .tab-hero__actions {
+    width: 100%;
+  }
+
+  .tab-hero__actions {
+    justify-content: flex-start;
+  }
+
+  .gaming-brands a {
+    width: 76px;
+    height: 76px;
+  }
+
+  .tab-card {
+    min-height: auto;
+    padding: 12px;
   }
 
   .tab-stats {
