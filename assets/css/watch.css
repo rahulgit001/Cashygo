@@ -1,0 +1,389 @@
+/* =========================
+   HERO SECTION
+========================= */
+
+.watch-hero{
+  max-width:1400px;
+  margin:30px auto;
+  padding:70px;
+  border-radius:32px;
+  background:var(--hero-gradient);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:60px;
+  overflow:hidden;
+  position:relative;
+}
+
+.watch-hero::before{
+  content:"";
+  position:absolute;
+  width:500px;
+  height:500px;
+  right:-150px;
+  top:-150px;
+  border-radius:50%;
+  background:rgba(255,255,255,.08);
+}
+
+.watch-hero::after{
+  content:"";
+  position:absolute;
+  width:350px;
+  height:350px;
+  left:-120px;
+  bottom:-120px;
+  border-radius:50%;
+  background:rgba(255,255,255,.05);
+}
+
+.watch-hero-content{
+  max-width:650px;
+  position:relative;
+  z-index:2;
+}
+
+.watch-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:12px 18px;
+  border-radius:50px;
+  background:rgba(255,255,255,.12);
+  backdrop-filter:blur(10px);
+  color:var(--white);
+  margin-bottom:24px;
+  font-size:14px;
+  font-weight:600;
+}
+
+.watch-hero h1{
+  font-size:58px;
+  line-height:1.1;
+  color:var(--white);
+  font-weight:800;
+  margin-bottom:20px;
+}
+
+.watch-hero p{
+  color:rgba(255,255,255,.85);
+  font-size:18px;
+  line-height:1.8;
+  max-width:560px;
+}
+
+.hero-buttons{
+  margin-top:32px;
+}
+
+.hero-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:14px 26px;
+  border-radius:14px;
+  font-weight:700;
+  transition:.3s;
+}
+
+.hero-btn.secondary{
+  background:var(--white);
+  color:var(--green-dark);
+}
+
+.hero-btn:hover{
+  transform:translateY(-3px);
+}
+
+.watch-hero-image{
+  position:relative;
+  z-index:2;
+}
+
+.watch-hero-image img{
+  width:350px;
+  filter:drop-shadow(0 25px 45px rgba(0,0,0,.25));
+  transition:.4s;
+}
+
+.watch-hero:hover .watch-hero-image img{
+  transform:translateY(-10px);
+}
+
+/* =========================
+   FILTER SECTION
+========================= */
+
+.watch-filter-section{
+  max-width:1400px;
+  margin:auto;
+  padding:20px;
+}
+
+.section-head{
+  margin-bottom:30px;
+}
+
+.section-head h2{
+  font-size:38px;
+  color:var(--green-dark);
+  font-weight:800;
+  margin-bottom:8px;
+}
+
+.section-head p{
+  color:var(--muted);
+  font-size:16px;
+}
+
+.brand-filters{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+.brand-pill{
+  border:none;
+  background:var(--white);
+  color:var(--text);
+  padding:12px 22px;
+  border-radius:50px;
+  cursor:pointer;
+  font-size:15px;
+  font-weight:600;
+  transition:.3s;
+  box-shadow:var(--shadow);
+}
+
+.brand-pill:hover{
+  background:var(--green-light);
+  color:var(--green-dark);
+  transform:translateY(-2px);
+}
+
+.brand-pill.active{
+  background:var(--green);
+  color:var(--white);
+}
+
+/* =========================
+   WATCH GRID
+========================= */
+
+.watch-grid{
+  max-width:1400px;
+  margin:30px auto 80px;
+  padding:0 20px;
+
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+  gap:28px;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.watch-card{
+  background:var(--white);
+  border-radius:28px;
+  overflow:hidden;
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+  transition:.35s ease;
+  color:inherit;
+}
+
+.watch-card:hover{
+  transform:translateY(-8px);
+  box-shadow:var(--shadow-hover);
+  border-color:var(--green-mid);
+}
+
+.watch-card-image{
+  height:260px;
+  background:
+  linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #f0faf5 100%
+  );
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.watch-card-image img{
+  width:180px;
+  transition:.4s;
+}
+
+.watch-card:hover .watch-card-image img{
+  transform:scale(1.08);
+}
+
+.watch-card-content{
+  padding:24px;
+}
+
+.watch-card-content h3{
+  font-size:22px;
+  color:var(--text);
+  margin-bottom:10px;
+  font-weight:800;
+}
+
+.watch-card-content p{
+  color:var(--muted);
+  line-height:1.7;
+  margin-bottom:20px;
+  min-height:52px;
+}
+
+.watch-price{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:10px 18px;
+  border-radius:12px;
+
+  background:var(--green-light);
+  color:var(--green-dark);
+
+  font-size:14px;
+  font-weight:700;
+}
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar{
+  width:8px;
+  height:8px;
+}
+
+::-webkit-scrollbar-thumb{
+  background:var(--green);
+  border-radius:50px;
+}
+
+::-webkit-scrollbar-track{
+  background:#e5e7eb;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width:991px){
+
+  .watch-hero{
+    padding:50px;
+    gap:30px;
+  }
+
+  .watch-hero h1{
+    font-size:44px;
+  }
+
+  .watch-hero-image img{
+    width:280px;
+  }
+
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width:768px){
+
+  .watch-hero{
+    flex-direction:column;
+    text-align:center;
+    padding:40px 24px;
+    border-radius:24px;
+  }
+
+  .watch-hero-content{
+    max-width:100%;
+  }
+
+  .watch-hero h1{
+    font-size:34px;
+  }
+
+  .watch-hero p{
+    font-size:15px;
+  }
+
+  .watch-hero-image img{
+    width:220px;
+  }
+
+  .section-head h2{
+    font-size:28px;
+  }
+
+  .brand-filters{
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    padding-bottom:10px;
+  }
+
+  .brand-pill{
+    white-space:nowrap;
+  }
+
+  .watch-grid{
+    grid-template-columns:1fr;
+    gap:20px;
+  }
+
+  .watch-card-image{
+    height:220px;
+  }
+
+  .watch-card-image img{
+    width:150px;
+  }
+
+}
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width:480px){
+
+  .watch-hero{
+    margin:15px;
+  }
+
+  .watch-filter-section{
+    padding:15px;
+  }
+
+  .watch-grid{
+    padding:0 15px;
+  }
+
+  .watch-hero h1{
+    font-size:28px;
+  }
+
+  .watch-badge{
+    font-size:13px;
+  }
+
+  .hero-btn{
+    width:100%;
+    justify-content:center;
+  }
+
+}
