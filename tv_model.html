@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cashygo - Select TV Series</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/tab_pages.css">
+</head>
+
+<body class="tab-page">
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-top">
+      <button class="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <i class="bi bi-list"></i>
+      </button>
+      <a href="index.html" class="nav-logo" aria-label="Cashygo homepage">
+        <img src="assets/images/project-logo/logo-new.svg" alt="Cashygo logo" width="120" height="40">
+      </a>
+      <div class="nav-search" role="search">
+        <label for="mainSearch" class="sr-only">Search TV series</label>
+        <input type="search" id="mainSearch" name="search" placeholder="Search TV series..." autocomplete="off">
+        <div class="search-icon" aria-hidden="true"><i class="bi bi-search"></i></div>
+      </div>
+      <button class="nav-login" aria-label="Sign in">
+        <i class="bi bi-person-circle"></i>
+        <span>Sign in</span>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+    <section class="tab-hero" aria-label="TV series hero">
+      <div>
+        <div class="tab-hero__badge"><i class="bi bi-grid-3x3-gap-fill"></i> TV series</div>
+        <h1>Select Your TV Series</h1>
+        <p>Choose the closest TV series, then continue through variant, condition, questions, and issue checks for an instant estimate.</p>
+        <div class="tab-hero__actions">
+          <a href="tv_brand.html" class="tab-btn is-soft"><i class="bi bi-arrow-left"></i> Change brand</a>
+        </div>
+      </div>
+      <div class="tab-hero__media" aria-hidden="true">
+        <img src="assets/images/home-page-img/brand-img/Tv.webp" alt="">
+      </div>
+    </section>
+
+    <section class="tab-section" aria-label="TV series">
+      <div class="tab-section__head">
+        <div>
+          <h2>Popular TV Series</h2>
+          <p>Filter by brand or search your TV series.</p>
+        </div>
+        <div class="tab-search">
+          <input type="search" id="tvModelSearch" placeholder="Search series...">
+          <i class="bi bi-search"></i>
+        </div>
+      </div>
+
+      <div class="tab-filter-row" aria-label="Filter TV series">
+        <button class="tab-filter is-active" data-filter="all">All</button>
+        <button class="tab-filter" data-filter="samsung">Samsung</button>
+        <button class="tab-filter" data-filter="lg">LG</button>
+        <button class="tab-filter" data-filter="sony">Sony</button>
+        <button class="tab-filter" data-filter="xiaomi">Xiaomi</button>
+        <button class="tab-filter" data-filter="oneplus">OnePlus</button>
+        <button class="tab-filter" data-filter="other">Other</button>
+      </div>
+
+      <div class="tab-grid" id="tvModelGrid">
+        <a href="tv_verient.html?model=Samsung%20Smart%20TV%20Series" class="tab-card" data-brand="samsung">
+          <div class="tab-card__image"><img src="assets/images/home-page-img/brand-img/Tv.webp" alt="Samsung Smart TV Series"></div>
+          <h3>Samsung Smart TV Series</h3>
+          <p>LED, Crystal UHD, QLED, and smart TV models.</p>
+          <div class="tab-card__price">Up to ₹60,000</div>
+        </a>
+        <a href="tv_verient.html?model=LG%20Smart%20TV%20Series" class="tab-card" data-brand="lg">
+          <div class="tab-card__image"><img src="assets/images/home-page-img/brand-img/Tv.webp" alt="LG Smart TV Series"></div>
+          <h3>LG Smart TV Series</h3>
+          <p>LED, UHD, NanoCell, OLED, and webOS TVs.</p>
+          <div class="tab-card__price">Up to ₹58,000</div>
+        </a>
+        <a href="tv_verient.html?model=Sony%20Bravia%20TV%20Series" class="tab-card" data-brand="sony">
+          <div class="tab-card__image"><img src="assets/images/home-page-img/brand-img/Tv.webp" alt="Sony Bravia TV Series"></div>
+          <h3>Sony Bravia TV Series</h3>
+          <p>Bravia LED, 4K, Google TV, OLED, and premium series.</p>
+          <div class="tab-card__price">Up to ₹70,000</div>
+        </a>
+        <a href="tv_verient.html?model=Mi%20%2F%20Xiaomi%20TV%20Series" class="tab-card" data-brand="xiaomi">
+          <div class="tab-card__image"><img src="assets/images/home-page-img/brand-img/Tv.webp" alt="Mi Xiaomi TV Series"></div>
+          <h3>Mi / Xiaomi TV Series</h3>
+          <p>Mi TV, Xiaomi Smart TV, 4K, and Android TV models.</p>
+          <div class="tab-card__price">Up to ₹35,000</div>
+        </a>
+        <a href="tv_verient.html?model=OnePlus%20TV%20Series" class="tab-card" data-brand="oneplus">
+          <div class="tab-card__image"><img src="assets/images/home-page-img/brand-img/Tv.webp" alt="OnePlus TV Series"></div>
+          <h3>OnePlus TV Series</h3>
+          <p>Y, U, Q, 4K, and Android TV series.</p>
+          <div class="tab-card__price">Up to ₹38,000</div>
+        </a>
+        <a href="tv_verient.html?model=TCL%20%2F%20Other%20TV%20Series" class="tab-card" data-brand="other">
+          <div class="tab-card__image"><img src="assets/images/home-page-img/brand-img/Tv.webp" alt="TCL Other TV Series"></div>
+          <h3>TCL / Other TV Series</h3>
+          <p>TCL, Vu, Hisense, Kodak, and other smart TVs.</p>
+          <div class="tab-card__price">Up to ₹28,000</div>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const tvModelSearch = document.getElementById("tvModelSearch");
+    const tvModelCards = document.querySelectorAll("#tvModelGrid .tab-card");
+    const tvFilterBtns = document.querySelectorAll(".tab-filter");
+    const selectedBrand = new URLSearchParams(window.location.search).get("brand");
+    const brandMap = { Samsung: "samsung", LG: "lg", Sony: "sony", Xiaomi: "xiaomi", OnePlus: "oneplus", Other: "other" };
+    let activeFilter = brandMap[selectedBrand] || "all";
+
+    function applyTvFilters() {
+      const value = tvModelSearch.value.trim().toLowerCase();
+      tvModelCards.forEach(card => {
+        const matchesFilter = activeFilter === "all" || card.dataset.brand === activeFilter;
+        const matchesSearch = card.textContent.toLowerCase().includes(value);
+        card.style.display = matchesFilter && matchesSearch ? "grid" : "none";
+      });
+    }
+
+    tvFilterBtns.forEach(btn => {
+      btn.classList.toggle("is-active", btn.dataset.filter === activeFilter);
+      btn.addEventListener("click", () => {
+        tvFilterBtns.forEach(item => item.classList.remove("is-active"));
+        btn.classList.add("is-active");
+        activeFilter = btn.dataset.filter;
+        applyTvFilters();
+      });
+    });
+    if (!document.querySelector(".tab-filter.is-active")) {
+      document.querySelector('[data-filter="all"]').classList.add("is-active");
+      activeFilter = "all";
+    }
+    tvModelSearch.addEventListener("input", applyTvFilters);
+    applyTvFilters();
+  </script>
+</body>
+
+</html

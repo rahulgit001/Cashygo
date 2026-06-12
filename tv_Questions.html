@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cashygo - TV Questions</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/laptop_flow.css">
+</head>
+
+<body data-page="tv-question">
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-top">
+      <a href="index.html" class="nav-logo" aria-label="Cashygo homepage">
+        <img src="assets/images/project-logo/logo-new.svg" alt="Cashygo logo" width="120" height="40">
+      </a>
+      <div class="nav-search" role="search">
+        <label for="mainSearch" class="sr-only">Search TV series</label>
+        <input type="search" id="mainSearch" placeholder="Search TV series..." autocomplete="off">
+        <div class="search-icon" aria-hidden="true"><i class="bi bi-search"></i></div>
+      </div>
+      <a class="nav-login" href="contact.html"><i class="bi bi-person-circle"></i><span>Sign in</span></a>
+    </div>
+  </nav>
+
+  <main class="laptop-flow">
+    <nav class="laptop-flow__crumbs" aria-label="Breadcrumb">
+      <a href="tv_brand.html">Sell TV</a>
+      <i class="bi bi-chevron-right"></i>
+      <a href="tv_Device_condation.html">Condition</a>
+      <i class="bi bi-chevron-right"></i>
+      <span>Questions</span>
+    </nav>
+
+    <section class="laptop-flow__head">
+      <div>
+        <div class="laptop-flow__eyebrow"><i class="bi bi-question-circle-fill"></i> Pickup readiness checks</div>
+        <h1>Answer quick questions for your <span data-model-name>TV</span></h1>
+        <p>These checks help make pickup smoother and confirm the TV can be safely inspected at your doorstep.</p>
+      </div>
+      <div class="laptop-flow__steps" aria-label="Sell TV steps">
+        <div class="laptop-flow__step"><strong>1. Variant</strong><span>Screen and age</span></div>
+        <div class="laptop-flow__step"><strong>2. Condition</strong><span>Display and body</span></div>
+        <div class="laptop-flow__step is-active"><strong>3. Questions</strong><span>Pickup checks</span></div>
+        <div class="laptop-flow__step"><strong>4. Issues</strong><span>Fault selection</span></div>
+      </div>
+    </section>
+
+    <div class="laptop-flow__layout">
+      <aside class="laptop-flow__card laptop-product">
+        <div class="laptop-product__media">
+          <img data-tv-image src="assets/images/home-page-img/brand-img/Tv.webp" alt="TV">
+        </div>
+        <div class="laptop-product__body">
+          <div class="laptop-product__brand" data-brand-name>TV</div>
+          <h2 class="laptop-product__name" data-model-name>TV</h2>
+          <span class="laptop-chip"><i class="bi bi-truck"></i> Smooth pickup</span>
+          <div class="laptop-product__meta">
+            <span><i class="bi bi-receipt"></i> Bill improves verification</span>
+            <span><i class="bi bi-tv"></i> Remove wall mount before pickup</span>
+            <span><i class="bi bi-plug"></i> Keep TV ready for power check</span>
+          </div>
+        </div>
+      </aside>
+
+      <section class="laptop-flow__card laptop-panel" aria-label="TV questions">
+        <h2 class="laptop-panel_title"><span class="laptop-panel_num">1</span> Do you have the purchase bill?</h2>
+        <div class="laptop-option-grid">
+          <button class="laptop-option" data-group="bill" data-value="Bill available"><i class="bi bi-receipt-cutoff"></i><strong>Yes, bill available</strong><span>Helps us verify purchase details faster.</span></button>
+          <button class="laptop-option" data-group="bill" data-value="Bill not available"><i class="bi bi-file-earmark-x"></i><strong>No bill</strong><span>You can continue without a bill.</span></button>
+        </div>
+
+        <h2 class="laptop-panel_title"><span class="laptop-panel_num">2</span> Is the TV wall mounted?</h2>
+        <div class="laptop-option-grid">
+          <button class="laptop-option" data-group="mount" data-value="Not wall mounted"><i class="bi bi-check2-circle"></i><strong>Not wall mounted</strong><span>TV is ready on stand or table.</span></button>
+          <button class="laptop-option" data-group="mount" data-value="Wall mounted"><i class="bi bi-tools"></i><strong>Wall mounted</strong><span>Please remove it before pickup if possible.</span></button>
+        </div>
+
+        <h2 class="laptop-panel_title"><span class="laptop-panel_num">3</span> Can the TV be powered on?</h2>
+        <div class="laptop-option-grid">
+          <button class="laptop-option" data-group="pickup" data-value="Ready for power check"><i class="bi bi-power"></i><strong>Ready for check</strong><span>TV can be plugged in and tested at pickup.</span></button>
+          <button class="laptop-option" data-group="pickup" data-value="Cannot power check"><i class="bi bi-lightning-slash"></i><strong>Cannot power check</strong><span>Power test may need extra verification.</span></button>
+        </div>
+      </section>
+
+      <aside class="laptop-flow__card laptop-summary">
+        <div class="laptop-summary__head">
+          <h2>Pickup Readiness</h2>
+          <p>Your answers help avoid pickup delays.</p>
+        </div>
+        <div class="laptop-summary__body">
+          <div class="laptop-summary__row"><span>Model</span><strong data-model-name>TV</strong></div>
+          <div class="laptop-summary__row"><span>Bill</span><strong data-summary="bill">-</strong></div>
+          <div class="laptop-summary__row"><span>Mount</span><strong data-summary="mount">-</strong></div>
+          <div class="laptop-summary__row"><span>Power check</span><strong data-summary="pickup">-</strong></div>
+          <div class="laptop-total"><small>Expected Price</small><strong data-summary-price>₹0</strong></div>
+          <button class="laptop-action" id="continueBtn" disabled>Continue <i class="bi bi-arrow-right"></i></button>
+          <div class="laptop-note"><i class="bi bi-info-circle"></i><span>Keep the remote, stand, and power cable ready for inspection.</span></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="assets/js/tv_flow.js"></script>
+</body>
+
+</html>

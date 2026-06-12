@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cashygo - Sell TV</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/tab_pages.css">
+</head>
+
+<body class="tab-page">
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-top">
+      <button class="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <i class="bi bi-list"></i>
+      </button>
+      <a href="index.html" class="nav-logo" aria-label="Cashygo homepage">
+        <img src="assets/images/project-logo/logo-new.svg" alt="Cashygo logo" width="120" height="40">
+      </a>
+      <div class="nav-search" role="search">
+        <label for="mainSearch" class="sr-only">Search TV brands</label>
+        <input type="search" id="mainSearch" name="search" placeholder="Search TV brands..." autocomplete="off">
+        <div class="search-icon" aria-hidden="true"><i class="bi bi-search"></i></div>
+      </div>
+      <button class="nav-login" aria-label="Sign in">
+        <i class="bi bi-person-circle"></i>
+        <span>Sign in</span>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+    <section class="tab-hero" aria-label="Sell TV hero">
+      <div>
+        <div class="tab-hero__badge"><i class="bi bi-tv"></i> TV buyback</div>
+        <h1>Sell Your Old TV for Instant Cash</h1>
+        <p>Select your TV brand, choose the series, add screen and condition details, and get a fast resale estimate with free pickup support.</p>
+        <div class="tab-hero__actions">
+          <a href="tv_model.html" class="tab-btn"><i class="bi bi-lightning-charge"></i> Start price check</a>
+          <a href="calculator.html" class="tab-btn is-soft"><i class="bi bi-calculator"></i> Price calculator</a>
+        </div>
+      </div>
+      <div class="tab-hero__media" aria-hidden="true">
+        <img src="assets/images/home-page-img/brand-img/Tv.webp" alt="">
+      </div>
+    </section>
+
+    <section class="tab-stats" aria-label="TV buyback stats">
+      <div class="tab-stat"><strong>5 min</strong><span>Instant quote</span></div>
+      <div class="tab-stat"><strong>₹60k+</strong><span>Top TV value</span></div>
+      <div class="tab-stat"><strong>Free</strong><span>Pickup support</span></div>
+      <div class="tab-stat"><strong>Safe</strong><span>Verified inspection</span></div>
+    </section>
+
+    <section class="tab-section" aria-label="TV brands">
+      <div class="tab-section__head">
+        <div>
+          <h2>Select TV Brand</h2>
+          <p>Pick your TV brand to view supported series.</p>
+        </div>
+        <div class="tab-search">
+          <input type="search" id="tvBrandSearch" placeholder="Search brand...">
+          <i class="bi bi-search"></i>
+        </div>
+      </div>
+
+      <div class="tab-grid" id="tvBrandGrid">
+        <a href="tv_model.html?brand=Samsung" class="tab-card">
+          <div class="tab-card__image"><img src="assets/images/home-page-img/brand-img/Tv.webp" alt="Samsung TV"></div>
+          <h3>Samsung TV</h3>
+          <p>LED, Crystal UHD, QLED, and smart TV models.</p>
+          <div class="tab-card__price">Up to ₹60,000</div>
+        </a>
+        <a href="tv_model.html?brand=LG" class="tab-card">
+          <div class="tab-card__image"><img src="assets/images/home-page-img/brand-img/Tv.webp" alt="LG TV"></div>
+          <h3>LG TV</h3>
+          <p>LED, UHD, NanoCell, OLED, and webOS TVs.</p>
+          <div class="tab-card__price">Up to ₹58,000</div>
+        </a>
+        <a href="tv_model.html?brand=Sony" class="tab-card">
+          <div class="tab-card__image"><img src="assets/images/home-page-img/brand-img/Tv.webp" alt="Sony TV"></div>
+          <h3>Sony Bravia</h3>
+          <p>Bravia LED, 4K, Google TV, OLED, and premium series.</p>
+          <div class="tab-card__price">Up to ₹70,000</div>
+        </a>
+        <a href="tv_model.html?brand=Xiaomi" class="tab-card">
+          <div class="tab-card__image"><img src="assets/images/home-page-img/brand-img/Tv.webp" alt="Xiaomi TV"></div>
+          <h3>Mi / Xiaomi TV</h3>
+          <p>Mi TV, Xiaomi Smart TV, 4K, and Android TV models.</p>
+          <div class="tab-card__price">Up to ₹35,000</div>
+        </a>
+        <a href="tv_model.html?brand=OnePlus" class="tab-card">
+          <div class="tab-card__image"><img src="assets/images/home-page-img/brand-img/Tv.webp" alt="OnePlus TV"></div>
+          <h3>OnePlus TV</h3>
+          <p>Y, U, Q, 4K, and Android TV series.</p>
+          <div class="tab-card__price">Up to ₹38,000</div>
+        </a>
+        <a href="tv_model.html?brand=Other" class="tab-card">
+          <div class="tab-card__image"><img src="assets/images/home-page-img/brand-img/Tv.webp" alt="Other TV"></div>
+          <h3>TCL / Other TV</h3>
+          <p>TCL, Vu, Hisense, Kodak, and other smart TVs.</p>
+          <div class="tab-card__price">Up to ₹28,000</div>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const tvBrandSearch = document.getElementById("tvBrandSearch");
+    const tvBrandCards = document.querySelectorAll("#tvBrandGrid .tab-card");
+
+    tvBrandSearch.addEventListener("input", event => {
+      const value = event.target.value.trim().toLowerCase();
+      tvBrandCards.forEach(card => {
+        card.style.display = card.textContent.toLowerCase().includes(value) ? "grid" : "none";
+      });
+    });
+  </script>
+</body>
+
+</html>
