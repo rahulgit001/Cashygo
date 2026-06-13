@@ -14,21 +14,84 @@
 <body class="tab-page">
   <nav class="nav" role="navigation" aria-label="Main navigation">
     <div class="nav-top">
-      <button class="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
         <i class="bi bi-list"></i>
       </button>
-      <a href="index.html" class="nav-logo" aria-label="Cashygo homepage">
+      <a href="/" class="nav-logo" aria-label="Cashygo – Go to homepage">
         <img src="assets/images/project-logo/logo-new.svg" alt="Cashygo logo" width="120" height="40">
       </a>
       <div class="nav-search" role="search">
-        <label for="mainSearch" class="sr-only">Search TV brands</label>
-        <input type="search" id="mainSearch" name="search" placeholder="Search TV brands..." autocomplete="off">
+        <div class="nav-city" id="cityPicker" tabindex="0" aria-haspopup="listbox" aria-label="Select city">
+          <i class="bi bi-geo-alt-fill"></i>
+          <span id="cityLabel">Bangalore</span>
+          <i class="bi bi-chevron-down"></i>
+          <ul class="city-drop" id="cityDrop" role="listbox" aria-label="Select your city">
+            <li role="option" data-city="Delhi">Delhi NCR</li>
+            <li role="option" data-city="Bangalore">Bangalore</li>
+            <li role="option" data-city="Mumbai">Mumbai</li>
+            <li role="option" data-city="Pune">Pune</li>
+            <li role="option" data-city="Hyderabad">Hyderabad</li>
+          </ul>
+        </div>
+        <label for="mainSearch" class="sr-only">Search devices</label>
+        <input type="search" id="mainSearch" name="search" placeholder="Search devices, brands…" autocomplete="off">
         <div class="search-icon" aria-hidden="true"><i class="bi bi-search"></i></div>
       </div>
-      <button class="nav-login" aria-label="Sign in">
+      <button class="nav-login" id="openLoginBtn" aria-label="Sign in to your account">
         <i class="bi bi-person-circle"></i>
         <span>Sign in</span>
       </button>
+    </div>
+
+    <div class="nav-menu" id="navMenu">
+      <div class="nav-menu-inner">
+        <div class="dropdown" id="dropMobile">
+          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Mobile ⌵</button>
+          <ul class="dropdown-menu">
+            <li><a href="Apple_model.html">Apple iPhone</a></li>
+            <li><a href="samsung.html">Samsung Galaxy</a></li>
+            <li><a href="oneplus.html">OnePlus</a></li>
+            <li><a href="google.html">Google Pixel</a></li>
+            <li><a href="xiaomi.html">Xiaomi</a></li>
+            <li><a href="vivo.html">Vivo</a></li>
+          </ul>
+        </div>
+        <div class="dropdown" id="dropTablet">
+          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Tablet ⌵</button>
+          <ul class="dropdown-menu">
+            <li><a href="tab_model.html?brand=Apple">Apple Tab</a></li>
+            <li><a href="tab_model.html?brand=Samsung">Samsung Tab</a></li>
+            <li><a href="tab_model.html?brand=OnePlus">OnePlus Tab</a></li>
+            <li><a href="tab_model.html?brand=Xiaomi">Xiaomi Tab</a></li>
+            <li><a href="tab_model.html?brand=Realme">Realme Tab</a></li>
+          </ul>
+        </div>
+        <div class="dropdown" id="dropLaptop">
+          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Laptop ⌵</button>
+          <ul class="dropdown-menu">
+            <li><a href="dell.html">Dell</a></li>
+            <li><a href="hp.html">HP</a></li>
+            <li><a href="lenovo.html">Lenovo</a></li>
+            <li><a href="asus.html">Asus</a></li>
+            <li><a href="acer.html">Acer</a></li>
+          </ul>
+        </div>
+        <div class="dropdown" id="dropMac">
+          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Mac ⌵</button>
+          <ul class="dropdown-menu">
+            <li><a href="macbook.html">MacBook</a></li>
+            <li><a href="imac.html">iMac</a></li>
+            <li><a href="mac-mini.html">Mac Mini</a></li>
+            <li><a href="macbook-pro.html">MacBook Pro</a></li>
+          </ul>
+        </div>
+        <a href="#" class="menu-link">Corporate Deals</a>
+        <a href="calculator.html" class="menu-link">Price Calculator</a>
+        <a href="blogs.html" class="menu-link">Blog & Tips</a>
+        <a href="contact.html" class="menu-link">Contact</a>
+        <a href="Faq.html" class="menu-link">FAQ's</a>
+        <a href="costumer.html" class="menu-link">Customer Reviews</a>
+      </div>
     </div>
   </nav>
 
@@ -42,18 +105,32 @@
           <a href="tv_model.html" class="tab-btn"><i class="bi bi-lightning-charge"></i> Start price check</a>
           <a href="calculator.html" class="tab-btn is-soft"><i class="bi bi-calculator"></i> Price calculator</a>
         </div>
+
+        <div class="gaming-divider">
+          <span>Or choose a brand</span>
+        </div>
+        <div class="gaming-brands">
+          <a href="tv_model.html?brand=Samsung" aria-label="Sell Samsung TV"><img src="assets/images/Brand ALL/image copy.png" alt="Samsung TV"></a>
+          <a href="tv_model.html?brand=LG" aria-label="Sell LG TV"><img src="assets/images/Brand_img/Lg.avif" alt="LG TV" style="width:34px;height:34px;object-fit:contain"></a>
+          <a href="tv_model.html?brand=Sony" aria-label="Sell Sony Bravia"><img src="assets/images/Brand ALL/image.png" alt="Sony Bravia"></a>
+          <a href="#tvBrandGrid" aria-label="View all TV brands" onclick="document.getElementById('tvBrandGrid').scrollIntoView({behavior:'smooth'});return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#0d8c60">
+              <path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z" />
+            </svg>
+          </a>
+        </div>
       </div>
       <div class="tab-hero__media" aria-hidden="true">
-        <img src="assets/images/home-page-img/brand-img/Tv.webp" alt="">
+        <img class="tab-hero-img" src="assets/images/home-page-img/brand-img/Tv.webp" alt="">
       </div>
     </section>
 
-    <section class="tab-stats" aria-label="TV buyback stats">
+    <!-- <section class="tab-stats" aria-label="TV buyback stats">
       <div class="tab-stat"><strong>5 min</strong><span>Instant quote</span></div>
       <div class="tab-stat"><strong>₹60k+</strong><span>Top TV value</span></div>
       <div class="tab-stat"><strong>Free</strong><span>Pickup support</span></div>
       <div class="tab-stat"><strong>Safe</strong><span>Verified inspection</span></div>
-    </section>
+    </section> -->
 
     <section class="tab-section" aria-label="TV brands">
       <div class="tab-section__head">
@@ -71,42 +148,125 @@
         <a href="tv_model.html?brand=Samsung" class="tab-card">
           <div class="tab-card__image"><img src="assets/images/home-page-img/brand-img/Tv.webp" alt="Samsung TV"></div>
           <h3>Samsung TV</h3>
-          <p>LED, Crystal UHD, QLED, and smart TV models.</p>
-          <div class="tab-card__price">Up to ₹60,000</div>
         </a>
         <a href="tv_model.html?brand=LG" class="tab-card">
           <div class="tab-card__image"><img src="assets/images/home-page-img/brand-img/Tv.webp" alt="LG TV"></div>
           <h3>LG TV</h3>
-          <p>LED, UHD, NanoCell, OLED, and webOS TVs.</p>
-          <div class="tab-card__price">Up to ₹58,000</div>
         </a>
         <a href="tv_model.html?brand=Sony" class="tab-card">
           <div class="tab-card__image"><img src="assets/images/home-page-img/brand-img/Tv.webp" alt="Sony TV"></div>
           <h3>Sony Bravia</h3>
-          <p>Bravia LED, 4K, Google TV, OLED, and premium series.</p>
-          <div class="tab-card__price">Up to ₹70,000</div>
         </a>
         <a href="tv_model.html?brand=Xiaomi" class="tab-card">
           <div class="tab-card__image"><img src="assets/images/home-page-img/brand-img/Tv.webp" alt="Xiaomi TV"></div>
           <h3>Mi / Xiaomi TV</h3>
-          <p>Mi TV, Xiaomi Smart TV, 4K, and Android TV models.</p>
-          <div class="tab-card__price">Up to ₹35,000</div>
         </a>
         <a href="tv_model.html?brand=OnePlus" class="tab-card">
           <div class="tab-card__image"><img src="assets/images/home-page-img/brand-img/Tv.webp" alt="OnePlus TV"></div>
           <h3>OnePlus TV</h3>
-          <p>Y, U, Q, 4K, and Android TV series.</p>
-          <div class="tab-card__price">Up to ₹38,000</div>
         </a>
         <a href="tv_model.html?brand=Other" class="tab-card">
           <div class="tab-card__image"><img src="assets/images/home-page-img/brand-img/Tv.webp" alt="Other TV"></div>
           <h3>TCL / Other TV</h3>
-          <p>TCL, Vu, Hisense, Kodak, and other smart TVs.</p>
-          <div class="tab-card__price">Up to ₹28,000</div>
         </a>
       </div>
     </section>
   </main>
+
+  <section class="section" style="max-width:800px" aria-label="Frequently asked questions">
+    <div class="faq-header">
+      <h2>Frequently <span>Asked</span> Questions</h2>
+      <p>Everything you need to know before selling your TV</p>
+    </div>
+    <details class="faq-item">
+      <summary>How do I sell my TV? <span class="faq-icon">+</span></summary>
+      <div class="faq-answer">Select your TV brand and series, check the price, schedule pickup, and get paid instantly after verification.</div>
+    </details>
+    <details class="faq-item">
+      <summary>How is the price calculated? <span class="faq-icon">+</span></summary>
+      <div class="faq-answer">Price depends on TV condition, screen size, panel type, and current resale value.</div>
+    </details>
+    <details class="faq-item">
+      <summary>Is pickup free? <span class="faq-icon">+</span></summary>
+      <div class="faq-answer">Yes, doorstep pickup is completely free with no hidden charges.</div>
+    </details>
+    <details class="faq-item">
+      <summary>When will I get payment? <span class="faq-icon">+</span></summary>
+      <div class="faq-answer">Payment is processed instantly after device verification during pickup.</div>
+    </details>
+  </section>
+
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">
+            <img src="assets/images/project-logo/logo-new.svg" alt="Cashygo" loading="lazy">
+          </div>
+          <p class="footer-desc">India's most trusted device buyback platform. Instant pricing, free doorstep pickup, and instant payment.</p>
+          <div class="social-links" aria-label="Follow us on social media">
+            <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=61582722784700" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>SELL</h4>
+          <ul>
+            <li><a href="brand.html">Sell Mobile</a></li>
+            <li><a href="laptop_brand.html">Sell Laptop</a></li>
+            <li><a href="tab_brand.html">Sell Tablet</a></li>
+            <li><a href="watch_brand.html">Sell Smartwatch</a></li>
+            <li><a href="tv_brand.html">Sell TV</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>COMPANY</h4>
+          <ul>
+            <li><a href="#">About Cashygo</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Partner With Us</a></li>
+            <li><a href="#">Press & Media</a></li>
+            <li><a href="#">Blog & Tips</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>SUPPORT</h4>
+          <ul>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Contact Support</a></li>
+            <li><a href="#">Return Policy</a></li>
+            <li><a href="#">Privacy & Security</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+        </div>
+        <div class="footer-col footer-contact">
+          <h4>CONTACT</h4>
+          <address>
+            <p><i class="bi bi-envelope"></i><a href="mailto:hr@cashygo.com">hr@cashygo.com</a></p>
+            <p><i class="bi bi-telephone"></i><a href="tel:+917766071191">+91 7766071191</a></p>
+            <p><i class="bi bi-geo-alt"></i>Bangalore, Karnataka, India</p>
+          </address>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-links-row">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms & Conditions</a>
+          <a href="#">Refund Policy</a>
+          <a href="#">Sitemap</a>
+        </div>
+        <div class="payment-row" aria-label="Secure payment methods">
+          <span>Secure payments:</span>
+          <i class="bi bi-credit-card" title="Credit/Debit Card"></i>
+          <i class="bi bi-bank" title="Bank Transfer"></i>
+          <i class="bi bi-wallet2" title="Digital Wallet"></i>
+        </div>
+        <p>© 2026 Cashygo — Resale Redefined</p>
+      </div>
+    </div>
+  </footer>
 
   <script>
     const tvBrandSearch = document.getElementById("tvBrandSearch");
