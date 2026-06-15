@@ -102,8 +102,11 @@ function renderGamingSelection(selection = getGamingSelection()) {
   });
 }
 
-function setupGamingOptions(groupName) {
+function setupGamingOptions(groupName, multiSelect = false) {
+  const selectedValues = new Set();
+
   document.querySelectorAll(`[data-group="${groupName}"]`).forEach(option => {
+    // Handle SELECT elements
     if (option.tagName === "SELECT") {
       option.addEventListener("change", () => {
         saveGamingSelection({ [groupName]: option.value });
@@ -111,20 +114,49 @@ function setupGamingOptions(groupName) {
       return;
     }
 
+    // Handle INPUT elements (number input for CDs)
+    if (option.tagName === "INPUT") {
+      option.addEventListener("input", () => {
+        const value = option.value === "" ? null : option.value;
+        saveGamingSelection({ [groupName]: value });
+      });
+      return;
+    }
+
+    // Handle BUTTON elements
     option.addEventListener("click", () => {
-      document.querySelectorAll(`[data-group="${groupName}"]`).forEach(item => item.classList.remove("is-selected"));
-      option.classList.add("is-selected");
-      saveGamingSelection({ [groupName]: option.dataset.value });
+      if (multiSelect) {
+        option.classList.toggle("is-selected");
+        if (option.classList.contains("is-selected")) {
+          selectedValues.add(option.dataset.value);
+        } else {
+          selectedValues.delete(option.dataset.value);
+        }
+        saveGamingSelection({ [groupName]: Array.from(selectedValues) });
+      } else {
+        document.querySelectorAll(`[data-group="${groupName}"]`).forEach(item => item.classList.remove("is-selected"));
+        option.classList.add("is-selected");
+        saveGamingSelection({ [groupName]: option.dataset.value });
+      }
     });
   });
 }
 
 function enableGamingButtonWhen(groups, button) {
+  if (!button) return;
   const check = () => {
     const selection = getGamingSelection();
-    button.disabled = groups.some(group => !selection[group]);
+    const missing = groups.some(group => {
+      const value = selection[group];
+      if (Array.isArray(value)) return value.length === 0;
+      if (value === null || value === undefined || value === "") return true;
+      return false;
+    });
+    button.disabled = missing;
   };
   document.addEventListener("click", check);
+  document.addEventListener("change", check);
+  document.addEventListener("input", check);
   check();
 }
 
@@ -138,21 +170,28 @@ if (gamingPage === "gaming-variant") {
     image: modelData.image,
     basePrice: modelData.base
   });
-  ["storage", "controllers", "age"].forEach(setupGamingOptions);
+  setupGamingOptions("controllers", true); // Enable multi-select for controllers/accessories
+  setupGamingOptions("cds"); // CD count dropdown
+  setupGamingOptions("age"); // Single select for age
   const next = document.getElementById("continueBtn");
-  enableGamingButtonWhen(["storage", "controllers", "age"], next);
-  next.addEventListener("click", () => {
-    window.location.href = "Gaming_Device_condation.html";
-  });
+  if (next) {
+    // Continue requires CDs and Age selection (controllers is optional)
+    enableGamingButtonWhen(["cds", "age"], next);
+    next.addEventListener("click", () => {
+      window.location.href = "Gaming_Device_condation.html";
+    });
+  }
 }
 
 if (gamingPage === "gaming-condition") {
-  ["condition", "power", "accessories"].forEach(setupGamingOptions);
+  setupGamingOptions("condition");
   const next = document.getElementById("continueBtn");
-  enableGamingButtonWhen(["condition", "power", "accessories"], next);
-  next.addEventListener("click", () => {
-    window.location.href = "Gaming_device_question.html";
-  });
+  if (next) {
+    enableGamingButtonWhen(["condition"], next);
+    next.addEventListener("click", () => {
+      window.location.href = "Gaming_device_question.html";
+    });
+  }
 }
 
 if (gamingPage === "gaming-question") {
