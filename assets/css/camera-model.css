@@ -57,8 +57,7 @@ input {
   grid-template-columns: minmax(0, 1fr) 360px;
   gap: 34px;
   align-items: center;
-  margin-top: 28px;
-  padding: 30px 10px;
+  padding: 10px 5px;
   border-radius: 16px;
   overflow: hidden;
 }
@@ -79,7 +78,7 @@ input {
 .camera-title {
   max-width: 660px;
   color: var(--cm-ink);
-  font-size: 42px;
+  font-size: 30px;
   line-height: 1.08;
   font-weight: 800;
 }
@@ -626,6 +625,9 @@ input {
   .model-title {
     font-size: 12px;
   }
+   .model-name{
+        font-size:12px;
+    }
 }
 
 /* Mobile */
@@ -659,6 +661,7 @@ input {
 
   .camera-hero-card {
     min-height: 200px;
+    display: none;
   }
 
   .camera-hero-card::before {
@@ -776,3 +779,95 @@ input {
     font-size: 10px;
   }
 }
+
+
+/* ==========================
+   MODEL SECTION
+========================== */
+
+.model-section{
+    padding:40px 0;
+    background:#f7f7f7;
+}
+
+.container{
+    width:95%;
+    max-width:1550px;
+    margin:auto;
+}
+
+.section-title{
+    font-size:32px;
+    font-weight:700;
+    color:#222;
+    margin-bottom:30px;
+}
+
+/* ==========================
+   MODEL GRID
+========================== */
+
+.model-grid{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:28px;
+}
+
+/* ==========================
+   MODEL CARD
+========================== */
+
+.model-card{
+    background:#fff;
+    border-radius:18px;
+    padding:22px 18px;
+    text-align:center;
+    text-decoration:none;
+    color:#222;
+    border:1px solid #e8e8e8;
+    box-shadow:
+        0 2px 8px rgba(0,0,0,0.08),
+        0 8px 24px rgba(0,0,0,0.05);
+    transition:all .3s ease;
+}
+
+.model-card:hover{
+    transform:translateY(-8px);
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.12),
+        0 20px 40px rgba(0,0,0,0.08);
+}
+
+.model-image{
+    height:130px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:18px;
+}
+
+.model-image img{
+    max-width:100%;
+    max-height:120px;
+    object-fit:contain;
+    transition:.3s;
+}
+
+.model-card:hover img{
+    transform:scale(1.08);
+}
+
+.model-card h3{
+    font-size:22px;
+    font-weight:600;
+    line-height:1.4;
+    color:#333;
+}
+.model-name{
+    font-size:15px;
+    font-weight:700;
+    line-height:1.4;
+    color:#111827;
+    margin:0;
+}
+
