@@ -184,23 +184,22 @@ if (gamingPage === "gaming-variant") {
 }
 
 if (gamingPage === "gaming-condition") {
-  setupGamingOptions("condition");
   const next = document.getElementById("continueBtn");
+
+  document.querySelectorAll('[data-group="condition"]').forEach(option => {
+    option.addEventListener("click", () => {
+      document.querySelectorAll('[data-group="condition"]').forEach(item => item.classList.remove("is-selected"));
+      option.classList.add("is-selected");
+      saveGamingSelection({ condition: option.dataset.value });
+      if (next) next.disabled = false;
+    });
+  });
+
   if (next) {
-    enableGamingButtonWhen(["condition"], next);
     next.addEventListener("click", () => {
-      window.location.href = "Gaming_device_question.html";
+      window.location.href = "Gaming_device_issu.html";
     });
   }
-}
-
-if (gamingPage === "gaming-question") {
-  ["bill", "account", "reset", "cds"].forEach(setupGamingOptions);
-  const next = document.getElementById("continueBtn");
-  enableGamingButtonWhen(["bill", "account", "reset", "cds"], next);
-  next.addEventListener("click", () => {
-    window.location.href = "Gaming_device_issu.html";
-  });
 }
 
 if (gamingPage === "gaming-issue") {
