@@ -278,7 +278,6 @@ input {
   height: 130px;
   display: grid;
   place-items: center;
-  padding: 16px;
   background: #fbfcfd;
   /* border-bottom: 1px solid #f0f2f4; */
 }
@@ -820,7 +819,7 @@ input {
 .model-card{
     background:#fff;
     border-radius:18px;
-    padding:22px 18px;
+    padding:5px 10px;
     text-align:center;
     text-decoration:none;
     color:#222;
@@ -843,7 +842,7 @@ input {
     display:flex;
     align-items:center;
     justify-content:center;
-    margin-bottom:18px;
+    margin-bottom:8px;
 }
 
 .model-image img{
@@ -858,16 +857,9 @@ input {
 }
 
 .model-card h3{
-    font-size:22px;
+    font-size:14px;
     font-weight:600;
     line-height:1.4;
     color:#333;
-}
-.model-name{
-    font-size:15px;
-    font-weight:700;
-    line-height:1.4;
-    color:#111827;
-    margin:0;
 }
 
