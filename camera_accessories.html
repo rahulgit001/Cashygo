@@ -103,94 +103,314 @@
     </div>
   </nav>
 
-  <main class="camera-question-page">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <a href="camera_brand.html">Sell camera</a>
-      <i class="bi bi-chevron-right"></i>
-      <a href="camera_model.html">Model</a>
-      <i class="bi bi-chevron-right"></i>
-      <span id="crumbModel">Camera</span>
-      <i class="bi bi-chevron-right"></i>
-      <span class="active">Accessories</span>
-    </nav>
+ <main class="camera-question-page">
 
-    <section class="page-head" aria-label="Accessories check workflow">
-      <div>
-        <div class="eyebrow"><i class="bi bi-bag-check"></i> Step 3 of 4</div>
-        <h1>What <span>accessories</span> do you have?</h1>
-        <p class="subtitle">Select all accessories available with your camera. Lens, battery, charger, and original bill can improve your resale value.</p>
+  <!-- Breadcrumb -->
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="camera_brand.html">Sell Camera</a>
+    <i class="bi bi-chevron-right"></i>
+    <a href="camera_model.html">Model</a>
+    <i class="bi bi-chevron-right"></i>
+    <span id="crumbModel">Camera</span>
+    <i class="bi bi-chevron-right"></i>
+    <span class="active">Accessories</span>
+  </nav>
+
+  <!-- Header -->
+  <section class="page-head">
+    <div>
+      <div class="eyebrow">
+        <i class="bi bi-bag-check"></i>
+        Step 3 of 4
       </div>
 
-      <div class="flow-steps" aria-label="Steps">
-        <div class="flow-step done"><strong>1. Brand</strong><span>Choose brand</span></div>
-        <div class="flow-step done"><strong>2. Model</strong><span>Select model</span></div>
-        <div class="flow-step active"><strong>3. Accessories</strong><span>Select accessories</span></div>
-        <div class="flow-step"><strong>4. Condition</strong><span>Body & shutter</span></div>
+      <h1>
+        What <span>accessories</span> do you have?
+      </h1>
+
+      <p class="subtitle">
+        Select all accessories available with your camera.
+      </p>
+    </div>
+
+    <div class="flow-steps">
+      <div class="flow-step active">
+        <strong>3. Accessories</strong>
+        <span>Select accessories</span>
       </div>
+
+      <div class="flow-step">
+        <strong>4. Condition</strong>
+        <span>Body & Shutter</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Layout -->
+  <div class="layout">
+
+    <!-- LEFT SIDE -->
+    <section class="question-section">
+
+      <div class="question-header">
+        <div class="question-badge">3</div>
+
+        <div>
+          <h2 class="question-title">
+            Select Available Accessories
+          </h2>
+
+          <p class="question-hint">
+            Choose all accessories that come with your camera.
+          </p>
+        </div>
+      </div>
+
+      <div class="accessory-grid">
+
+        <!-- Lens -->
+        <label class="accessory-card">
+          <input type="checkbox" class="accessory-checkbox">
+
+          <div class="accessory-check">
+            <i class="bi bi-check-lg"></i>
+          </div>
+
+          <div class="accessory-icon">
+            <i class="bi bi-camera2"></i>
+          </div>
+
+          <div class="accessory-text">
+            <h4>Original Lens</h4>
+            <p>Kit lens included</p>
+          </div>
+
+          <div class="accessory-price">+₹2,000</div>
+        </label>
+
+        <!-- Battery -->
+        <label class="accessory-card">
+          <input type="checkbox" class="accessory-checkbox">
+
+          <div class="accessory-check">
+            <i class="bi bi-check-lg"></i>
+          </div>
+
+          <div class="accessory-icon">
+            <i class="bi bi-battery-charging"></i>
+          </div>
+
+          <div class="accessory-text">
+            <h4>Original Battery</h4>
+            <p>Battery available</p>
+          </div>
+
+          <div class="accessory-price">+₹500</div>
+        </label>
+
+        <!-- Charger -->
+        <label class="accessory-card">
+          <input type="checkbox" class="accessory-checkbox">
+
+          <div class="accessory-check">
+            <i class="bi bi-check-lg"></i>
+          </div>
+
+          <div class="accessory-icon">
+            <i class="bi bi-plug"></i>
+          </div>
+
+          <div class="accessory-text">
+            <h4>Original Charger</h4>
+            <p>Adapter available</p>
+          </div>
+
+          <div class="accessory-price">+₹300</div>
+        </label>
+
+        <!-- Box -->
+        <label class="accessory-card">
+          <input type="checkbox" class="accessory-checkbox">
+
+          <div class="accessory-check">
+            <i class="bi bi-check-lg"></i>
+          </div>
+
+          <div class="accessory-icon">
+            <i class="bi bi-box-seam"></i>
+          </div>
+
+          <div class="accessory-text">
+            <h4>Original Box</h4>
+            <p>Packaging box available</p>
+          </div>
+
+          <div class="accessory-price">+₹300</div>
+        </label>
+
+        <!-- Bill -->
+        <label class="accessory-card">
+          <input type="checkbox" class="accessory-checkbox">
+
+          <div class="accessory-check">
+            <i class="bi bi-check-lg"></i>
+          </div>
+
+          <div class="accessory-icon">
+            <i class="bi bi-receipt"></i>
+          </div>
+
+          <div class="accessory-text">
+            <h4>Original Bill</h4>
+            <p>Purchase invoice available</p>
+          </div>
+
+          <div class="accessory-price">+₹200</div>
+        </label>
+
+        <!-- Bag -->
+        <label class="accessory-card">
+          <input type="checkbox" class="accessory-checkbox">
+
+          <div class="accessory-check">
+            <i class="bi bi-check-lg"></i>
+          </div>
+
+          <div class="accessory-icon">
+            <i class="bi bi-bag"></i>
+          </div>
+
+          <div class="accessory-text">
+            <h4>Camera Bag</h4>
+            <p>Protective bag available</p>
+          </div>
+
+          <div class="accessory-price">+₹200</div>
+        </label>
+
+        <!-- Strap -->
+        <label class="accessory-card">
+          <input type="checkbox" class="accessory-checkbox">
+
+          <div class="accessory-check">
+            <i class="bi bi-check-lg"></i>
+          </div>
+
+          <div class="accessory-icon">
+            <i class="bi bi-link-45deg"></i>
+          </div>
+
+          <div class="accessory-text">
+            <h4>Camera Strap</h4>
+            <p>Original strap available</p>
+          </div>
+
+          <div class="accessory-price">+₹100</div>
+        </label>
+
+        <!-- Memory Card -->
+        <label class="accessory-card">
+          <input type="checkbox" class="accessory-checkbox">
+
+          <div class="accessory-check">
+            <i class="bi bi-check-lg"></i>
+          </div>
+
+          <div class="accessory-icon">
+            <i class="bi bi-sd-card"></i>
+          </div>
+
+          <div class="accessory-text">
+            <h4>Memory Card</h4>
+            <p>SD Card included</p>
+          </div>
+
+          <div class="accessory-price">+₹200</div>
+        </label>
+
+      </div>
+
+      <button class="continue-btn" id="continueBtn">
+        Continue
+        <i class="bi bi-arrow-right"></i>
+      </button>
+
+      <div class="safe-line">
+        <i class="bi bi-shield-lock"></i>
+        <strong>100% Safe & Secure</strong>
+        <span>Your details are used only for quote verification.</span>
+      </div>
+
     </section>
 
-    <div class="layout">
-      <section class="question-section" aria-label="Accessories selection">
-        <div class="question-header">
-          <div class="question-badge">3</div>
-          <h2 class="question-title">Select available accessories</h2>
-        </div>
-        <p class="question-hint">Choose all accessories you have with your camera. Each accessory can add value to your final quote.</p>
+    <!-- RIGHT SIDE -->
+    <aside>
 
-        <div class="accessory-grid" id="accessoryGrid"></div>
+      <div class="quote">
 
-        <button class="continue-btn" id="continueBtn" type="button" disabled>
-          Continue <i class="bi bi-arrow-right"></i>
-        </button>
+        <div class="device">
 
-        <div class="safe-line">
-          <i class="bi bi-shield-lock"></i>
-          <strong>100% Safe & Secure</strong>
-          <span>Your camera details are used only for quote verification.</span>
-        </div>
-      </section>
-
-      <aside>
-        <div class="quote">
-          <div class="device">
-            <div class="camera-icon" aria-hidden="true">
-              <i class="bi bi-camera-fill"></i>
-            </div>
-            <div>
-              <h2 id="deviceName">Camera Model</h2>
-              <p id="deviceMeta">Brand - Type</p>
-            </div>
+          <div class="camera-icon">
+            <i class="bi bi-camera-fill"></i>
           </div>
 
-          <div class="quote-price">
-            <div class="quote-label">Estimated Quote</div>
-            <div class="price" id="quotePrice">&#8377;0</div>
-            <p class="quote-hint">Price may increase with accessories.</p>
+          <div>
+            <h2 id="deviceName">
+              Sony Alpha A6500
+            </h2>
+
+            <p id="deviceMeta">
+              Sony • Mirrorless Camera
+            </p>
           </div>
 
-          <div class="selected-list" id="summaryList"></div>
-
-          <div class="trust-row">
-            <div class="trust-item">
-              <i class="bi bi-camera"></i>
-              <span>Expert</span>
-              <p>Camera checks</p>
-            </div>
-            <div class="trust-item">
-              <i class="bi bi-rocket-takeoff"></i>
-              <span>Quick</span>
-              <p>Instant quote</p>
-            </div>
-            <div class="trust-item">
-              <i class="bi bi-award"></i>
-              <span>Trusted</span>
-              <p>50k+ users</p>
-            </div>
-          </div>
         </div>
-      </aside>
-    </div>
-  </main>
+
+        <div class="quote-price">
+          <div class="quote-label">
+            Estimated Quote
+          </div>
+
+          <div class="price" id="quotePrice">
+            ₹35,000
+          </div>
+
+          <p class="quote-hint">
+            Price may increase with accessories.
+          </p>
+        </div>
+
+        <div class="selected-list" id="summaryList"></div>
+
+        <div class="trust-row">
+
+          <div class="trust-item">
+            <i class="bi bi-camera"></i>
+            <span>Expert</span>
+            <p>Camera checks</p>
+          </div>
+
+          <div class="trust-item">
+            <i class="bi bi-rocket-takeoff"></i>
+            <span>Quick</span>
+            <p>Instant quote</p>
+          </div>
+
+          <div class="trust-item">
+            <i class="bi bi-award"></i>
+            <span>Trusted</span>
+            <p>50k+ users</p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </aside>
+
+  </div>
+
+</main>
 
   <footer class="footer" role="contentinfo">
     <div class="footer-inner">
@@ -264,7 +484,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/camera-question.js"></script>
+  <script src="assets/js/camera-accessories.js"></script>
 </body>
 
 </html>

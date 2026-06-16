@@ -321,6 +321,188 @@
   }
 }
 
+/* ============================================
+   ENHANCED MOBILE RESPONSIVE FOR GAMING PAGES
+   ============================================ */
+
+/* Tablet - Improved grid */
+@media (max-width: 768px) {
+  .tab-hero {
+    padding: 24px 0 20px;
+  }
+
+  .tab-hero h1 {
+    font-size: 22px;
+    line-height: 1.2;
+  }
+
+  .tab-hero p {
+    font-size: 13px;
+  }
+
+  .tab-section__head h2 {
+    font-size: 20px;
+  }
+
+  .tab-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .tab-card {
+    padding: 8px;
+    border-radius: 12px;
+  }
+
+  .tab-card__image {
+    min-height: 90px;
+  }
+
+  .tab-card h3 {
+    font-size: 11px;
+  }
+
+  .tab-filter-row {
+    gap: 8px;
+  }
+
+  .tab-filter {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+}
+
+/* Mobile - 2 column grid */
+@media (max-width: 480px) {
+  .tab-hero,
+  .tab-section,
+  .tab-stats {
+    width: calc(100% - 20px);
+  }
+
+  .tab-hero {
+    padding: 18px 0 16px;
+  }
+
+  .tab-hero__badge {
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+
+  .tab-hero h1 {
+    font-size: 20px;
+    margin: 10px 0 8px;
+  }
+
+  .tab-hero p {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .tab-btn {
+    min-height: 32px;
+    padding: 4px 10px;
+    font-size: 12px;
+    border-radius: 10px;
+  }
+
+  .tab-section {
+    padding: 14px 0 30px;
+  }
+
+  .tab-section__head h2 {
+    font-size: 18px;
+  }
+
+  .tab-section__head p {
+    font-size: 12px;
+  }
+
+  .tab-search input {
+    min-height: 40px;
+    font-size: 14px;
+  }
+
+  .tab-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .tab-card {
+    padding: 6px;
+    border-radius: 10px;
+    min-height: auto;
+  }
+
+  .tab-card__image {
+    min-height: 80px;
+    border-radius: 8px;
+  }
+
+  .tab-card__image img {
+    max-height: 70px;
+  }
+
+  .tab-card h3 {
+    font-size: 10px;
+    line-height: 1.25;
+  }
+
+  .tab-filter-row {
+    gap: 6px;
+    margin-bottom: 12px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 4px;
+  }
+
+  .tab-filter {
+    min-height: 32px;
+    padding: 5px 10px;
+    font-size: 11px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 380px) {
+  .tab-hero,
+  .tab-section,
+  .tab-stats {
+    width: calc(100% - 16px);
+  }
+
+  .tab-hero h1 {
+    font-size: 18px;
+  }
+
+  .tab-section__head h2 {
+    font-size: 16px;
+  }
+
+  .tab-grid {
+    gap: 6px;
+  }
+
+  .tab-card {
+    padding: 5px;
+    border-radius: 8px;
+  }
+
+  .tab-card__image {
+    min-height: 70px;
+  }
+
+  .tab-card__image img {
+    max-height: 60px;
+  }
+
+  .tab-card h3 {
+    font-size: 9px;
+  }
+}
+
 .gaming-brands{
     display:flex;
     gap:15px;

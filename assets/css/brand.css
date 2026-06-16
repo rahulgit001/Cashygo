@@ -1237,3 +1237,253 @@
                font-size: 12px;
            }
        }
+
+/* ============================================
+   CAMERA BRAND PAGE - ENHANCED MOBILE RESPONSIVE
+   ============================================ */
+
+/* Section Title - Consistent */
+.section-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: #111827;
+    margin-bottom: 12px;
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+    .cashygo-devices {
+        padding: 20px 16px;
+    }
+
+    .cashygo-devices__grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .section-title {
+        font-size: 24px;
+    }
+
+    .cashygo-stats__inner {
+        grid-template-columns: repeat(2, 1fr);
+        border-radius: 20px;
+    }
+}
+
+/* Mobile - Large */
+@media (max-width: 768px) {
+    .cashygo-devices {
+        padding: 20px 14px;
+    }
+
+    .cashygo-devices__grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .cashygo-devices__item {
+        padding: 14px 8px;
+        border-radius: 10px;
+    }
+
+    .cashygo-devices__icon img {
+        width: 32px;
+        height: 32px;
+    }
+
+    .cashygo-devices__label {
+        font-size: 12px;
+    }
+
+    .section-title {
+        font-size: 22px;
+        margin-bottom: 10px;
+    }
+
+    .cashygo-devices__sub {
+        font-size: 13px;
+        margin-bottom: 16px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+    .cashygo-devices {
+        padding: 16px 12px;
+    }
+
+    .cashygo-devices__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .cashygo-devices__item {
+        padding: 16px 10px;
+        border-radius: 12px;
+        gap: 6px;
+    }
+
+    .cashygo-devices__icon {
+        font-size: 28px;
+    }
+
+    .cashygo-devices__icon img {
+        width: 28px;
+        height: 28px;
+    }
+
+    .cashygo-devices__label {
+        font-size: 11px;
+        font-weight: 700;
+    }
+
+    .section-title {
+        font-size: 20px;
+        margin-bottom: 8px;
+    }
+
+    .cashygo-devices__sub {
+        font-size: 12px;
+        margin-bottom: 14px;
+    }
+
+    /* Hero section mobile fixes */
+    .cashygo-hero__sub {
+        font-size: 13px;
+        margin-bottom: 12px;
+    }
+
+    .hero-search {
+        margin-bottom: 14px;
+    }
+
+    .hero-search input {
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    .hero-search button {
+        padding: 0 16px;
+        font-size: 14px;
+    }
+
+    /* Stats section */
+    .cashygo-stats {
+        padding: 10px 12px;
+    }
+
+    .cashygo-stats__num {
+        font-size: 18px;
+    }
+
+    .cashygo-stats__label {
+        font-size: 11px;
+    }
+
+    /* Trust section */
+    .cashygo-trust {
+        padding: 12px;
+        gap: 8px;
+    }
+
+    .cashygo-trust__item {
+        font-size: 12px;
+        margin: 4px 0;
+    }
+
+    /* Process section */
+    .cashygo-process__inner {
+        padding: 20px 12px;
+    }
+
+    .cashygo-process__card {
+        padding: 18px;
+        border-radius: 14px;
+    }
+
+    .cashygo-process__title {
+        font-size: 14px;
+    }
+
+    .cashygo-process__desc {
+        font-size: 12px;
+    }
+
+    /* Why section */
+    .cashygo-why {
+        padding: 20px 12px;
+    }
+
+    .cashygo-why__card {
+        padding: 14px;
+        gap: 12px;
+    }
+
+    .cashygo-why__title {
+        font-size: 14px;
+    }
+
+    .cashygo-why__desc {
+        font-size: 12px;
+    }
+
+    /* FAQ section */
+    .cashygo-faq__inner {
+        padding: 20px 12px;
+    }
+
+    .cashygo-faq__question {
+        padding: 14px;
+        font-size: 14px;
+    }
+
+    .cashygo-faq__answer {
+        font-size: 13px;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 380px) {
+    .cashygo-devices {
+        padding: 14px 10px;
+    }
+
+    .cashygo-devices__grid {
+        gap: 8px;
+    }
+
+    .cashygo-devices__item {
+        padding: 12px 6px;
+        border-radius: 10px;
+    }
+
+    .cashygo-devices__icon img {
+        width: 24px;
+        height: 24px;
+    }
+
+    .cashygo-devices__label {
+        font-size: 10px;
+    }
+
+    .section-title {
+        font-size: 18px;
+    }
+
+    .cashygo-stats__inner {
+        border-radius: 14px;
+    }
+
+    .cashygo-stats__item {
+        padding: 14px 8px;
+    }
+
+    .cashygo-stats__num {
+        font-size: 16px;
+    }
+
+    .cashygo-stats__label {
+        font-size: 10px;
+    }
+}

@@ -610,3 +610,415 @@ input {
     padding: 20px;
   }
 }
+
+/* ============================================
+   ENHANCED MOBILE RESPONSIVE FOR GAMING FLOW
+   ============================================ */
+
+/* Tablet */
+@media (max-width: 900px) {
+  .laptop-flow__steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .laptop-option-grid.is-three {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .laptop-option-grid.is-four {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Large Mobile */
+@media (max-width: 640px) {
+  .laptop-flow {
+    width: calc(100% - 20px);
+    padding: 14px 0 36px;
+  }
+
+  .laptop-flow__crumbs {
+    font-size: 12px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .laptop-flow__head {
+    margin-bottom: 18px;
+  }
+
+  .laptop-flow__eyebrow {
+    font-size: 11px;
+    padding: 5px 10px;
+    margin-bottom: 8px;
+  }
+
+  .laptop-flow__head h1 {
+    font-size: 18px;
+    line-height: 1.2;
+  }
+
+  .laptop-flow__head p {
+    font-size: 11px;
+  }
+
+  .laptop-flow__steps {
+    gap: 8px;
+  }
+
+  .laptop-flow__step {
+    padding: 8px;
+    border-radius: 10px;
+  }
+
+  .laptop-flow__step strong {
+    font-size: 11px;
+  }
+
+  .laptop-flow__step span {
+    font-size: 9px;
+  }
+
+  .laptop-flow__layout {
+    gap: 16px;
+  }
+
+  .laptop-product__media {
+    min-height: 180px;
+    padding: 16px;
+  }
+
+  .laptop-product__media img {
+    max-height: 140px;
+  }
+
+  .laptop-product__body {
+    padding: 16px;
+  }
+
+  .laptop-product__name {
+    font-size: 20px;
+    margin: 4px 0 10px;
+  }
+
+  .laptop-chip {
+    padding: 7px 10px;
+    font-size: 12px;
+  }
+
+  .laptop-product__meta {
+    margin-top: 14px;
+    padding-top: 14px;
+    font-size: 12px;
+    gap: 8px;
+  }
+
+  .laptop-panel {
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .laptop-panel__title {
+    font-size: 16px;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .laptop-panel__num {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+
+  .laptop-option-grid {
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .laptop-option-grid.is-three,
+  .laptop-option-grid.is-four {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .laptop-option {
+    min-height: 60px;
+    padding: 8px;
+    border-radius: 12px;
+  }
+
+  .laptop-option strong {
+    font-size: 11px;
+  }
+
+  .laptop-option span {
+    font-size: 10px;
+  }
+
+  .laptop-option i {
+    font-size: 18px;
+  }
+
+  .laptop-select-card {
+    gap: 12px;
+    padding: 12px;
+    min-height: 100px;
+  }
+
+  .laptop-select-card__media {
+    width: 80px;
+    min-height: 60px;
+    padding: 6px;
+  }
+
+  .laptop-select {
+    min-height: 42px;
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  .laptop-select-description {
+    font-size: 11px;
+    margin-top: 8px;
+  }
+
+  .laptop-summary__head {
+    padding: 16px;
+  }
+
+  .laptop-summary__head h2 {
+    font-size: 16px;
+  }
+
+  .laptop-summary__head p {
+    font-size: 12px;
+  }
+
+  .laptop-summary__body {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .laptop-summary__row {
+    font-size: 12px;
+    gap: 12px;
+  }
+
+  .laptop-total {
+    padding: 14px;
+    border-radius: 12px;
+  }
+
+  .laptop-total small {
+    font-size: 12px;
+  }
+
+  .laptop-total strong {
+    font-size: 24px;
+    margin-top: 2px;
+  }
+
+  .laptop-action {
+    padding: 12px 14px;
+    font-size: 14px;
+    border-radius: 10px;
+  }
+
+  .laptop-note {
+    font-size: 11px;
+    gap: 6px;
+  }
+
+  .laptop-issue-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 420px) {
+  .laptop-flow {
+    width: calc(100% - 16px);
+    padding: 12px 0 30px;
+  }
+
+  .laptop-flow__crumbs {
+    font-size: 11px;
+  }
+
+  .laptop-flow__eyebrow {
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+
+  .laptop-flow__head h1 {
+    font-size: 16px;
+  }
+
+  .laptop-flow__head p {
+    font-size: 10px;
+  }
+
+  .laptop-flow__steps {
+    gap: 6px;
+  }
+
+  .laptop-flow__step {
+    padding: 6px;
+    border-radius: 8px;
+  }
+
+  .laptop-flow__step strong {
+    font-size: 10px;
+  }
+
+  .laptop-flow__step span {
+    font-size: 8px;
+  }
+
+  .laptop-flow__layout {
+    gap: 12px;
+  }
+
+  .laptop-product__media {
+    min-height: 150px;
+    padding: 12px;
+  }
+
+  .laptop-product__media img {
+    max-height: 110px;
+  }
+
+  .laptop-product__body {
+    padding: 14px;
+  }
+
+  .laptop-product__brand {
+    font-size: 12px;
+  }
+
+  .laptop-product__name {
+    font-size: 18px;
+  }
+
+  .laptop-chip {
+    padding: 6px 8px;
+    font-size: 11px;
+  }
+
+  .laptop-panel {
+    padding: 14px;
+    border-radius: 12px;
+  }
+
+  .laptop-panel__title {
+    font-size: 14px;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .laptop-panel__num {
+    width: 24px;
+    height: 24px;
+    font-size: 11px;
+  }
+
+  .laptop-option-grid {
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .laptop-option {
+    min-height: 55px;
+    padding: 6px;
+    border-radius: 10px;
+  }
+
+  .laptop-option strong {
+    font-size: 10px;
+  }
+
+  .laptop-option span {
+    font-size: 9px;
+  }
+
+  .laptop-option i {
+    font-size: 16px;
+  }
+
+  .laptop-option.has-checkbox::before {
+    width: 16px;
+    height: 16px;
+    top: 6px;
+    right: 6px;
+    border-radius: 4px;
+  }
+
+  .laptop-option.has-checkbox::after {
+    top: 8px;
+    right: 11px;
+    width: 5px;
+    height: 8px;
+  }
+
+  .laptop-select-card {
+    gap: 10px;
+    padding: 10px;
+    min-height: 90px;
+    border-radius: 12px;
+  }
+
+  .laptop-select-card__media {
+    width: 60px;
+    min-height: 50px;
+    padding: 4px;
+    border-radius: 10px;
+  }
+
+  .laptop-select {
+    min-height: 38px;
+    padding: 8px 10px;
+    font-size: 13px;
+    border-radius: 10px;
+  }
+
+  .laptop-summary__head {
+    padding: 14px;
+  }
+
+  .laptop-summary__head h2 {
+    font-size: 15px;
+  }
+
+  .laptop-summary__body {
+    padding: 14px;
+    gap: 10px;
+  }
+
+  .laptop-summary__row {
+    font-size: 11px;
+  }
+
+  .laptop-total {
+    padding: 12px;
+    border-radius: 10px;
+  }
+
+  .laptop-total small {
+    font-size: 11px;
+  }
+
+  .laptop-total strong {
+    font-size: 22px;
+  }
+
+  .laptop-action {
+    padding: 10px 12px;
+    font-size: 13px;
+    border-radius: 10px;
+  }
+
+  .laptop-note {
+    font-size: 10px;
+  }
+}
