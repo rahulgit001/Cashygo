@@ -17,10 +17,10 @@
     let visibleCount = 0;
 
     modelCards.forEach(card => {
-      const title = card.querySelector('.model-title')?.textContent.toLowerCase() || '';
-      const brand = card.querySelector('.model-brand')?.textContent.toLowerCase() || '';
-      const meta = card.querySelector('.model-meta')?.textContent.toLowerCase() || '';
-      const searchableText = `${title} ${brand} ${meta}`;
+      const title = card.querySelector('.model-name')?.textContent.toLowerCase() || '';
+      const brand = (card.dataset.brand || '').toLowerCase();
+      const type = (card.dataset.type || '').toLowerCase();
+      const searchableText = `${title} ${brand} ${type}`;
 
       if (searchableText.includes(searchTerm) || searchTerm === '') {
         card.style.display = '';
@@ -147,15 +147,21 @@
     });
   });
 
-  // ── MODEL CARD CLICK TRACKING ──
+  // ── MODEL CARD SELECTION ──
+  // Step 1 of the camera resale flow. Writes the shared selection state and
+  // resets any downstream condition data so a freshly picked model starts clean.
   modelCards.forEach(card => {
     card.addEventListener('click', () => {
-      const modelName = card.querySelector('.model-title')?.textContent || 'Unknown';
-      const brandName = card.querySelector('.model-brand')?.textContent || 'Unknown';
+      const selection = {
+        brand: card.dataset.brand || 'Sony',
+        model: card.dataset.model || card.querySelector('.model-name')?.textContent.trim() || 'Camera',
+        type: card.dataset.type || 'Camera',
+        price: Number(card.dataset.price) || 0
+      };
 
-      // Store selection in session
-      sessionStorage.setItem('cameraModel', modelName);
-      sessionStorage.setItem('cameraBrand', brandName);
+      sessionStorage.setItem('cashygoCameraSelection', JSON.stringify(selection));
+      // New device → start the condition flow fresh (accessories, shutter, body, issues…).
+      sessionStorage.removeItem('cashygoCameraCondition');
     });
   });
 

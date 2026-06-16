@@ -155,6 +155,18 @@
 
     sessionStorage.setItem('cashygoCameraFunctionalIssues', JSON.stringify(summary));
     sessionStorage.setItem('cashygoFunctionalIssues', JSON.stringify(summary));
+
+    // Merge functional issues into the shared condition (preserve accessories/shutter/body/issues).
+    let existingCondition = {};
+    try { existingCondition = JSON.parse(sessionStorage.getItem('cashygoCameraCondition') || '{}'); } catch (e) { existingCondition = {}; }
+    sessionStorage.setItem('cashygoCameraCondition', JSON.stringify({
+      ...existingCondition,
+      functionalIssues: {
+        selected: selectedIssues(),
+        deduction: totalDeduction(),
+        finalQuote: finalQuote()
+      }
+    }));
     sessionStorage.setItem('cashygoIssueSummary', JSON.stringify({
       ...issueSummaryData,
       selection: state.selection,

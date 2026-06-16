@@ -125,7 +125,7 @@ h1 span {
 /* ── FLOW STEPS ── */
 .flow-steps {
   display: grid;
-  grid-template-columns: repeat(4, minmax(110px, 1fr));
+  grid-template-columns: repeat(5, minmax(100px, 1fr));
   gap: 10px;
   min-width: 520px;
 }
@@ -411,7 +411,7 @@ h1 span {
   .flow-steps {
     min-width: 0;
     margin-top: 18px;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .layout {

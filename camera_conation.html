@@ -112,9 +112,11 @@
       <nav class="cashygo-breadcrumb" aria-label="Breadcrumb">
         <a href="camera_brand.html">Sell camera</a>
         <i class="bi bi-chevron-right"></i>
-        <a href="camera_model.html">Camera model</a>
+        <a href="camera_model.html">Model</a>
         <i class="bi bi-chevron-right"></i>
-        <span>Condition</span>
+        <a href="camera_accessories.html">Accessories</a>
+        <i class="bi bi-chevron-right"></i>
+        <span class="active">Condition</span>
       </nav>
 
       <section class="cashygo-page-head">
@@ -135,18 +137,11 @@
           </p>
         </div>
         <div class="cashygo-progress">
-          <div class="cashygo-progress__item done">
-            <strong>1. Model</strong>
-            <span>Brand and series</span>
-          </div>
-          <div class="cashygo-progress__item active">
-            <strong>2. Condition</strong>
-            <span>Shutter, body, lens</span>
-          </div>
-          <div class="cashygo-progress__item">
-            <strong>3. Pickup</strong>
-            <span>Schedule and payment</span>
-          </div>
+          <!-- <div class="cashygo-progress__item done"><strong>1. Model</strong><span>Brand and series</span></div> -->
+          <div class="cashygo-progress__item done"><strong>1. Accessories</strong><span>Box contents</span></div>
+          <div class="cashygo-progress__item active"><strong>2. Condition</strong><span>Shutter and body</span></div>
+          <div class="cashygo-progress__item"><strong>3. Issue Check</strong><span>Functional checks</span></div>
+          <div class="cashygo-progress__item"><strong>4. Functional</strong><span>Hardware problems</span></div>
         </div>
       </section>
 
@@ -241,50 +236,6 @@
                   <i class="bi bi-tools"></i>
                   <strong>Faulty buttons, screen or ports</strong>
                   <small>Repair value</small>
-                </button>
-              </div>
-            </div>
-          </section>
-
-          <section class="cashygo-section is-hidden" id="lensSection">
-            <div class="cashygo-label">
-              <div class="cashygo-step">3</div>
-              Lens and accessories available?
-            </div>
-            <div class="question-card">
-              <p class="question-help">Select all accessories you have. These can help improve the final resale value.</p>
-              <div class="wide-grid">
-                <button class="cashygo-wide-option" type="button" role="checkbox" aria-checked="false" data-question="accessories" data-value="Original lens available">
-                  <span class="bill-check"><i class="bi bi-check-lg"></i></span>
-                  <i class="bi bi-circle-square"></i>
-                  <div class="wo-text">
-                    <strong>Original lens available</strong>
-                    <span>Kit lens or bundled lens included</span>
-                  </div>
-                </button>
-                <button class="cashygo-wide-option" type="button" role="checkbox" aria-checked="false" data-question="accessories" data-value="Battery and charger available">
-                  <span class="bill-check"><i class="bi bi-check-lg"></i></span>
-                  <i class="bi bi-battery-charging"></i>
-                  <div class="wo-text">
-                    <strong>Battery and charger available</strong>
-                    <span>Important for verification</span>
-                  </div>
-                </button>
-                <button class="cashygo-wide-option" type="button" role="checkbox" aria-checked="false" data-question="accessories" data-value="Original bill or box available">
-                  <span class="bill-check"><i class="bi bi-check-lg"></i></span>
-                  <i class="bi bi-receipt-cutoff"></i>
-                  <div class="wo-text">
-                    <strong>Original bill or box available</strong>
-                    <span>Improves buyer trust</span>
-                  </div>
-                </button>
-                <button class="cashygo-wide-option" type="button" role="checkbox" aria-checked="false" data-question="accessories" data-value="Memory card, strap or bag available">
-                  <span class="bill-check"><i class="bi bi-check-lg"></i></span>
-                  <i class="bi bi-bag-check"></i>
-                  <div class="wo-text">
-                    <strong>Memory card, strap or bag available</strong>
-                    <span>Optional add-ons</span>
-                  </div>
                 </button>
               </div>
               <button class="bill-continue" id="conditionContinue" type="button" disabled>Continue</button>

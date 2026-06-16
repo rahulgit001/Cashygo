@@ -80,9 +80,9 @@
 
     .flow-steps {
       display: grid;
-      grid-template-columns: repeat(3, minmax(120px, 1fr));
+      grid-template-columns: repeat(5, minmax(100px, 1fr));
       gap: 10px;
-      min-width: 390px;
+      min-width: 520px;
     }
 
     .flow-step {
@@ -108,6 +108,14 @@
     .flow-step.active {
       border-color: var(--green);
       background: var(--green-soft);
+    }
+
+    .flow-step.done strong {
+      color: var(--green);
+    }
+
+    .flow-step.done strong::before {
+      content: "\2713\00a0";
     }
 
     .layout {
@@ -815,6 +823,11 @@
         grid-template-columns: repeat(3, 1fr);
       }
 
+      .flow-step:nth-child(4),
+      .flow-step:nth-child(5) {
+        grid-column: span 1;
+      }
+
       .layout {
         grid-template-columns: 1fr;
       }
@@ -1116,8 +1129,9 @@
   <main class="cashygo-main-section">
     <div class="crumbs" aria-label="Breadcrumb">
       <a href="camera_brand.html">Sell camera</a><i class="bi bi-chevron-right"></i>
+      <a href="camera_model.html">Model</a><i class="bi bi-chevron-right"></i>
+      <a href="camera_accessories.html">Accessories</a><i class="bi bi-chevron-right"></i>
       <a href="camera_conation.html">Condition</a><i class="bi bi-chevron-right"></i>
-      <span id="crumbModel">Camera</span><i class="bi bi-chevron-right"></i>
       <span class="active">Issue Check</span>
     </div>
 
@@ -1129,9 +1143,11 @@
       </div>
 
       <div class="flow-steps" aria-label="Steps">
-        <div class="flow-step"><strong>1. Model</strong><span>Brand and series</span></div>
-        <div class="flow-step"><strong>2. Condition</strong><span>Shutter and body</span></div>
-        <div class="flow-step active"><strong>3. Issues</strong><span>Functional checks</span></div>
+        <div class="flow-step done"><strong>1. Model</strong><span>Brand and series</span></div>
+        <div class="flow-step done"><strong>2. Accessories</strong><span>Box contents</span></div>
+        <div class="flow-step done"><strong>3. Condition</strong><span>Shutter and body</span></div>
+        <div class="flow-step active"><strong>4. Issue Check</strong><span>Functional checks</span></div>
+        <div class="flow-step"><strong>5. Functional</strong><span>Hardware problems</span></div>
       </div>
     </section>
 
@@ -1769,6 +1785,20 @@
       const summary = buildOrderSummary();
       sessionStorage.setItem("cashygoCameraIssueSummary", JSON.stringify(summary));
 
+      // Merge issue answers into the shared condition (preserve accessories/shutter/body).
+      let existingCondition = {};
+      try { existingCondition = JSON.parse(sessionStorage.getItem("cashygoCameraCondition") || "{}"); } catch (e) { existingCondition = {}; }
+      sessionStorage.setItem("cashygoCameraCondition", JSON.stringify({
+        ...existingCondition,
+        issues: {
+          answers: { ...state.answers },
+          lens: state.lensIssues,
+          sensor: state.sensorIssues,
+          body: state.bodyIssues,
+          additionalLens: state.additionalLens
+        }
+      }));
+
       sessionStorage.setItem("cashygoSelection", JSON.stringify({
         model: selection.model,
         storage: selection.type,
@@ -1833,7 +1863,6 @@
     state.basePrice = Number(selection.price) || 76000;
     document.getElementById("deviceName").textContent = selection.model;
     document.getElementById("deviceMeta").textContent = selection.brand + " - " + selection.type + " - " + conditionSelection.shutter;
-    document.getElementById("crumbModel").textContent = selection.model;
 
     renderQuestions();
     renderProgress();

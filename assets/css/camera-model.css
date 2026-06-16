@@ -784,7 +784,7 @@ input {
    MODEL SECTION
 ========================== */
 
-.model-section{
+/* .model-section{
     padding:40px 0;
     background:#f7f7f7;
 }
@@ -793,7 +793,7 @@ input {
     width:95%;
     max-width:1550px;
     margin:auto;
-}
+} */
 
 .section-title{
     font-size:32px;
