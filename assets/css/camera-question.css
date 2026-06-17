@@ -540,8 +540,8 @@ img{
     }
     .accessory-check {
     position: absolute;
-    bottom: 84px;
-    right: 1px;
+    bottom: 52px;
+    right: 140px;
     width: 26px;
     height: 26px;
     border-radius: 50%;
@@ -579,9 +579,9 @@ img{
     }
 
     .accessory-icon{
-        width:48px;
-        height:48px;
-        font-size:22px;
+        width:40px;
+        height:40px;
+        font-size:35px;
     }
 
     .camera-icon{
@@ -626,11 +626,11 @@ img{
     }
 
     .accessory-text h4{
-        font-size:14px;
+        font-size:10px;
     }
 
     .accessory-text p{
-        font-size:12px;
+        font-size:10px;
     }
 
     .price{
