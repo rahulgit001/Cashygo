@@ -65,12 +65,15 @@ function calculateTabPrice(selection) {
   if (selection.display === "11 inch") price += 2500;
   if (selection.display === "12 inch+") price += 5500;
   if (selection.storage === "128 GB") price += 2500;
-  if (selection.storage === "256 GB+") price += 6000;
+  if (selection.storage === "256 GB" || selection.storage === "256 GB+") price += 6000;
+  if (selection.storage === "1 TB") price += 9000;
+  if (selection.storage === "2 TB") price += 13000;
   if (selection.connectivity === "WiFi + Cellular") price += 4500;
   if (selection.age === "Under 1 year") price += 3500;
   if (selection.age === "3 years+") price -= 2500;
   if (selection.condition === "Excellent") price += 1800;
   if (selection.condition === "Average") price -= 1800;
+  if (selection.condition === "Below Average") price -= 3800;
   if (selection.condition === "Damaged") price -= 6500;
   if (selection.battery === "Weak backup") price -= 2000;
   if (selection.battery === "Needs replacement") price -= 4500;
@@ -138,9 +141,9 @@ if (tabPage === "tab-variant") {
 }
 
 if (tabPage === "tab-condition") {
-  ["condition", "battery", "accessories"].forEach(setupTabOptions);
+  ["condition", "accessories"].forEach(setupTabOptions);
   const next = document.getElementById("continueBtn");
-  enableTabButtonWhen(["condition", "battery", "accessories"], next);
+  enableTabButtonWhen(["condition", "accessories"], next);
   next.addEventListener("click", () => {
     window.location.href = "tab_device_question.html";
   });

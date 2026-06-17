@@ -1,309 +1,1086 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Sell old tablets on Cashygo. Pick your tablet series, then continue through variant, condition, questions and issue checks for an instant resale estimate."
+    />
+    <meta name="theme-color" content="#0d8c60" />
+    <title>Cashygo - Select Tablet Series</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cashygo - Select Tablet Series</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/tab_pages.css">
-</head>
+    <style>
+      :root {
+        --green: #078f61;
+        --green-dark: #056d4b;
+        --green-soft: #eaf8f2;
+        --ink: #121722;
+        --muted: #667085;
+        --line: #e3ebe7;
+        --bg: #f8faf9;
+        --white: #fff;
+        --shadow: 0 18px 42px rgba(13, 72, 54, 0.12);
+      }
 
-<body class="tab-page">
-  <nav class="nav" role="navigation" aria-label="Main navigation">
-    <div class="nav-top">
-      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
-        <i class="bi bi-list"></i>
-      </button>
-      <a href="/" class="nav-logo" aria-label="Cashygo – Go to homepage">
-        <img src="assets/images/project-logo/logo-new.svg" alt="Cashygo logo" width="120" height="40">
-      </a>
-      <div class="nav-search" role="search">
-        <div class="nav-city" id="cityPicker" tabindex="0" aria-haspopup="listbox" aria-label="Select city">
-          <i class="bi bi-geo-alt-fill"></i>
-          <span id="cityLabel">Bangalore</span>
-          <i class="bi bi-chevron-down"></i>
-          <ul class="city-drop" id="cityDrop" role="listbox" aria-label="Select your city">
-            <li role="option" data-city="Delhi">Delhi NCR</li>
-            <li role="option" data-city="Bangalore">Bangalore</li>
-            <li role="option" data-city="Mumbai">Mumbai</li>
-            <li role="option" data-city="Pune">Pune</li>
-            <li role="option" data-city="Hyderabad">Hyderabad</li>
-          </ul>
-        </div>
-        <label for="mainSearch" class="sr-only">Search devices</label>
-        <input type="search" id="mainSearch" name="search" placeholder="Search devices, brands…" autocomplete="off">
-        <div class="search-icon" aria-hidden="true"><i class="bi bi-search"></i></div>
-      </div>
-      <button class="nav-login" id="openLoginBtn" aria-label="Sign in to your account">
-        <i class="bi bi-person-circle"></i>
-        <span>Sign in</span>
-      </button>
-    </div>
+      body {
+        background: linear-gradient(180deg, #fff 0, var(--bg) 320px, var(--bg) 100%);
+        color: var(--ink);
+      }
 
-    <div class="nav-menu" id="navMenu">
-      <div class="nav-menu-inner">
-        <div class="dropdown" id="dropMobile">
-          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Mobile ⌵</button>
-          <ul class="dropdown-menu">
-            <li><a href="Apple_model.html">Apple iPhone</a></li>
-            <li><a href="samsung.html">Samsung Galaxy</a></li>
-            <li><a href="oneplus.html">OnePlus</a></li>
-            <li><a href="google.html">Google Pixel</a></li>
-            <li><a href="xiaomi.html">Xiaomi</a></li>
-            <li><a href="vivo.html">Vivo</a></li>
-          </ul>
-        </div>
-        <div class="dropdown" id="dropTablet">
-          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Tablet ⌵</button>
-          <ul class="dropdown-menu">
-            <li><a href="tab_model.html?brand=Apple">Apple Tab</a></li>
-            <li><a href="tab_model.html?brand=Samsung">Samsung Tab</a></li>
-            <li><a href="tab_model.html?brand=OnePlus">OnePlus Tab</a></li>
-            <li><a href="tab_model.html?brand=Xiaomi">Xiaomi Tab</a></li>
-            <li><a href="tab_model.html?brand=Realme">Realme Tab</a></li>
-          </ul>
-        </div>
-        <div class="dropdown" id="dropLaptop">
-          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Laptop ⌵</button>
-          <ul class="dropdown-menu">
-            <li><a href="dell.html">Dell</a></li>
-            <li><a href="hp.html">HP</a></li>
-            <li><a href="lenovo.html">Lenovo</a></li>
-            <li><a href="asus.html">Asus</a></li>
-            <li><a href="acer.html">Acer</a></li>
-          </ul>
-        </div>
-        <div class="dropdown" id="dropMac">
-          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Mac ⌵</button>
-          <ul class="dropdown-menu">
-            <li><a href="macbook.html">MacBook</a></li>
-            <li><a href="imac.html">iMac</a></li>
-            <li><a href="mac-mini.html">Mac Mini</a></li>
-            <li><a href="macbook-pro.html">MacBook Pro</a></li>
-          </ul>
-        </div>
-        <a href="#" class="menu-link">Corporate Deals</a>
-        <a href="calculator.html" class="menu-link">Price Calculator</a>
-        <a href="blogs.html" class="menu-link">Blog & Tips</a>
-        <a href="contact.html" class="menu-link">Contact</a>
-        <a href="Faq.html" class="menu-link">FAQ's</a>
-        <a href="costumer.html" class="menu-link">Customer Reviews</a>
-      </div>
-    </div>
-  </nav>
+      button,
+      input {
+        font-family: inherit;
+      }
 
-  <main>
-    <section class="tab-hero" aria-label="Tablet series hero">
-      <div>
-        <div class="tab-hero__badge"><i class="bi bi-grid-3x3-gap-fill"></i> Tablet series</div>
-        <h1>Select Your Tablet Series</h1>
-        <p>Choose the closest tablet series, then continue through variant, condition, questions, and issue checks for an instant estimate.</p>
-        <div class="tab-hero__actions">
-          <a href="tab_brand.html" class="tab-btn is-soft"><i class="bi bi-arrow-left"></i> Change brand</a>
+      .nav,
+      .footer {
+        --text: #0f172a;
+        --border: #e2e8f0;
+        --white: #fff;
+      }
+
+      /* ── tab-main-section: wraps the page body ── */
+      .tab-main-section {
+        width: min(1240px, calc(100% - 48px));
+        margin: 0 auto;
+      }
+
+      .tab-hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 430px);
+        gap: 36px;
+        align-items: center;
+        padding: 34px 0 26px;
+      }
+
+      .tab-hero__badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 13px;
+        border: 1px solid #c7ead8;
+        border-radius: 999px;
+        background: #e8f7ef;
+        color: var(--green);
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .tab-hero h1 {
+        margin: 14px 0 10px;
+        font-size: 30px;
+        line-height: 1.08;
+        font-weight: 800;
+      }
+
+      .tab-hero h1 span {
+        color: var(--green);
+      }
+
+      .tab-hero p {
+        max-width: 640px;
+        margin: 0;
+        color: #4d5562;
+        font-size: 15px;
+        line-height: 1.65;
+        font-weight: 500;
+      }
+
+      .tab-hero__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 14px;
+      }
+
+      .tab-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-height: 40px;
+        padding: 6px 16px;
+        border-radius: 12px;
+        border: 1px solid var(--green);
+        background: var(--green);
+        color: #fff;
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      .tab-btn.is-soft {
+        background: #fff;
+        color: var(--green);
+      }
+
+      .tab-hero__media {
+        display: grid;
+        place-items: center;
+        min-height: 300px;
+      }
+
+      .tab-hero__media img {
+        width: 100%;
+        max-height: 320px;
+        object-fit: contain;
+      }
+
+      .tab-section {
+        padding: 8px 0 48px;
+      }
+
+      .tab-section__head {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        align-items: end;
+        margin-bottom: 16px;
+      }
+
+      .tab-section__head h2 {
+        margin: 0 0 6px;
+        font-size: 24px;
+        font-weight: 800;
+      }
+
+      .tab-section__head p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .tab-search {
+        position: relative;
+        width: min(360px, 100%);
+      }
+
+      .tab-search input {
+        width: 100%;
+        min-height: 44px;
+        padding: 0 44px 0 14px;
+        border: 1px solid #d7e5df;
+        border-radius: 12px;
+        background: #fff;
+        font: inherit;
+      }
+
+      .tab-search i {
+        position: absolute;
+        top: 50%;
+        right: 14px;
+        transform: translateY(-50%);
+        color: var(--green);
+      }
+
+      .tab-filter-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 18px;
+      }
+
+      .tab-filter {
+        min-height: 38px;
+        padding: 8px 16px;
+        border: 1px solid #d7e5df;
+        border-radius: 999px;
+        background: #fff;
+        color: var(--ink);
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .tab-filter.is-active {
+        border-color: var(--green);
+        background: #e8f7ef;
+        color: var(--green);
+      }
+
+      /* ── Series tabs (level 2 picker, scoped to the active brand) ── */
+      .tab-series-wrap {
+        margin-bottom: 18px;
+      }
+
+      .tab-series-heading {
+        display: block;
+        margin-bottom: 10px;
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      .tab-series-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .tab-series {
+        min-height: 38px;
+        padding: 8px 18px;
+        border: 1px solid transparent;
+        border-radius: 12px;
+        background: #eef2f0;
+        color: var(--ink);
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .tab-series.is-active {
+        background: var(--green);
+        color: #fff;
+      }
+
+      /* ── UNIFORM CARD GRID ──
+         Equal column tracks + a FIXED card height guarantee every card is the
+         same width and height regardless of title/description text length. */
+      .tab-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+        gap: 16px;
+        align-items: stretch;
+      }
+
+      .tab-card {
+        display: flex;
+        flex-direction: column;
+        height: 215px;
+        padding: 14px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: #fff;
+        color: var(--ink);
+        text-decoration: none;
+        box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+        transition: transform 0.18s ease, box-shadow 0.18s ease,
+          border-color 0.18s ease;
+      }
+
+      .tab-card:hover {
+        transform: translateY(-3px);
+        border-color: var(--green);
+        box-shadow: 0 16px 34px rgba(7, 143, 97, 0.13);
+      }
+
+      .tab-card.selected {
+        border-color: var(--green);
+        box-shadow: 0 16px 34px rgba(7, 143, 97, 0.18);
+      }
+
+      /* Image area: fixed height so the media never pushes the text around. */
+      .tab-card__image {
+        flex: 0 0 150px;
+        display: grid;
+        place-items: center;
+        height: 150px;
+        border-radius: 12px;
+        overflow: hidden;
+      }
+
+      .tab-card__image img {
+        max-width: 100%;
+        max-height: 150px;
+        object-fit: contain;
+      }
+
+      .tab-card__body {
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 6px;
+        padding-top: 10px;
+      }
+
+      /* Two-line clamp keeps every title block the same height. */
+      .tab-card h3 {
+        margin: 0;
+        min-height: 36px;
+        font-size: 15px;
+        font-weight: 800;
+        line-height: 1.2;
+        text-align: center;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .tab-empty {
+        grid-column: 1 / -1;
+        padding: 40px 0;
+        color: var(--muted);
+        text-align: center;
+        font-weight: 600;
+      }
+
+      .section {
+        max-width: 800px;
+        margin: 30px auto 0;
+        padding: 0 24px 60px;
+      }
+
+      @media (max-width: 1100px) {
+        .tab-main-section {
+          width: calc(100% - 40px);
+        }
+
+        .tab-hero {
+          grid-template-columns: 1fr;
+          gap: 18px;
+          padding: 24px 0 18px;
+        }
+
+        .tab-hero__media {
+          min-height: 0;
+          order: -1;
+        }
+
+        .tab-hero__media img {
+          max-height: 220px;
+        }
+
+        .tab-grid {
+          grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+        }
+      }
+
+      @media (max-width: 767px) {
+        .tab-main-section {
+          width: 100%;
+          padding: 0 16px;
+        }
+
+        .tab-hero h1 {
+          font-size: 24px;
+        }
+
+        .tab-section__head {
+          display: block;
+        }
+
+        .tab-search {
+          margin-top: 12px;
+          width: 100%;
+        }
+
+        .tab-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 12px;
+        }
+
+        .tab-card {
+          height: 190px;
+          padding: 10px;
+        }
+
+        .tab-card__image {
+          flex-basis: 120px;
+          height: 120px;
+        }
+
+        .tab-card__image img {
+          max-height: 120px;
+        }
+      }
+
+      @media (max-width: 400px) {
+        .tab-main-section {
+          padding: 0 12px;
+        }
+
+        .tab-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 10px;
+        }
+
+        .tab-card {
+          height: 180px;
+        }
+
+        .tab-card h3 {
+          font-size: 13px;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="tab-page">
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+      <div class="nav-top">
+        <button
+          class="nav-hamburger"
+          id="hamburger"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+        >
+          <i class="bi bi-list"></i>
+        </button>
+        <a href="/" class="nav-logo" aria-label="Cashygo - Go to homepage">
+          <img
+            src="assets/images/project-logo/logo-new.svg"
+            alt="Cashygo logo"
+            width="120"
+            height="40"
+          />
+        </a>
+        <div class="nav-search" role="search">
+          <div
+            class="nav-city"
+            id="cityPicker"
+            tabindex="0"
+            aria-haspopup="listbox"
+            aria-label="Select city"
+          >
+            <i class="bi bi-geo-alt-fill"></i>
+            <span id="cityLabel">Bangalore</span>
+            <i class="bi bi-chevron-down"></i>
+            <ul
+              class="city-drop"
+              id="cityDrop"
+              role="listbox"
+              aria-label="Select your city"
+            >
+              <li role="option" data-city="Delhi">Delhi NCR</li>
+              <li role="option" data-city="Bangalore">Bangalore</li>
+              <li role="option" data-city="Mumbai">Mumbai</li>
+              <li role="option" data-city="Pune">Pune</li>
+              <li role="option" data-city="Hyderabad">Hyderabad</li>
+            </ul>
+          </div>
+          <label for="mainSearch" class="sr-only">Search devices</label>
+          <input
+            type="search"
+            id="mainSearch"
+            name="search"
+            placeholder="Search devices, brands..."
+            autocomplete="off"
+          />
+          <div class="search-icon" aria-hidden="true">
+            <i class="bi bi-search"></i>
+          </div>
+        </div>
+        <button
+          class="nav-login"
+          id="openLoginBtn"
+          aria-label="Sign in to your account"
+        >
+          <i class="bi bi-person-circle"></i>
+          <span>Sign in</span>
+        </button>
+      </div>
+
+      <div class="nav-menu" id="navMenu">
+        <div class="nav-menu-inner">
+          <div class="dropdown" id="dropMobile">
+            <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">
+              Sell Mobile &#8964;
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href="Apple_model.html">Apple iPhone</a></li>
+              <li><a href="samsung.html">Samsung Galaxy</a></li>
+              <li><a href="oneplus.html">OnePlus</a></li>
+              <li><a href="google.html">Google Pixel</a></li>
+              <li><a href="xiaomi.html">Xiaomi</a></li>
+              <li><a href="vivo.html">Vivo</a></li>
+            </ul>
+          </div>
+          <div class="dropdown" id="dropTablet">
+            <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">
+              Sell Tablet &#8964;
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href="tab_model.html?brand=Apple">Apple Tab</a></li>
+              <li><a href="tab_model.html?brand=Samsung">Samsung Tab</a></li>
+              <li><a href="tab_model.html?brand=OnePlus">OnePlus Tab</a></li>
+              <li><a href="tab_model.html?brand=Xiaomi">Xiaomi Tab</a></li>
+              <li><a href="tab_model.html?brand=Realme">Realme Tab</a></li>
+            </ul>
+          </div>
+          <div class="dropdown" id="dropLaptop">
+            <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">
+              Sell Laptop &#8964;
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href="dell.html">Dell</a></li>
+              <li><a href="hp.html">HP</a></li>
+              <li><a href="lenovo.html">Lenovo</a></li>
+              <li><a href="asus.html">Asus</a></li>
+              <li><a href="acer.html">Acer</a></li>
+            </ul>
+          </div>
+          <div class="dropdown" id="dropMac">
+            <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">
+              Sell Mac &#8964;
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href="macbook.html">MacBook</a></li>
+              <li><a href="imac.html">iMac</a></li>
+              <li><a href="mac-mini.html">Mac Mini</a></li>
+              <li><a href="macbook-pro.html">MacBook Pro</a></li>
+            </ul>
+          </div>
+          <a href="#" class="menu-link">Corporate Deals</a>
+          <a href="calculator.html" class="menu-link">Price Calculator</a>
+          <a href="blogs.html" class="menu-link">Blog & Tips</a>
+          <a href="contact.html" class="menu-link">Contact</a>
+          <a href="Faq.html" class="menu-link">FAQ's</a>
+          <a href="costumer.html" class="menu-link">Customer Reviews</a>
         </div>
       </div>
-      <div class="tab-hero__media" aria-hidden="true">
-        <img src="assets/images/home-page-img/brand-img/iPad.webp" alt="">
+    </nav>
+
+    <main class="tab-main-section">
+      <section class="tab-hero" aria-label="Tablet series hero">
+        <div>
+          <div class="tab-hero__badge">
+            <i class="bi bi-grid-3x3-gap-fill"></i> Tablet series
+          </div>
+          <h1>Select Your <span>Tablet</span> Series</h1>
+          <p>
+            Choose the closest tablet series, then continue through variant,
+            condition, questions, and issue checks for an instant estimate.
+          </p>
+          <div class="tab-hero__actions">
+            <a href="tab_brand.html" class="tab-btn is-soft"
+              ><i class="bi bi-arrow-left"></i> Change brand</a
+            >
+          </div>
+        </div>
+        <div class="tab-hero__media" aria-hidden="true">
+          <img src="assets/images/home-page-img/brand-img/iPad.webp" alt="" />
+        </div>
+      </section>
+
+      <section class="tab-section" aria-label="Tablet series">
+        <div class="tab-section__head">
+          <div>
+            <h2>Popular Tablet Series</h2>
+            <p>Filter by brand or search your tablet series.</p>
+          </div>
+          <div class="tab-search">
+            <input type="search" id="tabModelSearch" placeholder="Search series..." />
+            <i class="bi bi-search"></i>
+          </div>
+        </div>
+
+        <div class="tab-filter-row" aria-label="Filter tablet series">
+          <button class="tab-filter is-active" data-filter="all">All</button>
+          <button class="tab-filter" data-filter="apple">Apple</button>
+          <button class="tab-filter" data-filter="samsung">Samsung</button>
+          <button class="tab-filter" data-filter="oneplus">OnePlus</button>
+          <button class="tab-filter" data-filter="xiaomi">Xiaomi</button>
+          <button class="tab-filter" data-filter="realme">Realme</button>
+          <button class="tab-filter" data-filter="lenovo">Lenovo</button>
+        </div>
+
+        <div class="tab-series-wrap" id="tabSeriesWrap">
+          <span class="tab-series-heading">Select Series</span>
+          <div
+            class="tab-series-row"
+            id="tabSeriesRow"
+            aria-label="Filter by tablet series"
+          ></div>
+        </div>
+
+        <div class="tab-grid" id="tabModelGrid"></div>
+      </section>
+    </main>
+
+    <section class="section" aria-label="Frequently asked questions">
+      <div class="faq-header">
+        <h2>Frequently <span>Asked</span> Questions</h2>
+        <p>Everything you need to know before selling your device</p>
       </div>
+      <details class="faq-item">
+        <summary>How do I sell my device? <span class="faq-icon">+</span></summary>
+        <div class="faq-answer">
+          Select your device, check the price, schedule pickup, and get paid
+          instantly after verification.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>How is the price calculated? <span class="faq-icon">+</span></summary>
+        <div class="faq-answer">
+          Price depends on device condition, market demand, and current resale
+          value.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>Is pickup free? <span class="faq-icon">+</span></summary>
+        <div class="faq-answer">
+          Yes, doorstep pickup is completely free with no hidden charges.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>When will I get payment? <span class="faq-icon">+</span></summary>
+        <div class="faq-answer">
+          Payment is processed instantly after device verification during pickup.
+        </div>
+      </details>
     </section>
 
-    <section class="tab-section" aria-label="Tablet series">
-      <div class="tab-section__head">
-        <div>
-          <h2>Popular Tablet Series</h2>
-          <p>Filter by brand or search your tablet series.</p>
-        </div>
-        <div class="tab-search">
-          <input type="search" id="tabModelSearch" placeholder="Search series...">
-          <i class="bi bi-search"></i>
-        </div>
-      </div>
-
-      <div class="tab-filter-row" aria-label="Filter tablet series">
-        <button class="tab-filter is-active" data-filter="all">All</button>
-        <button class="tab-filter" data-filter="apple">Apple</button>
-        <button class="tab-filter" data-filter="samsung">Samsung</button>
-        <button class="tab-filter" data-filter="oneplus">OnePlus</button>
-        <button class="tab-filter" data-filter="xiaomi">Xiaomi</button>
-        <button class="tab-filter" data-filter="realme">Realme</button>
-        <button class="tab-filter" data-filter="lenovo">Lenovo</button>
-      </div>
-
-      <div class="tab-grid" id="tabModelGrid">
-        <a href="tab_verient.html?model=Apple%20iPad%20Series" class="tab-card" data-brand="apple">
-          <div class="tab-card__image"><img src="assets/images/home-page-img/brand-img/iPad.webp" alt="Apple iPad Series"></div>
-          <h3>Apple iPad Series</h3>
-          <p>iPad, Air, mini, and Pro models.</p>
-          <div class="tab-card__price">Up to ₹65,000</div>
-        </a>
-        <a href="tab_verient.html?model=Samsung%20Galaxy%20Tab%20Series" class="tab-card" data-brand="samsung">
-          <div class="tab-card__image"><img src="assets/images/Brand_img/sumsung.avif" alt="Samsung Galaxy Tab Series"></div>
-          <h3>Samsung Galaxy Tab Series</h3>
-          <p>Galaxy Tab A, S, FE, and Ultra.</p>
-          <div class="tab-card__price">Up to ₹48,000</div>
-        </a>
-        <a href="tab_verient.html?model=OnePlus%20Pad%20Series" class="tab-card" data-brand="oneplus">
-          <div class="tab-card__image"><img src="assets/images/Brand_img/oneplus.avif" alt="OnePlus Pad Series"></div>
-          <h3>OnePlus Pad Series</h3>
-          <p>OnePlus Pad and Pad Go.</p>
-          <div class="tab-card__price">Up to ₹32,000</div>
-        </a>
-        <a href="tab_verient.html?model=Xiaomi%20Pad%20Series" class="tab-card" data-brand="xiaomi">
-          <div class="tab-card__image"><img src="assets/images/Brand_img/Mi.avif" alt="Xiaomi Pad Series"></div>
-          <h3>Xiaomi Pad Series</h3>
-          <p>Xiaomi Pad and Mi Pad models.</p>
-          <div class="tab-card__price">Up to ₹28,000</div>
-        </a>
-        <a href="tab_verient.html?model=Realme%20Pad%20Series" class="tab-card" data-brand="realme">
-          <div class="tab-card__image"><img src="assets/images/Brand_img/Realme.avif" alt="Realme Pad Series"></div>
-          <h3>Realme Pad Series</h3>
-          <p>Realme Pad, Mini, and LTE.</p>
-          <div class="tab-card__price">Up to ₹18,000</div>
-        </a>
-        <a href="tab_verient.html?model=Lenovo%20Tab%20Series" class="tab-card" data-brand="lenovo">
-          <div class="tab-card__image"><img src="assets/images/Brand_img/Lenavo.avif" alt="Lenovo Tab Series"></div>
-          <h3>Lenovo Tab Series</h3>
-          <p>Lenovo Tab M, P, and Yoga Tab.</p>
-          <div class="tab-card__price">Up to ₹22,000</div>
-        </a>
-      </div>
-    </section>
-  </main>
-
-  <section class="section" style="max-width:800px" aria-label="Frequently asked questions">
-    <div class="faq-header">
-      <h2>Frequently <span>Asked</span> Questions</h2>
-      <p>Everything you need to know before selling your device</p>
-    </div>
-    <details class="faq-item">
-      <summary>How do I sell my device? <span class="faq-icon">+</span></summary>
-      <div class="faq-answer">Select your device, check the price, schedule pickup, and get paid instantly after
-        verification.</div>
-    </details>
-    <details class="faq-item">
-      <summary>How is the price calculated? <span class="faq-icon">+</span></summary>
-      <div class="faq-answer">Price depends on device condition, market demand, and current resale value.</div>
-    </details>
-    <details class="faq-item">
-      <summary>Is pickup free? <span class="faq-icon">+</span></summary>
-      <div class="faq-answer">Yes, doorstep pickup is completely free with no hidden charges.</div>
-    </details>
-    <details class="faq-item">
-      <summary>When will I get payment? <span class="faq-icon">+</span></summary>
-      <div class="faq-answer">Payment is processed instantly after device verification during pickup.</div>
-    </details>
-  </section>
-   <footer class="footer" role="contentinfo">
-    <div class="footer-inner">
-      <div class="footer-grid">
-        <div>
-          <div class="footer-logo">
-            <img src="assets/images/project-logo/logo-new.svg" alt="Cashygo" loading="lazy">
+    <footer class="footer" role="contentinfo">
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <div>
+            <div class="footer-logo">
+              <img
+                src="assets/images/project-logo/logo-new.svg"
+                alt="Cashygo"
+                loading="lazy"
+              />
+            </div>
+            <p class="footer-desc">
+              India's most trusted device buyback platform. Instant pricing,
+              free doorstep pickup, and instant payment.
+            </p>
+            <div class="social-links" aria-label="Follow us on social media">
+              <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+              <a
+                href="https://www.facebook.com/profile.php?id=61582722784700"
+                aria-label="Facebook"
+                ><i class="bi bi-facebook"></i
+              ></a>
+              <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+              <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+            </div>
           </div>
-          <p class="footer-desc">India's most trusted device buyback platform. Instant pricing, free doorstep pickup,
-            and instant payment.</p>
-          <div class="social-links" aria-label="Follow us on social media">
-            <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-            <a href="https://www.facebook.com/profile.php?id=61582722784700" aria-label="Facebook"><i
-                class="bi bi-facebook"></i></a>
-            <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
-            <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+          <div class="footer-col">
+            <h4>SELL</h4>
+            <ul>
+              <li><a href="#">Sell Mobile</a></li>
+              <li><a href="#">Sell Laptop</a></li>
+              <li><a href="#">Sell Tablet</a></li>
+              <li><a href="#">Sell MacBook</a></li>
+              <li><a href="#">Sell Smartwatch</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>COMPANY</h4>
+            <ul>
+              <li><a href="#">About Cashygo</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">Partner With Us</a></li>
+              <li><a href="#">Press & Media</a></li>
+              <li><a href="#">Blog & Tips</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>SUPPORT</h4>
+            <ul>
+              <li><a href="#">Help Center</a></li>
+              <li><a href="#">Contact Support</a></li>
+              <li><a href="#">Return Policy</a></li>
+              <li><a href="#">Privacy & Security</a></li>
+              <li><a href="#">Terms of Service</a></li>
+            </ul>
+          </div>
+          <div class="footer-col footer-contact">
+            <h4>CONTACT</h4>
+            <address>
+              <p>
+                <i class="bi bi-envelope"></i
+                ><a href="mailto:hr@cashygo.com">hr@cashygo.com</a>
+              </p>
+              <p>
+                <i class="bi bi-telephone"></i
+                ><a href="tel:+917766071191">+91 7766071191</a>
+              </p>
+              <p><i class="bi bi-geo-alt"></i>Bangalore, Karnataka, India</p>
+            </address>
           </div>
         </div>
-        <div class="footer-col">
-          <h4>SELL</h4>
-          <ul>
-            <li><a href="#">Sell Mobile</a></li>
-            <li><a href="#">Sell Laptop</a></li>
-            <li><a href="#">Sell Tablet</a></li>
-            <li><a href="#">Sell MacBook</a></li>
-            <li><a href="#">Sell Smartwatch</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>COMPANY</h4>
-          <ul>
-            <li><a href="#">About Cashygo</a></li>
-            <li><a href="#">Careers</a></li>
-            <li><a href="#">Partner With Us</a></li>
-            <li><a href="#">Press & Media</a></li>
-            <li><a href="#">Blog & Tips</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>SUPPORT</h4>
-          <ul>
-            <li><a href="#">Help Center</a></li>
-            <li><a href="#">Contact Support</a></li>
-            <li><a href="#">Return Policy</a></li>
-            <li><a href="#">Privacy & Security</a></li>
-            <li><a href="#">Terms of Service</a></li>
-          </ul>
-        </div>
-        <div class="footer-col footer-contact">
-          <h4>CONTACT</h4>
-          <address>
-            <p><i class="bi bi-envelope"></i><a href="mailto:hr@cashygo.com">hr@cashygo.com</a></p>
-            <p><i class="bi bi-telephone"></i><a href="tel:+917766071191">+91 7766071191</a></p>
-            <p><i class="bi bi-geo-alt"></i>Bangalore, Karnataka, India</p>
-          </address>
+        <div class="footer-bottom">
+          <div class="footer-links-row">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Refund Policy</a>
+            <a href="#">Sitemap</a>
+          </div>
+          <div class="payment-row" aria-label="Secure payment methods">
+            <span>Secure payments:</span>
+            <i class="bi bi-credit-card" title="Credit/Debit Card"></i>
+            <i class="bi bi-bank" title="Bank Transfer"></i>
+            <i class="bi bi-wallet2" title="Digital Wallet"></i>
+          </div>
+          <p>&copy; 2026 Cashygo - Resale Redefined</p>
         </div>
       </div>
-      <div class="footer-bottom">
-        <div class="footer-links-row">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms & Conditions</a>
-          <a href="#">Refund Policy</a>
-          <a href="#">Sitemap</a>
-        </div>
-        <div class="payment-row" aria-label="Secure payment methods">
-          <span>Secure payments:</span>
-          <i class="bi bi-credit-card" title="Credit/Debit Card"></i>
-          <i class="bi bi-bank" title="Bank Transfer"></i>
-          <i class="bi bi-wallet2" title="Digital Wallet"></i>
-        </div>
-        <p>© 2026 Cashygo — Resale Redefined</p>
-      </div>
-    </div>
-  </footer>
-  <script>
-    const modelSearch = document.getElementById("tabModelSearch");
-    const modelCards = document.querySelectorAll("#tabModelGrid .tab-card");
-    const filterBtns = document.querySelectorAll(".tab-filter");
-    const selectedBrand = new URLSearchParams(window.location.search).get("brand");
-    let activeFilter = selectedBrand ? selectedBrand.toLowerCase() : "all";
+    </footer>
 
-    function applyTabFilters() {
-      const value = modelSearch.value.trim().toLowerCase();
-      modelCards.forEach(card => {
-        const matchesFilter = activeFilter === "all" || card.dataset.brand === activeFilter;
-        const matchesSearch = card.textContent.toLowerCase().includes(value);
-        card.style.display = matchesFilter && matchesSearch ? "grid" : "none";
+    <script>
+      /* ── Shared nav chrome ── */
+      const cityPicker = document.getElementById("cityPicker");
+      const cityLabel = document.getElementById("cityLabel");
+      const hamburger = document.getElementById("hamburger");
+      const navMenu = document.getElementById("navMenu");
+
+      if (cityPicker && cityLabel) {
+        cityPicker.addEventListener("click", (event) => {
+          event.stopPropagation();
+          cityPicker.classList.toggle("open");
+        });
+        cityPicker.querySelectorAll("li").forEach((item) => {
+          item.addEventListener("click", (event) => {
+            event.stopPropagation();
+            cityLabel.textContent = item.dataset.city;
+            cityPicker.classList.remove("open");
+          });
+        });
+      }
+
+      if (hamburger && navMenu) {
+        hamburger.addEventListener("click", () => {
+          const open = navMenu.classList.toggle("open");
+          hamburger.setAttribute("aria-expanded", open);
+        });
+      }
+
+      document.querySelectorAll(".dropdown").forEach((dropdown) => {
+        const button = dropdown.querySelector(".dropdown-btn");
+        if (!button) return;
+        button.addEventListener("click", (event) => {
+          event.stopPropagation();
+          const wasOpen = dropdown.classList.contains("open");
+          document
+            .querySelectorAll(".dropdown")
+            .forEach((item) => item.classList.remove("open"));
+          if (!wasOpen) dropdown.classList.add("open");
+          button.setAttribute("aria-expanded", String(!wasOpen));
+        });
       });
-    }
 
-    modelSearch.addEventListener("input", applyTabFilters);
-    filterBtns.forEach(btn => {
-      btn.addEventListener("click", () => {
-        filterBtns.forEach(item => item.classList.remove("is-active"));
-        btn.classList.add("is-active");
-        activeFilter = btn.dataset.filter;
-        applyTabFilters();
+      document.addEventListener("click", (event) => {
+        if (cityPicker && !cityPicker.contains(event.target))
+          cityPicker.classList.remove("open");
+        document.querySelectorAll(".dropdown").forEach((dropdown) => {
+          dropdown.classList.remove("open");
+          const button = dropdown.querySelector(".dropdown-btn");
+          if (button) button.setAttribute("aria-expanded", "false");
+        });
       });
-    });
 
-    filterBtns.forEach(btn => {
-      btn.classList.toggle("is-active", btn.dataset.filter === activeFilter);
-    });
-    if (!document.querySelector(".tab-filter.is-active")) {
-      document.querySelector('[data-filter="all"]').classList.add("is-active");
-      activeFilter = "all";
-    }
-    applyTabFilters();
-  </script>
-</body>
+      /* ── Tablet catalogue ──
+         Two-level structure: each brand owns a set of series, and each series
+         lists its base models. Connectivity variants (Wi-Fi Only / Wi-Fi +
+         Cellular) are generated per model so every card is one buyable SKU.
+         basePrice lives here (internal) — it is never shown on the card. */
+      const BRANDS = {
+        Apple: {
+          type: "Apple Tablet",
+          image: "assets/images/home-page-img/brand-img/iPad.webp",
+          series: {
+            "iPad Air Series": [
+              ["iPad Air 1st Gen", 12000],
+              ["iPad Air 2nd Gen", 14000],
+              ["iPad Air 3rd Gen", 18000],
+              ["iPad Air 4th Gen", 24000],
+              ["iPad Air 5th Gen", 32000],
+            ],
+            "iPad Mini Series": [
+              ["iPad Mini 1st Gen", 8000],
+              ["iPad Mini 2nd Gen", 10000],
+              ["iPad Mini 3rd Gen", 12000],
+              ["iPad Mini 4th Gen", 15000],
+              ["iPad Mini 5th Gen", 20000],
+              ["iPad Mini 6th Gen", 30000],
+            ],
+            "iPad Pro Series": [
+              ["iPad Pro 9.7-inch", 16000],
+              ["iPad Pro 10.5-inch", 20000],
+              ["iPad Pro 11-inch 1st Gen", 30000],
+              ["iPad Pro 11-inch 2nd Gen", 38000],
+              ["iPad Pro 12.9-inch", 42000],
+            ],
+            "iPad Series": [
+              ["iPad 5th Gen", 10000],
+              ["iPad 6th Gen", 12000],
+              ["iPad 7th Gen", 15000],
+              ["iPad 8th Gen", 18000],
+              ["iPad 9th Gen", 22000],
+              ["iPad 10th Gen", 28000],
+            ],
+          },
+        },
+        Samsung: {
+          type: "Samsung Tablet",
+          image: "assets/images/Brand_img/sumsung.avif",
+          series: {
+            "Galaxy Tab A Series": [
+              ["Galaxy Tab A7", 9000],
+              ["Galaxy Tab A8", 11000],
+              ["Galaxy Tab A9", 13000],
+              ["Galaxy Tab A9+", 16000],
+            ],
+            "Galaxy Tab S Series": [
+              ["Galaxy Tab S6", 18000],
+              ["Galaxy Tab S7", 24000],
+              ["Galaxy Tab S8", 30000],
+              ["Galaxy Tab S9", 38000],
+            ],
+            "Galaxy Tab FE Series": [
+              ["Galaxy Tab S7 FE", 20000],
+              ["Galaxy Tab S9 FE", 26000],
+              ["Galaxy Tab S9 FE+", 32000],
+            ],
+            "Galaxy Tab Ultra Series": [
+              ["Galaxy Tab S8 Ultra", 42000],
+              ["Galaxy Tab S9 Ultra", 52000],
+            ],
+          },
+        },
+        OnePlus: {
+          type: "OnePlus Tablet",
+          image: "assets/images/Brand_img/oneplus.avif",
+          series: {
+            "OnePlus Pad Series": [
+              ["OnePlus Pad", 22000],
+              ["OnePlus Pad 2", 32000],
+              ["OnePlus Pad Pro", 40000],
+            ],
+            "OnePlus Pad Go Series": [["OnePlus Pad Go", 16000]],
+          },
+        },
+        Xiaomi: {
+          type: "Xiaomi Tablet",
+          image: "assets/images/Brand_img/Mi.avif",
+          series: {
+            "Xiaomi Pad Series": [
+              ["Xiaomi Pad 5", 16000],
+              ["Xiaomi Pad 6", 22000],
+              ["Xiaomi Pad 6 Pro", 28000],
+              ["Xiaomi Pad 7", 30000],
+            ],
+            "Mi Pad Series": [
+              ["Mi Pad 4", 8000],
+              ["Mi Pad 5", 14000],
+            ],
+            "Redmi Pad Series": [
+              ["Redmi Pad SE", 10000],
+              ["Redmi Pad", 12000],
+              ["Redmi Pad Pro", 18000],
+            ],
+          },
+        },
+        Realme: {
+          type: "Realme Tablet",
+          image: "assets/images/Brand_img/Realme.avif",
+          series: {
+            "Realme Pad Series": [["Realme Pad", 12000]],
+            "Realme Pad Mini Series": [["Realme Pad Mini", 8000]],
+            "Realme Pad X Series": [["Realme Pad X", 16000]],
+            "Realme Pad 2 Series": [["Realme Pad 2", 15000]],
+          },
+        },
+        Lenovo: {
+          type: "Lenovo Tablet",
+          image: "assets/images/Brand_img/Lenavo.avif",
+          series: {
+            "Lenovo Tab M Series": [
+              ["Lenovo Tab M8", 7000],
+              ["Lenovo Tab M9", 9000],
+              ["Lenovo Tab M10", 12000],
+              ["Lenovo Tab M11", 15000],
+            ],
+            "Lenovo Tab P Series": [
+              ["Lenovo Tab P11", 16000],
+              ["Lenovo Tab P11 Pro", 22000],
+              ["Lenovo Tab P12", 26000],
+            ],
+            "Lenovo Yoga Tab Series": [
+              ["Lenovo Yoga Tab 11", 18000],
+              ["Lenovo Yoga Tab 13", 24000],
+            ],
+          },
+        },
+      };
 
+      // Flatten the catalogue into one card-per-SKU (×2 connectivity variants).
+      const CELLULAR_PREMIUM = 4000;
+      const tabModels = [];
+      Object.entries(BRANDS).forEach(([brand, info]) => {
+        Object.entries(info.series).forEach(([series, models]) => {
+          models.forEach(([name, base]) => {
+            tabModels.push({
+              brand,
+              type: info.type,
+              image: info.image,
+              series,
+              model: `${name} (Wi-Fi Only)`,
+              base,
+            });
+            tabModels.push({
+              brand,
+              type: info.type,
+              image: info.image,
+              series,
+              model: `${name} (Wi-Fi + Cellular)`,
+              base: base + CELLULAR_PREMIUM,
+            });
+          });
+        });
+      });
+
+      const modelGrid = document.getElementById("tabModelGrid");
+      const modelSearch = document.getElementById("tabModelSearch");
+      const seriesRow = document.getElementById("tabSeriesRow");
+      const filterBtns = document.querySelectorAll(".tab-filter");
+
+      const params = new URLSearchParams(window.location.search);
+      let activeFilter = (params.get("brand") || "all").toLowerCase();
+      let activeSeries = "all";
+
+      // Map a brand filter value (lowercase) back to its catalogue key.
+      function brandKeyFor(filter) {
+        return Object.keys(BRANDS).find((b) => b.toLowerCase() === filter);
+      }
+
+      function renderCards() {
+        modelGrid.innerHTML = tabModels
+          .map(
+            (item) => `
+            <a href="tab_verient.html" class="tab-card"
+               data-brand="${item.brand}"
+               data-series="${item.series}"
+               data-model="${item.model}"
+               data-type="${item.type}"
+               data-image="${item.image}"
+               data-base="${item.base}">
+              <div class="tab-card__image">
+                <img src="${item.image}" alt="${item.model}" loading="lazy" />
+              </div>
+              <div class="tab-card__body">
+                <h3>${item.model}</h3>
+              </div>
+            </a>`,
+          )
+          .join("");
+
+        modelGrid.querySelectorAll(".tab-card").forEach((card) => {
+          card.addEventListener("click", () => {
+            // Page-to-page handoff via sessionStorage (not URL params).
+            const selection = {
+              brand: card.dataset.brand,
+              model: card.dataset.model,
+              type: card.dataset.type,
+              image: card.dataset.image,
+              series: card.dataset.series,
+              basePrice: Number(card.dataset.base) || 0,
+            };
+            sessionStorage.setItem(
+              "cashygoTabSelection",
+              JSON.stringify(selection),
+            );
+            // New device → start the downstream flow clean.
+            sessionStorage.removeItem("cashygoTabCondition");
+            sessionStorage.removeItem("cashygoTabIssueSummary");
+          });
+        });
+      }
+
+      // Rebuild the series pills for the active brand. "All Series" is always
+      // first; per-brand series only appear when a single brand is selected.
+      function renderSeriesTabs() {
+        const brandKey = brandKeyFor(activeFilter);
+        const seriesNames = brandKey
+          ? Object.keys(BRANDS[brandKey].series)
+          : [];
+
+        const pills = [["all", "All Series"]].concat(
+          seriesNames.map((name) => [name, name]),
+        );
+
+        seriesRow.innerHTML = pills
+          .map(
+            ([value, label]) => `
+            <button
+              class="tab-series${value === activeSeries ? " is-active" : ""}"
+              data-series="${value}"
+            >${label}</button>`,
+          )
+          .join("");
+
+        seriesRow.querySelectorAll(".tab-series").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            activeSeries = btn.dataset.series;
+            seriesRow
+              .querySelectorAll(".tab-series")
+              .forEach((item) => item.classList.remove("is-active"));
+            btn.classList.add("is-active");
+            applyTabFilters();
+          });
+        });
+      }
+
+      function applyTabFilters() {
+        const value = modelSearch.value.trim().toLowerCase();
+        let visible = 0;
+        modelGrid.querySelectorAll(".tab-card").forEach((card) => {
+          const matchesBrand =
+            activeFilter === "all" ||
+            card.dataset.brand.toLowerCase() === activeFilter;
+          const matchesSeries =
+            activeSeries === "all" || card.dataset.series === activeSeries;
+          const matchesSearch = card.textContent.toLowerCase().includes(value);
+          const show = matchesBrand && matchesSeries && matchesSearch;
+          card.style.display = show ? "" : "none";
+          if (show) visible += 1;
+        });
+
+        let empty = modelGrid.querySelector(".tab-empty");
+        if (!visible) {
+          if (!empty) {
+            empty = document.createElement("div");
+            empty.className = "tab-empty";
+            modelGrid.appendChild(empty);
+          }
+          empty.textContent = "No tablet models match your search.";
+        } else if (empty) {
+          empty.remove();
+        }
+      }
+
+      modelSearch.addEventListener("input", applyTabFilters);
+      filterBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          filterBtns.forEach((item) => item.classList.remove("is-active"));
+          btn.classList.add("is-active");
+          activeFilter = btn.dataset.filter;
+          // Switching brand resets the series picker.
+          activeSeries = "all";
+          renderSeriesTabs();
+          applyTabFilters();
+        });
+      });
+
+      // Reflect any ?brand= filter from the nav dropdown on load.
+      filterBtns.forEach((btn) =>
+        btn.classList.toggle("is-active", btn.dataset.filter === activeFilter),
+      );
+      if (!document.querySelector(".tab-filter.is-active")) {
+        document.querySelector('[data-filter="all"]').classList.add("is-active");
+        activeFilter = "all";
+      }
+
+      renderCards();
+      renderSeriesTabs();
+      applyTabFilters();
+    </script>
+  </body>
 </html>
