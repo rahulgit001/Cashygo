@@ -540,10 +540,10 @@ img{
     }
     .accessory-check {
     position: absolute;
-    bottom: 52px;
-    right: 140px;
-    width: 26px;
-    height: 26px;
+    bottom: 10px;
+    right: 10px;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
     background: #e4e7ec;
     display: flex;
@@ -599,6 +599,7 @@ img{
         bottom:12px;
         z-index:100;
     }
+
 }
 
 /* ==========================
@@ -640,4 +641,20 @@ img{
     .trust-row{
         gap:6px;
     }
+    .page-head h1{
+        font-size: 20px;
+    }
+     .accessory-check {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #e4e7ec;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: transparent;
+}
 }
