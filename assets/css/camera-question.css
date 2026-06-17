@@ -538,6 +538,19 @@ img{
         gap:10px;
 
     }
+    .accessory-check {
+    position: absolute;
+    bottom: 84px;
+    right: 1px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #e4e7ec;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: transparent;
+}
 
     .flow-step{
         flex:1;
