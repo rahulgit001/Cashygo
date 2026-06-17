@@ -532,6 +532,11 @@ img{
 
     .flow-steps{
         width:100%;
+        width:100%;
+        display:grid;
+        grid-template-columns:repeat(2,1fr);
+        gap:10px;
+
     }
 
     .flow-step{
@@ -552,7 +557,7 @@ img{
     }
 
     .accessory-grid{
-        grid-template-columns:1fr;
+        grid-template-columns:repeat(2,1fr);
         gap:12px;
     }
 
