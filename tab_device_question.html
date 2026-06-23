@@ -1137,49 +1137,48 @@
          These are readiness checks (price-neutral). The displayed quote
          mirrors assets/js/tab_flow.js so it stays consistent with the rest
          of the flow. Each answer is merged into cashygoTabSelection. */
-      const questions = [
-        {
-          id: "bill",
-          title: "Do you have the original purchase invoice?",
-          hint: "A bill helps us verify the purchase and speeds up pickup.",
-          opts: ["Yes", "No"],
-          value: { Yes: "Bill available", No: "Bill not available" },
-          icon: "bi-receipt-cutoff",
-        },
-        {
-          id: "lock",
-          title: "Is the account / activation lock removed?",
-          hint: "iCloud, Google, or Samsung lock must be removed before pickup.",
-          opts: ["Yes", "No"],
-          value: { Yes: "Account lock removed", No: "Account lock active" },
-          icon: "bi-unlock-fill",
-        },
-        {
-          id: "data",
-          title: "Is your data backed up for a factory reset?",
-          hint: "Back up photos and files so the tablet can be safely reset.",
-          opts: ["Yes", "No"],
-          value: { Yes: "Data backed up", No: "Data not backed up" },
-          icon: "bi-cloud-check",
-        },
-        {
-          id: "warranty",
-          title: "Is the tablet still under warranty?",
-          hint: "Select Yes if the manufacturer warranty is still valid.",
-          opts: ["Yes", "No"],
-          value: { Yes: "Under warranty", No: "Out of warranty" },
-          icon: "bi-patch-check",
-        },
-        {
-          id: "charger",
-          title: "Do you have the original charger and box?",
-          hint: "Original charger and packaging can improve your final quote.",
-          opts: ["Yes", "No"],
-          value: { Yes: "Charger and box available", No: "Charger or box missing" },
-          icon: "bi-box-seam",
-        },
-      ];
-
+     const questions = [
+  {
+    id: "switch_on",
+    title: "Does the tablet/iPad switch on?",
+    hint: "Select Yes if the device powers on normally.",
+    opts: ["Yes", "No"],
+    value: { Yes: "Switches on", No: "Does not switch on" },
+    icon: "bi-power",
+  },
+  {
+    id: "screen_original",
+    title: "Is the tablet/iPad screen original?",
+    hint: "Select Yes if the screen has never been replaced.",
+    opts: ["Yes", "No"],
+    value: { Yes: "Original screen", No: "Screen replaced" },
+    icon: "bi-phone",
+  },
+  {
+    id: "touchscreen_issue",
+    title: "Are there any issues with your tablet/iPad touchscreen?",
+    hint: "Check for touch delay, dead zones, or unresponsive areas.",
+    opts: ["Yes", "No"],
+    value: { Yes: "Touchscreen issues present", No: "Touchscreen working properly" },
+    icon: "bi-hand-index-thumb",
+  },
+  {
+    id: "display_issue",
+    title: "Are there any issues with your tablet/iPad display?",
+    hint: "Check for lines, spots, discoloration, flickering, or black patches.",
+    opts: ["Yes", "No"],
+    value: { Yes: "Display issues present", No: "Display working properly" },
+    icon: "bi-display",
+  },
+  {
+    id: "body_issue",
+    title: "Are there any issues with your tablet/iPad body?",
+    hint: "Check for dents, cracks, scratches, bends, or frame damage.",
+    opts: ["Yes", "No"],
+    value: { Yes: "Body issues present", No: "Body in good condition" },
+    icon: "bi-tablet",
+  },
+];
       const FALLBACK_SELECTION = {
         brand: "Tablet",
         model: "Tablet",
