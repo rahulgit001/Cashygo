@@ -1,1042 +1,885 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Pick your tablet variant on Cashygo — display size, storage, connectivity, and age — for an accurate instant resale estimate."
-    />
+    <meta name="description"
+        content="Pick your tablet variant on Cashygo — display size, storage, connectivity, and age — for an accurate instant resale estimate." />
     <meta name="theme-color" content="#0d8c60" />
     <title>Cashygo - Select Tablet Variant</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
 
     <style>
-      :root {
-        --green: #078f61;
-        --green-dark: #056d4b;
-        --green-soft: #eaf8f2;
-        --ink: #121722;
-        --muted: #667085;
-        --line: #e3ebe7;
-        --bg: #f8faf9;
-        --white: #fff;
-        --shadow: 0 18px 42px rgba(13, 72, 54, 0.12);
-      }
-
-      body {
-        background: linear-gradient(180deg, #fff 0, var(--bg) 320px, var(--bg) 100%);
-        color: var(--ink);
-      }
-
-      button,
-      input {
-        font-family: inherit;
-      }
-
-      .nav,
-      .footer {
-        --text: #0f172a;
-        --border: #e2e8f0;
-        --white: #fff;
-      }
-
-      /* ── page shell ── */
-      .tab-main-section {
-        width: min(1240px, calc(100% - 48px));
-        margin: 0 auto;
-      }
-
-      /* ── breadcrumb ── */
-      .tab-crumbs {
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 8px;
-        padding: 22px 0 0;
-        color: var(--muted);
-        font-size: 13px;
-        font-weight: 600;
-      }
-
-      .tab-crumbs a {
-        color: var(--muted);
-        text-decoration: none;
-      }
-
-      .tab-crumbs a:hover {
-        color: var(--green);
-      }
-
-      .tab-crumbs span {
-        color: var(--ink);
-      }
-
-      .tab-crumbs i {
-        font-size: 11px;
-      }
-
-      /* ── head + steps ── */
-      .tab-head {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(280px, 440px);
-        gap: 30px;
-        align-items: center;
-        padding: 20px 0 24px;
-      }
-
-      .tab-head__eyebrow {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 8px 13px;
-        border: 1px solid #c7ead8;
-        border-radius: 999px;
-        background: #e8f7ef;
-        color: var(--green);
-        font-size: 12px;
-        font-weight: 800;
-      }
-
-      .tab-head h1 {
-        margin: 14px 0 10px;
-        font-size: clamp(22px, 5vw, 30px);
-        line-height: 1.12;
-        font-weight: 800;
-      }
-
-      .tab-head h1 span {
-        color: var(--green);
-      }
-
-      .tab-head p {
-        max-width: 560px;
-        margin: 0;
-        color: #4d5562;
-        font-size: 15px;
-        line-height: 1.65;
-        font-weight: 500;
-      }
-
-      .tab-steps {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 4px;
-      }
-
-      .tab-step {
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-        padding: 12px 14px;
-        border: 1px solid var(--line);
-        border-radius: 14px;
-        background: #fff;
-      }
-
-      .tab-step strong {
-        font-size: 14px;
-        font-weight: 800;
-      }
-
-      .tab-step span {
-        color: var(--muted);
-        font-size: 12px;
-        font-weight: 600;
-      }
-
-      .tab-step.is-active {
-        border-color: var(--green);
-        background: #e8f7ef;
-      }
-
-      .tab-step.is-active strong {
-        color: var(--green);
-      }
-
-      /* ── two-column body ── */
-      .tab-layout {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(300px, 360px);
-        gap: 24px;
-        align-items: start;
-        padding-bottom: 56px;
-      }
-
-      .tab-panel {
-        padding: 22px;
-        border: 1px solid var(--line);
-        border-radius: 18px;
-        background: #fff;
-        box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
-      }
-
-      .tab-panel__title {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin: 0 0 14px;
-        font-size: 17px;
-        font-weight: 800;
-      }
-
-      .tab-panel__title:not(:first-child) {
-        margin-top: 26px;
-      }
-
-      .tab-panel__num {
-        display: grid;
-        place-items: center;
-        width: 26px;
-        height: 26px;
-        border-radius: 50%;
-        background: var(--green);
-        color: #fff;
-        font-size: 13px;
-        font-weight: 800;
-      }
-
-      .tab-opt-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 12px;
-      }
-
-      .tab-opt {
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-        padding: 14px;
-        border: 1.5px solid var(--line);
-        border-radius: 14px;
-        background: #fff;
-        color: var(--ink);
-        text-align: left;
-        cursor: pointer;
-        transition: border-color 0.16s ease, background 0.16s ease,
-          transform 0.16s ease;
-      }
-
-      .tab-opt:hover {
-        border-color: var(--green);
-        transform: translateY(-2px);
-      }
-
-      .tab-opt i {
-        font-size: 20px;
-        color: var(--green);
-      }
-
-      .tab-opt strong {
-        font-size: 15px;
-        font-weight: 800;
-      }
-
-      .tab-opt span {
-        color: var(--muted);
-        font-size: 12px;
-        line-height: 1.4;
-      }
-
-      .tab-opt.is-selected {
-        border-color: var(--green);
-        background: var(--green-soft);
-      }
-
-      /* ── summary rail ── */
-      .tab-summary {
-        position: sticky;
-        top: 18px;
-        border: 1px solid var(--line);
-        border-radius: 18px;
-        background: #fff;
-        box-shadow: var(--shadow);
-        overflow: hidden;
-      }
-
-      .tab-summary__media {
-        display: grid;
-        place-items: center;
-        padding: 22px;
-        background: var(--green-soft);
-      }
-
-      .tab-summary__media img {
-        max-width: 100%;
-        max-height: 160px;
-        object-fit: contain;
-      }
-
-      .tab-summary__body {
-        padding: 18px 20px 22px;
-      }
-
-      .tab-summary__brand {
-        color: var(--green);
-        font-size: 12px;
-        font-weight: 800;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-      }
-
-      .tab-summary__name {
-        margin: 4px 0 14px;
-        font-size: 18px;
-        font-weight: 800;
-        line-height: 1.25;
-      }
-
-      .tab-summary__row {
-        display: flex;
-        justify-content: space-between;
-        gap: 14px;
-        padding: 9px 0;
-        border-top: 1px dashed var(--line);
-        font-size: 14px;
-      }
-
-      .tab-summary__row span {
-        color: var(--muted);
-        font-weight: 600;
-      }
-
-      .tab-summary__row strong {
-        font-weight: 700;
-        text-align: right;
-      }
-
-      .tab-total {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-top: 14px;
-        padding: 14px 16px;
-        border-radius: 14px;
-        background: var(--green);
-        color: #fff;
-      }
-
-      .tab-total small {
-        font-size: 12px;
-        opacity: 0.8;
-      }
-
-      .tab-total strong {
-        font-size: 22px;
-        font-weight: 800;
-      }
-
-      .tab-continue {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        width: 100%;
-        min-height: 48px;
-        margin-top: 14px;
-        border: none;
-        border-radius: 12px;
-        background: var(--green);
-        color: #fff;
-        font-size: 15px;
-        font-weight: 700;
-        cursor: pointer;
-        transition: background 0.16s ease;
-      }
-
-      .tab-continue:hover:not(:disabled) {
-        background: var(--green-dark);
-      }
-
-      .tab-continue:disabled {
-        background: #b7c8c1;
-        cursor: not-allowed;
-      }
-
-      .tab-note {
-        display: flex;
-        gap: 8px;
-        margin-top: 14px;
-        color: var(--muted);
-        font-size: 12px;
-        line-height: 1.45;
-      }
-
-      .tab-note i {
-        color: var(--green);
-      }
-
-      .section {
-        max-width: 800px;
-        margin: 30px auto 0;
-        padding: 0 24px 60px;
-      }
-
-      @media (max-width: 1100px) {
-        .tab-main-section {
-          width: calc(100% - 40px);
+        :root {
+            --green: #078f61;
+            --green-dark: #056d4b;
+            --green-soft: #eaf8f2;
+            --ink: #121722;
+            --muted: #667085;
+            --line: #e3ebe7;
+            --bg: #f8faf9;
+            --white: #fff;
+            --shadow: 0 18px 42px rgba(13, 72, 54, 0.12);
         }
+
+        body {
+            background: linear-gradient(180deg, #fff 0, var(--bg) 320px, var(--bg) 100%);
+            color: var(--ink);
+        }
+
+        button,
+        input {
+            font-family: inherit;
+        }
+
+        .nav,
+        .footer {
+            --text: #0f172a;
+            --border: #e2e8f0;
+            --white: #fff;
+        }
+
+        .tab-main-section {
+            width: min(1240px, calc(100% - 48px));
+            margin: 0 auto;
+        }
+
+        .tab-crumbs {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 22px 0 0;
+            color: var(--muted);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .tab-crumbs a {
+            color: var(--muted);
+            text-decoration: none;
+        }
+
+        .tab-crumbs a:hover { color: var(--green); }
+        .tab-crumbs span { color: var(--ink); }
+        .tab-crumbs i { font-size: 11px; }
 
         .tab-head {
-          grid-template-columns: 1fr;
-          gap: 18px;
-          padding: 16px 0 18px;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(280px, 440px);
+            gap: 30px;
+            align-items: center;
+            padding: 20px 0 24px;
         }
+
+        .tab-head__eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 13px;
+            border: 1px solid #c7ead8;
+            border-radius: 999px;
+            background: #e8f7ef;
+            color: var(--green);
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .tab-head h1 {
+            margin: 14px 0 10px;
+            font-size: clamp(22px, 5vw, 30px);
+            line-height: 1.12;
+            font-weight: 800;
+        }
+
+        .tab-head h1 span { color: var(--green); }
+
+        .tab-head p {
+            max-width: 560px;
+            margin: 0;
+            color: #4d5562;
+            font-size: 15px;
+            line-height: 1.65;
+            font-weight: 500;
+        }
+
+        .tab-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 4px;
+        }
+
+        .tab-step {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            padding: 12px 14px;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: #fff;
+        }
+
+        .tab-step strong { font-size: 14px; font-weight: 800; }
+        .tab-step span { color: var(--muted); font-size: 12px; font-weight: 600; }
+
+        .tab-step.is-active {
+            border-color: var(--green);
+            background: #e8f7ef;
+        }
+
+        .tab-step.is-active strong { color: var(--green); }
 
         .tab-layout {
-          grid-template-columns: 1fr;
-        }
-
-        .tab-summary {
-          position: static;
-        }
-      }
-
-      @media (max-width: 767px) {
-        .tab-main-section {
-          width: 100%;
-          padding: 0 16px;
-        }
-
-        /* Two compact step chips per row instead of one tall column. */
-        .tab-steps {
-          grid-template-columns: repeat(2, 1fr);
-          gap: 8px;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(300px, 360px);
+            gap: 24px;
+            align-items: start;
+            padding-bottom: 56px;
         }
 
         .tab-panel {
-          padding: 16px;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            background: #fff;
+            box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
+        }
+
+        .tab-panel__title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0 0 14px;
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+        .tab-panel__title:not(:first-child) { margin-top: 26px; }
+
+        .tab-panel__num {
+            display: grid;
+            place-items: center;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: var(--green);
+            color: #fff;
+            font-size: 13px;
+            font-weight: 800;
         }
 
         .tab-opt-grid {
-          grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-          gap: 10px;
-        }
-
-        .section {
-          padding: 0 16px 48px;
-        }
-      }
-
-      @media (max-width: 480px) {
-        .tab-crumbs {
-          padding-top: 16px;
-        }
-
-        /* .tab-steps {
-          grid-template-columns: 1fr 1fr;
-        } */
-
-        .tab-opt-grid {
-          grid-template-columns: 1fr 1fr;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
         }
 
         .tab-opt {
-          padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 14px;
+            border: 1.5px solid var(--line);
+            border-radius: 14px;
+            background: #fff;
+            color: var(--ink);
+            text-align: left;
+            cursor: pointer;
+            transition: border-color 0.16s ease, background 0.16s ease, transform 0.16s ease;
+            will-change: transform;
+        }
+
+        .tab-opt:hover {
+            border-color: var(--green);
+            transform: translateY(-2px);
+        }
+
+        .tab-opt i { font-size: 20px; color: var(--green); }
+        .tab-opt strong { font-size: 15px; font-weight: 800; }
+        .tab-opt span { color: var(--muted); font-size: 12px; line-height: 1.4; }
+
+        .tab-opt.is-selected {
+            border-color: var(--green);
+            background: var(--green-soft);
+            box-shadow: 0 0 0 3px rgba(7, 143, 97, .15);
+        }
+
+        .tab-summary {
+            position: sticky;
+            top: 18px;
+            height: fit-content;
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            background: #fff;
+            box-shadow: var(--shadow);
+            overflow: hidden;
         }
 
         .tab-summary__media {
-          padding: 16px;
+            display: grid;
+            place-items: center;
+            padding: 22px;
+            background: var(--green-soft);
         }
 
         .tab-summary__media img {
-          max-height: 130px;
+            max-width: 100%;
+            max-height: 160px;
+            object-fit: contain;
         }
 
-        .tab-summary__body {
-          padding: 16px;
+        .tab-summary__body { padding: 18px 20px 22px; }
+
+        .tab-summary__brand {
+            color: var(--green);
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        .tab-total strong {
-          font-size: 20px;
-        }
-      }
-
-      @media (max-width: 360px) {
-        .tab-main-section {
-          padding: 0 12px;
+        .tab-summary__name {
+            margin: 4px 0 14px;
+            font-size: 18px;
+            font-weight: 800;
+            line-height: 1.25;
         }
 
-        .tab-steps {
-          grid-template-columns: 1fr;
+        .tab-summary__row {
+            display: flex;
+            justify-content: space-between;
+            gap: 14px;
+            padding: 9px 0;
+            border-top: 1px dashed var(--line);
+            font-size: 14px;
         }
 
-        .tab-opt-grid {
-          grid-template-columns: 1fr;
+        .tab-summary__row span { color: var(--muted); font-weight: 600; }
+        .tab-summary__row strong { font-weight: 700; text-align: right; }
+
+        .tab-total {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 14px;
+            padding: 14px 16px;
+            border-radius: 14px;
+            background: var(--green);
+            color: #fff;
         }
-      }
+
+        .tab-total small { font-size: 12px; opacity: 0.8; }
+        .tab-total strong { font-size: 22px; font-weight: 800; }
+
+        .tab-continue {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            min-height: 48px;
+            margin-top: 14px;
+            border: none;
+            border-radius: 12px;
+            background: var(--green);
+            color: #fff;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.16s ease;
+        }
+
+        .tab-continue:hover:not(:disabled) { background: var(--green-dark); }
+
+        .tab-continue:disabled {
+            background: #b7c8c1;
+            cursor: not-allowed;
+        }
+
+        .tab-note {
+            display: flex;
+            gap: 8px;
+            margin-top: 14px;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.45;
+        }
+
+        .tab-note i { color: var(--green); }
+
+        .section {
+            max-width: 800px;
+            margin: 30px auto 0;
+            padding: 0 24px 60px;
+        }
+
+        @media (max-width: 1100px) {
+            .tab-main-section { width: calc(100% - 40px); }
+            .tab-head { grid-template-columns: 1fr; gap: 18px; padding: 16px 0 18px; }
+            .tab-layout { grid-template-columns: 1fr; }
+            .tab-summary { position: static; }
+        }
+
+        @media (max-width: 767px) {
+            .tab-main-section { width: 100%; padding: 0 16px; }
+            .tab-steps { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+            .tab-panel { padding: 16px; }
+            .tab-opt-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+            .section { padding: 0 16px 48px; }
+        }
+
+        @media (max-width: 480px) {
+            .tab-crumbs { padding-top: 16px; }
+            .tab-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .tab-opt-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .tab-opt { padding: 12px; }
+            .tab-summary__media { padding: 16px; }
+            .tab-summary__media img { max-height: 130px; }
+            .tab-summary__body { padding: 16px; }
+            .tab-total strong { font-size: 20px; }
+        }
+
+        @media (max-width: 360px) {
+            .tab-main-section { padding: 0 12px; }
+            .tab-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .tab-opt-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
     </style>
-  </head>
+</head>
 
-  <body class="tab-page">
+<body class="tab-page">
     <nav class="nav" role="navigation" aria-label="Main navigation">
-      <div class="nav-top">
-        <button
-          class="nav-hamburger"
-          id="hamburger"
-          aria-label="Toggle menu"
-          aria-expanded="false"
-        >
-          <i class="bi bi-list"></i>
-        </button>
-        <a href="/" class="nav-logo" aria-label="Cashygo - Go to homepage">
-          <img
-            src="assets/images/project-logo/logo-new.svg"
-            alt="Cashygo logo"
-            width="120"
-            height="40"
-          />
-        </a>
-        <div class="nav-search" role="search">
-          <div
-            class="nav-city"
-            id="cityPicker"
-            tabindex="0"
-            aria-haspopup="listbox"
-            aria-label="Select city"
-          >
-            <i class="bi bi-geo-alt-fill"></i>
-            <span id="cityLabel">Bangalore</span>
-            <i class="bi bi-chevron-down"></i>
-            <ul
-              class="city-drop"
-              id="cityDrop"
-              role="listbox"
-              aria-label="Select your city"
-            >
-              <li role="option" data-city="Delhi">Delhi NCR</li>
-              <li role="option" data-city="Bangalore">Bangalore</li>
-              <li role="option" data-city="Mumbai">Mumbai</li>
-              <li role="option" data-city="Pune">Pune</li>
-              <li role="option" data-city="Hyderabad">Hyderabad</li>
-            </ul>
-          </div>
-          <label for="mainSearch" class="sr-only">Search devices</label>
-          <input
-            type="search"
-            id="mainSearch"
-            name="search"
-            placeholder="Search devices, brands..."
-            autocomplete="off"
-          />
-          <div class="search-icon" aria-hidden="true">
-            <i class="bi bi-search"></i>
-          </div>
+        <div class="nav-top">
+            <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+                <i class="bi bi-list"></i>
+            </button>
+            <a href="/" class="nav-logo" aria-label="Cashygo - Go to homepage">
+                <img src="assets/images/project-logo/logo-new.svg" alt="Cashygo logo" width="120" height="40" />
+            </a>
+            <div class="nav-search" role="search">
+                <div class="nav-city" id="cityPicker" tabindex="0" aria-haspopup="listbox" aria-label="Select city">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    <span id="cityLabel">Bangalore</span>
+                    <i class="bi bi-chevron-down"></i>
+                    <ul class="city-drop" id="cityDrop" role="listbox" aria-label="Select your city">
+                        <li role="option" data-city="Delhi">Delhi NCR</li>
+                        <li role="option" data-city="Bangalore">Bangalore</li>
+                        <li role="option" data-city="Mumbai">Mumbai</li>
+                        <li role="option" data-city="Pune">Pune</li>
+                        <li role="option" data-city="Hyderabad">Hyderabad</li>
+                    </ul>
+                </div>
+                <label for="mainSearch" class="sr-only">Search devices</label>
+                <input type="search" id="mainSearch" name="search" placeholder="Search devices, brands..."
+                    autocomplete="off" />
+                <div class="search-icon" aria-hidden="true">
+                    <i class="bi bi-search"></i>
+                </div>
+            </div>
+            <button class="nav-login" id="openLoginBtn" aria-label="Sign in to your account">
+                <i class="bi bi-person-circle"></i>
+                <span>Sign in</span>
+            </button>
         </div>
-        <button
-          class="nav-login"
-          id="openLoginBtn"
-          aria-label="Sign in to your account"
-        >
-          <i class="bi bi-person-circle"></i>
-          <span>Sign in</span>
-        </button>
-      </div>
 
-      <div class="nav-menu" id="navMenu">
-        <div class="nav-menu-inner">
-          <div class="dropdown" id="dropMobile">
-            <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">
-              Sell Mobile &#8964;
-            </button>
-            <ul class="dropdown-menu">
-              <li><a href="Apple_model.html">Apple iPhone</a></li>
-              <li><a href="samsung.html">Samsung Galaxy</a></li>
-              <li><a href="oneplus.html">OnePlus</a></li>
-              <li><a href="google.html">Google Pixel</a></li>
-              <li><a href="xiaomi.html">Xiaomi</a></li>
-              <li><a href="vivo.html">Vivo</a></li>
-            </ul>
-          </div>
-          <div class="dropdown" id="dropTablet">
-            <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">
-              Sell Tablet &#8964;
-            </button>
-            <ul class="dropdown-menu">
-              <li><a href="tab_model.html?brand=Apple">Apple Tab</a></li>
-              <li><a href="tab_model.html?brand=Samsung">Samsung Tab</a></li>
-              <li><a href="tab_model.html?brand=OnePlus">OnePlus Tab</a></li>
-              <li><a href="tab_model.html?brand=Xiaomi">Xiaomi Tab</a></li>
-              <li><a href="tab_model.html?brand=Realme">Realme Tab</a></li>
-            </ul>
-          </div>
-          <div class="dropdown" id="dropLaptop">
-            <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">
-              Sell Laptop &#8964;
-            </button>
-            <ul class="dropdown-menu">
-              <li><a href="dell.html">Dell</a></li>
-              <li><a href="hp.html">HP</a></li>
-              <li><a href="lenovo.html">Lenovo</a></li>
-              <li><a href="asus.html">Asus</a></li>
-              <li><a href="acer.html">Acer</a></li>
-            </ul>
-          </div>
-          <div class="dropdown" id="dropMac">
-            <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">
-              Sell Mac &#8964;
-            </button>
-            <ul class="dropdown-menu">
-              <li><a href="macbook.html">MacBook</a></li>
-              <li><a href="imac.html">iMac</a></li>
-              <li><a href="mac-mini.html">Mac Mini</a></li>
-              <li><a href="macbook-pro.html">MacBook Pro</a></li>
-            </ul>
-          </div>
-          <a href="#" class="menu-link">Corporate Deals</a>
-          <a href="calculator.html" class="menu-link">Price Calculator</a>
-          <a href="blogs.html" class="menu-link">Blog & Tips</a>
-          <a href="contact.html" class="menu-link">Contact</a>
-          <a href="Faq.html" class="menu-link">FAQ's</a>
-          <a href="costumer.html" class="menu-link">Customer Reviews</a>
+        <div class="nav-menu" id="navMenu">
+            <div class="nav-menu-inner">
+                <div class="dropdown" id="dropMobile">
+                    <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Mobile &#8964;</button>
+                    <ul class="dropdown-menu">
+                        <li><a href="Apple_model.html">Apple iPhone</a></li>
+                        <li><a href="samsung.html">Samsung Galaxy</a></li>
+                        <li><a href="oneplus.html">OnePlus</a></li>
+                        <li><a href="google.html">Google Pixel</a></li>
+                        <li><a href="xiaomi.html">Xiaomi</a></li>
+                        <li><a href="vivo.html">Vivo</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown" id="dropTablet">
+                    <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Tablet &#8964;</button>
+                    <ul class="dropdown-menu">
+                        <li><a href="tab_model.html?brand=Apple">Apple Tab</a></li>
+                        <li><a href="tab_model.html?brand=Samsung">Samsung Tab</a></li>
+                        <li><a href="tab_model.html?brand=OnePlus">OnePlus Tab</a></li>
+                        <li><a href="tab_model.html?brand=Xiaomi">Xiaomi Tab</a></li>
+                        <li><a href="tab_model.html?brand=Realme">Realme Tab</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown" id="dropLaptop">
+                    <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Laptop &#8964;</button>
+                    <ul class="dropdown-menu">
+                        <li><a href="dell.html">Dell</a></li>
+                        <li><a href="hp.html">HP</a></li>
+                        <li><a href="lenovo.html">Lenovo</a></li>
+                        <li><a href="asus.html">Asus</a></li>
+                        <li><a href="acer.html">Acer</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown" id="dropMac">
+                    <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Mac &#8964;</button>
+                    <ul class="dropdown-menu">
+                        <li><a href="macbook.html">MacBook</a></li>
+                        <li><a href="imac.html">iMac</a></li>
+                        <li><a href="mac-mini.html">Mac Mini</a></li>
+                        <li><a href="macbook-pro.html">MacBook Pro</a></li>
+                    </ul>
+                </div>
+                <a href="#" class="menu-link">Corporate Deals</a>
+                <a href="calculator.html" class="menu-link">Price Calculator</a>
+                <a href="blogs.html" class="menu-link">Blog &amp; Tips</a>
+                <a href="contact.html" class="menu-link">Contact</a>
+                <a href="Faq.html" class="menu-link">FAQ's</a>
+                <a href="costumer.html" class="menu-link">Customer Reviews</a>
+            </div>
         </div>
-      </div>
     </nav>
 
     <main class="tab-main-section">
-      <nav class="tab-crumbs" aria-label="Breadcrumb">
-        <a href="tab_brand.html">Sell tablet</a>
-        <i class="bi bi-chevron-right"></i>
-        <a href="tab_model.html">Series</a>
-        <i class="bi bi-chevron-right"></i>
-        <span>Variant</span>
-      </nav>
+        <nav class="tab-crumbs" aria-label="Breadcrumb">
+            <a href="tab_brand.html">Sell tablet</a>
+            <i class="bi bi-chevron-right"></i>
+            <a href="tab_model.html">Series</a>
+            <i class="bi bi-chevron-right"></i>
+            <span>Variant</span>
+        </nav>
 
-      <section class="tab-head" aria-label="Tablet variant hero">
-        <div>
-          <div class="tab-head__eyebrow">
-            <i class="bi bi-tablet-landscape"></i> Instant tablet price check
-          </div>
-          <h1>Select Your <span data-model-name>Tablet</span> Variant</h1>
-          <p>
-            Choose the storage, connectivity, and age so Cashygo can estimate
-            the resale price more accurately.
-          </p>
-        </div>
-        <div class="tab-steps" aria-label="Sell tablet steps">
-          <div class="tab-step is-active">
-            <strong>1. Variant</strong><span>Specs and age</span>
-          </div>
-          <div class="tab-step">
-            <strong>2. Condition</strong><span>Body and battery</span>
-          </div>
-          <div class="tab-step">
-            <strong>3. Questions</strong><span>Account checks</span>
-          </div>
-          <div class="tab-step">
-            <strong>4. Issues</strong><span>Fault selection</span>
-          </div>
-        </div>
-      </section>
-
-      <div class="tab-layout">
-        <section class="tab-panel" aria-label="Choose tablet variant">
-          <h2 class="tab-panel__title">
-            <span class="tab-panel__num">1</span> Storage
-          </h2>
-          <div class="tab-opt-grid">
-            <button class="tab-opt" data-group="storage" data-value="64 GB">
-              <strong>64 GB</strong><span>Base storage variant.</span>
-            </button>
-            <button class="tab-opt" data-group="storage" data-value="128 GB">
-              <strong>128 GB</strong><span>Popular resale choice.</span>
-            </button>
-            <button class="tab-opt" data-group="storage" data-value="256 GB">
-              <strong>256 GB</strong><span>Premium high-storage model.</span>
-            </button>
-            <button class="tab-opt" data-group="storage" data-value="1 TB">
-              <strong>1 TB</strong><span>Pro-grade large storage.</span>
-            </button>
-            <button class="tab-opt" data-group="storage" data-value="2 TB">
-              <strong>2 TB</strong><span>Maximum capacity variant.</span>
-            </button>
-          </div>
-
-          <h2 class="tab-panel__title">
-            <span class="tab-panel__num">2</span> Connectivity
-          </h2>
-          <div class="tab-opt-grid">
-            <button class="tab-opt" data-group="connectivity" data-value="WiFi only">
-              <i class="bi bi-wifi"></i><strong>WiFi only</strong>
-              <span>Tablet works on WiFi networks.</span>
-            </button>
-            <button
-              class="tab-opt"
-              data-group="connectivity"
-              data-value="WiFi + Cellular"
-            >
-              <i class="bi bi-sim"></i><strong>WiFi + Cellular</strong>
-              <span>Supports SIM or mobile data.</span>
-            </button>
-          </div>
-
-          <h2 class="tab-panel__title">
-            <span class="tab-panel__num">3</span> Purchase Age
-          </h2>
-          <div class="tab-opt-grid">
-            <button class="tab-opt" data-group="age" data-value="Under 1 year">
-              <strong>Under 1 year</strong><span>Newest device bracket.</span>
-            </button>
-            <button class="tab-opt" data-group="age" data-value="1 to 3 years">
-              <strong>1 to 3 years</strong><span>Common resale window.</span>
-            </button>
-            <button class="tab-opt" data-group="age" data-value="3 years+">
-              <strong>3 years+</strong><span>Older but still accepted.</span>
-            </button>
-          </div>
+        <section class="tab-head" aria-label="Tablet variant hero">
+            <div>
+                <div class="tab-head__eyebrow">
+                    <i class="bi bi-tablet-landscape"></i> Instant tablet price check
+                </div>
+                <h1>Select Your <span data-model-name>Tablet</span> Variant</h1>
+                <p>Choose the storage, connectivity, and age so Cashygo can estimate the resale price more accurately.</p>
+            </div>
+            <div class="tab-steps" aria-label="Sell tablet steps">
+                <div class="tab-step is-active">
+                    <strong>1. Variant</strong><span>Specs and age</span>
+                </div>
+                <div class="tab-step">
+                    <strong>2. Condition</strong><span>Body and battery</span>
+                </div>
+                <div class="tab-step">
+                    <strong>3. Questions</strong><span>Account checks</span>
+                </div>
+                <div class="tab-step">
+                    <strong>4. Issues</strong><span>Fault selection</span>
+                </div>
+            </div>
         </section>
 
-        <aside class="tab-summary" aria-label="Your selection">
-          <div class="tab-summary__media">
-            <img
-              data-tab-image
-              src="assets/images/home-page-img/brand-img/iPad.webp"
-              alt="Tablet"
-            />
-          </div>
-          <div class="tab-summary__body">
-            <div class="tab-summary__brand" data-brand-name>Tablet</div>
-            <h2 class="tab-summary__name" data-model-name>Tablet</h2>
+        <div class="tab-layout">
+            <section class="tab-panel" aria-label="Choose tablet variant">
+                <h2 class="tab-panel__title">
+                    <span class="tab-panel__num">1</span> Storage
+                </h2>
+                <div class="tab-opt-grid">
+                    <button class="tab-opt" data-group="storage" data-value="64 GB">
+                        <strong>64 GB</strong><span>Base storage variant.</span>
+                    </button>
+                    <button class="tab-opt" data-group="storage" data-value="128 GB">
+                        <strong>128 GB</strong><span>Popular resale choice.</span>
+                    </button>
+                    <button class="tab-opt" data-group="storage" data-value="256 GB">
+                        <strong>256 GB</strong><span>Premium high-storage model.</span>
+                    </button>
+                    <button class="tab-opt" data-group="storage" data-value="1 TB">
+                        <strong>1 TB</strong><span>Pro-grade large storage.</span>
+                    </button>
+                    <button class="tab-opt" data-group="storage" data-value="2 TB">
+                        <strong>2 TB</strong><span>Maximum capacity variant.</span>
+                    </button>
+                </div>
 
-            <div class="tab-summary__row">
-              <span>Storage</span><strong data-summary="storage">-</strong>
-            </div>
-            <div class="tab-summary__row">
-              <span>Connectivity</span
-              ><strong data-summary="connectivity">-</strong>
-            </div>
-            <div class="tab-summary__row">
-              <span>Age</span><strong data-summary="age">-</strong>
-            </div>
+                <h2 class="tab-panel__title">
+                    <span class="tab-panel__num">2</span> Connectivity
+                </h2>
+                <div class="tab-opt-grid">
+                    <button class="tab-opt" data-group="connectivity" data-value="WiFi only">
+                        <i class="bi bi-wifi"></i><strong>WiFi only</strong>
+                        <span>Tablet works on WiFi networks.</span>
+                    </button>
+                    <button class="tab-opt" data-group="connectivity" data-value="WiFi + Cellular">
+                        <i class="bi bi-sim"></i><strong>WiFi + Cellular</strong>
+                        <span>Supports SIM or mobile data.</span>
+                    </button>
+                </div>
 
-            <div class="tab-total">
-              <small>Expected Price</small>
-              <strong data-summary-price>₹0</strong>
-            </div>
+                <h2 class="tab-panel__title">
+                    <span class="tab-panel__num">3</span> Purchase Age
+                </h2>
+                <div class="tab-opt-grid">
+                    <button class="tab-opt" data-group="age" data-value="Under 1 year">
+                        <strong>Under 1 year</strong><span>Newest device bracket.</span>
+                    </button>
+                    <button class="tab-opt" data-group="age" data-value="1 to 3 years">
+                        <strong>1 to 3 years</strong><span>Common resale window.</span>
+                    </button>
+                    <button class="tab-opt" data-group="age" data-value="3 years+">
+                        <strong>3 years+</strong><span>Older but still accepted.</span>
+                    </button>
+                </div>
+            </section>
 
-            <button class="tab-continue" id="continueBtn" disabled>
-              Continue <i class="bi bi-arrow-right"></i>
-            </button>
-            <div class="tab-note">
-              <i class="bi bi-info-circle"></i>
-              <span>Final value may change after pickup verification.</span>
-            </div>
-          </div>
-        </aside>
-      </div>
+            <aside class="tab-summary" aria-label="Your selection">
+                <div class="tab-summary__media">
+                    <img data-tab-image src="assets/images/home-page-img/brand-img/iPad.webp" alt="Tablet" />
+                </div>
+                <div class="tab-summary__body">
+                    <div class="tab-summary__brand" data-brand-name>Tablet</div>
+                    <h2 class="tab-summary__name" data-model-name>Tablet</h2>
+
+                    <div class="tab-summary__row">
+                        <span>Storage</span><strong data-summary="storage">-</strong>
+                    </div>
+                    <div class="tab-summary__row">
+                        <span>Connectivity</span><strong data-summary="connectivity">-</strong>
+                    </div>
+                    <div class="tab-summary__row">
+                        <span>Age</span><strong data-summary="age">-</strong>
+                    </div>
+
+                    <div class="tab-total">
+                        <small>Expected Price</small>
+                        <strong data-summary-price>₹0</strong>
+                    </div>
+
+                    <button class="tab-continue" id="continueBtn" disabled>
+                        Continue <i class="bi bi-arrow-right"></i>
+                    </button>
+                    <div class="tab-note">
+                        <i class="bi bi-info-circle"></i>
+                        <span>Final value may change after pickup verification.</span>
+                    </div>
+                </div>
+            </aside>
+        </div>
     </main>
 
     <section class="section" aria-label="Frequently asked questions">
-      <div class="faq-header">
-        <h2>Frequently <span>Asked</span> Questions</h2>
-        <p>Everything you need to know before selling your device</p>
-      </div>
-      <details class="faq-item">
-        <summary>How do I sell my device? <span class="faq-icon">+</span></summary>
-        <div class="faq-answer">
-          Select your device, check the price, schedule pickup, and get paid
-          instantly after verification.
+        <div class="faq-header">
+            <h2>Frequently <span>Asked</span> Questions</h2>
+            <p>Everything you need to know before selling your device</p>
         </div>
-      </details>
-      <details class="faq-item">
-        <summary>How is the price calculated? <span class="faq-icon">+</span></summary>
-        <div class="faq-answer">
-          Price depends on device condition, market demand, and current resale
-          value.
-        </div>
-      </details>
-      <details class="faq-item">
-        <summary>Is pickup free? <span class="faq-icon">+</span></summary>
-        <div class="faq-answer">
-          Yes, doorstep pickup is completely free with no hidden charges.
-        </div>
-      </details>
-      <details class="faq-item">
-        <summary>When will I get payment? <span class="faq-icon">+</span></summary>
-        <div class="faq-answer">
-          Payment is processed instantly after device verification during pickup.
-        </div>
-      </details>
+        <details class="faq-item">
+            <summary>How do I sell my device? <span class="faq-icon">+</span></summary>
+            <div class="faq-answer">Select your device, check the price, schedule pickup, and get paid instantly after verification.</div>
+        </details>
+        <details class="faq-item">
+            <summary>How is the price calculated? <span class="faq-icon">+</span></summary>
+            <div class="faq-answer">Price depends on device condition, market demand, and current resale value.</div>
+        </details>
+        <details class="faq-item">
+            <summary>Is pickup free? <span class="faq-icon">+</span></summary>
+            <div class="faq-answer">Yes, doorstep pickup is completely free with no hidden charges.</div>
+        </details>
+        <details class="faq-item">
+            <summary>When will I get payment? <span class="faq-icon">+</span></summary>
+            <div class="faq-answer">Payment is processed instantly after device verification during pickup.</div>
+        </details>
     </section>
 
     <footer class="footer" role="contentinfo">
-      <div class="footer-inner">
-        <div class="footer-grid">
-          <div>
-            <div class="footer-logo">
-              <img
-                src="assets/images/project-logo/logo-new.svg"
-                alt="Cashygo"
-                loading="lazy"
-              />
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo">
+                        <img src="assets/images/project-logo/logo-new.svg" alt="Cashygo" loading="lazy" />
+                    </div>
+                    <p class="footer-desc">India's most trusted device buyback platform. Instant pricing, free doorstep pickup, and instant payment.</p>
+                    <div class="social-links" aria-label="Follow us on social media">
+                        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=61582722784700" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>SELL</h4>
+                    <ul>
+                        <li><a href="#">Sell Mobile</a></li>
+                        <li><a href="#">Sell Laptop</a></li>
+                        <li><a href="#">Sell Tablet</a></li>
+                        <li><a href="#">Sell MacBook</a></li>
+                        <li><a href="#">Sell Smartwatch</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>COMPANY</h4>
+                    <ul>
+                        <li><a href="#">About Cashygo</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Partner With Us</a></li>
+                        <li><a href="#">Press &amp; Media</a></li>
+                        <li><a href="#">Blog &amp; Tips</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>SUPPORT</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Support</a></li>
+                        <li><a href="#">Return Policy</a></li>
+                        <li><a href="#">Privacy &amp; Security</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col footer-contact">
+                    <h4>CONTACT</h4>
+                    <address>
+                        <p><i class="bi bi-envelope"></i><a href="mailto:hr@cashygo.com">hr@cashygo.com</a></p>
+                        <p><i class="bi bi-telephone"></i><a href="tel:+917766071191">+91 7766071191</a></p>
+                        <p><i class="bi bi-geo-alt"></i>Bangalore, Karnataka, India</p>
+                    </address>
+                </div>
             </div>
-            <p class="footer-desc">
-              India's most trusted device buyback platform. Instant pricing,
-              free doorstep pickup, and instant payment.
-            </p>
-            <div class="social-links" aria-label="Follow us on social media">
-              <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-              <a
-                href="https://www.facebook.com/profile.php?id=61582722784700"
-                aria-label="Facebook"
-                ><i class="bi bi-facebook"></i
-              ></a>
-              <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
-              <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+            <div class="footer-bottom">
+                <div class="footer-links-row">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms &amp; Conditions</a>
+                    <a href="#">Refund Policy</a>
+                    <a href="#">Sitemap</a>
+                </div>
+                <div class="payment-row" aria-label="Secure payment methods">
+                    <span>Secure payments:</span>
+                    <i class="bi bi-credit-card" title="Credit/Debit Card"></i>
+                    <i class="bi bi-bank" title="Bank Transfer"></i>
+                    <i class="bi bi-wallet2" title="Digital Wallet"></i>
+                </div>
+                <p>&copy; 2026 Cashygo - Resale Redefined</p>
             </div>
-          </div>
-          <div class="footer-col">
-            <h4>SELL</h4>
-            <ul>
-              <li><a href="#">Sell Mobile</a></li>
-              <li><a href="#">Sell Laptop</a></li>
-              <li><a href="#">Sell Tablet</a></li>
-              <li><a href="#">Sell MacBook</a></li>
-              <li><a href="#">Sell Smartwatch</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h4>COMPANY</h4>
-            <ul>
-              <li><a href="#">About Cashygo</a></li>
-              <li><a href="#">Careers</a></li>
-              <li><a href="#">Partner With Us</a></li>
-              <li><a href="#">Press & Media</a></li>
-              <li><a href="#">Blog & Tips</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h4>SUPPORT</h4>
-            <ul>
-              <li><a href="#">Help Center</a></li>
-              <li><a href="#">Contact Support</a></li>
-              <li><a href="#">Return Policy</a></li>
-              <li><a href="#">Privacy & Security</a></li>
-              <li><a href="#">Terms of Service</a></li>
-            </ul>
-          </div>
-          <div class="footer-col footer-contact">
-            <h4>CONTACT</h4>
-            <address>
-              <p>
-                <i class="bi bi-envelope"></i
-                ><a href="mailto:hr@cashygo.com">hr@cashygo.com</a>
-              </p>
-              <p>
-                <i class="bi bi-telephone"></i
-                ><a href="tel:+917766071191">+91 7766071191</a>
-              </p>
-              <p><i class="bi bi-geo-alt"></i>Bangalore, Karnataka, India</p>
-            </address>
-          </div>
         </div>
-        <div class="footer-bottom">
-          <div class="footer-links-row">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms & Conditions</a>
-            <a href="#">Refund Policy</a>
-            <a href="#">Sitemap</a>
-          </div>
-          <div class="payment-row" aria-label="Secure payment methods">
-            <span>Secure payments:</span>
-            <i class="bi bi-credit-card" title="Credit/Debit Card"></i>
-            <i class="bi bi-bank" title="Bank Transfer"></i>
-            <i class="bi bi-wallet2" title="Digital Wallet"></i>
-          </div>
-          <p>&copy; 2026 Cashygo - Resale Redefined</p>
-        </div>
-      </div>
     </footer>
 
     <script>
-      /* ── Shared nav chrome (matches tab_model.html) ── */
-      const cityPicker = document.getElementById("cityPicker");
-      const cityLabel = document.getElementById("cityLabel");
-      const hamburger = document.getElementById("hamburger");
-      const navMenu = document.getElementById("navMenu");
+    (function () {
+      "use strict";
 
-      if (cityPicker && cityLabel) {
-        cityPicker.addEventListener("click", (event) => {
-          event.stopPropagation();
-          cityPicker.classList.toggle("open");
+      /* ─── CONSTANTS ─── */
+      const STORAGE_KEY   = "cashygoTabSelection";
+      const NEXT_PAGE     = "tab_Device_condation.html";
+      const FALLBACK_IMG  = "assets/images/home-page-img/brand-img/iPad.webp";
+      const VARIANT_GROUPS = ["storage", "connectivity", "age"];
+
+      /* Price adjustments — keeps calculatePrice pure and easy to edit */
+      const STORAGE_DELTA = { "128 GB": 2500, "256 GB": 6000, "1 TB": 9000, "2 TB": 13000 };
+      const CONN_DELTA    = { "WiFi + Cellular": 4500 };
+      const AGE_DELTA     = { "Under 1 year": 3500, "1 to 3 years": 0, "3 years+": -2500 };
+
+      /* ─── SESSION HELPERS ─── */
+      function loadSelection() {
+        try {
+          const raw = sessionStorage.getItem(STORAGE_KEY);
+          if (!raw) return {};
+          const parsed = JSON.parse(raw);
+          /* Ensure basePrice is always a finite number */
+          if (typeof parsed.basePrice !== "number" || !isFinite(parsed.basePrice)) {
+            parsed.basePrice = 0;
+          }
+          return parsed;
+        } catch {
+          return {};
+        }
+      }
+
+      function saveSelection(patch) {
+        Object.assign(state, patch);
+        try {
+          sessionStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        } catch {
+          /* sessionStorage unavailable — continue in-memory only */
+        }
+      }
+
+      /* ─── STATE — single source of truth ─── */
+      const state = {
+        model:     "Tablet",
+        brand:     "Tablet",
+        type:      "Tablet",
+        image:     FALLBACK_IMG,
+        basePrice: 0,
+        ...loadSelection(),   /* merge stored values, never lose them */
+      };
+
+      /* ─── PRICE CALCULATION ─── */
+      function calculatePrice() {
+        let price = state.basePrice || 0;
+        price += STORAGE_DELTA[state.storage]      || 0;
+        price += CONN_DELTA[state.connectivity]    || 0;
+        price += AGE_DELTA[state.age]              || 0;
+        /* Floor at 0, round to nearest 100 */
+        return Math.round(Math.max(0, price) / 100) * 100;
+      }
+
+      function formatINR(amount) {
+        return "₹" + amount.toLocaleString("en-IN");
+      }
+
+      /* ─── DOM CACHE ─── */
+      const modelEls    = document.querySelectorAll("[data-model-name]");
+      const brandEls    = document.querySelectorAll("[data-brand-name]");
+      const imageEls    = document.querySelectorAll("[data-tab-image]");
+      const summaryEls  = document.querySelectorAll("[data-summary]");
+      const priceEls    = document.querySelectorAll("[data-summary-price]");
+      const continueBtn = document.getElementById("continueBtn");
+
+      /* ─── RENDER ─── */
+      function render() {
+        const displayName  = state.model || "Tablet";
+        const displayBrand = state.type  || state.brand || "Tablet";
+
+        modelEls.forEach(el => { el.textContent = displayName; });
+        brandEls.forEach(el => { el.textContent = displayBrand; });
+        imageEls.forEach(img => {
+          img.src = state.image || FALLBACK_IMG;
+          img.alt = displayName;
         });
-        cityPicker.querySelectorAll("li").forEach((item) => {
-          item.addEventListener("click", (event) => {
-            event.stopPropagation();
-            cityLabel.textContent = item.dataset.city;
+        summaryEls.forEach(el => {
+          el.textContent = state[el.dataset.summary] || "-";
+        });
+        priceEls.forEach(el => { el.textContent = formatINR(calculatePrice()); });
+
+        if (continueBtn) {
+          const allPicked = VARIANT_GROUPS.every(g => state[g]);
+          continueBtn.disabled = !allPicked;
+        }
+      }
+
+      /* ─── OPTION SELECTION ─── */
+      document.querySelector(".tab-panel").addEventListener("click", function (e) {
+        const opt = e.target.closest(".tab-opt");
+        if (!opt) return;
+
+        const group = opt.dataset.group;
+        if (!group) return;
+
+        /* Deselect siblings in same group */
+        this.querySelectorAll(`[data-group="${group}"]`).forEach(el => {
+          el.classList.remove("is-selected");
+        });
+
+        opt.classList.add("is-selected");
+        saveSelection({ [group]: opt.dataset.value });
+        render();
+      });
+
+      /* ─── AUTO-SELECT CONNECTIVITY from model name ─── */
+      /* Only runs when connectivity has not already been chosen */
+      function autoConnectivity() {
+        if (state.connectivity) return;
+        const name = (state.model || "").toLowerCase();
+        if (!name) return;
+
+        let value = null;
+        if (name.includes("cellular"))        value = "WiFi + Cellular";
+        else if (name.includes("wifi") || name.includes("wi-fi")) value = "WiFi only";
+
+        if (!value) return;
+
+        const btn = document.querySelector(`[data-group="connectivity"][data-value="${value}"]`);
+        if (btn) {
+          btn.classList.add("is-selected");
+          saveSelection({ connectivity: value });
+        }
+      }
+
+     
+
+      /* ─── CONTINUE BUTTON ─── */
+      if (continueBtn) {
+        continueBtn.addEventListener("click", function () {
+          /* Guard is redundant (button is disabled) but kept for safety */
+          if (this.disabled) return;
+          window.location.href = NEXT_PAGE;
+        });
+      }
+
+      /* ─── NAVIGATION — city picker ─── */
+      const cityPicker = document.getElementById("cityPicker");
+      const cityLabel  = document.getElementById("cityLabel");
+
+      if (cityPicker) {
+        /* Toggle city dropdown on picker click */
+        cityPicker.addEventListener("click", function (e) {
+          e.stopPropagation();
+          this.classList.toggle("open");
+        });
+
+        /* Select a city */
+        cityPicker.querySelectorAll("li[data-city]").forEach(item => {
+          item.addEventListener("click", function (e) {
+            e.stopPropagation();            /* prevent document handler from firing */
+            cityLabel.textContent = this.dataset.city;
             cityPicker.classList.remove("open");
           });
         });
       }
 
+      /* ─── NAVIGATION — hamburger ─── */
+      const hamburger = document.getElementById("hamburger");
+      const navMenu   = document.getElementById("navMenu");
+
       if (hamburger && navMenu) {
-        hamburger.addEventListener("click", () => {
+        hamburger.addEventListener("click", function () {
           const open = navMenu.classList.toggle("open");
-          hamburger.setAttribute("aria-expanded", open);
+          this.setAttribute("aria-expanded", open);
         });
       }
 
-      document.querySelectorAll(".dropdown").forEach((dropdown) => {
-        const button = dropdown.querySelector(".dropdown-btn");
-        if (!button) return;
-        button.addEventListener("click", (event) => {
-          event.stopPropagation();
+      /* ─── NAVIGATION — nav dropdowns ─── */
+      document.querySelectorAll(".dropdown").forEach(dropdown => {
+        const btn = dropdown.querySelector(".dropdown-btn");
+        if (!btn) return;
+
+        btn.addEventListener("click", function (e) {
+          e.stopPropagation();
+
           const wasOpen = dropdown.classList.contains("open");
-          document
-            .querySelectorAll(".dropdown")
-            .forEach((item) => item.classList.remove("open"));
-          if (!wasOpen) dropdown.classList.add("open");
-          button.setAttribute("aria-expanded", String(!wasOpen));
-        });
-      });
 
-      document.addEventListener("click", (event) => {
-        if (cityPicker && !cityPicker.contains(event.target))
-          cityPicker.classList.remove("open");
-        document.querySelectorAll(".dropdown").forEach((dropdown) => {
-          dropdown.classList.remove("open");
-          const button = dropdown.querySelector(".dropdown-btn");
-          if (button) button.setAttribute("aria-expanded", "false");
-        });
-      });
+          /* Close all dropdowns first */
+          closeAllDropdowns();
 
-      /* ── Variant flow ──
-         Reads the model chosen on tab_model.html (sessionStorage
-         "cashygoTabSelection"), collects variant specs, and hands off to
-         tab_Device_condation.html. Price math mirrors assets/js/tab_flow.js
-         so the figure stays consistent across the rest of the flow. */
-      const FALLBACK_SELECTION = {
-        model: "Tablet",
-        brand: "Tablet",
-        type: "Tablet",
-        image: "assets/images/home-page-img/brand-img/iPad.webp",
-        basePrice: 0,
-      };
-
-      function getSelection() {
-        const stored = sessionStorage.getItem("cashygoTabSelection");
-        if (stored) {
-          try {
-            return { ...FALLBACK_SELECTION, ...JSON.parse(stored) };
-          } catch (err) {
-            return { ...FALLBACK_SELECTION };
+          /* If it wasn't open, open it now */
+          if (!wasOpen) {
+            dropdown.classList.add("open");
+            this.setAttribute("aria-expanded", "true");
           }
-        }
-        return { ...FALLBACK_SELECTION };
-      }
-
-      function saveSelection(next) {
-        const merged = { ...getSelection(), ...next };
-        sessionStorage.setItem("cashygoTabSelection", JSON.stringify(merged));
-        renderSelection(merged);
-        return merged;
-      }
-
-      function formatPrice(value) {
-        return "₹" + Math.max(0, value || 0).toLocaleString("en-IN");
-      }
-
-      function calculatePrice(selection) {
-        let price = selection.basePrice || 0;
-        if (selection.storage === "128 GB") price += 2500;
-        if (selection.storage === "256 GB") price += 6000;
-        if (selection.storage === "1 TB") price += 9000;
-        if (selection.storage === "2 TB") price += 13000;
-        if (selection.connectivity === "WiFi + Cellular") price += 4500;
-        if (selection.age === "Under 1 year") price += 3500;
-        if (selection.age === "3 years+") price -= 2500;
-        return Math.round(price / 100) * 100;
-      }
-
-      function renderSelection(selection = getSelection()) {
-        document.querySelectorAll("[data-model-name]").forEach((el) => {
-          el.textContent = selection.model || "Tablet";
         });
-        document.querySelectorAll("[data-brand-name]").forEach((el) => {
-          el.textContent = selection.type || selection.brand || "Tablet";
-        });
-        document.querySelectorAll("[data-tab-image]").forEach((img) => {
-          img.src = selection.image || FALLBACK_SELECTION.image;
-          img.alt = selection.model || "Tablet";
-        });
-        document.querySelectorAll("[data-summary]").forEach((el) => {
-          el.textContent = selection[el.dataset.summary] || "-";
-        });
-        document.querySelectorAll("[data-summary-price]").forEach((el) => {
-          el.textContent = formatPrice(calculatePrice(selection));
-        });
-      }
-
-      const VARIANT_GROUPS = ["storage", "connectivity", "age"];
-      const continueBtn = document.getElementById("continueBtn");
-
-      function reflectStoredOptions() {
-        const selection = getSelection();
-        VARIANT_GROUPS.forEach((group) => {
-          const value = selection[group];
-          if (!value) return;
-          const match = document.querySelector(
-            `[data-group="${group}"][data-value="${value}"]`,
-          );
-          if (match) match.classList.add("is-selected");
-        });
-      }
-
-      function refreshContinue() {
-        const selection = getSelection();
-        continueBtn.disabled = VARIANT_GROUPS.some((group) => !selection[group]);
-      }
-
-      VARIANT_GROUPS.forEach((group) => {
-        document
-          .querySelectorAll(`[data-group="${group}"]`)
-          .forEach((option) => {
-            option.addEventListener("click", () => {
-              document
-                .querySelectorAll(`[data-group="${group}"]`)
-                .forEach((item) => item.classList.remove("is-selected"));
-              option.classList.add("is-selected");
-              saveSelection({ [group]: option.dataset.value });
-              refreshContinue();
-            });
-          });
       });
 
-      // Pre-select connectivity from the model name picked on the series page
-      // (e.g. "iPad Air 1st Gen (Wi-Fi + Cellular)").
-      (function preselectConnectivity() {
-        const selection = getSelection();
-        if (selection.connectivity) return;
-        const name = (selection.model || "").toLowerCase();
-        if (!name.includes("wi-fi") && !name.includes("wifi")) return;
-        const value = name.includes("cellular") ? "WiFi + Cellular" : "WiFi only";
-        const match = document.querySelector(
-          `[data-group="connectivity"][data-value="${value}"]`,
-        );
-        if (match) {
-          match.classList.add("is-selected");
-          saveSelection({ connectivity: value });
-        }
-      })();
+      function closeAllDropdowns() {
+        document.querySelectorAll(".dropdown.open").forEach(d => {
+          d.classList.remove("open");
+          const b = d.querySelector(".dropdown-btn");
+          if (b) b.setAttribute("aria-expanded", "false");
+        });
+      }
 
-      continueBtn.addEventListener("click", () => {
-        if (continueBtn.disabled) return;
-        window.location.href = "tab_Device_condation.html";
+      /* ─── GLOBAL CLICK — close city & dropdowns on outside click ─── */
+      document.addEventListener("click", function (e) {
+        /* Close city picker if click is outside it */
+        if (cityPicker && !cityPicker.contains(e.target)) {
+          cityPicker.classList.remove("open");
+        }
+        /* Close nav dropdowns if click is outside all of them */
+        const insideDropdown = e.target.closest(".dropdown");
+        if (!insideDropdown) {
+          closeAllDropdowns();
+        }
       });
 
-      renderSelection();
-      reflectStoredOptions();
-      refreshContinue();
+      /* ─── INIT ─── */
+      autoConnectivity();   /* must run before restoreUI so button is marked */
+    //   restoreUI();          /* re-highlight previously chosen options */
+      render();             /* populate summary panel */
+
+    })();
     </script>
-  </body>
+</body>
+
 </html>

@@ -67,19 +67,37 @@
       </aside>
 
       <section class="laptop-flow__card laptop-panel" aria-label="Choose tablet condition">
-        <!-- <h2 class="laptop-panel__title"><span class="laptop-panel__num">1</span> Physical Condition</h2>
-        <div class="laptop-option-grid is-three">
-          <button class="laptop-option" data-group="condition" data-value="Excellent"><i class="bi bi-stars"></i><strong>Excellent</strong><span>No scratches, dents, cracks, or display marks.</span></button>
-          <button class="laptop-option" data-group="condition" data-value="Average"><i class="bi bi-circle-half"></i><strong>Average</strong><span>Minor usage marks, no major damage.</span></button>
-          <button class="laptop-option" data-group="condition" data-value="Below Average"><i class="bi bi-dash-circle"></i><strong>Below Average</strong><span>Heavy wear, deep scratches, or worn body.</span></button>
-          <button class="laptop-option" data-group="condition" data-value="Damaged"><i class="bi bi-exclamation-triangle"></i><strong>Damaged</strong><span>Cracked glass, dents, bent frame, or display marks.</span></button>
-        </div> -->
+        <h2 class="laptop-panel__title">
+          <span class="laptop-panel__num">2</span>
+          Available Accessories
+        </h2>
 
-        <h2 class="laptop-panel__title"><span class="laptop-panel__num">2</span> Charger and Box</h2>
         <div class="laptop-option-grid is-three">
-          <button class="laptop-option" data-group="accessories" data-value="Original charger and box"><i class="bi bi-box-seam"></i><strong>Charger + box</strong><span>Original charger and packaging available.</span></button>
-          <button class="laptop-option" data-group="accessories" data-value="Original charger missing"><i class="bi bi-plug"></i><strong>Charger missing</strong><span>Original charger is not available.</span></button>
-          <button class="laptop-option" data-group="accessories" data-value="No charger or box"><i class="bi bi-x-circle"></i><strong>No charger/box</strong><span>Tablet only, without original accessories.</span></button>
+
+          <button class="laptop-option" data-group="accessories" data-value="Original charger available">
+            <i class="bi bi-plug"></i>
+            <strong>Charger</strong>
+            <span>Original charger available with the device.</span>
+          </button>
+
+          <button class="laptop-option" data-group="accessories" data-value="Original box available">
+            <i class="bi bi-box-seam"></i>
+            <strong>Box</strong>
+            <span>Original box available with the device.</span>
+          </button>
+
+          <button class="laptop-option" data-group="accessories" data-value="Original bill available">
+            <i class="bi bi-receipt"></i>
+            <strong>Bill</strong>
+            <span>Original bill available.</span>
+          </button>
+
+          <button class="laptop-option" data-group="accessories" data-value="Original pen available">
+            <i class="bi bi-pencil"></i>
+            <strong>Pen</strong>
+            <span>Tablet with original pen/stylus accessory.</span>
+          </button>
+
         </div>
       </section>
 
@@ -94,13 +112,149 @@
           <div class="laptop-summary__row"><span>Accessories</span><strong data-summary="accessories">-</strong></div>
           <div class="laptop-total"><small>Expected Price</small><strong data-summary-price>₹0</strong></div>
           <button class="laptop-action" id="continueBtn" disabled>Continue <i class="bi bi-arrow-right"></i></button>
-          <div class="laptop-note"><i class="bi bi-info-circle"></i><span>Pickup verification confirms the final payout.</span></div>
+          <div class="laptop-note"><i class="bi bi-info-circle"></i><span>Pickup verification confirms the final
+              payout.</span></div>
         </div>
       </aside>
     </div>
   </main>
 
-  <script src="assets/js/tab_flow.js"></script>
+  <script>
+    const continueBtn = document.getElementById("continueBtn");
+
+    function getSelection() {
+      return JSON.parse(
+        sessionStorage.getItem("cashygoTabSelection")
+      ) || {};
+    }
+
+    function saveSelection(data) {
+      const current = getSelection();
+
+      const updated = {
+        ...current,
+        ...data
+      };
+
+      sessionStorage.setItem(
+        "cashygoTabSelection",
+        JSON.stringify(updated)
+      );
+
+      renderSummary();
+    }
+
+    function formatPrice(price) {
+      return "₹" + (price || 0).toLocaleString("en-IN");
+    }
+
+    function calculatePrice() {
+      const selection = getSelection();
+
+      let price = selection.basePrice || 0;
+
+      if (
+        selection.accessories ===
+        "Original charger missing"
+      ) {
+        price -= 1200;
+      }
+
+      if (
+        selection.accessories ===
+        "No charger or box"
+      ) {
+        price -= 2200;
+      }
+
+      return price;
+    }
+
+    function renderSummary() {
+      const selection = getSelection();
+
+      document
+        .querySelectorAll("[data-model-name]")
+        .forEach(el => {
+          el.textContent =
+            selection.model || "Tablet";
+        });
+
+      document
+        .querySelectorAll("[data-brand-name]")
+        .forEach(el => {
+          el.textContent =
+            selection.brand || "Tablet";
+        });
+
+      document
+        .querySelectorAll("[data-tab-image]")
+        .forEach(img => {
+          if (selection.image) {
+            img.src = selection.image;
+          }
+        });
+
+      const accessoryField =
+        document.querySelector(
+          '[data-summary="accessories"]'
+        );
+
+      if (accessoryField) {
+        accessoryField.textContent =
+          selection.accessories || "-";
+      }
+
+      document
+        .querySelectorAll("[data-summary-price]")
+        .forEach(el => {
+          el.textContent = formatPrice(
+            calculatePrice()
+          );
+        });
+    }
+
+    document
+      .querySelectorAll(
+        '[data-group="accessories"]'
+      )
+      .forEach(card => {
+
+        card.addEventListener("click", () => {
+
+          document
+            .querySelectorAll(
+              '[data-group="accessories"]'
+            )
+            .forEach(item =>
+              item.classList.remove(
+                "is-selected"
+              )
+            );
+
+          card.classList.add(
+            "is-selected"
+          );
+
+          saveSelection({
+            accessories:
+              card.dataset.value
+          });
+
+          continueBtn.disabled = false;
+        });
+      });
+
+    continueBtn.addEventListener(
+      "click",
+      () => {
+        window.location.href =
+          "tab_device_question.html";
+      }
+    );
+
+    renderSummary();
+  </script>
 </body>
 
 </html>
