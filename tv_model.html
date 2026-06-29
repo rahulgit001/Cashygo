@@ -4,145 +4,286 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cashygo - Select TV Series</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta name="description" content="Cashygo – Select your TV series to get an instant buyback estimate. Samsung, LG, Sony, Mi, OnePlus and more.">
+  <meta name="theme-color" content="#0d8c60">
+  <title>Cashygo — Select TV Series</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
   <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/tab_pages.css">
+  <link rel="stylesheet" href="assets/css/brand.css">
+  <link rel="stylesheet" href="assets/css/tv_model.css">
 </head>
 
-<body class="tab-page">
+<body>
+  <!-- ===== Master navigation (same markup/classes as tv_brand.html) ===== -->
   <nav class="nav" role="navigation" aria-label="Main navigation">
     <div class="nav-top">
-      <button class="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
         <i class="bi bi-list"></i>
       </button>
-      <a href="index.html" class="nav-logo" aria-label="Cashygo homepage">
+      <a href="/" class="nav-logo" aria-label="Cashygo – Go to homepage">
         <img src="assets/images/project-logo/logo-new.svg" alt="Cashygo logo" width="120" height="40">
       </a>
       <div class="nav-search" role="search">
-        <label for="mainSearch" class="sr-only">Search TV series</label>
-        <input type="search" id="mainSearch" name="search" placeholder="Search TV series..." autocomplete="off">
+        <label for="mainSearch" class="sr-only">Search devices</label>
+        <input type="search" id="mainSearch" name="search" placeholder="Search TVs…" autocomplete="off">
         <div class="search-icon" aria-hidden="true"><i class="bi bi-search"></i></div>
       </div>
-      <button class="nav-login" aria-label="Sign in">
+      <button class="nav-login" id="openLoginBtn" aria-label="Sign in to your account">
         <i class="bi bi-person-circle"></i>
         <span>Sign in</span>
       </button>
     </div>
+
+    <div class="nav-menu" id="navMenu">
+      <div class="nav-menu-inner">
+        <div class="dropdown" id="dropMobile">
+          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Mobile ⌵</button>
+          <ul class="dropdown-menu">
+            <li><a href="Apple_model.html">Apple iPhone</a></li>
+            <li><a href="samsung.html">Samsung Galaxy</a></li>
+            <li><a href="oneplus.html">OnePlus</a></li>
+            <li><a href="google.html">Google Pixel</a></li>
+            <li><a href="xiaomi.html">Xiaomi</a></li>
+            <li><a href="vivo.html">Vivo</a></li>
+          </ul>
+        </div>
+        <div class="dropdown" id="dropTablet">
+          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Tablet ⌵</button>
+          <ul class="dropdown-menu">
+            <li><a href="tab_model.html?brand=Apple">Apple Tab</a></li>
+            <li><a href="tab_model.html?brand=Samsung">Samsung Tab</a></li>
+            <li><a href="tab_model.html?brand=OnePlus">OnePlus Tab</a></li>
+            <li><a href="tab_model.html?brand=Xiaomi">Xiaomi Tab</a></li>
+            <li><a href="tab_model.html?brand=Realme">Realme Tab</a></li>
+          </ul>
+        </div>
+        <div class="dropdown" id="dropLaptop">
+          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Laptop ⌵</button>
+          <ul class="dropdown-menu">
+            <li><a href="dell.html">Dell</a></li>
+            <li><a href="hp.html">HP</a></li>
+            <li><a href="lenovo.html">Lenovo</a></li>
+            <li><a href="asus.html">Asus</a></li>
+            <li><a href="acer.html">Acer</a></li>
+          </ul>
+        </div>
+        <div class="dropdown" id="dropMac">
+          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Mac ⌵</button>
+          <ul class="dropdown-menu">
+            <li><a href="macbook.html">MacBook</a></li>
+            <li><a href="imac.html">iMac</a></li>
+            <li><a href="mac-mini.html">Mac Mini</a></li>
+            <li><a href="macbook-pro.html">MacBook Pro</a></li>
+          </ul>
+        </div>
+        <a href="#" class="menu-link">Corporate Deals</a>
+        <a href="calculator.html" class="menu-link">Price Calculator</a>
+        <a href="blogs.html" class="menu-link">Blog &amp; Tips</a>
+        <a href="contact.html" class="menu-link">Contact</a>
+        <a href="Faq.html" class="menu-link">FAQ's</a>
+        <a href="costumer.html" class="menu-link">Customer Reviews</a>
+      </div>
+    </div>
   </nav>
 
   <main>
-    <section class="tab-hero" aria-label="TV series hero">
-      <div>
-        <div class="tab-hero__badge"><i class="bi bi-grid-3x3-gap-fill"></i> TV series</div>
-        <h1>Select Your TV Series</h1>
-        <p>Choose the closest TV series, then continue through variant, condition, questions, and issue checks for an instant estimate.</p>
-        <div class="tab-hero__actions">
-          <a href="tv_brand.html" class="tab-btn is-soft"><i class="bi bi-arrow-left"></i> Change brand</a>
+    <!-- ===== Hero (reuses master .cashygo-hero system) ===== -->
+    <header class="cashygo-hero">
+      <div class="cashygo-hero__inner">
+        <div class="cashygo-hero__left">
+          <p class="cashygo-hero__badge">TV series</p>
+          <h1 class="cashygo-hero__title">
+            Select Your TV Series<br>
+            <em>One step closer to an instant quote.</em>
+          </h1>
+          <p class="cashygo-hero__sub">Pick the closest series, then continue through variant, condition, details and issue checks.</p>
+          <div class="tvm-hero__actions">
+            <a href="tv_brand.html" class="cashygo-hero__brand-btn"><i class="bi bi-arrow-left"></i> Change brand</a>
+          </div>
+        </div>
+        <div class="cashygo-hero__right" aria-hidden="true">
+          <div class="cashygo-hero__ring"></div>
+          <div class="cashygo-hero__phone">
+            <img src="assets/images/home-page-img/brand-img/Tv.webp" alt="">
+          </div>
+          <ul class="cashygo-hero__tags">
+            <li class="cashygo-hero__tag">Instant quote</li>
+            <li class="cashygo-hero__tag">Best price</li>
+            <li class="cashygo-hero__tag">Free pickup</li>
+          </ul>
         </div>
       </div>
-      <div class="tab-hero__media" aria-hidden="true">
-        <img src="assets/images/home-page-img/brand-img/Tv.webp" alt="">
-      </div>
-    </section>
+    </header>
 
-    <section class="tab-section" aria-label="TV series">
-      <div class="tab-section__head">
+    <!-- ===== Series section ===== -->
+    <section class="tvm-section" aria-label="TV series">
+      <div class="tvm-section__head">
         <div>
           <h2>Popular TV Series</h2>
           <p>Filter by brand or search your TV series.</p>
         </div>
-        <div class="tab-search">
-          <input type="search" id="tvModelSearch" placeholder="Search series...">
-          <i class="bi bi-search"></i>
+        <div class="tvm-search">
+          <label for="tvModelSearch" class="sr-only">Search TV series</label>
+          <input type="search" id="tvModelSearch" placeholder="Search series…" autocomplete="off">
+          <i class="bi bi-search" aria-hidden="true"></i>
         </div>
       </div>
 
-      <div class="tab-filter-row" aria-label="Filter TV series">
-        <button class="tab-filter is-active" data-filter="all">All</button>
-        <button class="tab-filter" data-filter="samsung">Samsung</button>
-        <button class="tab-filter" data-filter="lg">LG</button>
-        <button class="tab-filter" data-filter="sony">Sony</button>
-        <button class="tab-filter" data-filter="xiaomi">Xiaomi</button>
-        <button class="tab-filter" data-filter="oneplus">OnePlus</button>
-        <button class="tab-filter" data-filter="other">Other</button>
+      <div class="tvm-filters" role="group" aria-label="Filter TV series by brand">
+        <button class="tvm-filter is-active" data-filter="all">All</button>
+        <button class="tvm-filter" data-filter="samsung">Samsung</button>
+        <button class="tvm-filter" data-filter="lg">LG</button>
+        <button class="tvm-filter" data-filter="sony">Sony</button>
+        <button class="tvm-filter" data-filter="xiaomi">Xiaomi</button>
+        <button class="tvm-filter" data-filter="oneplus">OnePlus</button>
+        <button class="tvm-filter" data-filter="other">Other</button>
       </div>
 
-      <div class="tab-grid" id="tvModelGrid">
-        <a href="tv_verient.html?model=Samsung%20Smart%20TV%20Series" class="tab-card" data-brand="samsung">
-          <div class="tab-card__image"><img src="assets/images/home-page-img/brand-img/Tv.webp" alt="Samsung Smart TV Series"></div>
-          <h3>Samsung Smart TV Series</h3>
-          <p>LED, Crystal UHD, QLED, and smart TV models.</p>
-          <div class="tab-card__price">Up to ₹60,000</div>
+      <div class="tvm-grid" id="tvModelGrid">
+        <a href="tv_verient.html?model=Samsung%20Smart%20TV%20Series" class="tvm-card" data-brand="samsung" data-name="Samsung Smart TV Series">
+          <div class="tvm-card__img"><img src="assets/images/home-page-img/brand-img/Tv.webp" alt="Samsung Smart TV Series"></div>
+          <div class="tvm-card__body">
+            <span class="tvm-card__badge"><i class="bi bi-lightning-charge-fill"></i> Instant quote</span>
+            <h3 class="tvm-card__name">Samsung Smart TV Series</h3>
+            <p class="tvm-card__desc">LED, Crystal UHD, QLED, and smart TV models.</p>
+            <div class="tvm-card__row">
+              <span class="tvm-card__price">Up to ₹60,000</span>
+              <span class="tvm-card__cta">Select <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </div>
         </a>
-        <a href="tv_verient.html?model=LG%20Smart%20TV%20Series" class="tab-card" data-brand="lg">
-          <div class="tab-card__image"><img src="assets/images/home-page-img/brand-img/Tv.webp" alt="LG Smart TV Series"></div>
-          <h3>LG Smart TV Series</h3>
-          <p>LED, UHD, NanoCell, OLED, and webOS TVs.</p>
-          <div class="tab-card__price">Up to ₹58,000</div>
+
+        <a href="tv_verient.html?model=LG%20Smart%20TV%20Series" class="tvm-card" data-brand="lg" data-name="LG Smart TV Series">
+          <div class="tvm-card__img"><img src="assets/images/home-page-img/brand-img/Tv.webp" alt="LG Smart TV Series"></div>
+          <div class="tvm-card__body">
+            <span class="tvm-card__badge"><i class="bi bi-lightning-charge-fill"></i> Instant quote</span>
+            <h3 class="tvm-card__name">LG Smart TV Series</h3>
+            <p class="tvm-card__desc">LED, UHD, NanoCell, OLED, and webOS TVs.</p>
+            <div class="tvm-card__row">
+              <span class="tvm-card__price">Up to ₹58,000</span>
+              <span class="tvm-card__cta">Select <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </div>
         </a>
-        <a href="tv_verient.html?model=Sony%20Bravia%20TV%20Series" class="tab-card" data-brand="sony">
-          <div class="tab-card__image"><img src="assets/images/home-page-img/brand-img/Tv.webp" alt="Sony Bravia TV Series"></div>
-          <h3>Sony Bravia TV Series</h3>
-          <p>Bravia LED, 4K, Google TV, OLED, and premium series.</p>
-          <div class="tab-card__price">Up to ₹70,000</div>
+
+        <a href="tv_verient.html?model=Sony%20Bravia%20TV%20Series" class="tvm-card" data-brand="sony" data-name="Sony Bravia TV Series">
+          <div class="tvm-card__img"><img src="assets/images/home-page-img/brand-img/Tv.webp" alt="Sony Bravia TV Series"></div>
+          <div class="tvm-card__body">
+            <span class="tvm-card__badge"><i class="bi bi-lightning-charge-fill"></i> Instant quote</span>
+            <h3 class="tvm-card__name">Sony Bravia TV Series</h3>
+            <p class="tvm-card__desc">Bravia LED, 4K, Google TV, OLED, and premium series.</p>
+            <div class="tvm-card__row">
+              <span class="tvm-card__price">Up to ₹70,000</span>
+              <span class="tvm-card__cta">Select <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </div>
         </a>
-        <a href="tv_verient.html?model=Mi%20%2F%20Xiaomi%20TV%20Series" class="tab-card" data-brand="xiaomi">
-          <div class="tab-card__image"><img src="assets/images/home-page-img/brand-img/Tv.webp" alt="Mi Xiaomi TV Series"></div>
-          <h3>Mi / Xiaomi TV Series</h3>
-          <p>Mi TV, Xiaomi Smart TV, 4K, and Android TV models.</p>
-          <div class="tab-card__price">Up to ₹35,000</div>
+
+        <a href="tv_verient.html?model=Mi%20%2F%20Xiaomi%20TV%20Series" class="tvm-card" data-brand="xiaomi" data-name="Mi / Xiaomi TV Series">
+          <div class="tvm-card__img"><img src="assets/images/home-page-img/brand-img/Tv.webp" alt="Mi Xiaomi TV Series"></div>
+          <div class="tvm-card__body">
+            <span class="tvm-card__badge"><i class="bi bi-lightning-charge-fill"></i> Instant quote</span>
+            <h3 class="tvm-card__name">Mi / Xiaomi TV Series</h3>
+            <p class="tvm-card__desc">Mi TV, Xiaomi Smart TV, 4K, and Android TV models.</p>
+            <div class="tvm-card__row">
+              <span class="tvm-card__price">Up to ₹35,000</span>
+              <span class="tvm-card__cta">Select <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </div>
         </a>
-        <a href="tv_verient.html?model=OnePlus%20TV%20Series" class="tab-card" data-brand="oneplus">
-          <div class="tab-card__image"><img src="assets/images/home-page-img/brand-img/Tv.webp" alt="OnePlus TV Series"></div>
-          <h3>OnePlus TV Series</h3>
-          <p>Y, U, Q, 4K, and Android TV series.</p>
-          <div class="tab-card__price">Up to ₹38,000</div>
+
+        <a href="tv_verient.html?model=OnePlus%20TV%20Series" class="tvm-card" data-brand="oneplus" data-name="OnePlus TV Series">
+          <div class="tvm-card__img"><img src="assets/images/home-page-img/brand-img/Tv.webp" alt="OnePlus TV Series"></div>
+          <div class="tvm-card__body">
+            <span class="tvm-card__badge"><i class="bi bi-lightning-charge-fill"></i> Instant quote</span>
+            <h3 class="tvm-card__name">OnePlus TV Series</h3>
+            <p class="tvm-card__desc">Y, U, Q, 4K, and Android TV series.</p>
+            <div class="tvm-card__row">
+              <span class="tvm-card__price">Up to ₹38,000</span>
+              <span class="tvm-card__cta">Select <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </div>
         </a>
-        <a href="tv_verient.html?model=TCL%20%2F%20Other%20TV%20Series" class="tab-card" data-brand="other">
-          <div class="tab-card__image"><img src="assets/images/home-page-img/brand-img/Tv.webp" alt="TCL Other TV Series"></div>
-          <h3>TCL / Other TV Series</h3>
-          <p>TCL, Vu, Hisense, Kodak, and other smart TVs.</p>
-          <div class="tab-card__price">Up to ₹28,000</div>
+
+        <a href="tv_verient.html?model=TCL%20%2F%20Other%20TV%20Series" class="tvm-card" data-brand="other" data-name="TCL / Other TV Series">
+          <div class="tvm-card__img"><img src="assets/images/home-page-img/brand-img/Tv.webp" alt="TCL Other TV Series"></div>
+          <div class="tvm-card__body">
+            <span class="tvm-card__badge"><i class="bi bi-lightning-charge-fill"></i> Instant quote</span>
+            <h3 class="tvm-card__name">TCL / Other TV Series</h3>
+            <p class="tvm-card__desc">TCL, Vu, Hisense, Kodak, and other smart TVs.</p>
+            <div class="tvm-card__row">
+              <span class="tvm-card__price">Up to ₹28,000</span>
+              <span class="tvm-card__cta">Select <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </div>
         </a>
       </div>
+
+      <p class="tvm-empty" id="tvmEmpty">No TV series match your search. Try a different brand or keyword.</p>
     </section>
   </main>
 
+  <!-- Master nav behaviour (hamburger, dropdowns, login modal) -->
+  <script src="assets/js/script.js"></script>
+  <script src="assets/js/brand.js"></script>
+
+  <!-- Page logic: brand filter + live search + selection persistence -->
   <script>
-    const tvModelSearch = document.getElementById("tvModelSearch");
-    const tvModelCards = document.querySelectorAll("#tvModelGrid .tab-card");
-    const tvFilterBtns = document.querySelectorAll(".tab-filter");
-    const selectedBrand = new URLSearchParams(window.location.search).get("brand");
-    const brandMap = { Samsung: "samsung", LG: "lg", Sony: "sony", Xiaomi: "xiaomi", OnePlus: "oneplus", Other: "other" };
-    let activeFilter = brandMap[selectedBrand] || "all";
+    (function () {
+      var search = document.getElementById("tvModelSearch");
+      var grid = document.getElementById("tvModelGrid");
+      var cards = Array.prototype.slice.call(grid.querySelectorAll(".tvm-card"));
+      var filters = Array.prototype.slice.call(document.querySelectorAll(".tvm-filter"));
+      var empty = document.getElementById("tvmEmpty");
 
-    function applyTvFilters() {
-      const value = tvModelSearch.value.trim().toLowerCase();
-      tvModelCards.forEach(card => {
-        const matchesFilter = activeFilter === "all" || card.dataset.brand === activeFilter;
-        const matchesSearch = card.textContent.toLowerCase().includes(value);
-        card.style.display = matchesFilter && matchesSearch ? "grid" : "none";
-      });
-    }
+      var params = new URLSearchParams(window.location.search);
+      var brandParam = params.get("brand") || localStorage.getItem("selectedBrand");
+      var brandMap = {
+        Samsung: "samsung", LG: "lg", Sony: "sony", Xiaomi: "xiaomi",
+        OnePlus: "oneplus", TCL: "other", Hisense: "other",
+        Panasonic: "other", Vu: "other", Other: "other"
+      };
+      var active = brandMap[brandParam] || "all";
 
-    tvFilterBtns.forEach(btn => {
-      btn.classList.toggle("is-active", btn.dataset.filter === activeFilter);
-      btn.addEventListener("click", () => {
-        tvFilterBtns.forEach(item => item.classList.remove("is-active"));
-        btn.classList.add("is-active");
-        activeFilter = btn.dataset.filter;
-        applyTvFilters();
+      function apply() {
+        var q = (search.value || "").trim().toLowerCase();
+        var shown = 0;
+        cards.forEach(function (card) {
+          var okFilter = active === "all" || card.dataset.brand === active;
+          var okSearch = card.textContent.toLowerCase().indexOf(q) > -1;
+          var show = okFilter && okSearch;
+          card.classList.toggle("is-hidden", !show);
+          if (show) shown++;
+        });
+        if (empty) empty.style.display = shown ? "none" : "block";
+      }
+
+      filters.forEach(function (btn) {
+        btn.classList.toggle("is-active", btn.dataset.filter === active);
+        btn.addEventListener("click", function () {
+          filters.forEach(function (b) { b.classList.remove("is-active"); });
+          btn.classList.add("is-active");
+          active = btn.dataset.filter;
+          apply();
+        });
       });
-    });
-    if (!document.querySelector(".tab-filter.is-active")) {
-      document.querySelector('[data-filter="all"]').classList.add("is-active");
-      activeFilter = "all";
-    }
-    tvModelSearch.addEventListener("input", applyTvFilters);
-    applyTvFilters();
+      if (!document.querySelector(".tvm-filter.is-active")) {
+        var all = document.querySelector('[data-filter="all"]');
+        if (all) { all.classList.add("is-active"); active = "all"; }
+      }
+
+      cards.forEach(function (card) {
+        card.addEventListener("click", function () {
+          var name = card.getAttribute("data-name");
+          if (name) localStorage.setItem("selectedModel", name);
+        });
+      });
+
+      search.addEventListener("input", apply);
+      apply();
+    })();
   </script>
 </body>
 
-</html
+</html>
