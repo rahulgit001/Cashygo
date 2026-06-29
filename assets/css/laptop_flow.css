@@ -128,7 +128,7 @@ input {
 .laptop-flow__layout {
   display: grid;
   grid-template-columns: minmax(240px, 300px) minmax(0, 1fr) minmax(280px, 330px);
-  gap: 24px;
+  gap: 10px;
   align-items: start;
 }
 
@@ -209,7 +209,7 @@ input {
 }
 
 .laptop-panel {
-  padding: 26px;
+  padding: 12px;
 }
 
 .laptop-panel__title {
@@ -607,7 +607,7 @@ input {
   }
 
   .laptop-panel {
-    padding: 20px;
+    padding: 12px;
   }
 }
 
