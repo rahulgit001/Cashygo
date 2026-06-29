@@ -4,118 +4,277 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cashygo - Select TV Variant</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta name="description" content="Cashygo – Tell us about your TV variant: screen size, panel, type and age for an instant buyback estimate.">
+  <meta name="theme-color" content="#0d8c60">
+  <title>Cashygo — Select TV Variant</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
   <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/laptop_flow.css">
+  <link rel="stylesheet" href="assets/css/brand.css">
+  <link rel="stylesheet" href="assets/css/tv_verient.css">
 </head>
 
-<body data-page="tv-variant">
+<body>
+  <!-- ===== Master navigation ===== -->
   <nav class="nav" role="navigation" aria-label="Main navigation">
     <div class="nav-top">
-      <a href="index.html" class="nav-logo" aria-label="Cashygo homepage">
+      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <i class="bi bi-list"></i>
+      </button>
+      <a href="/" class="nav-logo" aria-label="Cashygo – Go to homepage">
         <img src="assets/images/project-logo/logo-new.svg" alt="Cashygo logo" width="120" height="40">
       </a>
       <div class="nav-search" role="search">
-        <label for="mainSearch" class="sr-only">Search TV series</label>
-        <input type="search" id="mainSearch" placeholder="Search TV series..." autocomplete="off">
+        <label for="mainSearch" class="sr-only">Search devices</label>
+        <input type="search" id="mainSearch" name="search" placeholder="Search TVs…" autocomplete="off">
         <div class="search-icon" aria-hidden="true"><i class="bi bi-search"></i></div>
       </div>
-      <a class="nav-login" href="contact.html"><i class="bi bi-person-circle"></i><span>Sign in</span></a>
+      <button class="nav-login" id="openLoginBtn" aria-label="Sign in to your account">
+        <i class="bi bi-person-circle"></i>
+        <span>Sign in</span>
+      </button>
+    </div>
+
+    <div class="nav-menu" id="navMenu">
+      <div class="nav-menu-inner">
+        <div class="dropdown" id="dropMobile">
+          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Mobile ⌵</button>
+          <ul class="dropdown-menu">
+            <li><a href="Apple_model.html">Apple iPhone</a></li>
+            <li><a href="samsung.html">Samsung Galaxy</a></li>
+            <li><a href="oneplus.html">OnePlus</a></li>
+            <li><a href="google.html">Google Pixel</a></li>
+            <li><a href="xiaomi.html">Xiaomi</a></li>
+            <li><a href="vivo.html">Vivo</a></li>
+          </ul>
+        </div>
+        <div class="dropdown" id="dropTablet">
+          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Tablet ⌵</button>
+          <ul class="dropdown-menu">
+            <li><a href="tab_model.html?brand=Apple">Apple Tab</a></li>
+            <li><a href="tab_model.html?brand=Samsung">Samsung Tab</a></li>
+            <li><a href="tab_model.html?brand=OnePlus">OnePlus Tab</a></li>
+            <li><a href="tab_model.html?brand=Xiaomi">Xiaomi Tab</a></li>
+            <li><a href="tab_model.html?brand=Realme">Realme Tab</a></li>
+          </ul>
+        </div>
+        <div class="dropdown" id="dropLaptop">
+          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Laptop ⌵</button>
+          <ul class="dropdown-menu">
+            <li><a href="dell.html">Dell</a></li>
+            <li><a href="hp.html">HP</a></li>
+            <li><a href="lenovo.html">Lenovo</a></li>
+            <li><a href="asus.html">Asus</a></li>
+            <li><a href="acer.html">Acer</a></li>
+          </ul>
+        </div>
+        <div class="dropdown" id="dropMac">
+          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Mac ⌵</button>
+          <ul class="dropdown-menu">
+            <li><a href="macbook.html">MacBook</a></li>
+            <li><a href="imac.html">iMac</a></li>
+            <li><a href="mac-mini.html">Mac Mini</a></li>
+            <li><a href="macbook-pro.html">MacBook Pro</a></li>
+          </ul>
+        </div>
+        <a href="#" class="menu-link">Corporate Deals</a>
+        <a href="calculator.html" class="menu-link">Price Calculator</a>
+        <a href="blogs.html" class="menu-link">Blog &amp; Tips</a>
+        <a href="contact.html" class="menu-link">Contact</a>
+        <a href="Faq.html" class="menu-link">FAQ's</a>
+        <a href="costumer.html" class="menu-link">Customer Reviews</a>
+      </div>
     </div>
   </nav>
 
-  <main class="laptop-flow">
-    <nav class="laptop-flow__crumbs" aria-label="Breadcrumb">
-      <a href="tv_brand.html">Sell TV</a>
-      <i class="bi bi-chevron-right"></i>
-      <a href="tv_model.html">Series</a>
-      <i class="bi bi-chevron-right"></i>
-      <span>Variant</span>
+  <main>
+    <!-- ===== Breadcrumb ===== -->
+    <nav class="tvv-crumbs" aria-label="Breadcrumb">
+      <a href="tv_brand.html">Brand</a>
+      <i class="bi bi-chevron-right" aria-hidden="true"></i>
+      <a href="tv_model.html">Model</a>
+      <i class="bi bi-chevron-right" aria-hidden="true"></i>
+      <span class="is-current" aria-current="page">Variant</span>
     </nav>
 
-    <section class="laptop-flow__head">
-      <div>
-        <div class="laptop-flow__eyebrow"><i class="bi bi-tv"></i> Instant TV price check</div>
-        <h1>Select your <span data-model-name>TV</span> variant</h1>
-        <p>Choose screen size, panel type, smart features, and age so Cashygo can estimate your TV resale value accurately.</p>
-      </div>
-      <div class="laptop-flow__steps" aria-label="Sell TV steps">
-        <div class="laptop-flow__step is-active"><strong>1. Variant</strong><span>Screen and age</span></div>
-        <div class="laptop-flow__step"><strong>2. Condition</strong><span>Display and body</span></div>
-        <div class="laptop-flow__step"><strong>3. Questions</strong><span>Pickup checks</span></div>
-        <div class="laptop-flow__step"><strong>4. Issues</strong><span>Fault selection</span></div>
-      </div>
-    </section>
-
-    <div class="laptop-flow__layout">
-      <aside class="laptop-flow__card laptop-product">
-        <div class="laptop-product__media">
-          <img data-tv-image src="assets/images/home-page-img/brand-img/Tv.webp" alt="TV">
-        </div>
-        <div class="laptop-product__body">
-          <div class="laptop-product__brand" data-brand-name>TV</div>
-          <h2 class="laptop-product__name" data-model-name>TV</h2>
-          <span class="laptop-chip"><i class="bi bi-shield-check"></i> Verified pickup check</span>
-          <div class="laptop-product__meta">
-            <span><i class="bi bi-truck"></i> Pickup support</span>
-            <span><i class="bi bi-cash-stack"></i> Fast payment after check</span>
-            <span><i class="bi bi-stars"></i> Best TV resale value</span>
+    <!-- ===== Hero ===== -->
+    <header class="cashygo-hero">
+      <div class="cashygo-hero__inner">
+        <div class="cashygo-hero__left">
+          <p class="cashygo-hero__badge">Variant</p>
+          <h1 class="cashygo-hero__title">
+            Tell us about your TV<br>
+            <em>A few quick details set the price.</em>
+          </h1>
+          <p class="cashygo-hero__sub">Pick the screen size, panel, type and age that match your television.</p>
+          <div class="tvv-hero__actions">
+            <a href="tv_model.html" class="cashygo-hero__brand-btn"><i class="bi bi-arrow-left"></i> Change series</a>
+            <span class="tvv-hero__chip"><i class="bi bi-tv"></i> <span data-model-name>Your TV</span></span>
           </div>
         </div>
-      </aside>
-
-      <section class="laptop-flow__card laptop-panel" aria-label="Choose TV variant">
-        <h2 class="laptop-panel_title"><span class="laptop-panel_num">1</span> Screen Size</h2>
-        <div class="laptop-option-grid is-three">
-          <button class="laptop-option" data-group="size" data-value="32 inch"><i class="bi bi-tv"></i><strong>32 inch</strong><span>Compact TV size.</span></button>
-          <button class="laptop-option" data-group="size" data-value="43 inch"><i class="bi bi-tv"></i><strong>43 inch</strong><span>Popular living room size.</span></button>
-          <button class="laptop-option" data-group="size" data-value="50 inch"><i class="bi bi-display"></i><strong>50 inch</strong><span>Large 4K TV size.</span></button>
-          <button class="laptop-option" data-group="size" data-value="55 inch+"><i class="bi bi-badge-4k"></i><strong>55 inch+</strong><span>Premium big-screen TV.</span></button>
+        <div class="cashygo-hero__right" aria-hidden="true">
+          <div class="cashygo-hero__ring"></div>
+          <div class="cashygo-hero__phone">
+            <img src="assets/images/home-page-img/brand-img/Tv.webp" alt="">
+          </div>
+          <ul class="cashygo-hero__tags">
+            <li class="cashygo-hero__tag">Instant quote</li>
+            <li class="cashygo-hero__tag">Best price</li>
+            <li class="cashygo-hero__tag">Free pickup</li>
+          </ul>
         </div>
+      </div>
+    </header>
 
-        <h2 class="laptop-panel_title"><span class="laptop-panel_num">2</span> Panel Type</h2>
-        <div class="laptop-option-grid is-three">
-          <button class="laptop-option" data-group="panel" data-value="HD / Full HD"><strong>HD / Full HD</strong><span>Standard display panel.</span></button>
-          <button class="laptop-option" data-group="panel" data-value="4K UHD"><strong>4K UHD</strong><span>High-demand resolution.</span></button>
-          <button class="laptop-option" data-group="panel" data-value="QLED / OLED"><strong>QLED / OLED</strong><span>Premium display technology.</span></button>
-        </div>
-
-        <h2 class="laptop-panel_title"><span class="laptop-panel_num">3</span> TV Type</h2>
-        <div class="laptop-option-grid">
-          <button class="laptop-option" data-group="smart" data-value="Smart TV"><i class="bi bi-wifi"></i><strong>Smart TV</strong><span>Apps, WiFi, Android, Google TV, or webOS.</span></button>
-          <button class="laptop-option" data-group="smart" data-value="Non-smart TV"><i class="bi bi-tv"></i><strong>Non-smart TV</strong><span>Standard TV without smart apps.</span></button>
+    <!-- ===== Variant questions ===== -->
+    <section class="tvv-section">
+      <div class="tvv-card" data-flow>
+        <div class="tvv-head">
+          <h2 class="tvv-head__title">Tell us a few things about your TV</h2>
+          <p class="tvv-head__sub">Check the parameters that match your device</p>
         </div>
 
-        <h2 class="laptop-panel_title"><span class="laptop-panel_num">4</span> Purchase Age</h2>
-        <div class="laptop-option-grid is-three">
-          <button class="laptop-option" data-group="age" data-value="Under 1 year"><strong>Under 1 year</strong><span>Newest device bracket.</span></button>
-          <button class="laptop-option" data-group="age" data-value="1 to 3 years"><strong>1 to 3 years</strong><span>Common resale window.</span></button>
-          <button class="laptop-option" data-group="age" data-value="3 years+"><strong>3 years+</strong><span>Older but still accepted.</span></button>
+        <!-- 1. Screen size -->
+        <div class="tvv-group" data-group="size" data-required>
+          <div class="tvv-group__head">
+            <span class="tvv-group__num">1</span>
+            <span class="tvv-group__title">Screen size</span>
+          </div>
+          <p class="tvv-group__hint">Measured diagonally, corner to corner</p>
+          <div class="tvv-opts">
+            <button type="button" class="tvv-opt" data-value='32 inch'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>32 inch</strong><span>Compact size</span></span></button>
+            <button type="button" class="tvv-opt" data-value='43 inch'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>43 inch</strong><span>Popular living-room size</span></span></button>
+            <button type="button" class="tvv-opt" data-value='50 inch'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>50 inch</strong><span>Large 4K size</span></span></button>
+            <button type="button" class="tvv-opt" data-value='55 inch+'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>55 inch &amp; above</strong><span>Premium big screen</span></span></button>
+          </div>
         </div>
-      </section>
 
-      <aside class="laptop-flow__card laptop-summary">
-        <div class="laptop-summary__head">
-          <h2>Your Selection</h2>
-          <p>Review your TV variant before condition checks.</p>
+        <!-- 2. Panel type -->
+        <div class="tvv-group" data-group="panel" data-required>
+          <div class="tvv-group__head">
+            <span class="tvv-group__num">2</span>
+            <span class="tvv-group__title">Panel type</span>
+          </div>
+          <p class="tvv-group__hint">Resolution and display technology</p>
+          <div class="tvv-opts">
+            <button type="button" class="tvv-opt" data-value='HD / Full HD'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>HD / Full HD</strong><span>Standard panel</span></span></button>
+            <button type="button" class="tvv-opt" data-value='4K UHD'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>4K UHD</strong><span>High-demand resolution</span></span></button>
+            <button type="button" class="tvv-opt" data-value='QLED / OLED'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>QLED / OLED</strong><span>Premium display</span></span></button>
+          </div>
         </div>
-        <div class="laptop-summary__body">
-          <div class="laptop-summary__row"><span>Model</span><strong data-model-name>TV</strong></div>
-          <div class="laptop-summary__row"><span>Size</span><strong data-summary="size">-</strong></div>
-          <div class="laptop-summary__row"><span>Panel</span><strong data-summary="panel">-</strong></div>
-          <div class="laptop-summary__row"><span>Type</span><strong data-summary="smart">-</strong></div>
-          <div class="laptop-summary__row"><span>Age</span><strong data-summary="age">-</strong></div>
-          <div class="laptop-total"><small>Expected Price</small><strong data-summary-price>₹0</strong></div>
-          <button class="laptop-action" id="continueBtn" disabled>Continue <i class="bi bi-arrow-right"></i></button>
-          <div class="laptop-note"><i class="bi bi-info-circle"></i><span>Final value may change after pickup verification.</span></div>
+
+        <!-- 3. TV type -->
+        <div class="tvv-group" data-group="type" data-required>
+          <div class="tvv-group__head">
+            <span class="tvv-group__num">3</span>
+            <span class="tvv-group__title">TV type</span>
+          </div>
+          <p class="tvv-group__hint">Does it run apps over WiFi?</p>
+          <div class="tvv-opts">
+            <button type="button" class="tvv-opt" data-value='Smart TV'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>Smart TV</strong><span>Apps, WiFi, Android / Google / webOS</span></span></button>
+            <button type="button" class="tvv-opt" data-value='Non-smart TV'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>Non-smart TV</strong><span>Standard TV, no apps</span></span></button>
+          </div>
         </div>
-      </aside>
-    </div>
+
+        <!-- 4. Purchase age -->
+        <div class="tvv-group" data-group="age" data-required>
+          <div class="tvv-group__head">
+            <span class="tvv-group__num">4</span>
+            <span class="tvv-group__title">Purchase age</span>
+          </div>
+          <p class="tvv-group__hint">How long since you bought it?</p>
+          <div class="tvv-opts">
+            <button type="button" class="tvv-opt" data-value='Under 1 year'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>Under 1 year</strong><span>In warranty</span></span></button>
+            <button type="button" class="tvv-opt" data-value='1 to 3 years'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>1 to 3 years</strong><span>Common resale window</span></span></button>
+            <button type="button" class="tvv-opt" data-value='3 years+'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>3 years+</strong><span>Older, still accepted</span></span></button>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <script src="assets/js/tv_flow.js"></script>
+  <!-- ===== Sticky continue bar ===== -->
+  <footer class="tvv-foot">
+    <div class="tvv-foot__inner">
+      <span class="tvv-foot__pick" id="tvvFootPick">Answer all 4 to continue</span>
+      <button class="tvv-btn" id="continueBtn" type="button" data-next="tv_condition.html" disabled>
+        Continue
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+      </button>
+    </div>
+  </footer>
+
+  <!-- Master nav behaviour -->
+  <script src="assets/js/script.js"></script>
+  <script src="assets/js/brand.js"></script>
+
+  <!-- Page logic: grouped single-select + validation + persistence -->
+  <script>
+    (function () {
+      var flow = document.querySelector("[data-flow]");
+      var groups = Array.prototype.slice.call(flow.querySelectorAll("[data-group]"));
+      var btn = document.getElementById("continueBtn");
+      var footPick = document.getElementById("tvvFootPick");
+
+      // Model name from URL / storage
+      var params = new URLSearchParams(window.location.search);
+      var model = params.get("model") || localStorage.getItem("selectedModel") || "Your TV";
+      Array.prototype.forEach.call(document.querySelectorAll("[data-model-name]"), function (el) { el.textContent = model; });
+
+      // Restore any earlier answers
+      var saved = {};
+      try { saved = (JSON.parse(localStorage.getItem("cashygo_tv")) || {}).variant || {}; } catch (e) {}
+
+      function collect() {
+        var out = {};
+        groups.forEach(function (g) {
+          var sel = g.querySelector(".tvv-opt.is-selected");
+          out[g.getAttribute("data-group")] = sel ? sel.getAttribute("data-value") : null;
+        });
+        return out;
+      }
+
+      function validate() {
+        var data = collect();
+        var done = groups.every(function (g) { return data[g.getAttribute("data-group")]; });
+        btn.disabled = !done;
+        var picked = groups.map(function (g) { return data[g.getAttribute("data-group")]; }).filter(Boolean);
+        footPick.innerHTML = done
+          ? "Selected: <strong>" + picked.join(" · ") + "</strong>"
+          : "Answer all 4 to continue";
+      }
+
+      groups.forEach(function (g) {
+        var key = g.getAttribute("data-group");
+        g.querySelectorAll(".tvv-opt").forEach(function (opt) {
+          var val = opt.getAttribute("data-value");
+          if (saved[key] === val) opt.classList.add("is-selected");
+          opt.setAttribute("role", "radio");
+          opt.setAttribute("aria-checked", saved[key] === val ? "true" : "false");
+          opt.addEventListener("click", function () {
+            g.querySelectorAll(".tvv-opt").forEach(function (o) {
+              var on = o === opt;
+              o.classList.toggle("is-selected", on);
+              o.setAttribute("aria-checked", on ? "true" : "false");
+            });
+            validate();
+          });
+        });
+      });
+
+      btn.addEventListener("click", function () {
+        if (btn.disabled) return;
+        var state = {};
+        try { state = JSON.parse(localStorage.getItem("cashygo_tv")) || {}; } catch (e) {}
+        state.model = model;
+        state.variant = collect();
+        localStorage.setItem("cashygo_tv", JSON.stringify(state));
+        window.location.href = btn.getAttribute("data-next");
+      });
+
+      validate();
+    })();
+  </script>
 </body>
 
 </html>

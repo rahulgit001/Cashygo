@@ -4,107 +4,306 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cashygo - TV Questions</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta name="description" content="Cashygo – A few quick pickup-readiness questions about your TV so doorstep pickup goes smoothly.">
+  <meta name="theme-color" content="#0d8c60">
+  <title>Cashygo — TV Questions</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
   <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/laptop_flow.css">
+  <link rel="stylesheet" href="assets/css/brand.css">
+  <link rel="stylesheet" href="assets/css/tv_flow.css">
 </head>
 
-<body data-page="tv-question">
+<body>
+  <!-- ===== Master navigation ===== -->
   <nav class="nav" role="navigation" aria-label="Main navigation">
     <div class="nav-top">
-      <a href="index.html" class="nav-logo" aria-label="Cashygo homepage">
+      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <i class="bi bi-list"></i>
+      </button>
+      <a href="/" class="nav-logo" aria-label="Cashygo – Go to homepage">
         <img src="assets/images/project-logo/logo-new.svg" alt="Cashygo logo" width="120" height="40">
       </a>
       <div class="nav-search" role="search">
-        <label for="mainSearch" class="sr-only">Search TV series</label>
-        <input type="search" id="mainSearch" placeholder="Search TV series..." autocomplete="off">
+        <label for="mainSearch" class="sr-only">Search devices</label>
+        <input type="search" id="mainSearch" name="search" placeholder="Search TVs…" autocomplete="off">
         <div class="search-icon" aria-hidden="true"><i class="bi bi-search"></i></div>
       </div>
-      <a class="nav-login" href="contact.html"><i class="bi bi-person-circle"></i><span>Sign in</span></a>
+      <button class="nav-login" id="openLoginBtn" aria-label="Sign in to your account">
+        <i class="bi bi-person-circle"></i>
+        <span>Sign in</span>
+      </button>
+    </div>
+
+    <div class="nav-menu" id="navMenu">
+      <div class="nav-menu-inner">
+        <div class="dropdown" id="dropMobile">
+          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Mobile ⌵</button>
+          <ul class="dropdown-menu">
+            <li><a href="Apple_model.html">Apple iPhone</a></li>
+            <li><a href="samsung.html">Samsung Galaxy</a></li>
+            <li><a href="oneplus.html">OnePlus</a></li>
+            <li><a href="google.html">Google Pixel</a></li>
+            <li><a href="xiaomi.html">Xiaomi</a></li>
+            <li><a href="vivo.html">Vivo</a></li>
+          </ul>
+        </div>
+        <div class="dropdown" id="dropTablet">
+          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Tablet ⌵</button>
+          <ul class="dropdown-menu">
+            <li><a href="tab_model.html?brand=Apple">Apple Tab</a></li>
+            <li><a href="tab_model.html?brand=Samsung">Samsung Tab</a></li>
+            <li><a href="tab_model.html?brand=OnePlus">OnePlus Tab</a></li>
+            <li><a href="tab_model.html?brand=Xiaomi">Xiaomi Tab</a></li>
+            <li><a href="tab_model.html?brand=Realme">Realme Tab</a></li>
+          </ul>
+        </div>
+        <div class="dropdown" id="dropLaptop">
+          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Laptop ⌵</button>
+          <ul class="dropdown-menu">
+            <li><a href="dell.html">Dell</a></li>
+            <li><a href="hp.html">HP</a></li>
+            <li><a href="lenovo.html">Lenovo</a></li>
+            <li><a href="asus.html">Asus</a></li>
+            <li><a href="acer.html">Acer</a></li>
+          </ul>
+        </div>
+        <div class="dropdown" id="dropMac">
+          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Mac ⌵</button>
+          <ul class="dropdown-menu">
+            <li><a href="macbook.html">MacBook</a></li>
+            <li><a href="imac.html">iMac</a></li>
+            <li><a href="mac-mini.html">Mac Mini</a></li>
+            <li><a href="macbook-pro.html">MacBook Pro</a></li>
+          </ul>
+        </div>
+        <a href="#" class="menu-link">Corporate Deals</a>
+        <a href="calculator.html" class="menu-link">Price Calculator</a>
+        <a href="blogs.html" class="menu-link">Blog &amp; Tips</a>
+        <a href="contact.html" class="menu-link">Contact</a>
+        <a href="Faq.html" class="menu-link">FAQ's</a>
+        <a href="costumer.html" class="menu-link">Customer Reviews</a>
+      </div>
     </div>
   </nav>
 
-  <main class="laptop-flow">
-    <nav class="laptop-flow__crumbs" aria-label="Breadcrumb">
-      <a href="tv_brand.html">Sell TV</a>
-      <i class="bi bi-chevron-right"></i>
+  <main>
+    <!-- ===== Breadcrumb ===== -->
+    <nav class="tvv-crumbs" aria-label="Breadcrumb">
+      <a href="tv_brand.html">Brand</a>
+      <i class="bi bi-chevron-right" aria-hidden="true"></i>
+      <a href="tv_verient.html">Variant</a>
+      <i class="bi bi-chevron-right" aria-hidden="true"></i>
       <a href="tv_condition.html">Condition</a>
-      <i class="bi bi-chevron-right"></i>
-      <span>Questions</span>
+      <i class="bi bi-chevron-right" aria-hidden="true"></i>
+      <span class="is-current" aria-current="page">Questions</span>
     </nav>
 
-    <section class="laptop-flow__head">
-      <div>
-        <div class="laptop-flow__eyebrow"><i class="bi bi-question-circle-fill"></i> Pickup readiness checks</div>
-        <h1>Answer quick questions for your <span data-model-name>TV</span></h1>
-        <p>These checks help make pickup smoother and confirm the TV can be safely inspected at your doorstep.</p>
-      </div>
-      <div class="laptop-flow__steps" aria-label="Sell TV steps">
-        <div class="laptop-flow__step"><strong>1. Variant</strong><span>Screen and age</span></div>
-        <div class="laptop-flow__step"><strong>2. Condition</strong><span>Display and body</span></div>
-        <div class="laptop-flow__step is-active"><strong>3. Questions</strong><span>Pickup checks</span></div>
-        <div class="laptop-flow__step"><strong>4. Issues</strong><span>Fault selection</span></div>
-      </div>
-    </section>
-
-    <div class="laptop-flow__layout">
-      <aside class="laptop-flow__card laptop-product">
-        <div class="laptop-product__media">
-          <img data-tv-image src="assets/images/home-page-img/brand-img/Tv.webp" alt="TV">
-        </div>
-        <div class="laptop-product__body">
-          <div class="laptop-product__brand" data-brand-name>TV</div>
-          <h2 class="laptop-product__name" data-model-name>TV</h2>
-          <span class="laptop-chip"><i class="bi bi-truck"></i> Smooth pickup</span>
-          <div class="laptop-product__meta">
-            <span><i class="bi bi-receipt"></i> Bill improves verification</span>
-            <span><i class="bi bi-tv"></i> Remove wall mount before pickup</span>
-            <span><i class="bi bi-plug"></i> Keep TV ready for power check</span>
+    <!-- ===== Hero ===== -->
+    <header class="cashygo-hero">
+      <div class="cashygo-hero__inner">
+        <div class="cashygo-hero__left">
+          <p class="cashygo-hero__badge">Questions</p>
+          <h1 class="cashygo-hero__title">
+            A few quick questions<br>
+            <em>So pickup goes smoothly.</em>
+          </h1>
+          <p class="cashygo-hero__sub">These help us verify your TV faster and avoid pickup delays at your doorstep.</p>
+          <div class="tvv-hero__actions">
+            <a href="tv_condition.html" class="cashygo-hero__brand-btn"><i class="bi bi-arrow-left"></i> Back to condition</a>
+            <span class="tvv-hero__chip"><i class="bi bi-tv"></i> <span data-model-name>Your TV</span></span>
           </div>
         </div>
-      </aside>
+        <div class="cashygo-hero__right" aria-hidden="true">
+          <div class="cashygo-hero__ring"></div>
+          <div class="cashygo-hero__phone">
+            <img src="assets/images/home-page-img/brand-img/Tv.webp" alt="">
+          </div>
+          <ul class="cashygo-hero__tags">
+            <li class="cashygo-hero__tag">Free pickup</li>
+            <li class="cashygo-hero__tag">Instant payment</li>
+            <li class="cashygo-hero__tag">No shop visits</li>
+          </ul>
+        </div>
+      </div>
+    </header>
 
-      <section class="laptop-flow__card laptop-panel" aria-label="TV questions">
-        <h2 class="laptop-panel_title"><span class="laptop-panel_num">1</span> Do you have the purchase bill?</h2>
-        <div class="laptop-option-grid">
-          <button class="laptop-option" data-group="bill" data-value="Bill available"><i class="bi bi-receipt-cutoff"></i><strong>Yes, bill available</strong><span>Helps us verify purchase details faster.</span></button>
-          <button class="laptop-option" data-group="bill" data-value="Bill not available"><i class="bi bi-file-earmark-x"></i><strong>No bill</strong><span>You can continue without a bill.</span></button>
+    <!-- ===== Questions ===== -->
+    <section class="tvv-section">
+      <div class="tvv-card" data-flow>
+        <div class="tvv-head">
+          <h2 class="tvv-head__title">Answer a few quick questions</h2>
+          <p class="tvv-head__sub">These checks make doorstep pickup faster and smoother</p>
         </div>
 
-        <h2 class="laptop-panel_title"><span class="laptop-panel_num">2</span> Is the TV wall mounted?</h2>
-        <div class="laptop-option-grid">
-          <button class="laptop-option" data-group="mount" data-value="Not wall mounted"><i class="bi bi-check2-circle"></i><strong>Not wall mounted</strong><span>TV is ready on stand or table.</span></button>
-          <button class="laptop-option" data-group="mount" data-value="Wall mounted"><i class="bi bi-tools"></i><strong>Wall mounted</strong><span>Please remove it before pickup if possible.</span></button>
+        <!-- 1. Purchase bill -->
+        <div class="tvv-group" data-group="bill" data-required>
+          <div class="tvv-group__head">
+            <span class="tvv-group__num">1</span>
+            <span class="tvv-group__title">Do you have the purchase bill?</span>
+          </div>
+          <p class="tvv-group__hint">A bill helps verify purchase details faster</p>
+          <div class="tvv-opts">
+            <button type="button" class="tvv-opt" data-value='Bill available'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>Yes, bill available</strong><span>Speeds up verification</span></span></button>
+            <button type="button" class="tvv-opt" data-value='Bill not available'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>No bill</strong><span>You can continue without it</span></span></button>
+          </div>
         </div>
 
-        <h2 class="laptop-panel_title"><span class="laptop-panel_num">3</span> Can the TV be powered on?</h2>
-        <div class="laptop-option-grid">
-          <button class="laptop-option" data-group="pickup" data-value="Ready for power check"><i class="bi bi-power"></i><strong>Ready for check</strong><span>TV can be plugged in and tested at pickup.</span></button>
-          <button class="laptop-option" data-group="pickup" data-value="Cannot power check"><i class="bi bi-lightning-slash"></i><strong>Cannot power check</strong><span>Power test may need extra verification.</span></button>
+        <!-- 2. Wall mounted -->
+        <div class="tvv-group" data-group="mount" data-required>
+          <div class="tvv-group__head">
+            <span class="tvv-group__num">2</span>
+            <span class="tvv-group__title">Is the TV wall mounted?</span>
+          </div>
+          <p class="tvv-group__hint">Helps our pickup team come prepared</p>
+          <div class="tvv-opts">
+            <button type="button" class="tvv-opt" data-value='Not wall mounted'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>Not wall mounted</strong><span>Ready on stand or table</span></span></button>
+            <button type="button" class="tvv-opt" data-value='Wall mounted'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>Wall mounted</strong><span>Please remove before pickup if possible</span></span></button>
+          </div>
         </div>
-      </section>
 
-      <aside class="laptop-flow__card laptop-summary">
-        <div class="laptop-summary__head">
-          <h2>Pickup Readiness</h2>
-          <p>Your answers help avoid pickup delays.</p>
+        <!-- 3. Power check -->
+        <div class="tvv-group" data-group="pickup" data-required>
+          <div class="tvv-group__head">
+            <span class="tvv-group__num">3</span>
+            <span class="tvv-group__title">Can the TV be powered on?</span>
+          </div>
+          <p class="tvv-group__hint">We test the TV at pickup before payment</p>
+          <div class="tvv-opts">
+            <button type="button" class="tvv-opt" data-value='Ready for power check'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>Ready for check</strong><span>Can be plugged in and tested</span></span></button>
+            <button type="button" class="tvv-opt" data-value='Cannot power check'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>Cannot power check</strong><span>May need extra verification</span></span></button>
+          </div>
         </div>
-        <div class="laptop-summary__body">
-          <div class="laptop-summary__row"><span>Model</span><strong data-model-name>TV</strong></div>
-          <div class="laptop-summary__row"><span>Bill</span><strong data-summary="bill">-</strong></div>
-          <div class="laptop-summary__row"><span>Mount</span><strong data-summary="mount">-</strong></div>
-          <div class="laptop-summary__row"><span>Power check</span><strong data-summary="pickup">-</strong></div>
-          <div class="laptop-total"><small>Expected Price</small><strong data-summary-price>₹0</strong></div>
-          <button class="laptop-action" id="continueBtn" disabled>Continue <i class="bi bi-arrow-right"></i></button>
-          <div class="laptop-note"><i class="bi bi-info-circle"></i><span>Keep the remote, stand, and power cable ready for inspection.</span></div>
+
+        <!-- 4. Accessories (multi-select) -->
+        <div class="tvv-group" data-group="accessories" data-mode="multi">
+          <div class="tvv-group__head">
+            <span class="tvv-group__num">4</span>
+            <span class="tvv-group__title">Do you have the following?</span>
+            <span class="tvv-count" data-count></span>
+          </div>
+          <p class="tvv-group__hint">Select the accessories available with your TV</p>
+          <div class="tvv-opts">
+            <button type="button" class="tvv-opt" data-multi data-value='Original remote'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>Original remote</strong><span>Brand remote that came with the TV</span></span></button>
+            <button type="button" class="tvv-opt" data-multi data-value='Power cable / cord'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>Power cable / cord</strong><span>Original power cord(s)</span></span></button>
+            <button type="button" class="tvv-opt" data-multi data-value='Default stand'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>Default stand</strong><span>Table-top stand / legs</span></span></button>
+            <button type="button" class="tvv-opt" data-multi data-value='Box (same serial)'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>Box (same serial)</strong><span>Original box, matching serial no.</span></span></button>
+            <button type="button" class="tvv-opt" data-multi data-value='Bill (same serial)'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>Bill (same serial)</strong><span>Invoice, matching serial no.</span></span></button>
+          </div>
         </div>
-      </aside>
-    </div>
+      </div>
+    </section>
   </main>
 
-  <script src="assets/js/tv_flow.js"></script>
+  <!-- ===== Sticky continue bar ===== -->
+  <footer class="tvv-foot">
+    <div class="tvv-foot__inner">
+      <span class="tvv-foot__pick" id="tvvFootPick">Answer the first 3 questions to continue</span>
+      <button class="tvv-btn" id="continueBtn" type="button" data-next="tv_issu.html" disabled>
+        Continue
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+      </button>
+    </div>
+  </footer>
+
+  <!-- Master nav behaviour -->
+  <script src="assets/js/script.js"></script>
+  <script src="assets/js/brand.js"></script>
+
+  <!-- Page logic: single + multi groups, validation, persistence -->
+  <script>
+    (function () {
+      var flow = document.querySelector("[data-flow]");
+      var groups = Array.prototype.slice.call(flow.querySelectorAll("[data-group]"));
+      var btn = document.getElementById("continueBtn");
+      var footPick = document.getElementById("tvvFootPick");
+
+      var params = new URLSearchParams(window.location.search);
+      var model = params.get("model") || localStorage.getItem("selectedModel") || "Your TV";
+      Array.prototype.forEach.call(document.querySelectorAll("[data-model-name]"), function (el) { el.textContent = model; });
+
+      var saved = {};
+      try { saved = (JSON.parse(localStorage.getItem("cashygo_tv")) || {}).questions || {}; } catch (e) {}
+
+      function isMulti(g) { return g.getAttribute("data-mode") === "multi"; }
+      function selectedValues(g) {
+        return Array.prototype.map.call(g.querySelectorAll(".tvv-opt.is-selected"), function (o) { return o.getAttribute("data-value"); });
+      }
+      function collect() {
+        var out = {};
+        groups.forEach(function (g) {
+          var key = g.getAttribute("data-group");
+          var vals = selectedValues(g);
+          out[key] = isMulti(g) ? vals : (vals[0] || null);
+        });
+        return out;
+      }
+      function updateCount(g) {
+        var el = g.querySelector("[data-count]");
+        if (!el) return;
+        var n = selectedValues(g).length;
+        el.textContent = n ? n + " selected" : "";
+      }
+      function validate() {
+        var data = collect();
+        var done = groups.every(function (g) {
+          return isMulti(g) || !g.hasAttribute("data-required") || data[g.getAttribute("data-group")];
+        });
+        btn.disabled = !done;
+        var picked = groups.filter(function (g) { return !isMulti(g); })
+          .map(function (g) { return data[g.getAttribute("data-group")]; }).filter(Boolean);
+        footPick.innerHTML = done
+          ? "Ready — <strong>" + picked.join(" · ") + "</strong>"
+          : "Answer the first 3 questions to continue";
+      }
+
+      groups.forEach(function (g) {
+        var key = g.getAttribute("data-group");
+        var multi = isMulti(g);
+        g.querySelectorAll(".tvv-opt").forEach(function (opt) {
+          var val = opt.getAttribute("data-value");
+          var on = multi ? (Array.isArray(saved[key]) && saved[key].indexOf(val) > -1) : (saved[key] === val);
+          if (on) opt.classList.add("is-selected");
+          opt.setAttribute("role", multi ? "checkbox" : "radio");
+          opt.setAttribute("aria-checked", on ? "true" : "false");
+
+          opt.addEventListener("click", function () {
+            if (multi) {
+              var turningOn = !opt.classList.contains("is-selected");
+              if (opt.hasAttribute("data-exclusive")) {
+                g.querySelectorAll(".tvv-opt").forEach(function (o) { if (o !== opt) { o.classList.remove("is-selected"); o.setAttribute("aria-checked", "false"); } });
+              } else {
+                g.querySelectorAll(".tvv-opt[data-exclusive]").forEach(function (o) { o.classList.remove("is-selected"); o.setAttribute("aria-checked", "false"); });
+              }
+              opt.classList.toggle("is-selected", turningOn);
+              opt.setAttribute("aria-checked", turningOn ? "true" : "false");
+            } else {
+              g.querySelectorAll(".tvv-opt").forEach(function (o) {
+                var sel = o === opt;
+                o.classList.toggle("is-selected", sel);
+                o.setAttribute("aria-checked", sel ? "true" : "false");
+              });
+            }
+            updateCount(g);
+            validate();
+          });
+        });
+        updateCount(g);
+      });
+
+      btn.addEventListener("click", function () {
+        if (btn.disabled) return;
+        var state = {};
+        try { state = JSON.parse(localStorage.getItem("cashygo_tv")) || {}; } catch (e) {}
+        state.model = model;
+        state.questions = collect();
+        localStorage.setItem("cashygo_tv", JSON.stringify(state));
+        window.location.href = btn.getAttribute("data-next");
+      });
+
+      validate();
+    })();
+  </script>
 </body>
 
 </html>

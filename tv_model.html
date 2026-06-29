@@ -120,8 +120,8 @@
     <section class="tvm-section" aria-label="TV series">
       <div class="tvm-section__head">
         <div>
-          <h2>Popular TV Series</h2>
-          <p>Filter by brand or search your TV series.</p>
+          <h2 id="tvmHeading">Popular TV Series</h2>
+          <p id="tvmSubline">Filter by brand or search your TV series.</p>
         </div>
         <div class="tvm-search">
           <label for="tvModelSearch" class="sr-only">Search TV series</label>
@@ -245,6 +245,12 @@
         Panasonic: "other", Vu: "other", Other: "other"
       };
       var active = brandMap[brandParam] || "all";
+
+      // Confirm the brand carried over from tv_brand.html
+      if (brandParam && brandMap[brandParam]) {
+        var subline = document.getElementById("tvmSubline");
+        if (subline) subline.textContent = "Showing " + brandParam + " TVs — pick your series, or search below.";
+      }
 
       function apply() {
         var q = (search.value || "").trim().toLowerCase();
