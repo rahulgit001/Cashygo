@@ -9,9 +9,242 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/laptop_flow.css">
+
+  <style>
+    /* ── Skip link ── */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 0;
+      background: #1a6e3c;
+      color: #fff;
+      padding: 10px 18px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      z-index: 9999;
+      border-radius: 0 0 8px 0;
+      text-decoration: none;
+      transition: top 0.15s;
+    }
+    .skip-link:focus { top: 0; }
+
+    /* ── Section spacing ── */
+    .condition-section {
+      margin-top: 32px;
+      padding-top: 28px;
+      border-top: 1.5px solid #f0f0f0;
+    }
+    .condition-section__title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #111;
+      margin: 0 0 4px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .condition-section__hint {
+      font-size: 0.88rem;
+      color: #888;
+      margin: 0 0 14px;
+      line-height: 1.5;
+    }
+
+    /* ── Field error ── */
+    .field-error {
+      color: #c0392b;
+      font-size: 0.85rem;
+      margin-top: 6px;
+      display: none;
+      align-items: center;
+      gap: 5px;
+    }
+    .field-error.visible { display: flex; }
+
+    /* ── Live region ── */
+    .sr-live {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap; border: 0;
+    }
+
+    /* ════════════════════════════════
+       ACCESSORIES — wrap row
+    ════════════════════════════════ */
+    .accessories-group {
+      display: flex;
+      flex-wrap: wrap;       /* wrap when space runs out */
+      gap: 10px;
+    }
+
+    .accessory-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      border: 2px solid #d0d0d0;
+      border-radius: 8px;
+      background: #fff;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #222;
+      transition: border-color 0.18s, background 0.18s;
+      min-height: 44px;
+      user-select: none;
+      flex: 1 1 auto;        /* grow/shrink naturally */
+      min-width: 180px;      /* don't collapse too small */
+    }
+    .accessory-option:hover { border-color: #1a6e3c; background: #f4fbf7; }
+    .accessory-option:focus-visible {
+      outline: 3px solid #1a6e3c;
+      outline-offset: 3px;
+      box-shadow: 0 0 0 5px rgba(26,110,60,0.18);
+    }
+    .accessory-option[aria-checked="true"] {
+      border-color: #1a6e3c;
+      background: #f0faf4;
+      color: #115c2e;
+    }
+
+    .checkbox-box {
+      width: 20px; height: 20px; min-width: 20px;
+      border: 2px solid #aaa;
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      transition: border-color 0.18s, background 0.18s;
+      font-size: 0.8rem;
+      color: transparent;
+    }
+    .accessory-option[aria-checked="true"] .checkbox-box {
+      border-color: #1a6e3c;
+      background: #1a6e3c;
+      color: #fff;
+    }
+    .accessory-option .acc-icon {
+      font-size: 1.1rem;
+      color: #888;
+      flex-shrink: 0;
+    }
+    .accessory-option[aria-checked="true"] .acc-icon { color: #1a6e3c; }
+
+    /* ════════════════════════════════
+       AGE GROUP — wrap row
+    ════════════════════════════════ */
+    .age-group {
+      display: flex;
+      flex-wrap: wrap;       /* wrap on narrow screens */
+      gap: 10px;
+    }
+
+    .age-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      border: 2px solid #d0d0d0;
+      border-radius: 8px;
+      background: #fff;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #222;
+      transition: border-color 0.18s, background 0.18s;
+      min-height: 44px;
+      user-select: none;
+      flex: 1 1 auto;        /* grow/shrink naturally */
+      min-width: 160px;      /* don't collapse too small */
+    }
+    .age-option:hover { border-color: #1a6e3c; background: #f4fbf7; }
+    .age-option:focus-visible {
+      outline: 3px solid #1a6e3c;
+      outline-offset: 3px;
+      box-shadow: 0 0 0 5px rgba(26,110,60,0.18);
+    }
+    .age-option[aria-checked="true"] {
+      border-color: #1a6e3c;
+      background: #f0faf4;
+      color: #115c2e;
+    }
+    .age-option[aria-checked="true"] .radio-circle { border-color: #1a6e3c; }
+    .age-option[aria-checked="true"] .radio-dot    { background: #1a6e3c; }
+
+    .radio-circle {
+      width: 20px; height: 20px; min-width: 20px;
+      border: 2px solid #aaa;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.18s;
+      flex-shrink: 0;
+    }
+    .radio-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: transparent;
+      transition: background 0.18s;
+    }
+
+    .age-badge {
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: #e8f5ee;
+      color: #1a6e3c;
+      border-radius: 20px;
+      padding: 2px 10px;
+      margin-left: auto;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* ── Continue button focus ── */
+    .laptop-action:focus-visible {
+      outline: 3px solid #1a6e3c;
+      outline-offset: 3px;
+    }
+
+    /* ── Responsive: stack to column on mobile ── */
+    @media (max-width: 600px) {
+      .accessories-group,
+      .age-group {
+        flex-direction: column;
+      }
+      .accessory-option,
+      .age-option {
+        width: 100%;
+        min-width: 0;
+        flex: none;
+      }
+    }
+
+    /* ── Reduced motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      .accessory-option,
+      .age-option,
+      .checkbox-box,
+      .radio-dot,
+      .radio-circle { transition: none; }
+    }
+
+    /* ── High contrast ── */
+    @media (forced-colors: active) {
+      .accessory-option[aria-checked="true"],
+      .age-option[aria-checked="true"] { border: 3px solid ButtonText; }
+      .checkbox-box,
+      .radio-dot { forced-color-adjust: none; }
+    }
+  </style>
 </head>
 
 <body data-page="condition">
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div id="sr-announcer" class="sr-live" aria-live="polite" aria-atomic="true"></div>
+
   <nav class="nav" role="navigation" aria-label="Main navigation">
     <div class="nav-top">
       <a href="index.html" class="nav-logo" aria-label="Cashygo homepage">
@@ -19,96 +252,344 @@
       </a>
       <div class="nav-search" role="search">
         <label for="mainSearch" class="sr-only">Search devices</label>
-        <input type="search" id="mainSearch" placeholder="Search laptop series..." autocomplete="off">
+        <input type="search" id="mainSearch" placeholder="Search laptop series..." autocomplete="off" aria-label="Search devices">
         <div class="search-icon" aria-hidden="true"><i class="bi bi-search"></i></div>
       </div>
-      <a class="nav-login" href="contact.html"><i class="bi bi-person-circle"></i><span>Sign in</span></a>
+      <a class="nav-login" href="contact.html" aria-label="Sign in to your account">
+        <i class="bi bi-person-circle" aria-hidden="true"></i><span>Sign in</span>
+      </a>
     </div>
   </nav>
 
-  <main class="laptop-flow">
+  <main id="main-content" class="laptop-flow" tabindex="-1">
+
+    <!-- Breadcrumb -->
     <nav class="laptop-flow__crumbs" aria-label="Breadcrumb">
-      <a href="laptop_brand.html">Sell laptop</a>
-      <i class="bi bi-chevron-right"></i>
-      <a href="laptop_verient.html">Variant</a>
-      <i class="bi bi-chevron-right"></i>
-      <span>Condition</span>
+      <ol style="list-style:none;margin:0;padding:0;display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+        <li><a href="laptop_brand.html">Sell laptop</a></li>
+        <li aria-hidden="true"><i class="bi bi-chevron-right"></i></li>
+        <li><a href="laptop_verient.html">Variant</a></li>
+        <li aria-hidden="true"><i class="bi bi-chevron-right"></i></li>
+        <li><span aria-current="page">Condition</span></li>
+      </ol>
     </nav>
 
-    <section class="laptop-flow__head">
+    <!-- Page header -->
+    <section class="laptop-flow__head" aria-labelledby="page-heading">
       <div>
-        <div class="laptop-flow__eyebrow"><i class="bi bi-clipboard-check-fill"></i> Laptop condition check</div>
-        <h1>Tell us the condition of your <span data-model-name>laptop</span></h1>
-        <p>Select the closest body, battery, and accessory status. These answers help Cashygo keep the quote realistic before pickup.</p>
+        <div class="laptop-flow__eyebrow" aria-hidden="true">
+          <i class="bi bi-clipboard-check-fill" aria-hidden="true"></i> Laptop condition check
+        </div>
+        <h1 id="page-heading">Tell us the condition of your <span data-model-name>laptop</span></h1>
+        <p>Select the screen size of your laptop. Cashygo uses this to keep the quote accurate before pickup.</p>
       </div>
-      <div class="laptop-flow__steps" aria-label="Sell laptop steps">
-        <div class="laptop-flow__step"><strong>1. Variant</strong><span>Specs and age</span></div>
-        <div class="laptop-flow__step is-active"><strong>2. Condition</strong><span>Body and battery</span></div>
-        <div class="laptop-flow__step"><strong>3. Questions</strong><span>Ownership checks</span></div>
-        <div class="laptop-flow__step"><strong>4. Issues</strong><span>Fault selection</span></div>
+
+      <div class="laptop-flow__steps" role="list" aria-label="Sell laptop steps — Step 2 of 4">
+        <div class="laptop-flow__step" role="listitem" aria-label="Step 1: Variant — completed">
+          <strong>1. Variant</strong><span>Specs and age</span>
+        </div>
+        <div class="laptop-flow__step is-active" role="listitem" aria-current="step" aria-label="Step 2: Condition — current">
+          <strong>2. Condition</strong><span>Body and battery</span>
+        </div>
+        <div class="laptop-flow__step" role="listitem" aria-label="Step 3: Questions">
+          <strong>3. Questions</strong><span>Ownership checks</span>
+        </div>
+        <div class="laptop-flow__step" role="listitem" aria-label="Step 4: Issues">
+          <strong>4. Issues</strong><span>Fault selection</span>
+        </div>
       </div>
     </section>
 
     <div class="laptop-flow__layout">
-      <aside class="laptop-flow__card laptop-product">
+
+      <!-- Device card -->
+      <aside class="laptop-flow__card laptop-product" aria-label="Your selected laptop">
         <div class="laptop-product__media">
-          <img data-laptop-image src="assets/images/laptop_img/laptop_model_img/Dell%20Inspiron%20Series.avif" alt="Laptop">
+          <img data-laptop-image
+               src="assets/images/laptop_img/laptop_model_img/Dell%20Inspiron%20Series.avif"
+               alt="Dell Inspiron Series laptop"
+               width="220" height="180">
         </div>
         <div class="laptop-product__body">
-          <div class="laptop-product__brand" data-brand-name>Laptop</div>
+          <div class="laptop-product__brand" data-brand-name aria-label="Brand">Laptop</div>
           <h2 class="laptop-product__name" data-model-name>Laptop</h2>
-          <span class="laptop-chip"><i class="bi bi-tools"></i> Condition based price</span>
-          <div class="laptop-product__meta">
-            <span><i class="bi bi-laptop"></i> Laptop body and display check</span>
-            <span><i class="bi bi-battery-half"></i> Battery backup matters</span>
-            <span><i class="bi bi-plug"></i> Charger affects final value</span>
+          <span class="laptop-chip"><i class="bi bi-tools" aria-hidden="true"></i> Condition based price</span>
+          <ul class="laptop-product__meta" aria-label="Key features" style="list-style:none;margin:0;padding:0;">
+            <li><i class="bi bi-laptop" aria-hidden="true"></i> Laptop body and display check</li>
+            <li><i class="bi bi-battery-half" aria-hidden="true"></i> Battery backup matters</li>
+            <li><i class="bi bi-plug" aria-hidden="true"></i> Charger affects final value</li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- Main form panel -->
+      <section class="laptop-flow__card laptop-panel" aria-labelledby="accessories-heading">
+
+        <!-- ── Section 1: Accessories ── -->
+        <div class="condition-section" style="margin-top:0;padding-top:0;border-top:none;">
+          <h2 class="condition-section__title" id="accessories-heading">
+            <span class="laptop-panel__num" aria-hidden="true">1</span>
+            Please select accessories which are available
+          </h2>
+          <p class="condition-section__hint" id="accessories-hint">
+            Select all accessories you have with your laptop. These affect the final resale value.
+          </p>
+
+          <div id="accessoriesGroup"
+               class="accessories-group"
+               role="group"
+               aria-labelledby="accessories-heading"
+               aria-describedby="accessories-hint">
+
+            <div class="accessory-option"
+                 data-accessory="Original charger available"
+                 role="checkbox" aria-checked="false" tabindex="0" id="acc-1">
+              <span class="checkbox-box" aria-hidden="true"><i class="bi bi-check-lg"></i></span>
+              <i class="bi bi-plug acc-icon" aria-hidden="true"></i>
+              <span>Original charger available</span>
+            </div>
+
+            <div class="accessory-option"
+                 data-accessory="Original Box with same serial number"
+                 role="checkbox" aria-checked="false" tabindex="0" id="acc-2">
+              <span class="checkbox-box" aria-hidden="true"><i class="bi bi-check-lg"></i></span>
+              <i class="bi bi-box-seam acc-icon" aria-hidden="true"></i>
+              <span>Original Box with same serial number</span>
+            </div>
+
+            <div class="accessory-option"
+                 data-accessory="Original Bill available"
+                 role="checkbox" aria-checked="false" tabindex="0" id="acc-3">
+              <span class="checkbox-box" aria-hidden="true"><i class="bi bi-check-lg"></i></span>
+              <i class="bi bi-receipt acc-icon" aria-hidden="true"></i>
+              <span>Original Bill available</span>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ── Section 2: Age of Device ── -->
+        <div class="condition-section">
+          <h2 class="condition-section__title" id="age-heading">
+            <span class="laptop-panel__num" aria-hidden="true">2</span>
+            Age of your device
+          </h2>
+          <p class="condition-section__hint" id="age-hint">
+            Let us know how old is your device. Valid bill is needed for devices less than 3 years.
+          </p>
+
+          <div id="ageGroup"
+               class="age-group"
+               role="radiogroup"
+               aria-labelledby="age-heading"
+               aria-describedby="age-hint age-error"
+               aria-required="true"
+               aria-invalid="false">
+
+            <div class="age-option"
+                 data-age="Less than 1 year"
+                 role="radio" aria-checked="false" tabindex="0" id="age-1">
+              <span class="radio-circle" aria-hidden="true"><span class="radio-dot"></span></span>
+              <span>Less than 1 year</span>
+              <span class="age-badge">In warranty</span>
+            </div>
+
+            <div class="age-option"
+                 data-age="Between 1 and 3 years"
+                 role="radio" aria-checked="false" tabindex="-1" id="age-2">
+              <span class="radio-circle" aria-hidden="true"><span class="radio-dot"></span></span>
+              <span>Between 1 and 3 years</span>
+            </div>
+
+            <div class="age-option"
+                 data-age="More than 3 years"
+                 role="radio" aria-checked="false" tabindex="-1" id="age-3">
+              <span class="radio-circle" aria-hidden="true"><span class="radio-dot"></span></span>
+              <span>More than 3 years</span>
+            </div>
+
+          </div>
+
+          <div id="age-error" class="field-error" role="alert" aria-live="assertive">
+            <i class="bi bi-exclamation-circle" aria-hidden="true"></i>
+            <span>Please select the age of your device to continue.</span>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Summary sidebar -->
+      <aside class="laptop-flow__card laptop-summary" aria-labelledby="summary-heading" aria-live="polite">
+        <div class="laptop-summary__head">
+          <h2 id="summary-heading">Price Summary</h2>
+          <p>Based on variant and condition.</p>
+        </div>
+        <div class="laptop-summary__body">
+          <dl>
+            <div class="laptop-summary__row">
+              <dt>Model</dt>
+              <dd><strong data-model-name>Laptop</strong></dd>
+            </div>
+            <div class="laptop-summary__row">
+              <dt>Accessories</dt>
+              <dd><strong id="summary-accessories" aria-live="polite">None selected</strong></dd>
+            </div>
+            <div class="laptop-summary__row">
+              <dt>Device Age</dt>
+              <dd><strong id="summary-age" aria-live="polite">Not selected</strong></dd>
+            </div>
+          </dl>
+          <div class="laptop-total">
+            <small>Expected Price</small>
+            <strong data-summary-price aria-label="Expected price: 0 rupees">₹0</strong>
+          </div>
+
+          <button class="laptop-action"
+                  id="continueBtn"
+                  disabled
+                  aria-disabled="true"
+                  aria-describedby="continue-note">
+            Continue <i class="bi bi-arrow-right" aria-hidden="true"></i>
+          </button>
+
+          <div id="continue-note" class="laptop-note">
+            <i class="bi bi-info-circle" aria-hidden="true"></i>
+            <span>Choose the closest condition. Pickup verification confirms the final price.</span>
           </div>
         </div>
       </aside>
 
-      <section class="laptop-flow__card laptop-panel" aria-label="Choose laptop condition">
-        <h2 class="laptop-panel__title"><span class="laptop-panel__num">1</span> Physical Condition</h2>
-        <div class="laptop-option-grid is-three">
-          <button class="laptop-option" data-group="condition" data-value="Excellent"><i class="bi bi-stars"></i><strong>Excellent</strong><span>No dents, no visible scratches, display is clean.</span></button>
-          <button class="laptop-option" data-group="condition" data-value="Average"><i class="bi bi-circle-half"></i><strong>Average</strong><span>Minor scratches, light usage marks, no major damage.</span></button>
-          <button class="laptop-option" data-group="condition" data-value="Damaged"><i class="bi bi-exclamation-triangle"></i><strong>Damaged</strong><span>Dents, cracks, loose hinge, or visible display damage.</span></button>
-        </div>
-
-        <h2 class="laptop-panel__title"><span class="laptop-panel__num">2</span> Battery Health</h2>
-        <div class="laptop-option-grid is-three">
-          <button class="laptop-option" data-group="battery" data-value="Good backup"><i class="bi bi-battery-full"></i><strong>Good backup</strong><span>Battery runs normally after full charge.</span></button>
-          <button class="laptop-option" data-group="battery" data-value="Weak backup"><i class="bi bi-battery-half"></i><strong>Weak backup</strong><span>Backup is low but laptop works unplugged.</span></button>
-          <button class="laptop-option" data-group="battery" data-value="Needs replacement"><i class="bi bi-battery"></i><strong>Needs replacement</strong><span>Battery drains quickly or works only on charger.</span></button>
-        </div>
-
-        <h2 class="laptop-panel__title"><span class="laptop-panel__num">3</span> Charger and Box</h2>
-        <div class="laptop-option-grid is-three">
-          <button class="laptop-option" data-group="accessories" data-value="Original charger and box"><i class="bi bi-box-seam"></i><strong>Charger + box</strong><span>Original charger and packaging available.</span></button>
-          <button class="laptop-option" data-group="accessories" data-value="Original charger missing"><i class="bi bi-plug"></i><strong>Charger missing</strong><span>Box may be available, original charger is missing.</span></button>
-          <button class="laptop-option" data-group="accessories" data-value="No charger or box"><i class="bi bi-x-circle"></i><strong>No charger/box</strong><span>Laptop only, without original accessories.</span></button>
-        </div>
-      </section>
-
-      <aside class="laptop-flow__card laptop-summary">
-        <div class="laptop-summary__head">
-          <h2>Price Summary</h2>
-          <p>Based on variant and condition.</p>
-        </div>
-        <div class="laptop-summary__body">
-          <div class="laptop-summary__row"><span>Model</span><strong data-model-name>Laptop</strong></div>
-          <div class="laptop-summary__row"><span>Processor</span><strong data-summary="processor">-</strong></div>
-          <div class="laptop-summary__row"><span>Condition</span><strong data-summary="condition">-</strong></div>
-          <div class="laptop-summary__row"><span>Battery</span><strong data-summary="battery">-</strong></div>
-          <div class="laptop-summary__row"><span>Accessories</span><strong data-summary="accessories">-</strong></div>
-          <div class="laptop-total"><small>Expected Price</small><strong data-summary-price>₹0</strong></div>
-          <button class="laptop-action" id="continueBtn" disabled>Continue <i class="bi bi-arrow-right"></i></button>
-          <div class="laptop-note"><i class="bi bi-info-circle"></i><span>Choose the closest condition. Pickup verification confirms the final price.</span></div>
-        </div>
-      </aside>
     </div>
   </main>
 
   <script src="assets/js/laptop_flow.js"></script>
-</body>
 
+  <script>
+    const announcer   = document.getElementById("sr-announcer");
+    const continueBtn = document.getElementById("continueBtn");
+    let selectedAge   = null;
+
+    function announce(msg) {
+      announcer.textContent = "";
+      requestAnimationFrame(() => { announcer.textContent = msg; });
+    }
+
+    function checkAllSelected() {
+      const ok = Boolean(selectedAge);
+      continueBtn.disabled = !ok;
+      if (ok) continueBtn.removeAttribute("aria-disabled");
+      else continueBtn.setAttribute("aria-disabled", "true");
+    }
+
+    /* ── Accessories — checkbox group ── */
+    const accGroup   = document.getElementById("accessoriesGroup");
+    const accOptions = [...accGroup.querySelectorAll("[role='checkbox']")];
+    const summaryAcc = document.getElementById("summary-accessories");
+
+    function updateAccessoriesSummary() {
+      const selected = accOptions
+        .filter(o => o.getAttribute("aria-checked") === "true")
+        .map(o => o.dataset.accessory);
+      summaryAcc.textContent = selected.length ? selected.join(", ") : "None selected";
+    }
+
+    function toggleAccessory(opt) {
+      const isChecked = opt.getAttribute("aria-checked") === "true";
+      opt.setAttribute("aria-checked", String(!isChecked));
+      announce(`${opt.dataset.accessory} ${!isChecked ? "selected" : "deselected"}.`);
+      updateAccessoriesSummary();
+    }
+
+    accOptions.forEach(opt => {
+      opt.addEventListener("click", () => toggleAccessory(opt));
+      opt.addEventListener("keydown", e => {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggleAccessory(opt); }
+      });
+    });
+
+    /* ── Age — radiogroup ── */
+    const ageGroup   = document.getElementById("ageGroup");
+    const ageOptions = [...ageGroup.querySelectorAll("[role='radio']")];
+    const ageErrorEl = document.getElementById("age-error");
+    const summaryAge = document.getElementById("summary-age");
+
+    function selectAge(opt) {
+      ageOptions.forEach(o => {
+        o.setAttribute("aria-checked", "false");
+        o.setAttribute("tabindex", "-1");
+      });
+      opt.setAttribute("aria-checked", "true");
+      opt.setAttribute("tabindex", "0");
+      selectedAge = opt.dataset.age;
+      summaryAge.textContent = selectedAge;
+      ageErrorEl.classList.remove("visible");
+      ageGroup.setAttribute("aria-invalid", "false");
+      announce(`Device age: ${selectedAge} selected.`);
+      checkAllSelected();
+    }
+
+    ageOptions.forEach((opt, index) => {
+      opt.addEventListener("click", () => selectAge(opt));
+      opt.addEventListener("keydown", e => {
+        switch (e.key) {
+          case "Enter": case " ":
+            e.preventDefault(); selectAge(opt); break;
+          case "ArrowRight": case "ArrowDown":
+            e.preventDefault();
+            selectAge(ageOptions[(index + 1) % ageOptions.length]);
+            ageOptions[(index + 1) % ageOptions.length].focus(); break;
+          case "ArrowLeft": case "ArrowUp":
+            e.preventDefault();
+            selectAge(ageOptions[(index - 1 + ageOptions.length) % ageOptions.length]);
+            ageOptions[(index - 1 + ageOptions.length) % ageOptions.length].focus(); break;
+          case "Home":
+            e.preventDefault(); selectAge(ageOptions[0]); ageOptions[0].focus(); break;
+          case "End":
+            e.preventDefault();
+            selectAge(ageOptions[ageOptions.length - 1]);
+            ageOptions[ageOptions.length - 1].focus(); break;
+        }
+      });
+    });
+
+    /* ── Continue ── */
+    continueBtn.addEventListener("click", function () {
+      if (!selectedAge) {
+        ageErrorEl.classList.add("visible");
+        ageGroup.setAttribute("aria-invalid", "true");
+        ageOptions[0].focus();
+        announce("Please select the age of your device to continue.");
+        return;
+      }
+      try {
+        const stored = JSON.parse(sessionStorage.getItem("cashygoLaptopSelection") || "{}");
+        stored.deviceAge   = selectedAge;
+        stored.accessories = accOptions
+          .filter(o => o.getAttribute("aria-checked") === "true")
+          .map(o => o.dataset.accessory);
+        sessionStorage.setItem("cashygoLaptopSelection", JSON.stringify(stored));
+      } catch (e) {}
+      window.location.href = "laptop_device_question.html";
+    });
+
+    /* ── Init from session ── */
+    (function init() {
+      try {
+        const stored = JSON.parse(sessionStorage.getItem("cashygoLaptopSelection") || "{}");
+        if (stored.model) {
+          document.querySelectorAll("[data-model-name]").forEach(el => el.textContent = stored.model);
+          const img = document.querySelector("[data-laptop-image]");
+          if (img) img.alt = stored.model + " laptop";
+        }
+        if (stored.brand) {
+          document.querySelectorAll("[data-brand-name]").forEach(el => el.textContent = stored.brand);
+        }
+        if (stored.image) {
+          const img = document.querySelector("[data-laptop-image]");
+          if (img) img.src = stored.image;
+        }
+      } catch (e) {}
+    })();
+  </script>
+</body>
 </html>

@@ -1,64 +1,313 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cashygo - Laptop Issues</title>
+  <title>Cashygo — Select Issues</title>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/laptop_flow.css">
+
+  <style>
+    :root {
+      --g900: #0a3d26;
+      --g700: #146b40;
+      --g500: #1a8f56;
+      --g300: #4db880;
+      --g100: #e6f7ee;
+      --g50:  #f2fbf6;
+      --ink:    #0d1a12;
+      --ink2:   #374840;
+      --muted:  #6b7e74;
+      --line:   #e0ebe5;
+      --bg:     #f5f9f6;
+      --white:  #ffffff;
+      --red:    #d63f3f;
+      --red-bg: #fef2f2;
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 22px;
+      --shadow-card: 0 2px 12px rgba(10,61,38,0.07);
+      --shadow-hover: 0 8px 28px rgba(10,61,38,0.13);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+    /* ── Layout shell ── */
+    .flow-wrap { width: min(1260px, calc(100% - 48px)); margin: 0 auto; padding: 28px 0 80px; }
+
+    .crumbs { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--muted); margin-bottom: 24px; flex-wrap: wrap; }
+    .crumbs a { color: inherit; text-decoration: none; }
+    .crumbs a:hover { color: var(--g500); }
+    .crumbs .cur { color: var(--ink); font-weight: 700; }
+    .crumbs i { font-size: 10px; }
+
+    .flow-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; margin-bottom: 32px; }
+    .flow-head__left { flex: 1; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 7px; background: var(--g100); color: var(--g700); border: 1px solid #b6e2cc; border-radius: 999px; padding: 5px 14px; font-size: 12px; font-weight: 700; margin-bottom: 14px; }
+    .flow-head h1 { font-size: clamp(22px, 3vw, 30px); font-weight: 800; line-height: 1.15; margin-bottom: 8px; }
+    .flow-head h1 em { font-style: normal; color: var(--g500); }
+    .flow-head p { font-size: 14px; color: var(--ink2); line-height: 1.6; max-width: 520px; }
+
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; min-width: 420px; }
+    .step { padding: 12px 14px; border: 1.5px solid var(--line); border-radius: var(--radius-sm); background: var(--white); }
+    .step strong { display: block; font-size: 11px; font-weight: 800; color: var(--muted); margin-bottom: 2px; }
+    .step span { display: block; font-size: 10px; font-weight: 600; color: var(--muted); }
+    .step.done strong { color: var(--g500); }
+    .step.done strong::before { content: "✓ "; }
+    .step.active { border-color: var(--g500); background: var(--g50); }
+    .step.active strong { color: var(--g700); }
+
+    /* ── Main 3-col grid ── */
+    .flow-body { display: grid; grid-template-columns: 240px 1fr 300px; gap: 20px; align-items: start; }
+
+    /* ── Device card ── */
+    .device-card { background: var(--white); border: 1.5px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-card); position: sticky; top: 24px; }
+    .device-card__img { background: linear-gradient(160deg, var(--g50) 0%, #ddf0e7 100%); display: flex; align-items: center; justify-content: center; padding: 28px 24px 20px; }
+    .device-card__img img { width: 100%; max-width: 170px; height: 130px; object-fit: contain; filter: drop-shadow(0 6px 16px rgba(10,61,38,0.18)); }
+    .device-card__info { padding: 18px 20px 22px; }
+    .device-card__brand { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+    .device-card__name { font-size: 16px; font-weight: 800; color: var(--ink); margin-bottom: 14px; }
+    .device-chip { display: inline-flex; align-items: center; gap: 6px; background: var(--g100); color: var(--g700); border-radius: 999px; padding: 4px 12px; font-size: 11px; font-weight: 700; margin-bottom: 16px; }
+    .device-meta { display: flex; flex-direction: column; gap: 8px; }
+    .device-meta span { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 500; color: var(--ink2); }
+    .device-meta i { color: var(--g500); font-size: 14px; }
+
+    /* ── Issue panel ── */
+    .issue-panel { background: var(--white); border: 1.5px solid var(--line); border-radius: var(--radius-lg); padding: 28px; box-shadow: var(--shadow-card); }
+
+    .panel-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; gap: 12px; flex-wrap: wrap; }
+    .panel-header h2 { font-size: 17px; font-weight: 800; color: var(--ink); display: flex; align-items: center; gap: 10px; }
+    .panel-num { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--g500); color: var(--white); font-size: 13px; font-weight: 800; flex-shrink: 0; }
+
+    .selected-count { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: var(--muted); background: var(--bg); border: 1px solid var(--line); border-radius: 999px; padding: 5px 14px; transition: all 0.2s; }
+    .selected-count.has-sel { color: var(--g700); background: var(--g100); border-color: #b6e2cc; }
+    .selected-count .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); transition: background 0.2s; }
+    .selected-count.has-sel .dot { background: var(--g500); }
+
+    /* ── No-issue banner ── */
+    .no-issue-banner { display: flex; align-items: center; gap: 14px; background: var(--g50); border: 1.5px dashed #9dd4b5; border-radius: var(--radius-md); padding: 14px 18px; margin-bottom: 22px; cursor: pointer; transition: border-color 0.2s, background 0.2s; user-select: none; }
+    .no-issue-banner:hover { border-color: var(--g500); background: var(--g100); }
+    .no-issue-banner.active { border-style: solid; border-color: var(--g500); background: var(--g100); }
+    .no-issue-check { width: 22px; height: 22px; border-radius: 50%; border: 2px solid #9dd4b5; display: grid; place-items: center; flex-shrink: 0; color: transparent; font-size: 12px; transition: all 0.2s; }
+    .no-issue-banner.active .no-issue-check { background: var(--g500); border-color: var(--g500); color: var(--white); }
+    .no-issue-banner p { font-size: 13px; font-weight: 700; color: var(--ink2); margin: 0; }
+    .no-issue-banner small { display: block; font-size: 11px; font-weight: 500; color: var(--muted); margin-top: 2px; }
+
+    /* ══════════════════════════════════════
+       CASHIFY-STYLE ISSUE CARDS
+    ══════════════════════════════════════ */
+    .issue-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .issue-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: 1.5px solid #e2e8e5;
+      border-radius: 10px;
+      background: var(--white);
+      cursor: pointer;
+      overflow: hidden;
+      text-align: center;
+      font-family: inherit;
+      color: var(--ink);
+      transition: border-color 0.18s, box-shadow 0.18s;
+      height: 200px;
+    }
+    .issue-card:hover {
+      border-color: var(--g300);
+      box-shadow: 0 6px 20px rgba(10,61,38,0.12);
+    }
+    .issue-card.selected {
+      border-color: var(--g500);
+      box-shadow: 0 0 0 3px rgba(26,143,86,0.15);
+    }
+    .issue-card.disabled {
+      opacity: 0.38;
+      pointer-events: none;
+    }
+
+    /* image area */
+    .issue-card__img {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 16px 12px 10px;
+      background: var(--white);
+      position: relative;
+    }
+    .issue-card__img img {
+      width: 90px;
+      height: 90px;
+      object-fit: contain;
+    }
+
+    /* tick badge top-right */
+    .issue-tick {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      border: 2px solid #d0ddd7;
+      background: var(--white);
+      display: grid;
+      place-items: center;
+      font-size: 11px;
+      color: transparent;
+      transition: all 0.18s;
+    }
+    .issue-card.selected .issue-tick {
+      border-color: var(--g500);
+      background: var(--g500);
+      color: var(--white);
+    }
+
+    /* deduction pill top-left */
+    .issue-deduct {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      font-size: 9px;
+      font-weight: 700;
+      background: var(--red-bg);
+      color: var(--red);
+      border-radius: 999px;
+      padding: 2px 7px;
+      opacity: 0;
+      transition: opacity 0.18s;
+    }
+    .issue-card.selected .issue-deduct { opacity: 1; }
+    .issue-card:hover .issue-deduct { opacity: 1; }
+
+    /* label area — gray bg, bottom */
+    .issue-card__label {
+      width: 100%;
+      background: #f7f9f8;
+      border-top: 1px solid #e8efeb;
+      padding: 10px 10px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #222;
+      line-height: 1.4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+    }
+    .issue-card.selected .issue-card__label {
+      background: #e8f7ee;
+      border-top-color: #b6dfc7;
+      color: var(--g900);
+    }
+
+    /* ── Summary sidebar ── */
+    .summary-card { background: var(--white); border: 1.5px solid var(--line); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); overflow: hidden; position: sticky; top: 24px; }
+    .summary-card__head { background: linear-gradient(135deg, var(--g900) 0%, var(--g700) 100%); padding: 22px 22px 18px; color: var(--white); }
+    .summary-card__head h2 { font-size: 15px; font-weight: 800; margin-bottom: 3px; }
+    .summary-card__head p { font-size: 12px; opacity: 0.75; font-weight: 500; }
+    .summary-card__body { padding: 20px 22px 24px; }
+
+    .summary-rows { display: flex; flex-direction: column; gap: 0; }
+    .summary-row { display: flex; justify-content: space-between; align-items: baseline; padding: 10px 0; border-bottom: 1px solid var(--line); gap: 12px; }
+    .summary-row:last-child { border-bottom: none; }
+    .summary-row dt { font-size: 12px; font-weight: 600; color: var(--muted); flex-shrink: 0; }
+    .summary-row dd { font-size: 13px; font-weight: 700; color: var(--ink); text-align: right; list-style: none; }
+    .summary-row dd.deduct { color: var(--red); }
+
+    .price-block { margin-top: 18px; padding: 18px; background: var(--g50); border: 1px solid #c2e8d2; border-radius: var(--radius-md); text-align: center; }
+    .price-label { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 6px; }
+    .price-value { font-size: 34px; font-weight: 800; color: var(--g700); line-height: 1; margin-bottom: 6px; }
+    .price-sub { font-size: 11px; color: var(--muted); font-weight: 500; }
+
+    .finish-btn { width: 100%; margin-top: 18px; padding: 15px; border: none; border-radius: var(--radius-md); background: var(--g500); color: var(--white); font-family: inherit; font-size: 15px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: background 0.18s, transform 0.12s, box-shadow 0.18s; box-shadow: 0 4px 14px rgba(26,143,86,0.28); }
+    .finish-btn:hover { background: var(--g700); box-shadow: 0 6px 20px rgba(26,143,86,0.36); }
+    .finish-btn:active { transform: scale(0.98); }
+
+    .finish-note { display: flex; align-items: flex-start; gap: 8px; margin-top: 14px; font-size: 11px; color: var(--muted); line-height: 1.5; }
+    .finish-note i { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+
+    .finish-success { display: none; flex-direction: column; align-items: center; text-align: center; gap: 10px; padding: 20px; background: var(--g100); border: 1.5px solid #a8dbbe; border-radius: var(--radius-md); margin-top: 16px; }
+    .finish-success.show { display: flex; }
+    .finish-success i { font-size: 28px; color: var(--g500); }
+    .finish-success strong { font-size: 14px; font-weight: 800; color: var(--g900); }
+    .finish-success p { font-size: 12px; color: var(--ink2); line-height: 1.5; }
+
+    /* ── Responsive ── */
+    @media (max-width: 1100px) {
+      .flow-body { grid-template-columns: 1fr 1fr; }
+      .device-card { position: static; }
+      .summary-card { position: static; grid-column: 1 / -1; }
+      .flow-head { flex-direction: column; align-items: flex-start; }
+      .steps { min-width: 0; width: 100%; }
+      .issue-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 760px) {
+      .flow-wrap { width: 100%; padding: 16px 16px 60px; }
+      .flow-body { grid-template-columns: 1fr; }
+      .device-card { display: none; }
+      .issue-grid { grid-template-columns: repeat(3, 1fr); }
+      .steps { display: none; }
+    }
+    @media (max-width: 480px) {
+      .issue-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .issue-card, .finish-btn, .no-issue-banner, .issue-tick, .no-issue-check { transition: none; }
+    }
+  </style>
 </head>
 
-<body data-page="issue">
-  <nav class="nav" role="navigation" aria-label="Main navigation">
-    <div class="nav-top">
-      <a href="index.html" class="nav-logo" aria-label="Cashygo homepage">
-        <img src="assets/images/project-logo/logo-new.svg" alt="Cashygo logo" width="120" height="40">
-      </a>
-      <div class="nav-search" role="search">
-        <label for="mainSearch" class="sr-only">Search devices</label>
-        <input type="search" id="mainSearch" placeholder="Search laptop series..." autocomplete="off">
-        <div class="search-icon" aria-hidden="true"><i class="bi bi-search"></i></div>
-      </div>
-      <a class="nav-login" href="contact.html"><i class="bi bi-person-circle"></i><span>Sign in</span></a>
-    </div>
-  </nav>
+<body>
 
-  <main class="laptop-flow">
-    <nav class="laptop-flow__crumbs" aria-label="Breadcrumb">
-      <a href="laptop_brand.html">Sell laptop</a>
-      <i class="bi bi-chevron-right"></i>
-      <a href="laptop_device_question.html">Questions</a>
-      <i class="bi bi-chevron-right"></i>
-      <span>Issues</span>
+  <div class="flow-wrap">
+
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="laptop_brand.html">Sell laptop</a><i class="bi bi-chevron-right"></i>
+      <a href="laptop_model.html">Series</a><i class="bi bi-chevron-right"></i>
+      <a href="laptop_verient.html">Variant</a><i class="bi bi-chevron-right"></i>
+      <a href="laptop_Device_condation.html">Condition</a><i class="bi bi-chevron-right"></i>
+      <a href="laptop_device_question.html">Questions</a><i class="bi bi-chevron-right"></i>
+      <span class="cur">Issues</span>
     </nav>
 
-    <section class="laptop-flow__head">
-      <div>
-        <div class="laptop-flow__eyebrow"><i class="bi bi-tools"></i> Functional issue check</div>
-        <h1>Select any issues in your <span data-model-name>laptop</span></h1>
-        <p>Choose every issue that applies. If your laptop has no functional issue, leave all cards unselected and finish the quote.</p>
+    <header class="flow-head">
+      <div class="flow-head__left">
+        <div class="eyebrow"><i class="bi bi-tools"></i> Functional issue check</div>
+        <h1>Any issues with your <em data-model-name>laptop</em>?</h1>
+        <p>Select every fault that applies. If your laptop works perfectly, skip all and finish your quote.</p>
       </div>
-      <div class="laptop-flow__steps" aria-label="Sell laptop steps">
-        <div class="laptop-flow__step"><strong>1. Variant</strong><span>Specs and age</span></div>
-        <div class="laptop-flow__step"><strong>2. Condition</strong><span>Body and battery</span></div>
-        <div class="laptop-flow__step"><strong>3. Questions</strong><span>Ownership checks</span></div>
-        <div class="laptop-flow__step is-active"><strong>4. Issues</strong><span>Fault selection</span></div>
-      </div>
-    </section>
+      <nav class="steps" aria-label="Sell laptop steps">
+        <div class="step done"><strong>1. Variant</strong><span>Specs and age</span></div>
+        <div class="step done"><strong>2. Condition</strong><span>Body and battery</span></div>
+        <div class="step done"><strong>3. Questions</strong><span>Ownership checks</span></div>
+        <div class="step active"><strong>4. Issues</strong><span>Fault selection</span></div>
+      </nav>
+    </header>
 
-    <div class="laptop-flow__layout">
-      <aside class="laptop-flow__card laptop-product">
-        <div class="laptop-product__media">
+    <div class="flow-body">
+
+      <!-- LEFT: device card -->
+      <aside class="device-card" aria-label="Your selected laptop">
+        <div class="device-card__img">
           <img data-laptop-image src="assets/images/laptop_img/laptop_model_img/Dell%20Inspiron%20Series.avif" alt="Laptop">
         </div>
-        <div class="laptop-product__body">
-          <div class="laptop-product__brand" data-brand-name>Laptop</div>
-          <h2 class="laptop-product__name" data-model-name>Laptop</h2>
-          <span class="laptop-chip"><i class="bi bi-check2-circle"></i> Final quote step</span>
-          <div class="laptop-product__meta">
+        <div class="device-card__info">
+          <div class="device-card__brand" data-brand-name>Laptop</div>
+          <h2 class="device-card__name" data-model-name>Laptop</h2>
+          <div class="device-chip"><i class="bi bi-check2-circle"></i> Final quote step</div>
+          <div class="device-meta">
             <span><i class="bi bi-wifi"></i> Select only active faults</span>
             <span><i class="bi bi-motherboard"></i> Hardware issues affect value</span>
             <span><i class="bi bi-calendar-check"></i> Pickup after final check</span>
@@ -66,41 +315,285 @@
         </div>
       </aside>
 
-      <section class="laptop-flow__card laptop-panel" aria-label="Laptop issue selection">
-        <h2 class="laptop-panel__title"><span class="laptop-panel__num">4</span> Functional Issues</h2>
-        <div class="laptop-issue-grid">
-          <button class="laptop-option laptop-issue" data-issue="Display issue"><i class="bi bi-display"></i><strong>Display issue</strong><span>Lines, flicker, spots, broken screen, or dim display.</span></button>
-          <button class="laptop-option laptop-issue" data-issue="Keyboard not working"><i class="bi bi-keyboard"></i><strong>Keyboard not working</strong><span>Some keys, backlight, or full keyboard has a fault.</span></button>
-          <button class="laptop-option laptop-issue" data-issue="Trackpad issue"><i class="bi bi-square"></i><strong>Trackpad issue</strong><span>Click, touch, or pointer movement is not normal.</span></button>
-          <button class="laptop-option laptop-issue" data-issue="Speaker or mic issue"><i class="bi bi-volume-mute"></i><strong>Speaker / mic issue</strong><span>Audio output or microphone is faulty.</span></button>
-          <button class="laptop-option laptop-issue" data-issue="WiFi or Bluetooth issue"><i class="bi bi-wifi-off"></i><strong>WiFi / Bluetooth</strong><span>Wireless connectivity does not work properly.</span></button>
-          <button class="laptop-option laptop-issue" data-issue="Charging issue"><i class="bi bi-plug-fill"></i><strong>Charging issue</strong><span>Charging port, adapter detection, or power issue.</span></button>
-          <button class="laptop-option laptop-issue" data-issue="Hinge loose or broken"><i class="bi bi-layout-split"></i><strong>Hinge issue</strong><span>Loose screen, cracked hinge, or lid alignment problem.</span></button>
-          <button class="laptop-option laptop-issue" data-issue="Overheating"><i class="bi bi-thermometer-high"></i><strong>Overheating</strong><span>Fan noise, heating, shutdown, or performance drop.</span></button>
-          <button class="laptop-option laptop-issue" data-issue="Motherboard fault"><i class="bi bi-motherboard"></i><strong>Motherboard fault</strong><span>No power, restart loop, or major internal fault.</span></button>
+      <!-- CENTRE: issue panel -->
+      <section class="issue-panel" aria-label="Laptop issue selection">
+
+        <div class="panel-header">
+          <h2><span class="panel-num" aria-hidden="true">4</span> Functional Issues</h2>
+          <div class="selected-count" id="selCount">
+            <span class="dot"></span>
+            <span id="selCountText">0 selected</span>
+          </div>
+        </div>
+
+        <!-- No-issue toggle -->
+        <div class="no-issue-banner" id="noIssueBanner"
+             role="checkbox" aria-checked="false" tabindex="0"
+             aria-label="No issues — laptop works perfectly">
+          <span class="no-issue-check"><i class="bi bi-check-lg"></i></span>
+          <div>
+            <p>No issues — laptop works perfectly</p>
+            <small>Skip all faults and get the best estimate</small>
+          </div>
+        </div>
+
+        <!-- Issue grid -->
+        <div class="issue-grid" id="issueGrid" role="group" aria-label="Select all applicable issues">
+
+          <button class="issue-card" data-issue="Keyboard not working" data-deduct="1500" type="button" aria-pressed="false">
+            <span class="issue-deduct"><i class="bi bi-dash"></i>₹1,500</span>
+            <span class="issue-tick"><i class="bi bi-check-lg"></i></span>
+            <div class="issue-card__img">
+              <img src="#" alt="Keyboard not working">
+            </div>
+            <div class="issue-card__label">Keyboard not working; key(s) missing/not working</div>
+          </button>
+
+          <button class="issue-card" data-issue="CD/DVD Drive not working" data-deduct="500" type="button" aria-pressed="false">
+            <span class="issue-deduct"><i class="bi bi-dash"></i>₹500</span>
+            <span class="issue-tick"><i class="bi bi-check-lg"></i></span>
+            <div class="issue-card__img">
+              <img src="#" alt="CD/DVD Drive not working">
+            </div>
+            <div class="issue-card__label">CD/DVD Drive not working</div>
+          </button>
+
+          <button class="issue-card" data-issue="Touchpad not working" data-deduct="800" type="button" aria-pressed="false">
+            <span class="issue-deduct"><i class="bi bi-dash"></i>₹800</span>
+            <span class="issue-tick"><i class="bi bi-check-lg"></i></span>
+            <div class="issue-card__img">
+              <img src="#" alt="Touchpad not working">
+            </div>
+            <div class="issue-card__label">Touchpad not working; Left/Right click faulty</div>
+          </button>
+
+          <button class="issue-card" data-issue="Battery dead or poor health" data-deduct="2000" type="button" aria-pressed="false">
+            <span class="issue-deduct"><i class="bi bi-dash"></i>₹2,000</span>
+            <span class="issue-tick"><i class="bi bi-check-lg"></i></span>
+            <div class="issue-card__img">
+              <img src="#" alt="Battery dead">
+            </div>
+            <div class="issue-card__label">Battery dead, backup &lt; 60 mins, health &lt; 80%</div>
+          </button>
+
+          <button class="issue-card" data-issue="Speakers not working" data-deduct="700" type="button" aria-pressed="false">
+            <span class="issue-deduct"><i class="bi bi-dash"></i>₹700</span>
+            <span class="issue-tick"><i class="bi bi-check-lg"></i></span>
+            <div class="issue-card__img">
+              <img src="#" alt="Speakers not working">
+            </div>
+            <div class="issue-card__label">Speakers not working; faulty/cracked sound</div>
+          </button>
+
+          <button class="issue-card" data-issue="Wi-Fi not working" data-deduct="600" type="button" aria-pressed="false">
+            <span class="issue-deduct"><i class="bi bi-dash"></i>₹600</span>
+            <span class="issue-tick"><i class="bi bi-check-lg"></i></span>
+            <div class="issue-card__img">
+              <img src="#" alt="Wi-Fi not working">
+            </div>
+            <div class="issue-card__label">Wi-Fi not working</div>
+          </button>
+
+          <button class="issue-card" data-issue="USB Port not working" data-deduct="600" type="button" aria-pressed="false">
+            <span class="issue-deduct"><i class="bi bi-dash"></i>₹600</span>
+            <span class="issue-tick"><i class="bi bi-check-lg"></i></span>
+            <div class="issue-card__img">
+              <img src="#" alt="USB Port not working">
+            </div>
+            <div class="issue-card__label">USB Port not working</div>
+          </button>
+
+          <button class="issue-card" data-issue="Web Cam not working" data-deduct="500" type="button" aria-pressed="false">
+            <span class="issue-deduct"><i class="bi bi-dash"></i>₹500</span>
+            <span class="issue-tick"><i class="bi bi-check-lg"></i></span>
+            <div class="issue-card__img">
+              <img src="#" alt="Web Cam not working">
+            </div>
+            <div class="issue-card__label">Web Cam not working</div>
+          </button>
+
+          <button class="issue-card" data-issue="Charging Port not working" data-deduct="1200" type="button" aria-pressed="false">
+            <span class="issue-deduct"><i class="bi bi-dash"></i>₹1,200</span>
+            <span class="issue-tick"><i class="bi bi-check-lg"></i></span>
+            <div class="issue-card__img">
+              <img src="#" alt="Charging Port not working">
+            </div>
+            <div class="issue-card__label">Charging Port not working</div>
+          </button>
+
+          <button class="issue-card" data-issue="Hard Drive Missing/Defective" data-deduct="2500" type="button" aria-pressed="false">
+            <span class="issue-deduct"><i class="bi bi-dash"></i>₹2,500</span>
+            <span class="issue-tick"><i class="bi bi-check-lg"></i></span>
+            <div class="issue-card__img">
+              <img src="#" alt="Hard Drive Missing/Defective">
+            </div>
+            <div class="issue-card__label">Hard Drive Missing/Defective</div>
+          </button>
+
+          <button class="issue-card" data-issue="Motherboard issue" data-deduct="5000" type="button" aria-pressed="false">
+            <span class="issue-deduct"><i class="bi bi-dash"></i>₹5,000</span>
+            <span class="issue-tick"><i class="bi bi-check-lg"></i></span>
+            <div class="issue-card__img">
+              <img src="#" alt="Motherboard issue">
+            </div>
+            <div class="issue-card__label">Motherboard issue — auto restart, hanging, heating/not booting</div>
+          </button>
+
         </div>
       </section>
 
-      <aside class="laptop-flow__card laptop-summary">
-        <div class="laptop-summary__head">
+      <!-- RIGHT: summary -->
+      <aside class="summary-card" aria-label="Price summary" aria-live="polite">
+        <div class="summary-card__head">
           <h2>Final Estimate</h2>
-          <p>Includes selected specs, condition, and issues.</p>
+          <p>Specs, condition &amp; issues included</p>
         </div>
-        <div class="laptop-summary__body">
-          <div class="laptop-summary__row"><span>Model</span><strong data-model-name>Laptop</strong></div>
-          <div class="laptop-summary__row"><span>Condition</span><strong data-summary="condition">-</strong></div>
-          <div class="laptop-summary__row"><span>Battery</span><strong data-summary="battery">-</strong></div>
-          <div class="laptop-summary__row"><span>Issues</span><strong data-summary="issues">None selected</strong></div>
-          <div class="laptop-total"><small>Expected Price</small><strong data-summary-price>₹0</strong></div>
-          <button class="laptop-action" id="finishBtn">Finish quote <i class="bi bi-check2-circle"></i></button>
-          <div class="laptop-note"><i class="bi bi-info-circle"></i><span>This is an estimated price. Final payout is confirmed after pickup verification.</span></div>
-          <div class="laptop-finish" id="finishMsg">Quote saved. Cashygo pickup can be scheduled after customer details are collected.</div>
+        <div class="summary-card__body">
+          <dl class="summary-rows">
+            <div class="summary-row">
+              <dt>Model</dt>
+              <dd data-model-name>Laptop</dd>
+            </div>
+            <div class="summary-row">
+              <dt>Condition</dt>
+              <dd id="sum-condition">—</dd>
+            </div>
+            <div class="summary-row">
+              <dt>Battery</dt>
+              <dd id="sum-battery">—</dd>
+            </div>
+            <div class="summary-row">
+              <dt>Issues</dt>
+              <dd id="sum-issues">None</dd>
+            </div>
+            <div class="summary-row">
+              <dt>Deducted</dt>
+              <dd id="sum-deducted" class="deduct">₹0</dd>
+            </div>
+          </dl>
+
+          <div class="price-block">
+            <div class="price-label">Expected payout</div>
+            <div class="price-value" id="priceDisplay">₹0</div>
+            <div class="price-sub">Confirmed after pickup check</div>
+          </div>
+
+          <button class="finish-btn" id="finishBtn" type="button">
+            Finish &amp; get quote <i class="bi bi-check2-circle"></i>
+          </button>
+
+          <div class="finish-note">
+            <i class="bi bi-info-circle"></i>
+            <span>Estimated price only. Final payout confirmed after expert pickup check.</span>
+          </div>
+
+          <div class="finish-success" id="finishSuccess">
+            <i class="bi bi-patch-check-fill"></i>
+            <strong>Quote saved!</strong>
+            <p>Cashygo will reach out to schedule pickup and verify the final amount.</p>
+          </div>
         </div>
       </aside>
+
     </div>
-  </main>
+  </div>
 
-  <script src="assets/js/laptop_flow.js"></script>
+  <script>
+    const FALLBACK = { brand:"Laptop", model:"Laptop", image:"", basePrice:0 };
+
+    function getSession() {
+      try { return { ...FALLBACK, ...JSON.parse(sessionStorage.getItem("cashygoLaptopSelection") || "{}") }; }
+      catch { return { ...FALLBACK }; }
+    }
+
+    const rupee = v => new Intl.NumberFormat("en-IN", { style:"currency", currency:"INR", maximumFractionDigits:0 }).format(v);
+
+    function calcPrice(deduct) {
+      const s = getSession();
+      let p = Number(s.basePrice) || 0;
+      if (s.ram === "16 GB" || s.ram === "16GB") p += 2000;
+      if (s.ram === "32 GB" || s.ram === "32GB") p += 5000;
+      if (s.storage === "512 GB" || s.storage === "512GB") p += 2500;
+      if (s.storage === "1 TB"   || s.storage === "1TB")   p += 5000;
+      if (s.age === "Under 1 year") p += 3000;
+      if (s.age === "3 years+")     p -= 2500;
+      if (s.condition === "Excellent") p += 1500;
+      if (s.condition === "Average")   p -= 1500;
+      if (s.condition === "Damaged")   p -= 5000;
+      if (s.poweron === "Does not power on") p -= 4000;
+      if (s.screen  === "Screen has issues") p -= 2500;
+      if (s.body    === "Body has damage")   p -= 1500;
+      return Math.max(Math.round((p - deduct) / 100) * 100, 0);
+    }
+
+    let totalDeduct = 0;
+
+    const noIssueBanner = document.getElementById("noIssueBanner");
+    const issueCards    = [...document.querySelectorAll(".issue-card")];
+    const selCountEl    = document.getElementById("selCount");
+    const selCountText  = document.getElementById("selCountText");
+    const priceDisplay  = document.getElementById("priceDisplay");
+    const sumIssues     = document.getElementById("sum-issues");
+    const sumDeducted   = document.getElementById("sum-deducted");
+    const finishBtn     = document.getElementById("finishBtn");
+    const finishSuccess = document.getElementById("finishSuccess");
+
+    function render() {
+      const selected = issueCards.filter(c => c.classList.contains("selected"));
+      const n = selected.length;
+      totalDeduct = selected.reduce((sum, c) => sum + (Number(c.dataset.deduct) || 0), 0);
+      selCountText.textContent = n === 0 ? "0 selected" : `${n} issue${n > 1 ? "s" : ""} selected`;
+      selCountEl.classList.toggle("has-sel", n > 0);
+      sumIssues.textContent   = n ? selected.map(c => c.dataset.issue).join(", ") : "None";
+      sumDeducted.textContent = n ? `−${rupee(totalDeduct)}` : "₹0";
+      priceDisplay.textContent = rupee(calcPrice(totalDeduct));
+    }
+
+    function setNoIssue(active) {
+      noIssueBanner.classList.toggle("active", active);
+      noIssueBanner.setAttribute("aria-checked", String(active));
+      issueCards.forEach(c => c.classList.toggle("disabled", active));
+      if (active) issueCards.forEach(c => { c.classList.remove("selected"); c.setAttribute("aria-pressed","false"); });
+      render();
+    }
+
+    noIssueBanner.addEventListener("click", () => setNoIssue(noIssueBanner.getAttribute("aria-checked") !== "true"));
+    noIssueBanner.addEventListener("keydown", e => { if (e.key==="Enter"||e.key===" ") { e.preventDefault(); noIssueBanner.click(); } });
+
+    issueCards.forEach(card => {
+      card.addEventListener("click", () => {
+        if (card.classList.contains("disabled")) return;
+        const sel = card.classList.toggle("selected");
+        card.setAttribute("aria-pressed", String(sel));
+        if (sel) setNoIssue(false);
+        render();
+      });
+    });
+
+    finishBtn.addEventListener("click", () => {
+      const selected = issueCards.filter(c => c.classList.contains("selected"));
+      try {
+        const s = getSession();
+        s.issues = selected.map(c => c.dataset.issue);
+        s.issueDeduction = totalDeduct;
+        s.finalPrice = calcPrice(totalDeduct);
+        sessionStorage.setItem("cashygoLaptopSelection", JSON.stringify(s));
+      } catch(e) {}
+      finishBtn.style.display = "none";
+      finishSuccess.classList.add("show");
+    });
+
+    // Init — pull values from sessionStorage
+    (function init() {
+      const s = getSession();
+      if (s.model) document.querySelectorAll("[data-model-name]").forEach(el => el.textContent = s.model);
+      if (s.brand) document.querySelectorAll("[data-brand-name]").forEach(el => el.textContent = s.brand);
+      if (s.image) { const img = document.querySelector("[data-laptop-image]"); if (img) img.src = s.image; }
+      document.getElementById("sum-condition").textContent = s.condition || "—";
+      document.getElementById("sum-battery").textContent   = s.battery   || "—";
+      render();
+    })();
+  </script>
+
 </body>
-
 </html>

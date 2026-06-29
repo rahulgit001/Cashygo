@@ -1,110 +1,619 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Cashygo laptop ownership and readiness checks." />
+  <meta name="theme-color" content="#0d8c60" />
   <title>Cashygo - Laptop Questions</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/laptop_flow.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <style>
+    :root {
+      --green: #078f61;
+      --green-dark: #056d4b;
+      --green-soft: #eaf8f2;
+      --ink: #121722;
+      --muted: #667085;
+      --line: #e3ebe7;
+      --bg: #f8faf9;
+      --white: #fff;
+      --danger: #d94343;
+      --shadow: 0 18px 42px rgba(13,72,54,0.12);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--ink); }
+    button, input { font-family: inherit; }
+
+    /* ── Layout ── */
+    .cashygo-main { width: min(1280px, calc(100% - 48px)); margin: 0 auto; padding: 24px 0 60px; }
+
+    /* ── Breadcrumb ── */
+    .crumbs { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 11px; font-weight: 600; margin-bottom: 20px; flex-wrap: wrap; }
+    .crumbs a { color: inherit; text-decoration: none; }
+    .crumbs a:hover { color: var(--green); }
+    .crumbs .active { color: var(--ink); font-weight: 800; }
+
+    /* ── Page header ── */
+    .page-head { display: flex; justify-content: space-between; gap: 24px; align-items: flex-end; margin-bottom: 28px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; color: var(--green); background: #e8f7ef; border: 1px solid #c7ead8; border-radius: 999px; padding: 6px 14px; font-size: 12px; font-weight: 800; margin-bottom: 12px; }
+    h1 { font-size: 28px; line-height: 1.1; font-weight: 800; margin-bottom: 8px; }
+    h1 span { color: var(--green); }
+    .subtitle { color: #4d5562; font-size: 14px; line-height: 1.6; font-weight: 500; max-width: 560px; }
+
+    /* ── Step chips ── */
+    .flow-steps { display: grid; grid-template-columns: repeat(4, minmax(100px, 1fr)); gap: 10px; min-width: 480px; }
+    .flow-step { border: 1px solid var(--line); border-radius: 12px; background: var(--white); padding: 12px 14px; }
+    .flow-step strong { display: block; font-size: 12px; font-weight: 800; margin-bottom: 3px; }
+    .flow-step span { display: block; color: var(--muted); font-size: 11px; font-weight: 600; }
+    .flow-step.active { border-color: var(--green); background: var(--green-soft); }
+    .flow-step.done strong { color: var(--green); }
+    .flow-step.done strong::before { content: "✓ "; }
+
+    /* ── Main grid ── */
+    .layout { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 24px; align-items: start; }
+
+    /* ── Progress row ── */
+    .progress-row { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center; margin-bottom: 18px; }
+    .pips { display: grid; gap: 8px; }
+    .pip { height: 10px; border-radius: 999px; background: #dceae4; position: relative; overflow: hidden; }
+    .pip::after { content: ""; position: absolute; inset: 0; transform: scaleX(0); transform-origin: left; background: var(--green); transition: transform 0.3s ease; }
+    .pip.done::after { transform: scaleX(1); }
+    .counter { color: #37564b; font-size: 17px; font-weight: 700; white-space: nowrap; }
+    .counter strong { color: var(--green); }
+
+    /* ── Question cards ── */
+    .questions { display: grid; gap: 14px; }
+    .q-card { display: grid; grid-template-columns: 100px 1fr; gap: 14px; align-items: start; padding: 20px 20px 20px 12px; background: var(--white); border: 1px solid var(--line); border-radius: 16px; transition: border-color 0.18s; }
+    .q-card.active { border-color: #b4dece; }
+    .q-card.locked { opacity: 0.5; pointer-events: none; }
+    .q-icon-box { display: grid; place-items: center; width: 58px; height: 58px; border-radius: 20px; background: linear-gradient(135deg, #e9fbf5, #f4fffb); color: var(--green); font-size: 28px; margin: 0 auto; }
+    .q-head { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
+    .q-badge { display: grid; place-items: center; flex: 0 0 auto; width: 24px; height: 24px; border-radius: 50%; background: var(--green); color: var(--white); font-size: 13px; font-weight: 800; }
+    .q-title { font-size: 14px; font-weight: 700; line-height: 1.3; }
+    .q-help { color: #5d6673; font-size: 13px; line-height: 1.5; margin: 0 0 16px 34px; }
+
+    /* ── Answer buttons ── */
+    .answers { display: flex; gap: 12px; margin-left: 34px; flex-wrap: wrap; }
+    .answer { display: inline-flex; align-items: center; gap: 12px; padding: 10px 20px; border: 1.5px solid #dfe5e3; border-radius: 10px; background: var(--white); color: #4b5563; font-size: 15px; font-weight: 700; cursor: pointer; transition: border-color 0.18s, color 0.18s; }
+    .answer:hover, .answer.selected { border-color: rgba(7,143,97,0.45); color: var(--green); }
+    .answer.no.selected { border-color: rgba(217,67,67,0.45); color: var(--danger); }
+    .answer-radio { display: grid; place-items: center; width: 28px; height: 28px; border: 2px solid #cfd8d5; border-radius: 50%; color: transparent; font-size: 16px; transition: 0.18s; }
+    .answer.selected .answer-radio { border-color: var(--green); background: var(--green); color: var(--white); }
+    .answer.no.selected .answer-radio { border-color: var(--danger); background: var(--danger); }
+
+    /* ── Popup tags under answered question ── */
+    .q-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 0 34px; }
+    .q-tag { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: #fff3de; color: #7a4f0a; border: 1px solid #f5d998; }
+
+    /* ── Finish button ── */
+    .finish { width: 100%; min-height: 52px; margin-top: 22px; border: 0; border-radius: 14px; background: var(--green); color: var(--white); font-size: 17px; font-weight: 800; cursor: pointer; transition: background 0.18s; }
+    .finish:hover:not(:disabled) { background: var(--green-dark); }
+    .finish:disabled { opacity: 0.45; cursor: not-allowed; }
+
+    /* ── Safe line ── */
+    .safe-line { display: flex; align-items: center; gap: 12px; margin-top: 28px; color: #5e6875; font-size: 14px; font-weight: 500; }
+    .safe-line strong { color: var(--ink); font-weight: 800; }
+    .safe-line i { color: var(--green); font-size: 24px; }
+
+    /* ── Quote sidebar ── */
+    .quote { position: sticky; top: 100px; border: 1px solid #cfe8dd; border-radius: 22px; background: rgba(255,255,255,0.97); padding: 28px; }
+    .device { display: flex; flex-direction: column; align-items: center; text-align: center; padding-bottom: 24px; border-bottom: 1px solid var(--line); gap: 12px; }
+    .device-icon { width: min(160px, 70%); height: 190px; border-radius: 20px; overflow: hidden; display: grid; place-items: center; }
+    .device-icon img { max-width: 100%; max-height: 190px; object-fit: contain; }
+    .device h2 { font-size: 20px; font-weight: 800; }
+    .device p { color: #535c68; font-size: 14px; font-weight: 700; }
+    .quote-price { padding: 24px 0; text-align: center; border-bottom: 1px solid var(--line); }
+    .quote-label { color: #5f6873; font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+    .price { margin: 12px 0 16px; color: var(--green); font-size: 36px; font-weight: 800; line-height: 1; }
+    .quote-price p { color: #535c68; font-size: 13px; line-height: 1.55; max-width: 220px; margin: 0 auto; }
+    .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding-top: 22px; }
+    .stat { min-height: 86px; border: 1px solid var(--line); border-radius: 12px; background: #f7faf9; display: grid; place-items: center; text-align: center; }
+    .stat strong { display: block; font-size: 28px; line-height: 1; }
+    .stat span { display: block; margin-top: 8px; color: #6c7682; font-size: 11px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; }
+    .trust { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 24px; color: #5e6875; font-size: 12px; font-weight: 600; text-align: center; }
+    .trust span { display: block; color: var(--ink); font-size: 13px; font-weight: 800; margin-bottom: 2px; }
+    .trust i { color: var(--green); font-size: 22px; display: block; margin-bottom: 4px; }
+
+    /* ── Popup ── */
+    .popup-overlay {
+      display: none;
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.48);
+      z-index: 100;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 24px 16px;
+      border-radius: 16px;
+    }
+    .popup-overlay.show { display: flex; }
+
+    .popup-card {
+      width: 100%;
+      max-width: 600px;
+      background: var(--white);
+      border-radius: 20px;
+      padding: 26px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+      animation: popIn 0.22s ease;
+    }
+    @keyframes popIn { from { transform: scale(0.94); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+    .popup-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+    .popup-step-tag { background: #fff3f3; color: var(--danger); border: 1px solid #f5c6c6; font-size: 11px; font-weight: 800; padding: 3px 10px; border-radius: 999px; }
+    .popup-close { width: 28px; height: 28px; border: none; background: #f1f5f4; border-radius: 50%; cursor: pointer; font-size: 15px; color: var(--muted); display: grid; place-items: center; }
+    .popup-close:hover { background: #e2eae6; color: var(--ink); }
+    .popup-card h3 { margin: 8px 0 4px; font-size: 17px; font-weight: 800; }
+    .popup-card > p { margin: 0 0 14px; font-size: 13px; color: #5d6673; line-height: 1.5; }
+    .popup-select-hint { font-size: 11px; color: var(--muted); font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 5px; }
+
+    .popup-img-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 18px; }
+    .popup-img-item {
+      border: 2px solid var(--line); border-radius: 14px; background: #f8faf9;
+      padding: 12px 8px 10px; cursor: pointer; text-align: center;
+      transition: border-color 0.18s, background 0.18s;
+      position: relative; user-select: none;
+    }
+    .popup-img-item:hover { border-color: var(--green); background: var(--green-soft); }
+    .popup-img-item.selected { border-color: var(--green); background: #e8f7ef; }
+    .pii-check {
+      position: absolute; top: 7px; right: 7px; width: 18px; height: 18px;
+      border-radius: 50%; border: 2px solid #cfd8d5; background: var(--white);
+      display: grid; place-items: center; font-size: 10px; color: transparent; transition: 0.15s;
+    }
+    .popup-img-item.selected .pii-check { border-color: var(--green); background: var(--green); color: var(--white); }
+    .pii-img { width: 100%; height: 72px; object-fit: contain; border-radius: 8px; margin-bottom: 7px; display: block; }
+    .pii-icon { font-size: 32px; color: #8aabbf; margin-bottom: 7px; display: block; height: 72px; line-height: 72px; }
+    .pii-label { font-size: 11px; font-weight: 700; color: var(--ink); line-height: 1.3; }
+
+    .popup-actions { display: flex; gap: 10px; padding-top: 14px; border-top: 1px solid var(--line); }
+    .popup-actions button { flex: 1; padding: 11px; border-radius: 10px; border: 1.5px solid var(--line); font-size: 13px; font-weight: 700; cursor: pointer; background: var(--white); color: var(--ink); transition: border-color 0.18s, background 0.18s, color 0.18s; }
+    .popup-actions button:hover { border-color: var(--green); background: var(--green-soft); color: var(--green); }
+    .popup-actions .btn-confirm { background: var(--green); color: var(--white); border-color: var(--green); }
+    .popup-actions .btn-confirm:hover { background: var(--green-dark); border-color: var(--green-dark); color: var(--white); }
+
+    /* ── Responsive ── */
+    @media (max-width: 1100px) {
+      .cashygo-main { width: calc(100% - 40px); }
+      .page-head { display: block; }
+      .flow-steps { min-width: 0; margin-top: 18px; }
+      .layout { grid-template-columns: 1fr; }
+      .quote { position: static; }
+    }
+    @media (max-width: 767px) {
+      .cashygo-main { width: 100%; padding: 16px 16px 40px; }
+      h1 { font-size: 24px; }
+      .flow-steps { display: none; }
+      .q-card { grid-template-columns: 1fr; }
+      .q-icon-box { display: none; }
+      .q-help, .answers, .q-tags { margin-left: 0; }
+      .popup-img-grid { grid-template-columns: repeat(2, 1fr); }
+      .popup-actions { flex-direction: column; }
+    }
+  </style>
 </head>
 
-<body data-page="question">
+<body>
+
   <nav class="nav" role="navigation" aria-label="Main navigation">
     <div class="nav-top">
       <a href="index.html" class="nav-logo" aria-label="Cashygo homepage">
-        <img src="assets/images/project-logo/logo-new.svg" alt="Cashygo logo" width="120" height="40">
+        <img src="assets/images/project-logo/logo-new.svg" alt="Cashygo" width="120" height="40" />
       </a>
       <div class="nav-search" role="search">
-        <label for="mainSearch" class="sr-only">Search devices</label>
-        <input type="search" id="mainSearch" placeholder="Search laptop series..." autocomplete="off">
+        <label for="mainSearch" class="sr-only">Search laptops</label>
+        <input type="search" id="mainSearch" placeholder="Search laptop series..." autocomplete="off" />
         <div class="search-icon" aria-hidden="true"><i class="bi bi-search"></i></div>
       </div>
       <a class="nav-login" href="contact.html"><i class="bi bi-person-circle"></i><span>Sign in</span></a>
     </div>
   </nav>
 
-  <main class="laptop-flow">
-    <nav class="laptop-flow__crumbs" aria-label="Breadcrumb">
-      <a href="laptop_brand.html">Sell laptop</a>
-      <i class="bi bi-chevron-right"></i>
-      <a href="laptop_Device_condation.html">Condition</a>
-      <i class="bi bi-chevron-right"></i>
-      <span>Questions</span>
+  <main class="cashygo-main">
+
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="laptop_brand.html">Sell laptop</a><i class="bi bi-chevron-right"></i>
+      <a href="laptop_model.html">Series</a><i class="bi bi-chevron-right"></i>
+      <a href="laptop_verient.html">Variant</a><i class="bi bi-chevron-right"></i>
+      <a href="laptop_Device_condation.html">Condition</a><i class="bi bi-chevron-right"></i>
+      <span class="active">Questions</span>
     </nav>
 
-    <section class="laptop-flow__head">
+    <section class="page-head" aria-label="Laptop question workflow">
       <div>
-        <div class="laptop-flow__eyebrow"><i class="bi bi-question-circle-fill"></i> Ownership and data checks</div>
-        <h1>Answer quick questions for your <span data-model-name>laptop</span></h1>
-        <p>These checks help make pickup smoother and keep your personal data protected before you sell the laptop.</p>
+        <div class="eyebrow"><i class="bi bi-shield-check"></i> Ownership and data checks</div>
+        <h1>Answer quick checks for your <span id="headModelName">laptop</span></h1>
+        <p class="subtitle">Answer 3 quick checks about your laptop — power, screen, and body condition. These help us give you the most accurate quote before pickup.</p>
       </div>
-      <div class="laptop-flow__steps" aria-label="Sell laptop steps">
-        <div class="laptop-flow__step"><strong>1. Variant</strong><span>Specs and age</span></div>
-        <div class="laptop-flow__step"><strong>2. Condition</strong><span>Body and battery</span></div>
-        <div class="laptop-flow__step is-active"><strong>3. Questions</strong><span>Ownership checks</span></div>
-        <div class="laptop-flow__step"><strong>4. Issues</strong><span>Fault selection</span></div>
+      <div class="flow-steps" aria-label="Sell laptop steps">
+        <div class="flow-step done"><strong>1. Variant</strong><span>Specs and age</span></div>
+        <div class="flow-step done"><strong>2. Condition</strong><span>Body and battery</span></div>
+        <div class="flow-step active"><strong>3. Questions</strong><span>Ownership checks</span></div>
+        <div class="flow-step"><strong>4. Issues</strong><span>Fault selection</span></div>
       </div>
     </section>
 
-    <div class="laptop-flow__layout">
-      <aside class="laptop-flow__card laptop-product">
-        <div class="laptop-product__media">
-          <img data-laptop-image src="assets/images/laptop_img/laptop_model_img/Dell%20Inspiron%20Series.avif" alt="Laptop">
+    <div class="layout">
+
+      <section style="position: relative;">
+        <div class="progress-row">
+          <div class="pips" id="pips" aria-label="Question progress"></div>
+          <div class="counter"><strong id="doneCount">0</strong> of <span id="totalCount">3</span> done</div>
         </div>
-        <div class="laptop-product__body">
-          <div class="laptop-product__brand" data-brand-name>Laptop</div>
-          <h2 class="laptop-product__name" data-model-name>Laptop</h2>
-          <span class="laptop-chip"><i class="bi bi-lock"></i> Safe handover</span>
-          <div class="laptop-product__meta">
-            <span><i class="bi bi-receipt"></i> Bill improves verification</span>
-            <span><i class="bi bi-unlock"></i> Device should be unlocked</span>
-            <span><i class="bi bi-database-check"></i> Back up data before pickup</span>
+
+        <div class="questions" id="questions"></div>
+
+        <button class="finish" id="finishBtn" type="button" disabled>Continue to issues</button>
+
+        <div class="safe-line">
+          <i class="bi bi-shield-lock"></i>
+          <strong>100% Safe and secure.</strong>
+          <span>Your laptop details are used only for quote verification.</span>
+        </div>
+
+        <div class="popup-overlay" id="popupOverlay" role="dialog" aria-modal="true" aria-labelledby="popupTitle">
+          <div class="popup-card">
+            <div class="popup-header">
+              <span class="popup-step-tag" id="popupStepTag">Question 1 of 3</span>
+              <button class="popup-close" id="popupClose" aria-label="Close"><i class="bi bi-x"></i></button>
+            </div>
+            <h3 id="popupTitle"></h3>
+            <p id="popupHint"></p>
+            <div class="popup-select-hint"><i class="bi bi-check2-square"></i> Select all that apply</div>
+            <div class="popup-img-grid" id="popupImgGrid"></div>
+            <div class="popup-actions">
+              <button id="popupSkip">Skip</button>
+              <button id="popupConfirm" class="btn-confirm">Confirm selection</button>
+            </div>
           </div>
-        </div>
-      </aside>
-
-      <section class="laptop-flow__card laptop-panel" aria-label="Laptop questions">
-        <h2 class="laptop-panel__title"><span class="laptop-panel__num">1</span> Do you have the purchase bill?</h2>
-        <div class="laptop-option-grid">
-          <button class="laptop-option" data-group="bill" data-value="Bill available"><i class="bi bi-receipt-cutoff"></i><strong>Yes, bill available</strong><span>Helps us verify purchase details faster.</span></button>
-          <button class="laptop-option" data-group="bill" data-value="Bill not available"><i class="bi bi-file-earmark-x"></i><strong>No bill</strong><span>You can still continue without a bill.</span></button>
-        </div>
-
-        <h2 class="laptop-panel__title"><span class="laptop-panel__num">2</span> Can you unlock the laptop?</h2>
-        <div class="laptop-option-grid">
-          <button class="laptop-option" data-group="password" data-value="Can unlock laptop"><i class="bi bi-unlock-fill"></i><strong>Yes, I can unlock</strong><span>Our pickup partner can verify working status.</span></button>
-          <button class="laptop-option" data-group="password" data-value="Cannot unlock laptop"><i class="bi bi-lock-fill"></i><strong>No, locked</strong><span>Locked devices may need extra verification.</span></button>
-        </div>
-
-        <h2 class="laptop-panel__title"><span class="laptop-panel__num">3</span> Is your data backed up?</h2>
-        <div class="laptop-option-grid">
-          <button class="laptop-option" data-group="data" data-value="Data backed up"><i class="bi bi-cloud-check"></i><strong>Yes, backed up</strong><span>Ready for reset and secure handover.</span></button>
-          <button class="laptop-option" data-group="data" data-value="Data not backed up"><i class="bi bi-cloud-arrow-up"></i><strong>Not yet</strong><span>Please back up before pickup.</span></button>
         </div>
       </section>
 
-      <aside class="laptop-flow__card laptop-summary">
-        <div class="laptop-summary__head">
-          <h2>Pickup Readiness</h2>
-          <p>Your answers help avoid pickup delays.</p>
+      <aside>
+        <div class="quote">
+          <div class="device">
+            <div class="device-icon" aria-hidden="true">
+              <img id="deviceImage" src="assets/images/laptop_img/laptop_model_img/Dell%20Inspiron%20Series.avif" alt="Laptop" />
+            </div>
+            <div>
+              <h2 id="deviceName">Laptop</h2>
+              <p id="deviceMeta">Brand — Model</p>
+            </div>
+          </div>
+          <div class="quote-price">
+            <div class="quote-label">Estimated quote</div>
+            <div class="price" id="quotePrice">&#8377;0</div>
+            <p>Estimated price. Final amount confirmed after pickup check.</p>
+          </div>
+          <div class="stats">
+            <div class="stat"><strong id="answeredStat">0</strong><span>Answered</span></div>
+            <div class="stat"><strong id="remainingStat">3</strong><span>Remaining</span></div>
+          </div>
         </div>
-        <div class="laptop-summary__body">
-          <div class="laptop-summary__row"><span>Model</span><strong data-model-name>Laptop</strong></div>
-          <div class="laptop-summary__row"><span>Bill</span><strong data-summary="bill">-</strong></div>
-          <div class="laptop-summary__row"><span>Password</span><strong data-summary="password">-</strong></div>
-          <div class="laptop-summary__row"><span>Data</span><strong data-summary="data">-</strong></div>
-          <div class="laptop-total"><small>Expected Price</small><strong data-summary-price>₹0</strong></div>
-          <button class="laptop-action" id="continueBtn" disabled>Continue <i class="bi bi-arrow-right"></i></button>
-          <div class="laptop-note"><i class="bi bi-info-circle"></i><span>Remove personal files and accounts before handing over your laptop.</span></div>
+        <div class="trust">
+          <div><i class="bi bi-laptop"></i><span>Expert</span>Laptop checks</div>
+          <div><i class="bi bi-rocket-takeoff"></i><span>Quick</span>Instant quote</div>
+          <div><i class="bi bi-award"></i><span>Trusted</span>50k+ users</div>
         </div>
       </aside>
+
     </div>
   </main>
 
   <script src="assets/js/laptop_flow.js"></script>
-</body>
+  <script>
+    /* ═══════════════════════════════════════════
+       QUESTIONS
+       Q1: simple Yes/No — no popup
+       Q2 & Q3: popup opens on "yes" (popupOnYes: true)
+    ═══════════════════════════════════════════ */
+    const questions = [
+      {
+        id: "poweron",
+        title: "Does the laptop switch on?",
+        hint: "Check whether your laptop powers on normally when you press the power button.",
+        opts: ["Yes", "No"],
+        value: { Yes: "Powers on", No: "Does not power on" },
+        icon: "bi-power",
+        hasPopup: false
+      },
+      {
+        id: "screen",
+        title: "Screen condition of your device?",
+        hint: "Select all screen or display issues that apply to your laptop right now.",
+        opts: ["Yes", "No"],
+        value: { Yes: "Screen has issues", No: "Screen working fine" },
+        icon: "bi-display",
+        hasPopup: true,
+        popupOnYes: true,
+        popupYesOpt: "Yes",
+        popupWarning: "Select all screen or display problems present on your laptop.",
+        popupOptions: [
+          { label: "Screen cracked",        icon: "bi-window-x",        img: "assets/img/Laptop_screen/Screen cracked.png" },
+          { label: "Dead pixels",           icon: "bi-grid-3x3",        img: "assets/img/Laptop_screen/Dead pixels.png" },
+          { label: "Backlight bleed",       icon: "bi-brightness-high", img: "assets/img/Laptop_screen/Backlight bleed.png" },
+          { label: "Flickering screen",     icon: "bi-activity",        img: "assets/img/Laptop_screen/Flickering screen.png" },
+          { label: "Visible lines",         icon: "bi-layout-split",    img: "assets/img/Laptop_screen/Visible lines.png" },
+          { label: "Discoloration or burn", icon: "bi-palette",         img: "assets/img/Laptop_screen/Discoloration.png" },
+          { label: "Hinge or bezel damage", icon: "bi-bounding-box",    img: "" },
+          { label: "Display dim or faded",  icon: "bi-sun",             img: "" },
+          { label: "Front glass cracked",   icon: "bi-shield-x",        img: "" }
+        ]
+      },
+      {
+        id: "body",
+        title: "Physical body condition of your device?",
+        hint: "Select all physical damage or wear that applies to the outer body of your laptop.",
+        opts: ["Yes", "No"],
+        value: { Yes: "Body has damage", No: "Body in good condition" },
+        icon: "bi-laptop",
+        hasPopup: true,
+        popupOnYes: true,
+        popupYesOpt: "Yes",
+        popupWarning: "Select all physical issues visible on your laptop's body.",
+        popupOptions: [
+          { label: "Dents on body",            icon: "bi-hammer",          img: "" },
+          { label: "Deep scratches",           icon: "bi-slash-circle",    img: "" },
+          { label: "Bent or warped body",      icon: "bi-arrow-left-right",img: "" },
+          { label: "Paint peeling or chipped", icon: "bi-layers",          img: "" },
+          { label: "Back panel cracked",       icon: "bi-x-diamond",       img: "" },
+          { label: "Missing keys",             icon: "bi-keyboard",        img: "" },
+          { label: "Broken hinge",             icon: "bi-link-45deg",      img: "" },
+          { label: "Damaged ports",            icon: "bi-usb-plug",        img: "" },
+          { label: "Loose trackpad",           icon: "bi-mouse",           img: "" }
+        ]
+      }
+    ];
 
+    /* ═══════════════════════════════════════════
+       SESSION / PRICE HELPERS
+    ═══════════════════════════════════════════ */
+    const FALLBACK = {
+      brand: "Laptop", model: "Laptop", type: "Laptop",
+      image: "assets/images/laptop_img/laptop_model_img/Dell%20Inspiron%20Series.avif",
+      basePrice: 0
+    };
+
+    function getSession() {
+      try { return { ...FALLBACK, ...JSON.parse(sessionStorage.getItem("cashygoLaptopSelection") || "{}") }; }
+      catch { return { ...FALLBACK }; }
+    }
+
+    function saveAnswer(id, label) {
+      const s = { ...getSession(), [id]: label };
+      sessionStorage.setItem("cashygoLaptopSelection", JSON.stringify(s));
+    }
+
+    const rupee = new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 });
+
+    function currentQuote() {
+      const s = getSession();
+      let p = Number(s.basePrice) || 0;
+      if (s.ram === "16 GB" || s.ram === "16GB") p += 2000;
+      if (s.ram === "32 GB" || s.ram === "32GB") p += 5000;
+      if (s.storage === "512 GB" || s.storage === "512GB") p += 2500;
+      if (s.storage === "1 TB"  || s.storage === "1TB")  p += 5000;
+      if (s.age === "Under 1 year") p += 3000;
+      if (s.age === "3 years+")     p -= 2500;
+      if (s.condition === "Excellent") p += 1500;
+      if (s.condition === "Average")   p -= 1500;
+      if (s.condition === "Damaged")   p -= 5000;
+      if (s.poweron === "Does not power on")  p -= 4000;
+      if (s.screen  === "Screen has issues")  p -= 2500;
+      if (s.body    === "Body has damage")    p -= 1500;
+      return Math.max(Math.round(p / 100) * 100, 0);
+    }
+
+    /* ═══════════════════════════════════════════
+       STATE
+    ═══════════════════════════════════════════ */
+    const state = { active: 0, answers: {}, popupSelections: {} };
+    let pendingId = null, pendingIndex = null, pendingOpt = null;
+
+    /* ═══════════════════════════════════════════
+       DOM REFS
+    ═══════════════════════════════════════════ */
+    const pipsEl       = document.getElementById("pips");
+    const questionsEl  = document.getElementById("questions");
+    const doneCountEl  = document.getElementById("doneCount");
+    const totalCountEl = document.getElementById("totalCount");
+    const answeredEl   = document.getElementById("answeredStat");
+    const remainingEl  = document.getElementById("remainingStat");
+    const quotePriceEl = document.getElementById("quotePrice");
+    const finishBtn    = document.getElementById("finishBtn");
+    const overlay      = document.getElementById("popupOverlay");
+    const popupStepTag = document.getElementById("popupStepTag");
+    const popupTitle   = document.getElementById("popupTitle");
+    const popupHint    = document.getElementById("popupHint");
+    const popupImgGrid = document.getElementById("popupImgGrid");
+    const popupSkip    = document.getElementById("popupSkip");
+    const popupConfirm = document.getElementById("popupConfirm");
+    const popupClose   = document.getElementById("popupClose");
+
+    /* ═══════════════════════════════════════════
+       POPUP
+    ═══════════════════════════════════════════ */
+    function openPopup(question, index, opt) {
+      pendingId    = question.id;
+      pendingIndex = index;
+      pendingOpt   = opt;
+
+      popupStepTag.textContent = `Question ${index + 1} of ${questions.length}`;
+      popupTitle.textContent   = question.title;
+      popupHint.textContent    = question.popupWarning || "Select all that apply.";
+
+      const prevSel = state.popupSelections[question.id] || [];
+      popupImgGrid.innerHTML = (question.popupOptions || []).map(o => {
+        const sel   = prevSel.includes(o.label);
+        const media = o.img
+          ? `<img class="pii-img" src="${o.img}" alt="${o.label}" loading="lazy" />`
+          : `<i class="bi ${o.icon} pii-icon"></i>`;
+        return `<div class="popup-img-item${sel ? " selected" : ""}" data-label="${o.label}"
+                  role="checkbox" aria-checked="${sel}" tabindex="0" aria-label="${o.label}">
+                  <span class="pii-check"><i class="bi bi-check-lg"></i></span>
+                  ${media}
+                  <div class="pii-label">${o.label}</div>
+                </div>`;
+      }).join("");
+
+      popupImgGrid.querySelectorAll(".popup-img-item").forEach(card => {
+        const toggle = () => {
+          card.classList.toggle("selected");
+          card.setAttribute("aria-checked", card.classList.contains("selected"));
+        };
+        card.addEventListener("click", toggle);
+        card.addEventListener("keydown", e => {
+          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); }
+        });
+      });
+
+      overlay.classList.add("show");
+    }
+
+    function closePopup() {
+      overlay.classList.remove("show");
+      pendingId = null; pendingIndex = null; pendingOpt = null;
+    }
+
+    popupConfirm.addEventListener("click", () => {
+      if (!pendingId) return;
+      const selected = [...popupImgGrid.querySelectorAll(".popup-img-item.selected")].map(c => c.dataset.label);
+      state.popupSelections[pendingId] = selected;
+      const q     = questions.find(q => q.id === pendingId);
+      const label = q.value[pendingOpt] || pendingOpt;
+      state.answers[pendingId] = pendingOpt;
+      saveAnswer(pendingId, label);
+      if (selected.length) saveAnswer(pendingId + "_details", selected.join(", "));
+      state.active = Math.min(answeredCount(), questions.length - 1);
+      closePopup();
+      renderQuestions();
+      renderProgress();
+    });
+
+    popupSkip.addEventListener("click", () => {
+      if (!pendingId) return;
+      const q     = questions.find(q => q.id === pendingId);
+      const label = q.value[pendingOpt] || pendingOpt;
+      state.answers[pendingId] = pendingOpt;
+      saveAnswer(pendingId, label);
+      state.active = Math.min(answeredCount(), questions.length - 1);
+      closePopup();
+      renderQuestions();
+      renderProgress();
+    });
+
+    popupClose.addEventListener("click", closePopup);
+
+    /* ═══════════════════════════════════════════
+       RENDER HELPERS
+    ═══════════════════════════════════════════ */
+    function answeredCount() {
+      return questions.filter(q => state.answers[q.id]).length;
+    }
+
+    function renderProgress() {
+      const done = answeredCount();
+      pipsEl.style.gridTemplateColumns = `repeat(${questions.length}, 1fr)`;
+      pipsEl.innerHTML = questions.map((_, i) =>
+        `<span class="pip${i < done ? " done" : ""}"></span>`
+      ).join("");
+      doneCountEl.textContent  = done;
+      totalCountEl.textContent = questions.length;
+      answeredEl.textContent   = done;
+      remainingEl.textContent  = Math.max(questions.length - done, 0);
+      quotePriceEl.textContent = rupee.format(currentQuote());
+      finishBtn.disabled       = done !== questions.length;
+    }
+
+    function renderQuestions() {
+      questionsEl.innerHTML = questions.map((q, index) => {
+        const answer  = state.answers[q.id];
+        const isActive = state.active === index;
+        const done    = Boolean(answer);
+        const locked  = index > answeredCount();
+        const tags    = state.popupSelections[q.id] || [];
+
+        const opts = q.opts.map((opt, oi) => `
+          <button class="answer${oi === 1 ? " no" : ""}${answer === opt ? " selected" : ""}"
+            type="button" data-answer="${opt}" data-id="${q.id}" data-index="${index}">
+            <span class="answer-radio"><i class="bi bi-check-lg"></i></span>
+            <span>${opt}</span>
+          </button>`).join("");
+
+        const tagHtml = tags.length
+          ? `<div class="q-tags">${tags.map(t => `<span class="q-tag">${t}</span>`).join("")}</div>`
+          : "";
+
+        return `
+          <article class="q-card${isActive ? " active" : ""}${locked ? " locked" : ""}" data-index="${index}">
+            <div class="q-icon-box" aria-hidden="true"><i class="bi ${q.icon}"></i></div>
+            <div>
+              <div class="q-head">
+                <div class="q-badge">${index + 1}</div>
+                <h2 class="q-title">${q.title}</h2>
+              </div>
+              <p class="q-help">${q.hint}</p>
+              <div class="answers">${opts}</div>
+              ${tagHtml}
+            </div>
+          </article>`;
+      }).join("");
+
+      questionsEl.querySelectorAll(".q-card").forEach(card => {
+        card.addEventListener("click", e => {
+          if (e.target.closest(".answer")) return;
+          const idx = Number(card.dataset.index);
+          if (idx <= answeredCount()) { state.active = idx; renderQuestions(); }
+        });
+      });
+
+      questionsEl.querySelectorAll("[data-answer]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const id    = btn.dataset.id;
+          const opt   = btn.dataset.answer;
+          const index = Number(btn.dataset.index);
+          const q     = questions.find(q => q.id === id);
+
+          /* Determine whether this click should open the popup */
+          const triggerOpt  = q.popupOnYes ? (q.popupYesOpt ?? "Yes") : (q.popupNoOpt ?? "No");
+          const shouldPopup = q.hasPopup && (opt === triggerOpt);
+
+          if (shouldPopup) {
+            openPopup(q, index, opt);
+          } else {
+            state.answers[id] = opt;
+            saveAnswer(id, q.value[opt]);
+            state.active = Math.min(answeredCount(), questions.length - 1);
+            renderQuestions();
+            renderProgress();
+          }
+        });
+      });
+    }
+
+    finishBtn.addEventListener("click", () => {
+      if (!finishBtn.disabled) window.location.href = "laptop_device_issu.html";
+    });
+
+    /* ═══════════════════════════════════════════
+       INIT
+    ═══════════════════════════════════════════ */
+    (function init() {
+      const sel = getSession();
+      document.getElementById("deviceName").textContent = sel.model || "Laptop";
+      document.getElementById("deviceMeta").textContent = [sel.brand, sel.type].filter(Boolean).join(" — ");
+      document.getElementById("headModelName").textContent = sel.model || "laptop";
+      const img = document.getElementById("deviceImage");
+      if (sel.image) { img.src = sel.image; img.alt = sel.model || "Laptop"; }
+      renderQuestions();
+      renderProgress();
+    })();
+  </script>
+</body>
 </html>

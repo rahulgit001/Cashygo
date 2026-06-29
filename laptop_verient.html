@@ -9,6 +9,116 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/laptop_flow.css">
+
+  <style>
+    /* ── Dropdown variant grid ── */
+    .variant-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px 8px;
+      margin-bottom: 8px;
+    }
+    .variant-grid .variant-item:nth-child(4),
+    .variant-grid .variant-item:nth-child(5) {
+      /* Bottom row: 2 items — keep natural flow, they auto-align left */
+    }
+
+    .variant-item {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .variant-item__label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #111;
+    }
+
+    .variant-item__badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #1a6e3c;
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .variant-item__icon {
+      font-size: 1.25rem;
+      color: #1a6e3c;
+    }
+
+    .variant-item__select-wrap {
+      position: relative;
+    }
+
+    .variant-item__select-wrap select {
+      width: 100%;
+      padding: 14px 42px 14px 16px;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.97rem;
+      font-weight: 500;
+      color: #222;
+      background: #fff;
+      appearance: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+      transition: border-color 0.18s;
+      outline: none;
+    }
+
+    .variant-item__select-wrap select:focus {
+      border-color: #1a6e3c;
+    }
+
+    .variant-item__select-wrap select.has-value {
+      border-color: #1a6e3c;
+      color: #111;
+    }
+
+    .variant-item__select-wrap::after {
+      content: '';
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 6px solid #555;
+      pointer-events: none;
+    }
+
+    .variant-item__hint {
+      font-size: 0.84rem;
+      color: #888;
+      line-height: 1.45;
+    }
+
+    @media (max-width: 768px) {
+      .variant-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .variant-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
 </head>
 
 <body data-page="variant">
@@ -67,33 +177,107 @@
       </aside>
 
       <section class="laptop-flow__card laptop-panel" aria-label="Choose laptop variant">
-        <h2 class="laptop-panel__title"><span class="laptop-panel__num">1</span> Processor</h2>
-        <div class="laptop-option-grid is-three">
-          <button class="laptop-option" data-group="processor" data-value="Intel i3 / Ryzen 3"><i class="bi bi-cpu"></i><strong>Intel i3 / Ryzen 3</strong><span>Daily work, study, and browsing laptops.</span></button>
-          <button class="laptop-option" data-group="processor" data-value="Intel i5 / Ryzen 5"><i class="bi bi-cpu-fill"></i><strong>Intel i5 / Ryzen 5</strong><span>Popular mid-range performance models.</span></button>
-          <button class="laptop-option" data-group="processor" data-value="Intel i7 / Ryzen 7 / M-series"><i class="bi bi-lightning"></i><strong>i7 / Ryzen 7 / M-series</strong><span>Premium or creator-focused laptops.</span></button>
-        </div>
 
-        <h2 class="laptop-panel__title"><span class="laptop-panel__num">2</span> RAM</h2>
-        <div class="laptop-option-grid is-three">
-          <button class="laptop-option" data-group="ram" data-value="8 GB"><strong>8 GB</strong><span>Standard multitasking memory.</span></button>
-          <button class="laptop-option" data-group="ram" data-value="16 GB"><strong>16 GB</strong><span>Higher resale demand.</span></button>
-          <button class="laptop-option" data-group="ram" data-value="32 GB+"><strong>32 GB+</strong><span>Workstation or pro model.</span></button>
-        </div>
+        <div class="variant-grid">
 
-        <h2 class="laptop-panel__title"><span class="laptop-panel__num">3</span> Storage</h2>
-        <div class="laptop-option-grid is-three">
-          <button class="laptop-option" data-group="storage" data-value="256 GB SSD"><strong>256 GB SSD</strong><span>Fast storage, compact capacity.</span></button>
-          <button class="laptop-option" data-group="storage" data-value="512 GB SSD"><strong>512 GB SSD</strong><span>Most preferred laptop variant.</span></button>
-          <button class="laptop-option" data-group="storage" data-value="1 TB SSD"><strong>1 TB SSD</strong><span>Higher capacity and resale value.</span></button>
-        </div>
+          <!-- 1. Processor -->
+          <div class="variant-item">
+            <div class="variant-item__label">
+              <span class="variant-item__badge">1</span>
+              <i class="bi bi-cpu variant-item__icon"></i>
+              Processor
+            </div>
+            <div class="variant-item__select-wrap">
+              <select id="sel-processor" data-group="processor" aria-label="Select Processor">
+                <option value="">Select Processor</option>
+                <option value="Intel i3 / Ryzen 3">Intel i3 / Ryzen 3</option>
+                <option value="Intel i5 / Ryzen 5">Intel i5 / Ryzen 5</option>
+                <option value="Intel i7 / Ryzen 7 / M-series">Intel i7 / Ryzen 7 / M-series</option>
+                <option value="Intel i9 / Ryzen 9">Intel i9 / Ryzen 9</option>
+              </select>
+            </div>
+            <p class="variant-item__hint">Choose the processor type that best matches your laptop.</p>
+          </div>
 
-        <h2 class="laptop-panel__title"><span class="laptop-panel__num">4</span> Purchase Age</h2>
-        <div class="laptop-option-grid is-three">
-          <button class="laptop-option" data-group="age" data-value="Under 1 year"><strong>Under 1 year</strong><span>Newest device bracket.</span></button>
-          <button class="laptop-option" data-group="age" data-value="1 to 3 years"><strong>1 to 3 years</strong><span>Common resale window.</span></button>
-          <button class="laptop-option" data-group="age" data-value="3 years+"><strong>3 years+</strong><span>Older but still accepted.</span></button>
-        </div>
+          <!-- 2. RAM -->
+          <div class="variant-item">
+            <div class="variant-item__label">
+              <span class="variant-item__badge">2</span>
+              <i class="bi bi-memory variant-item__icon"></i>
+              RAM
+            </div>
+            <div class="variant-item__select-wrap">
+              <select id="sel-ram" data-group="ram" aria-label="Select RAM">
+                <option value="">Select RAM</option>
+                <option value="4 GB">4 GB</option>
+                <option value="8 GB">8 GB</option>
+                <option value="16 GB">16 GB</option>
+                <option value="32 GB+">32 GB+</option>
+              </select>
+            </div>
+            <p class="variant-item__hint">More RAM helps with multitasking and performance.</p>
+          </div>
+
+          <!-- 3. Screen Size -->
+          <div class="variant-item">
+            <div class="variant-item__label">
+              <span class="variant-item__badge">3</span>
+              <i class="bi bi-laptop variant-item__icon"></i>
+              Screen Size
+            </div>
+            <div class="variant-item__select-wrap">
+              <select id="sel-screensize" data-group="screensize" aria-label="Select Screen Size">
+                <option value="">Select Screen Size</option>
+                <option value='13"'>13"</option>
+                <option value='14"'>14"</option>
+                <option value='15.6"'>15.6"</option>
+                <option value='16"'>16"</option>
+                <option value='17"'>17"+</option>
+              </select>
+            </div>
+            <p class="variant-item__hint">Select the screen size that matches your laptop.</p>
+          </div>
+
+          <!-- 4. Storage -->
+          <div class="variant-item">
+            <div class="variant-item__label">
+              <span class="variant-item__badge">4</span>
+              <i class="bi bi-device-ssd variant-item__icon"></i>
+              Storage
+            </div>
+            <div class="variant-item__select-wrap">
+              <select id="sel-storage" data-group="storage" aria-label="Select Storage">
+                <option value="">Select Storage</option>
+                <option value="256 GB SSD">256 GB SSD</option>
+                <option value="512 GB SSD">512 GB SSD</option>
+                <option value="1 TB SSD">1 TB SSD</option>
+                <option value="2 TB SSD">2 TB SSD</option>
+              </select>
+            </div>
+            <p class="variant-item__hint">Higher storage means more space for your files and apps.</p>
+          </div>
+
+          <!-- 5. Graphic Card -->
+          <div class="variant-item">
+            <div class="variant-item__label">
+              <span class="variant-item__badge">5</span>
+              <i class="bi bi-gpu-card variant-item__icon"></i>
+              Graphic Card
+            </div>
+            <div class="variant-item__select-wrap">
+              <select id="sel-gpu" data-group="gpu" aria-label="Select Graphic Card">
+                <option value="">Select Graphic Card</option>
+                <option value="Integrated Graphics">Integrated Graphics</option>
+                <option value="NVIDIA GTX / RTX">NVIDIA GTX / RTX</option>
+                <option value="AMD Radeon">AMD Radeon</option>
+                <option value="Apple M-series GPU">Apple M-series GPU</option>
+              </select>
+            </div>
+            <p class="variant-item__hint">Choose the graphics card available in your laptop.</p>
+          </div>
+
+        </div><!-- /.variant-grid -->
+
       </section>
 
       <aside class="laptop-flow__card laptop-summary">
@@ -105,8 +289,9 @@
           <div class="laptop-summary__row"><span>Model</span><strong data-model-name>Laptop</strong></div>
           <div class="laptop-summary__row"><span>Processor</span><strong data-summary="processor">-</strong></div>
           <div class="laptop-summary__row"><span>RAM</span><strong data-summary="ram">-</strong></div>
+          <div class="laptop-summary__row"><span>Screen Size</span><strong data-summary="screensize">-</strong></div>
           <div class="laptop-summary__row"><span>Storage</span><strong data-summary="storage">-</strong></div>
-          <div class="laptop-summary__row"><span>Age</span><strong data-summary="age">-</strong></div>
+          <div class="laptop-summary__row"><span>Graphic Card</span><strong data-summary="gpu">-</strong></div>
           <div class="laptop-total"><small>Expected Price</small><strong data-summary-price>₹0</strong></div>
           <button class="laptop-action" id="continueBtn" disabled>Continue <i class="bi bi-arrow-right"></i></button>
           <div class="laptop-note"><i class="bi bi-info-circle"></i><span>Final value may change after physical verification during pickup.</span></div>
@@ -116,6 +301,67 @@
   </main>
 
   <script src="assets/js/laptop_flow.js"></script>
+
+  <script>
+    /* ── Dropdown variant logic ── */
+    const GROUPS = ["processor", "ram", "screensize", "storage", "gpu"];
+
+    /* Update summary panel */
+    function updateSummary() {
+      GROUPS.forEach(group => {
+        const sel = document.querySelector(`[data-group="${group}"]`);
+        const summaryEl = document.querySelector(`[data-summary="${group}"]`);
+        if (sel && summaryEl) {
+          summaryEl.textContent = sel.value || "-";
+          sel.classList.toggle("has-value", Boolean(sel.value));
+        }
+      });
+
+      /* Enable continue only when all selected */
+      const allSelected = GROUPS.every(group => {
+        const sel = document.querySelector(`[data-group="${group}"]`);
+        return sel && sel.value;
+      });
+      document.getElementById("continueBtn").disabled = !allSelected;
+    }
+
+    /* Attach change listeners */
+    GROUPS.forEach(group => {
+      const sel = document.querySelector(`[data-group="${group}"]`);
+      if (sel) sel.addEventListener("change", updateSummary);
+    });
+
+    /* Continue button */
+    document.getElementById("continueBtn").addEventListener("click", function () {
+      if (!this.disabled) {
+        /* Save selections to sessionStorage */
+        const data = {};
+        GROUPS.forEach(group => {
+          const sel = document.querySelector(`[data-group="${group}"]`);
+          if (sel) data[group] = sel.value;
+        });
+        sessionStorage.setItem("laptopVariant", JSON.stringify(data));
+        window.location.href = "laptop_Device_condation.html";
+      }
+    });
+
+    /* Init model name from session */
+    (function init() {
+      try {
+        const stored = JSON.parse(sessionStorage.getItem("cashygoLaptopSelection") || "{}");
+        if (stored.model) {
+          document.querySelectorAll("[data-model-name]").forEach(el => el.textContent = stored.model);
+        }
+        if (stored.brand) {
+          document.querySelectorAll("[data-brand-name]").forEach(el => el.textContent = stored.brand);
+        }
+        if (stored.image) {
+          const img = document.querySelector("[data-laptop-image]");
+          if (img) { img.src = stored.image; img.alt = stored.model || "Laptop"; }
+        }
+      } catch (e) {}
+    })();
+  </script>
 </body>
 
 </html>
