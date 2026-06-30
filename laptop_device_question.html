@@ -201,19 +201,94 @@
 
 <body>
 
-  <nav class="nav" role="navigation" aria-label="Main navigation">
-    <div class="nav-top">
-      <a href="index.html" class="nav-logo" aria-label="Cashygo homepage">
-        <img src="assets/images/project-logo/logo-new.svg" alt="Cashygo" width="120" height="40" />
-      </a>
-      <div class="nav-search" role="search">
-        <label for="mainSearch" class="sr-only">Search laptops</label>
-        <input type="search" id="mainSearch" placeholder="Search laptop series..." autocomplete="off" />
-        <div class="search-icon" aria-hidden="true"><i class="bi bi-search"></i></div>
+ 
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-top">
+    <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <i class="bi bi-list"></i>
+    </button>
+
+    <a href="/" class="nav-logo" aria-label="Cashygo – Go to homepage">
+      <img src="assets/images/project-logo/logo-new.svg" alt="Cashygo logo" width="120" height="40">
+    </a>
+
+    <div class="nav-search" role="search">
+      <div class="nav-city" id="cityPicker" tabindex="0" aria-haspopup="listbox" aria-label="Select city">
+        <i class="bi bi-geo-alt-fill"></i>
+        <span id="cityLabel">Bangalore</span>
+        <i class="bi bi-chevron-down"></i>
+        <ul class="city-drop" id="cityDrop" role="listbox" aria-label="Select your city">
+          <li role="option" data-city="Delhi">Delhi NCR</li>
+          <li role="option" data-city="Bangalore">Bangalore</li>
+          <li role="option" data-city="Mumbai">Mumbai</li>
+          <li role="option" data-city="Pune">Pune</li>
+          <li role="option" data-city="Hyderabad">Hyderabad</li>
+        </ul>
       </div>
-      <a class="nav-login" href="contact.html"><i class="bi bi-person-circle"></i><span>Sign in</span></a>
+      <label for="mainSearch" class="sr-only">Search devices</label>
+      <input type="search" id="mainSearch" name="search" placeholder="Search devices, brands…" autocomplete="off">
+      <div class="search-icon" aria-hidden="true"><i class="bi bi-search"></i></div>
     </div>
-  </nav>
+
+    <button class="nav-login" id="openLoginBtn" aria-label="Sign in to your account">
+      <i class="bi bi-person-circle"></i>
+      <span>Sign in</span>
+    </button>
+  </div>
+
+  <div class="nav-menu" id="navMenu">
+    <div class="nav-menu-inner">
+      <div class="dropdown" id="dropMobile">
+        <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Mobile ⌵</button>
+        <ul class="dropdown-menu">
+          <li><a href="Apple_model.html">Apple iPhone</a></li>
+          <li><a href="samsung.html">Samsung Galaxy</a></li>
+          <li><a href="oneplus.html">OnePlus</a></li>
+          <li><a href="google.html">Google Pixel</a></li>
+          <li><a href="xiaomi.html">Xiaomi</a></li>
+          <li><a href="vivo.html">Vivo</a></li>
+        </ul>
+      </div>
+
+      <div class="dropdown" id="dropTablet">
+        <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Tablet ⌵</button>
+        <ul class="dropdown-menu">
+          <li><a href="apple-tab.html">Apple Tab</a></li>
+          <li><a href="samsung-tab.html">Samsung Tab</a></li>
+          <li><a href="oneplus-tab.html">OnePlus Tab</a></li>
+          <li><a href="xiaomi-tab.html">Xiaomi Tab</a></li>
+          <li><a href="realme-tab.html">Realme Tab</a></li>
+        </ul>
+      </div>
+
+      <div class="dropdown" id="dropLaptop">
+        <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Laptop ⌵</button>
+        <ul class="dropdown-menu">
+          <li><a href="dell.html">Dell</a></li>
+          <li><a href="hp.html">HP</a></li>
+          <li><a href="lenovo.html">Lenovo</a></li>
+          <li><a href="asus.html">Asus</a></li>
+          <li><a href="acer.html">Acer</a></li>
+        </ul>
+      </div>
+
+      <div class="dropdown" id="dropMac">
+        <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Mac ⌵</button>
+        <ul class="dropdown-menu">
+          <li><a href="macbook.html">MacBook</a></li>
+          <li><a href="imac.html">iMac</a></li>
+          <li><a href="mac-mini.html">Mac Mini</a></li>
+          <li><a href="macbook-pro.html">MacBook Pro</a></li>
+        </ul>
+      </div>
+
+      <button class="menu-link">Corporate Deals</button>
+      <button class="menu-link">Price Calculator</button>
+      <button class="menu-link">Blog &amp; Tips</button>
+      <button class="menu-link">Partner</button>
+    </div>
+  </div>
+</nav>
 
   <main class="cashygo-main">
 
@@ -306,6 +381,82 @@
     </div>
   </main>
 
+  <!-- footer -->
+
+ <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">
+            <img src="assets/images/project-logo/logo-new.svg" alt="Cashygo" loading="lazy">
+          </div>
+          <p class="footer-desc">India's most trusted device buyback platform. Instant pricing, free doorstep pickup,
+            and instant payment.</p>
+          <div class="social-links" aria-label="Follow us on social media">
+            <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=61582722784700" aria-label="Facebook"><i
+                class="bi bi-facebook"></i></a>
+            <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>SELL</h4>
+          <ul>
+            <li><a href="brand.html">Sell Mobile</a></li>
+            <li><a href="laptop_brand.html">Sell Laptop</a></li>
+            <li><a href="tab_brand.html">Sell Tablet</a></li>
+            <li><a href="watch_brand.html">Sell Smartwatch</a></li>
+            <li><a href="tv_brand.html">Sell TV</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>COMPANY</h4>
+          <ul>
+            <li><a href="#">About Cashygo</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Partner With Us</a></li>
+            <li><a href="#">Press & Media</a></li>
+            <li><a href="#">Blog & Tips</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>SUPPORT</h4>
+          <ul>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Contact Support</a></li>
+            <li><a href="#">Return Policy</a></li>
+            <li><a href="#">Privacy & Security</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+        </div>
+        <div class="footer-col footer-contact">
+          <h4>CONTACT</h4>
+          <address>
+            <p><i class="bi bi-envelope"></i><a href="mailto:hr@cashygo.com">hr@cashygo.com</a></p>
+            <p><i class="bi bi-telephone"></i><a href="tel:+917766071191">+91 7766071191</a></p>
+            <p><i class="bi bi-geo-alt"></i>Bangalore, Karnataka, India</p>
+          </address>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-links-row">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms & Conditions</a>
+          <a href="#">Refund Policy</a>
+          <a href="#">Sitemap</a>
+        </div>
+        <div class="payment-row" aria-label="Secure payment methods">
+          <span>Secure payments:</span>
+          <i class="bi bi-credit-card" title="Credit/Debit Card"></i>
+          <i class="bi bi-bank" title="Bank Transfer"></i>
+          <i class="bi bi-wallet2" title="Digital Wallet"></i>
+        </div>
+        <p>© 2026 Cashygo — Resale Redefined</p>
+      </div>
+    </div>
+  </footer>
+
   <script src="assets/js/laptop_flow.js"></script>
   <script>
     /* ═══════════════════════════════════════════
@@ -325,7 +476,7 @@
       },
       {
         id: "screen",
-        title: "Screen condition of your device?",
+        title: "Are there any issues with your laptop screen or display?",
         hint: "Select all screen or display issues that apply to your laptop right now.",
         opts: ["Yes", "No"],
         value: { Yes: "Screen has issues", No: "Screen working fine" },
@@ -348,7 +499,7 @@
       },
       {
         id: "body",
-        title: "Physical body condition of your device?",
+        title: "Are there any issues with your laptop body?",
         hint: "Select all physical damage or wear that applies to the outer body of your laptop.",
         opts: ["Yes", "No"],
         value: { Yes: "Body has damage", No: "Body in good condition" },
