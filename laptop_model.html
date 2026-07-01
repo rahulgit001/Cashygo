@@ -17,94 +17,109 @@
   <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-
-<nav class="nav" role="navigation" aria-label="Main navigation">
-  <div class="nav-top">
-    <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
-      <i class="bi bi-list"></i>
-    </button>
-
-    <a href="/" class="nav-logo" aria-label="Cashygo – Go to homepage">
-      <img src="assets/images/project-logo/logo-new.svg" alt="Cashygo logo" width="120" height="40">
-    </a>
-
-    <div class="nav-search" role="search">
-      <div class="nav-city" id="cityPicker" tabindex="0" aria-haspopup="listbox" aria-label="Select city">
-        <i class="bi bi-geo-alt-fill"></i>
-        <span id="cityLabel">Bangalore</span>
-        <i class="bi bi-chevron-down"></i>
-        <ul class="city-drop" id="cityDrop" role="listbox" aria-label="Select your city">
-          <li role="option" data-city="Delhi">Delhi NCR</li>
-          <li role="option" data-city="Bangalore">Bangalore</li>
-          <li role="option" data-city="Mumbai">Mumbai</li>
-          <li role="option" data-city="Pune">Pune</li>
-          <li role="option" data-city="Hyderabad">Hyderabad</li>
-        </ul>
+ <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-top">
+      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <i class="bi bi-list"></i>
+      </button>
+      <a href="/" class="nav-logo" aria-label="Cashygo – Go to homepage">
+        <img src="assets/images/project-logo/logo-new.svg" alt="Cashygo logo" width="120" height="40">
+      </a>
+      <div class="nav-search" role="search">
+        <div class="nav-city" id="cityPicker" tabindex="0" aria-haspopup="listbox" aria-label="Select city">
+          <i class="bi bi-geo-alt-fill"></i>
+          <span id="cityLabel">Bangalore</span>
+          <i class="bi bi-chevron-down"></i>
+          <ul class="city-drop" id="cityDrop" role="listbox" aria-label="Select your city">
+            <li role="option" data-city="Delhi">Delhi NCR</li>
+            <li role="option" data-city="Bangalore">Bangalore</li>
+            <li role="option" data-city="Mumbai">Mumbai</li>
+            <li role="option" data-city="Pune">Pune</li>
+            <li role="option" data-city="Hyderabad">Hyderabad</li>
+          </ul>
+        </div>
+        <label for="mainSearch" class="sr-only">Search devices</label>
+        <input type="search" id="mainSearch" name="search" placeholder="Search devices, brands…" autocomplete="off">
+        <div class="search-icon" aria-hidden="true"><i class="bi bi-search"></i></div>
       </div>
-      <label for="mainSearch" class="sr-only">Search devices</label>
-      <input type="search" id="mainSearch" name="search" placeholder="Search devices, brands…" autocomplete="off">
-      <div class="search-icon" aria-hidden="true"><i class="bi bi-search"></i></div>
+      <button class="nav-login" id="openLoginBtn" aria-label="Sign in to your account">
+        <i class="bi bi-person-circle"></i>
+        <span>Sign in</span>
+      </button>
     </div>
 
-    <button class="nav-login" id="openLoginBtn" aria-label="Sign in to your account">
-      <i class="bi bi-person-circle"></i>
-      <span>Sign in</span>
-    </button>
-  </div>
-
-  <div class="nav-menu" id="navMenu">
-    <div class="nav-menu-inner">
-      <div class="dropdown" id="dropMobile">
-        <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Mobile ⌵</button>
-        <ul class="dropdown-menu">
-          <li><a href="Apple_model.html">Apple iPhone</a></li>
-          <li><a href="samsung.html">Samsung Galaxy</a></li>
-          <li><a href="oneplus.html">OnePlus</a></li>
-          <li><a href="google.html">Google Pixel</a></li>
-          <li><a href="xiaomi.html">Xiaomi</a></li>
-          <li><a href="vivo.html">Vivo</a></li>
-        </ul>
+    <div class="nav-menu" id="navMenu">
+      <div class="nav-menu-inner">
+        <div class="dropdown" id="dropMobile">
+          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Mobile ⌵</button>
+          <ul class="dropdown-menu">
+            <li><a href="Apple_model.html">Apple iPhone</a></li>
+            <li><a href="samsung.html">Samsung Galaxy</a></li>
+            <li><a href="oneplus.html">OnePlus</a></li>
+            <li><a href="google.html">Google Pixel</a></li>
+            <li><a href="xiaomi.html">Xiaomi</a></li>
+            <li><a href="vivo.html">Vivo</a></li>
+          </ul>
+        </div>
+        <div class="dropdown" id="dropTablet">
+          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Tablet ⌵</button>
+          <ul class="dropdown-menu">
+            <li><a href="tab_model.html?brand=Apple">Apple Tab</a></li>
+            <li><a href="tab_model.html?brand=Samsung">Samsung Tab</a></li>
+            <li><a href="tab_model.html?brand=OnePlus">OnePlus Tab</a></li>
+            <li><a href="tab_model.html?brand=Xiaomi">Xiaomi Tab</a></li>
+            <li><a href="tab_model.html?brand=Realme">Realme Tab</a></li>
+          </ul>
+        </div>
+        <div class="dropdown" id="dropLaptop">
+          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Laptop ⌵</button>
+          <ul class="dropdown-menu">
+            <li><a href="dell.html">Dell</a></li>
+            <li><a href="hp.html">HP</a></li>
+            <li><a href="lenovo.html">Lenovo</a></li>
+            <li><a href="asus.html">Asus</a></li>
+            <li><a href="acer.html">Acer</a></li>
+          </ul>
+        </div>
+        <div class="dropdown" id="dropMac">
+          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Mac ⌵</button>
+          <ul class="dropdown-menu">
+            <li><a href="macbook.html">MacBook</a></li>
+            <li><a href="imac.html">iMac</a></li>
+            <li><a href="mac-mini.html">Mac Mini</a></li>
+            <li><a href="macbook-pro.html">MacBook Pro</a></li>
+          </ul>
+        </div>
+        <div class="dropdown" id="dropWatch">
+          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Watch ⌵</button>
+          <ul class="dropdown-menu">
+            <li><a href="watch_model.html?brand=Apple">Apple Watch</a></li>
+            <li><a href="watch_model.html?brand=Samsung">Samsung Galaxy Watch</a></li>
+            <li><a href="watch_model.html?brand=Noise">Noise</a></li>
+            <li><a href="watch_model.html?brand=boAt">boAt</a></li>
+            <li><a href="watch_model.html?brand=Amazfit">Amazfit</a></li>
+          </ul>
+        </div>
+        <div class="dropdown" id="dropTV">
+          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell TV ⌵</button>
+          <ul class="dropdown-menu">
+            <li><a href="tv_model.html?brand=Samsung">Samsung TV</a></li>
+            <li><a href="tv_model.html?brand=LG">LG TV</a></li>
+            <li><a href="tv_model.html?brand=Sony">Sony Bravia</a></li>
+            <li><a href="tv_model.html?brand=Xiaomi">Mi / Xiaomi TV</a></li>
+            <li><a href="tv_model.html?brand=OnePlus">OnePlus TV</a></li>
+          </ul>
+        </div>
+        <!-- <a href="#" class="menu-link">Corporate Deals</a> -->
+        <a href="calculator.html" class="menu-link">Price Calculator</a>
+        <a href="blogs.html" class="menu-link">Blog & Tips</a>
+        <a href="contact.html" class="menu-link">Contact</a>
+        <a href="Faq.html" class="menu-link">FAQ's</a>
+        <a href="costumer.html" class="menu-link">Customer Reviews</a>
       </div>
-
-      <div class="dropdown" id="dropTablet">
-        <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Tablet ⌵</button>
-        <ul class="dropdown-menu">
-          <li><a href="apple-tab.html">Apple Tab</a></li>
-          <li><a href="samsung-tab.html">Samsung Tab</a></li>
-          <li><a href="oneplus-tab.html">OnePlus Tab</a></li>
-          <li><a href="xiaomi-tab.html">Xiaomi Tab</a></li>
-          <li><a href="realme-tab.html">Realme Tab</a></li>
-        </ul>
-      </div>
-
-      <div class="dropdown" id="dropLaptop">
-        <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Laptop ⌵</button>
-        <ul class="dropdown-menu">
-          <li><a href="dell.html">Dell</a></li>
-          <li><a href="hp.html">HP</a></li>
-          <li><a href="lenovo.html">Lenovo</a></li>
-          <li><a href="asus.html">Asus</a></li>
-          <li><a href="acer.html">Acer</a></li>
-        </ul>
-      </div>
-
-      <div class="dropdown" id="dropMac">
-        <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Mac ⌵</button>
-        <ul class="dropdown-menu">
-          <li><a href="macbook.html">MacBook</a></li>
-          <li><a href="imac.html">iMac</a></li>
-          <li><a href="mac-mini.html">Mac Mini</a></li>
-          <li><a href="macbook-pro.html">MacBook Pro</a></li>
-        </ul>
-      </div>
-
-      <button class="menu-link">Corporate Deals</button>
-      <button class="menu-link">Price Calculator</button>
-      <button class="menu-link">Blog &amp; Tips</button>
-      <button class="menu-link">Partner</button>
     </div>
-  </div>
-</nav>
+  </nav>
+
 
 <nav class="cashygo-model-page__breadcrumb" aria-label="Breadcrumb">
   <a href="#">Home</a>

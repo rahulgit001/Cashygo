@@ -36,7 +36,7 @@
           </ul>
         </div>
         <label for="mainSearch" class="sr-only">Search devices</label>
-        <input type="search" id="mainSearch" name="search" placeholder="Search TVs…" autocomplete="off">
+        <input type="search" id="mainSearch" name="search" placeholder="Search devices, brands…" autocomplete="off">
         <div class="search-icon" aria-hidden="true"><i class="bi bi-search"></i></div>
       </div>
       <button class="nav-login" id="openLoginBtn" aria-label="Sign in to your account">
@@ -87,7 +87,27 @@
             <li><a href="macbook-pro.html">MacBook Pro</a></li>
           </ul>
         </div>
-        <a href="#" class="menu-link">Corporate Deals</a>
+        <div class="dropdown" id="dropWatch">
+          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell Watch ⌵</button>
+          <ul class="dropdown-menu">
+            <li><a href="watch_model.html?brand=Apple">Apple Watch</a></li>
+            <li><a href="watch_model.html?brand=Samsung">Samsung Galaxy Watch</a></li>
+            <li><a href="watch_model.html?brand=Noise">Noise</a></li>
+            <li><a href="watch_model.html?brand=boAt">boAt</a></li>
+            <li><a href="watch_model.html?brand=Amazfit">Amazfit</a></li>
+          </ul>
+        </div>
+        <div class="dropdown" id="dropTV">
+          <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Sell TV ⌵</button>
+          <ul class="dropdown-menu">
+            <li><a href="tv_model.html?brand=Samsung">Samsung TV</a></li>
+            <li><a href="tv_model.html?brand=LG">LG TV</a></li>
+            <li><a href="tv_model.html?brand=Sony">Sony Bravia</a></li>
+            <li><a href="tv_model.html?brand=Xiaomi">Mi / Xiaomi TV</a></li>
+            <li><a href="tv_model.html?brand=OnePlus">OnePlus TV</a></li>
+          </ul>
+        </div>
+        <!-- <a href="#" class="menu-link">Corporate Deals</a> -->
         <a href="calculator.html" class="menu-link">Price Calculator</a>
         <a href="blogs.html" class="menu-link">Blog & Tips</a>
         <a href="contact.html" class="menu-link">Contact</a>
@@ -96,6 +116,7 @@
       </div>
     </div>
   </nav>
+
 
   <header class="cashygo-hero">
     <div class="cashygo-hero__inner">
