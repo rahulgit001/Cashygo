@@ -12,6 +12,227 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/brand.css">
   <link rel="stylesheet" href="assets/css/tv_verient.css">
+  <style>
+    /* ===== TV variant — 3 column selection layout ===== */
+    * { box-sizing: border-box; }
+    .tvv-wrap {
+      font-family: 'DM Sans', sans-serif;
+      max-width: 1320px;
+      margin: 28px auto 56px;
+      padding: 0 20px;
+    }
+    .tvv-crumbtxt {
+      color: #6b7280;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    .tvv-crumbtxt a { color: #6b7280; text-decoration: none; }
+    .tvv-crumbtxt a:hover { color: #0d8c60; }
+
+    .laptop-flow {
+      display: grid;
+      grid-template-columns: 300px 1fr 320px;
+      gap: 20px;
+      align-items: start;
+    }
+
+    /* Left: device profile card */
+    .laptop-flow__card {
+      background: #fff;
+      border: 1px solid #eef0f2;
+      border-radius: 18px;
+      padding: 22px;
+    }
+    .tvv-thumb {
+      background: radial-gradient(circle at 30% 20%, #e7f7ef 0%, #f7fbf9 60%, #ffffff 100%);
+      border-radius: 14px;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 22px;
+      overflow: hidden;
+    }
+    .tvv-thumb img { max-width: 78%; max-height: 78%; object-fit: contain; }
+    .tvv-profile__eyebrow { color: #8a929c; font-size: 13px; margin: 0 0 4px; }
+    .tvv-profile__name { font-size: 22px; font-weight: 800; color: #14181c; margin: 0 0 14px; }
+    .tvv-profile__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #e7f7ef;
+      color: #0d8c60;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      margin-bottom: 18px;
+    }
+    .tvv-profile__perks {
+      list-style: none;
+      margin: 18px 0 0;
+      padding: 18px 0 0;
+      border-top: 1px solid #eef0f2;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .tvv-profile__perks li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #4b5563;
+      font-size: 14px;
+    }
+    .tvv-profile__perks i { color: #0d8c60; font-size: 16px; }
+
+    /* Middle: question grid */
+    .laptop-flow__questions {
+      background: #fff;
+      border: 1px solid #eef0f2;
+      border-radius: 18px;
+      padding: 26px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 26px 32px;
+    }
+    .tvv-q__head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .tvv-q__num {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #0d8c60;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .tvv-q__title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #14181c;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .tvv-q__title i { color: #0d8c60; font-size: 17px; }
+    .tvv-select {
+      width: 100%;
+      appearance: none;
+      -webkit-appearance: none;
+      background: #fff url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="%236b7280" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>') no-repeat right 14px center;
+      border: 1px solid #dfe3e7;
+      border-radius: 10px;
+      padding: 13px 40px 13px 14px;
+      font-size: 15px;
+      font-family: inherit;
+      color: #14181c;
+      cursor: pointer;
+      transition: border-color .15s;
+    }
+    .tvv-select:focus { outline: none; border-color: #0d8c60; }
+    .tvv-select.is-placeholder { color: #8a929c; }
+    .tvv-q__hint {
+      color: #8a929c;
+      font-size: 13.5px;
+      margin: 10px 0 0;
+      line-height: 1.4;
+    }
+
+    /* Right: selection summary */
+    .laptop-summary {
+      background: #fff;
+      border: 1px solid #eef0f2;
+      border-radius: 18px;
+      padding: 24px;
+      position: sticky;
+      top: 20px;
+    }
+    .laptop-summary__head h2 {
+      font-size: 20px;
+      font-weight: 800;
+      margin: 0 0 6px;
+      color: #14181c;
+    }
+    .laptop-summary__head p {
+      color: #8a929c;
+      font-size: 13.5px;
+      margin: 0 0 16px;
+      line-height: 1.4;
+    }
+    .laptop-summary__body { border-top: 1px solid #eef0f2; padding-top: 14px; }
+    .laptop-summary__row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 9px 0;
+      font-size: 14.5px;
+      color: #6b7280;
+    }
+    .laptop-summary__row strong { color: #14181c; font-weight: 700; }
+    .laptop-total {
+      margin-top: 18px;
+      background: #e7f7ef;
+      border-radius: 14px;
+      padding: 16px 18px;
+    }
+    .laptop-total small {
+      display: block;
+      color: #0d8c60;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+    .laptop-total strong {
+      display: block;
+      font-size: 30px;
+      font-weight: 800;
+      color: #0a6b48;
+    }
+    .laptop-action {
+      width: 100%;
+      margin-top: 18px;
+      background: #6fbf9a;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 15px 18px;
+      font-size: 16px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: background .15s, opacity .15s;
+    }
+    .laptop-action:not(:disabled):hover { background: #0d8c60; }
+    .laptop-action:disabled { opacity: .55; cursor: not-allowed; }
+    .laptop-note {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      color: #8a929c;
+      font-size: 12.5px;
+      margin-top: 14px;
+      line-height: 1.4;
+    }
+    .laptop-note i { margin-top: 1px; }
+
+    @media (max-width: 980px) {
+      .laptop-flow { grid-template-columns: 1fr; }
+      .laptop-flow__questions { grid-template-columns: 1fr; }
+      .laptop-summary { position: static; }
+    }
+  </style>
 </head>
 
 <body>
@@ -88,133 +309,127 @@
   </nav>
 
   <main>
-    <!-- ===== Breadcrumb ===== -->
-    <nav class="tvv-crumbs" aria-label="Breadcrumb">
-      <a href="tv_brand.html">Brand</a>
-      <i class="bi bi-chevron-right" aria-hidden="true"></i>
-      <a href="tv_model.html">Model</a>
-      <i class="bi bi-chevron-right" aria-hidden="true"></i>
-      <span class="is-current" aria-current="page">Variant</span>
-    </nav>
+    <div class="tvv-wrap">
+      <nav class="tvv-crumbtxt" aria-label="Breadcrumb">
+        <a href="tv_brand.html">Brand</a> &nbsp;›&nbsp;
+        <a href="tv_model.html">Model</a> &nbsp;›&nbsp;
+        <span aria-current="page">Variant</span>
+      </nav>
 
-    <!-- ===== Hero ===== -->
-    <header class="cashygo-hero">
-      <div class="cashygo-hero__inner">
-        <div class="cashygo-hero__left">
-          <p class="cashygo-hero__badge">Variant</p>
-          <h1 class="cashygo-hero__title">
-            Tell us about your TV<br>
-            <em>A few quick details set the price.</em>
-          </h1>
-          <p class="cashygo-hero__sub">Pick the screen size, panel, type and age that match your television.</p>
-          <div class="tvv-hero__actions">
-            <a href="tv_model.html" class="cashygo-hero__brand-btn"><i class="bi bi-arrow-left"></i> Change series</a>
-            <span class="tvv-hero__chip"><i class="bi bi-tv"></i> <span data-model-name>Your TV</span></span>
+      <div class="laptop-flow" data-flow>
+
+        <!-- ===== Left: device profile ===== -->
+        <div class="laptop-flow__card">
+          <div class="tvv-thumb">
+            <img src="assets/images/home-page-img/brand-img/Tv.webp" alt="" data-model-img>
           </div>
-        </div>
-        <div class="cashygo-hero__right" aria-hidden="true">
-          <div class="cashygo-hero__ring"></div>
-          <div class="cashygo-hero__phone">
-            <img src="assets/images/home-page-img/brand-img/Tv.webp" alt="">
-          </div>
-          <ul class="cashygo-hero__tags">
-            <li class="cashygo-hero__tag">Instant quote</li>
-            <li class="cashygo-hero__tag">Best price</li>
-            <li class="cashygo-hero__tag">Free pickup</li>
+          <p class="tvv-profile__eyebrow">TV</p>
+          <h1 class="tvv-profile__name" data-model-name>Your TV</h1>
+          <span class="tvv-profile__badge"><i class="bi bi-shield-check"></i> Secure data handling</span>
+          <ul class="tvv-profile__perks">
+            <li><i class="bi bi-truck"></i> Free doorstep pickup</li>
+            <li><i class="bi bi-cash-coin"></i> Fast payment after check</li>
+            <li><i class="bi bi-award"></i> Best resale value</li>
           </ul>
         </div>
+
+        <!-- ===== Middle: numbered questions ===== -->
+        <div class="laptop-flow__questions">
+
+          <!-- 1. Screen size -->
+          <div class="tvv-q" data-group="size" data-required data-label="Screen Size">
+            <div class="tvv-q__head">
+              <span class="tvv-q__num">1</span>
+              <span class="tvv-q__title"><i class="bi bi-aspect-ratio"></i> Screen Size</span>
+            </div>
+            <select class="tvv-select is-placeholder" data-select>
+              <option value="" disabled selected>Select Screen Size</option>
+              <option value="32 inch">32 inch</option>
+              <option value="43 inch">43 inch</option>
+              <option value="50 inch">50 inch</option>
+              <option value="55 inch+">55 inch &amp; above</option>
+            </select>
+            <p class="tvv-q__hint">Measured diagonally, corner to corner.</p>
+          </div>
+
+          <!-- 2. Panel type -->
+          <div class="tvv-q" data-group="panel" data-required data-label="Panel Type">
+            <div class="tvv-q__head">
+              <span class="tvv-q__num">2</span>
+              <span class="tvv-q__title"><i class="bi bi-display"></i> Panel Type</span>
+            </div>
+            <select class="tvv-select is-placeholder" data-select>
+              <option value="" disabled selected>Select Panel Type</option>
+              <option value="HD / Full HD">HD / Full HD</option>
+              <option value="4K UHD">4K UHD</option>
+              <option value="QLED / OLED">QLED / OLED</option>
+            </select>
+            <p class="tvv-q__hint">Resolution and display technology.</p>
+          </div>
+
+          <!-- 3. TV type -->
+          <div class="tvv-q" data-group="type" data-required data-label="TV Type">
+            <div class="tvv-q__head">
+              <span class="tvv-q__num">3</span>
+              <span class="tvv-q__title"><i class="bi bi-wifi"></i> TV Type</span>
+            </div>
+            <select class="tvv-select is-placeholder" data-select>
+              <option value="" disabled selected>Select TV Type</option>
+              <option value="Smart TV">Smart TV</option>
+              <option value="Non-smart TV">Non-smart TV</option>
+            </select>
+            <p class="tvv-q__hint">Does it run apps over WiFi?</p>
+          </div>
+
+          <!-- 4. Purchase age -->
+          <div class="tvv-q" data-group="age" data-required data-label="Purchase Age">
+            <div class="tvv-q__head">
+              <span class="tvv-q__num">4</span>
+              <span class="tvv-q__title"><i class="bi bi-calendar3"></i> Purchase Age</span>
+            </div>
+            <select class="tvv-select is-placeholder" data-select>
+              <option value="" disabled selected>Select Purchase Age</option>
+              <option value="Under 1 year">Under 1 year</option>
+              <option value="1 to 3 years">1 to 3 years</option>
+              <option value="3 years+">3 years+</option>
+            </select>
+            <p class="tvv-q__hint">How long since you bought it?</p>
+          </div>
+
+        </div>
+
+        <!-- ===== Right: your selection ===== -->
+        <aside class="laptop-summary" aria-live="polite">
+          <div class="laptop-summary__head">
+            <h2>Your Selection</h2>
+            <p>Review your TV variant before condition checks.</p>
+          </div>
+          <div class="laptop-summary__body">
+            <div class="laptop-summary__row"><span>Model</span><strong data-model-name>Your TV</strong></div>
+            <div class="laptop-summary__row"><span>Screen Size</span><strong data-summary="size">-</strong></div>
+            <div class="laptop-summary__row"><span>Panel Type</span><strong data-summary="panel">-</strong></div>
+            <div class="laptop-summary__row"><span>TV Type</span><strong data-summary="type">-</strong></div>
+            <div class="laptop-summary__row"><span>Purchase Age</span><strong data-summary="age">-</strong></div>
+            <div class="laptop-total"><small>Expected Price</small><strong data-summary-price>₹0</strong></div>
+            <button class="laptop-action" id="continueBtn" type="button" disabled>Continue <i class="bi bi-arrow-right"></i></button>
+            <div class="laptop-note"><i class="bi bi-info-circle"></i><span>Final value may change after physical verification during pickup.</span></div>
+          </div>
+        </aside>
+
       </div>
-    </header>
-
-    <!-- ===== Variant questions ===== -->
-    <section class="tvv-section">
-      <div class="tvv-card" data-flow>
-        <div class="tvv-head">
-          <h2 class="tvv-head__title">Tell us a few things about your TV</h2>
-          <p class="tvv-head__sub">Check the parameters that match your device</p>
-        </div>
-
-        <!-- 1. Screen size -->
-        <div class="tvv-group" data-group="size" data-required>
-          <div class="tvv-group__head">
-            <span class="tvv-group__num">1</span>
-            <span class="tvv-group__title">Screen size</span>
-          </div>
-          <p class="tvv-group__hint">Measured diagonally, corner to corner</p>
-          <div class="tvv-opts">
-            <button type="button" class="tvv-opt" data-value='32 inch'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>32 inch</strong><span>Compact size</span></span></button>
-            <button type="button" class="tvv-opt" data-value='43 inch'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>43 inch</strong><span>Popular living-room size</span></span></button>
-            <button type="button" class="tvv-opt" data-value='50 inch'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>50 inch</strong><span>Large 4K size</span></span></button>
-            <button type="button" class="tvv-opt" data-value='55 inch+'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>55 inch &amp; above</strong><span>Premium big screen</span></span></button>
-          </div>
-        </div>
-
-        <!-- 2. Panel type -->
-        <div class="tvv-group" data-group="panel" data-required>
-          <div class="tvv-group__head">
-            <span class="tvv-group__num">2</span>
-            <span class="tvv-group__title">Panel type</span>
-          </div>
-          <p class="tvv-group__hint">Resolution and display technology</p>
-          <div class="tvv-opts">
-            <button type="button" class="tvv-opt" data-value='HD / Full HD'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>HD / Full HD</strong><span>Standard panel</span></span></button>
-            <button type="button" class="tvv-opt" data-value='4K UHD'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>4K UHD</strong><span>High-demand resolution</span></span></button>
-            <button type="button" class="tvv-opt" data-value='QLED / OLED'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>QLED / OLED</strong><span>Premium display</span></span></button>
-          </div>
-        </div>
-
-        <!-- 3. TV type -->
-        <div class="tvv-group" data-group="type" data-required>
-          <div class="tvv-group__head">
-            <span class="tvv-group__num">3</span>
-            <span class="tvv-group__title">TV type</span>
-          </div>
-          <p class="tvv-group__hint">Does it run apps over WiFi?</p>
-          <div class="tvv-opts">
-            <button type="button" class="tvv-opt" data-value='Smart TV'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>Smart TV</strong><span>Apps, WiFi, Android / Google / webOS</span></span></button>
-            <button type="button" class="tvv-opt" data-value='Non-smart TV'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>Non-smart TV</strong><span>Standard TV, no apps</span></span></button>
-          </div>
-        </div>
-
-        <!-- 4. Purchase age -->
-        <div class="tvv-group" data-group="age" data-required>
-          <div class="tvv-group__head">
-            <span class="tvv-group__num">4</span>
-            <span class="tvv-group__title">Purchase age</span>
-          </div>
-          <p class="tvv-group__hint">How long since you bought it?</p>
-          <div class="tvv-opts">
-            <button type="button" class="tvv-opt" data-value='Under 1 year'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>Under 1 year</strong><span>In warranty</span></span></button>
-            <button type="button" class="tvv-opt" data-value='1 to 3 years'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>1 to 3 years</strong><span>Common resale window</span></span></button>
-            <button type="button" class="tvv-opt" data-value='3 years+'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>3 years+</strong><span>Older, still accepted</span></span></button>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- ===== Sticky continue bar ===== -->
-  <footer class="tvv-foot">
-    <div class="tvv-foot__inner">
-      <span class="tvv-foot__pick" id="tvvFootPick">Answer all 4 to continue</span>
-      <button class="tvv-btn" id="continueBtn" type="button" data-next="tv_condition.html" disabled>
-        Continue
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
-      </button>
     </div>
-  </footer>
+  </main>
 
   <!-- Master nav behaviour -->
   <script src="assets/js/script.js"></script>
   <script src="assets/js/brand.js"></script>
 
-  <!-- Page logic: grouped single-select + validation + persistence -->
+  <!-- Page logic: dropdown select + validation + persistence + live price -->
   <script>
     (function () {
       var flow = document.querySelector("[data-flow]");
       var groups = Array.prototype.slice.call(flow.querySelectorAll("[data-group]"));
       var btn = document.getElementById("continueBtn");
-      var footPick = document.getElementById("tvvFootPick");
 
       // Model name from URL / storage
       var params = new URLSearchParams(window.location.search);
@@ -225,40 +440,61 @@
       var saved = {};
       try { saved = (JSON.parse(localStorage.getItem("cashygo_tv")) || {}).variant || {}; } catch (e) {}
 
+      // Mock pricing model — replace with real backend pricing when available
+      var SIZE_BASE = { "32 inch": 4000, "43 inch": 7000, "50 inch": 10000, "55 inch+": 15000 };
+      var PANEL_MULT = { "HD / Full HD": 0.8, "4K UHD": 1.0, "QLED / OLED": 1.3 };
+      var TYPE_BONUS = { "Smart TV": 1000, "Non-smart TV": 0 };
+      var AGE_MULT = { "Under 1 year": 1.0, "1 to 3 years": 0.75, "3 years+": 0.5 };
+
+      function estimatePrice(data) {
+        if (!data.size || !data.panel || !data.type || !data.age) return 0;
+        var base = SIZE_BASE[data.size] || 0;
+        var panelMult = PANEL_MULT[data.panel] || 1;
+        var ageMult = AGE_MULT[data.age] || 1;
+        var typeBonus = TYPE_BONUS[data.type] || 0;
+        var price = Math.round((base * panelMult * ageMult) + typeBonus);
+        return price;
+      }
+
       function collect() {
         var out = {};
         groups.forEach(function (g) {
-          var sel = g.querySelector(".tvv-opt.is-selected");
-          out[g.getAttribute("data-group")] = sel ? sel.getAttribute("data-value") : null;
+          var sel = g.querySelector("[data-select]");
+          out[g.getAttribute("data-group")] = sel && sel.value ? sel.value : null;
         });
         return out;
+      }
+
+      function updateSummary(data) {
+        groups.forEach(function (g) {
+          var key = g.getAttribute("data-group");
+          var target = document.querySelector('[data-summary="' + key + '"]');
+          if (target) target.textContent = data[key] || "-";
+        });
+        var priceEl = document.querySelector("[data-summary-price]");
+        if (priceEl) {
+          var price = estimatePrice(data);
+          priceEl.textContent = "₹" + price.toLocaleString("en-IN");
+        }
       }
 
       function validate() {
         var data = collect();
         var done = groups.every(function (g) { return data[g.getAttribute("data-group")]; });
         btn.disabled = !done;
-        var picked = groups.map(function (g) { return data[g.getAttribute("data-group")]; }).filter(Boolean);
-        footPick.innerHTML = done
-          ? "Selected: <strong>" + picked.join(" · ") + "</strong>"
-          : "Answer all 4 to continue";
+        updateSummary(data);
       }
 
       groups.forEach(function (g) {
         var key = g.getAttribute("data-group");
-        g.querySelectorAll(".tvv-opt").forEach(function (opt) {
-          var val = opt.getAttribute("data-value");
-          if (saved[key] === val) opt.classList.add("is-selected");
-          opt.setAttribute("role", "radio");
-          opt.setAttribute("aria-checked", saved[key] === val ? "true" : "false");
-          opt.addEventListener("click", function () {
-            g.querySelectorAll(".tvv-opt").forEach(function (o) {
-              var on = o === opt;
-              o.classList.toggle("is-selected", on);
-              o.setAttribute("aria-checked", on ? "true" : "false");
-            });
-            validate();
-          });
+        var sel = g.querySelector("[data-select]");
+        if (saved[key]) {
+          sel.value = saved[key];
+          sel.classList.remove("is-placeholder");
+        }
+        sel.addEventListener("change", function () {
+          sel.classList.toggle("is-placeholder", !sel.value);
+          validate();
         });
       });
 
@@ -268,8 +504,9 @@
         try { state = JSON.parse(localStorage.getItem("cashygo_tv")) || {}; } catch (e) {}
         state.model = model;
         state.variant = collect();
+        state.price = estimatePrice(collect());
         localStorage.setItem("cashygo_tv", JSON.stringify(state));
-        window.location.href = btn.getAttribute("data-next");
+        window.location.href = "tv_condition.html";
       });
 
       validate();

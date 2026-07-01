@@ -12,6 +12,364 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/brand.css">
   <link rel="stylesheet" href="assets/css/tv_flow.css">
+  <style>
+     :root{
+    --ink:#0f2419;
+    --ink-soft:#5b6d64;
+    --line:#e3ebe6;
+    --panel:#ffffff;
+    --page:#f6f9f7;
+    --mint:#eafaf3;
+    --mint-line:#c9ece0;
+    --brand:#0d8c60;
+    --brand-dark:#0a6e4b;
+    --brand-deep:#08301f;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:"DM Sans", system-ui, sans-serif;
+    background:var(--page);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
+
+  /* ===== top strip ===== */
+  .topbar{
+    background:var(--brand-deep);
+    color:#eafaf3;
+    font-size:.82rem;
+    letter-spacing:.02em;
+    text-align:center;
+    padding:.5rem 1rem;
+  }
+
+  /* ===== breadcrumb ===== */
+  .crumbs{
+    max-width:1240px;
+    margin:1.4rem auto .2rem;
+    padding:0 1.5rem;
+    display:flex;
+    align-items:center;
+    gap:.4rem;
+    font-size:.85rem;
+    color:var(--ink-soft);
+  }
+  .crumbs a{text-decoration:none;color:var(--ink-soft);}
+  .crumbs a:hover{color:var(--brand-dark);}
+  .crumbs .is-current{color:var(--ink);font-weight:600;}
+  .crumbs i{font-size:.7rem;opacity:.6;}
+
+  /* ===== page heading ===== */
+  .page-head{
+    max-width:1240px;
+    margin:0 auto;
+    padding:.6rem 1.5rem 1.4rem;
+  }
+  .page-head h1{
+    font-family:"DM Serif Display", serif;
+    font-weight:400;
+    font-size:clamp(1.6rem, 2.4vw, 2.2rem);
+    margin:0 0 .35rem;
+    color:var(--brand-deep);
+  }
+  .page-head p{
+    margin:0;
+    color:var(--ink-soft);
+    font-size:.98rem;
+  }
+
+  /* ===== layout ===== */
+  .layout{
+    max-width:1240px;
+    margin:0 auto 4rem;
+    padding:0 1.5rem;
+    display:grid;
+    grid-template-columns: 250px minmax(0,1fr) 300px;
+    gap:1.5rem;
+    align-items:start;
+  }
+
+  /* ---- left: device panel ---- */
+  .device-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:1.5rem 1.4rem;
+    position:sticky;
+    top:1.5rem;
+  }
+  .device-card__art{
+    background:linear-gradient(160deg, var(--mint), #ffffff);
+    border-radius:12px;
+    height:150px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:1.2rem;
+  }
+  .device-card__art img{max-width:78%;max-height:78%;object-fit:contain;}
+  .device-card__eyebrow{
+    font-size:.78rem;
+    color:var(--ink-soft);
+    margin:0 0 .2rem;
+  }
+  .device-card__name{
+    font-size:1.15rem;
+    font-weight:700;
+    margin:0 0 .9rem;
+    color:var(--brand-deep);
+  }
+  .device-card__badge{
+    display:inline-flex;
+    align-items:center;
+    gap:.4rem;
+    background:var(--mint);
+    border:1px solid var(--mint-line);
+    color:var(--brand-dark);
+    font-size:.8rem;
+    font-weight:600;
+    padding:.4rem .7rem;
+    border-radius:999px;
+    margin-bottom:1.1rem;
+  }
+  .device-card__list{
+    list-style:none;
+    margin:0;
+    padding:1rem 0 0;
+    border-top:1px solid var(--line);
+    display:flex;
+    flex-direction:column;
+    gap:.65rem;
+  }
+  .device-card__list li{
+    display:flex;
+    align-items:center;
+    gap:.55rem;
+    font-size:.85rem;
+    color:var(--ink-soft);
+  }
+  .device-card__list i{color:var(--brand);font-size:1rem;}
+
+  /* ---- middle: question groups ---- */
+  .qcard{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:1.6rem 1.7rem 1.8rem;
+  }
+  .qcard__head{margin-bottom:1.4rem;}
+  .qcard__head h2{
+    font-size:1.05rem;
+    margin:0 0 .25rem;
+    font-weight:700;
+  }
+  .qcard__head p{
+    margin:0;
+    font-size:.88rem;
+    color:var(--ink-soft);
+  }
+
+  .qgroup{padding:1.4rem 0;border-top:1px solid var(--line);}
+  .qgroup:first-of-type{border-top:none;padding-top:0;}
+
+  .qgroup__head{
+    display:flex;
+    align-items:center;
+    gap:.7rem;
+    margin-bottom:.2rem;
+  }
+  .qgroup__num{
+    width:26px;height:26px;
+    border-radius:50%;
+    background:var(--brand-dark);
+    color:#fff;
+    font-size:.8rem;
+    font-weight:700;
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+  }
+  .qgroup__title{font-weight:700;font-size:.98rem;}
+  .qgroup__count{
+    margin-left:auto;
+    font-size:.78rem;
+    color:var(--brand-dark);
+    font-weight:600;
+  }
+  .qgroup__hint{
+    margin:.3rem 0 .9rem 2.4rem;
+    font-size:.84rem;
+    color:var(--ink-soft);
+  }
+
+  .qopts{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(130px,1fr));
+    gap:.7rem;
+  }
+
+  .qopt{
+    display:flex;
+    align-items:flex-start;
+    gap:.7rem;
+    text-align:left;
+    background:#fff;
+    border:1.5px solid var(--line);
+    border-radius:10px;
+    padding:.75rem .85rem;
+    cursor:pointer;
+    font-family:inherit;
+    transition:border-color .15s ease, background .15s ease, box-shadow .15s ease;
+  }
+  .qopt:hover{border-color:var(--mint-line);background:var(--mint);}
+  .qopt:focus-visible{outline:2px solid var(--brand);outline-offset:2px;}
+
+  .qopt__box{
+    flex-shrink:0;
+    width:19px;height:19px;
+    border-radius:5px;
+    border:1.5px solid #c3cfc8;
+    margin-top:.15rem;
+    display:flex;align-items:center;justify-content:center;
+    background:#fff;
+    transition:background .15s ease, border-color .15s ease;
+  }
+  .qopt__box i{
+    font-size:.72rem;
+    color:#fff;
+    opacity:0;
+    transform:scale(.6);
+    transition:opacity .12s ease, transform .12s ease;
+  }
+  .qopt.is-selected{
+    border-color:var(--brand);
+    background:var(--mint);
+    box-shadow:0 0 0 1px var(--brand) inset;
+  }
+  .qopt.is-selected .qopt__box{
+    background:var(--brand);
+    border-color:var(--brand);
+  }
+  .qopt.is-selected .qopt__box i{opacity:1;transform:scale(1);}
+
+  .qopt__label{display:flex;flex-direction:column;gap:.15rem;}
+  .qopt__label strong{font-size:.9rem;font-weight:700;}
+  .qopt__label span{font-size:.78rem;color:var(--ink-soft);}
+
+  /* ---- right: summary sidebar ---- */
+  .summary{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:1.5rem 1.4rem 1.6rem;
+    position:sticky;
+    top:1.5rem;
+  }
+  .summary h3{
+    font-size:1.1rem;
+    margin:0 0 .3rem;
+    font-weight:700;
+  }
+  .summary > p{
+    margin:0 0 1.1rem;
+    font-size:.85rem;
+    color:var(--ink-soft);
+  }
+  .summary__rows{
+    border-top:1px solid var(--line);
+    padding-top:.9rem;
+    display:flex;
+    flex-direction:column;
+    gap:.75rem;
+  }
+  .summary__row{
+    display:flex;
+    justify-content:space-between;
+    gap:.6rem;
+    font-size:.85rem;
+  }
+  .summary__row dt{color:var(--ink-soft);}
+  .summary__row dd{
+    margin:0;
+    font-weight:700;
+    text-align:right;
+    max-width:58%;
+  }
+  .summary__row dd.is-empty{color:#b9c3bd;font-weight:500;}
+  .summary__faults{
+    display:flex;
+    flex-wrap:wrap;
+    gap:.35rem;
+    justify-content:flex-end;
+  }
+  .summary__faults span{
+    background:var(--mint);
+    color:var(--brand-dark);
+    border:1px solid var(--mint-line);
+    font-size:.72rem;
+    font-weight:600;
+    padding:.15rem .5rem;
+    border-radius:999px;
+  }
+
+  .summary__price{
+    margin-top:1.3rem;
+    background:var(--mint);
+    border:1px solid var(--mint-line);
+    border-radius:12px;
+    padding:1rem 1.1rem;
+  }
+  .summary__price p{
+    margin:0 0 .15rem;
+    font-size:.8rem;
+    color:var(--brand-dark);
+    font-weight:700;
+  }
+  .summary__price strong{
+    font-size:1.9rem;
+    color:var(--brand-deep);
+    font-weight:800;
+  }
+
+  .summary__btn{
+    margin-top:1.2rem;
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:.5rem;
+    border:none;
+    border-radius:10px;
+    padding:.85rem 1rem;
+    font-size:.95rem;
+    font-weight:700;
+    font-family:inherit;
+    color:#fff;
+    background:linear-gradient(135deg, var(--brand), var(--brand-dark));
+    cursor:pointer;
+    transition:transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+  }
+  .summary__btn:not(:disabled):hover{transform:translateY(-1px);box-shadow:0 8px 20px -8px rgba(10,110,75,.55);}
+  .summary__btn:disabled{opacity:.45;cursor:not-allowed;}
+  .summary__btn svg{width:18px;height:18px;}
+
+  .summary__note{
+    margin:.7rem 0 0;
+    font-size:.76rem;
+    color:var(--ink-soft);
+    text-align:center;
+  }
+
+  @media (max-width: 980px){
+    .layout{grid-template-columns:1fr;}
+    .device-card, .summary{position:static;}
+    .qopts{grid-template-columns:1fr;}
+    .qgroup__hint, .qopts{margin-left:0;}
+  }
+  </style>
 </head>
 
 <body>
@@ -87,140 +445,199 @@
     </div>
   </nav>
 
-  <main>
-    <!-- ===== Breadcrumb ===== -->
-    <nav class="tvv-crumbs" aria-label="Breadcrumb">
-      <a href="tv_brand.html">Brand</a>
-      <i class="bi bi-chevron-right" aria-hidden="true"></i>
-      <a href="tv_model.html">Model</a>
-      <i class="bi bi-chevron-right" aria-hidden="true"></i>
-      <a href="tv_verient.html">Variant</a>
-      <i class="bi bi-chevron-right" aria-hidden="true"></i>
-      <span class="is-current" aria-current="page">Condition</span>
-    </nav>
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="tv_brand.html">Brand</a>
+    <i class="bi bi-chevron-right" aria-hidden="true"></i>
+    <a href="tv_model.html">Model</a>
+    <i class="bi bi-chevron-right" aria-hidden="true"></i>
+    <a href="tv_verient.html">Variant</a>
+    <i class="bi bi-chevron-right" aria-hidden="true"></i>
+    <span class="is-current" aria-current="page">Condition</span>
+  </nav>
 
-    <!-- ===== Hero ===== -->
-    <header class="cashygo-hero">
-      <div class="cashygo-hero__inner">
-        <div class="cashygo-hero__left">
-          <p class="cashygo-hero__badge">Condition</p>
-          <h1 class="cashygo-hero__title">
-            What condition is your TV in?<br>
-            <em>Honest answers get an accurate quote.</em>
-          </h1>
-          <p class="cashygo-hero__sub">Pick the closest body, display and accessory status, and flag any functional faults.</p>
-          <div class="tvv-hero__actions">
-            <a href="tv_verient.html" class="cashygo-hero__brand-btn"><i class="bi bi-arrow-left"></i> Change variant</a>
-            <span class="tvv-hero__chip"><i class="bi bi-tv"></i> <span data-model-name>Your TV</span></span>
-          </div>
+  <header class="page-head">
+    <h1>What condition is your TV in?</h1>
+    <p>Choose the closest option in each section — honest answers get the most accurate quote.</p>
+  </header>
+
+  <main class="layout" data-flow>
+
+    <!-- LEFT: device summary panel -->
+    <aside class="device-card">
+      <div class="device-card__art">
+        <img src="assets/images/home-page-img/brand-img/Tv.webp" alt="" onerror="this.style.display='none'">
+      </div>
+      <p class="device-card__eyebrow">Selling</p>
+      <p class="device-card__name" data-model-name>Your TV</p>
+      <span class="device-card__badge"><i class="bi bi-shield-check"></i> Secure data handling</span>
+      <ul class="device-card__list">
+        <li><i class="bi bi-truck"></i> Free doorstep pickup</li>
+        <li><i class="bi bi-cash-coin"></i> Fast payment after check</li>
+        <li><i class="bi bi-award"></i> Best resale value</li>
+      </ul>
+    </aside>
+
+    <!-- MIDDLE: condition questions -->
+    <section class="qcard">
+      <div class="qcard__head">
+        <h2>Tell us the condition of your TV</h2>
+        <p>Pick one option per section, plus any functional faults</p>
+      </div>
+
+      <!-- 1. Physical condition -->
+      <div class="qgroup" data-group="condition" data-required>
+        <div class="qgroup__head">
+          <span class="qgroup__num">1</span>
+          <span class="qgroup__title">Physical condition</span>
         </div>
-        <div class="cashygo-hero__right" aria-hidden="true">
-          <div class="cashygo-hero__ring"></div>
-          <div class="cashygo-hero__phone">
-            <img src="assets/images/home-page-img/brand-img/Tv.webp" alt="">
-          </div>
-          <ul class="cashygo-hero__tags">
-            <li class="cashygo-hero__tag">Instant quote</li>
-            <li class="cashygo-hero__tag">Best price</li>
-            <li class="cashygo-hero__tag">Free pickup</li>
-          </ul>
+        <p class="qgroup__hint">Check the body for dents, cracks and scratches</p>
+        <div class="qopts">
+          <button type="button" class="qopt" data-value="Excellent">
+            <span class="qopt__box"><i class="bi bi-check-lg"></i></span>
+            <span class="qopt__label"><strong>Excellent</strong><span>No dents, cracks or scratches</span></span>
+          </button>
+          <button type="button" class="qopt" data-value="Average">
+            <span class="qopt__box"><i class="bi bi-check-lg"></i></span>
+            <span class="qopt__label"><strong>Average</strong><span>Minor usage marks, works normally</span></span>
+          </button>
+          <button type="button" class="qopt" data-value="Damaged">
+            <span class="qopt__box"><i class="bi bi-check-lg"></i></span>
+            <span class="qopt__label"><strong>Damaged</strong><span>Cracked frame, broken stand or body</span></span>
+          </button>
         </div>
       </div>
-    </header>
 
-    <!-- ===== Condition questions ===== -->
-    <section class="tvv-section">
-      <div class="tvv-card" data-flow>
-        <div class="tvv-head">
-          <h2 class="tvv-head__title">Tell us the condition of your TV</h2>
-          <p class="tvv-head__sub">Choose the closest option in each section for an accurate quote</p>
+      <!-- 2. Display condition -->
+      <div class="qgroup" data-group="display" data-required>
+        <div class="qgroup__head">
+          <span class="qgroup__num">2</span>
+          <span class="qgroup__title">Display condition</span>
         </div>
-
-        <!-- 1. Physical condition -->
-        <div class="tvv-group" data-group="condition" data-required>
-          <div class="tvv-group__head">
-            <span class="tvv-group__num">1</span>
-            <span class="tvv-group__title">Physical condition</span>
-          </div>
-          <p class="tvv-group__hint">Check the body for dents, cracks and scratches</p>
-          <div class="tvv-opts">
-            <button type="button" class="tvv-opt" data-value='Excellent'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>Excellent</strong><span>No dents, cracks or scratches</span></span></button>
-            <button type="button" class="tvv-opt" data-value='Average'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>Average</strong><span>Minor usage marks, works normally</span></span></button>
-            <button type="button" class="tvv-opt" data-value='Damaged'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>Damaged</strong><span>Cracked frame, broken stand or body</span></span></button>
-          </div>
+        <p class="qgroup__hint">Check the screen for spots, lines and dead pixels</p>
+        <div class="qopts">
+          <button type="button" class="qopt" data-value="Display perfect">
+            <span class="qopt__box"><i class="bi bi-check-lg"></i></span>
+            <span class="qopt__label"><strong>Display perfect</strong><span>No spots, lines or dead pixels</span></span>
+          </button>
+          <button type="button" class="qopt" data-value="Minor display marks">
+            <span class="qopt__box"><i class="bi bi-check-lg"></i></span>
+            <span class="qopt__label"><strong>Minor marks</strong><span>Small spots or a few dead pixels</span></span>
+          </button>
+          <button type="button" class="qopt" data-value="Major display issue">
+            <span class="qopt__box"><i class="bi bi-check-lg"></i></span>
+            <span class="qopt__label"><strong>Major issue</strong><span>Lines, black screen or broken panel</span></span>
+          </button>
         </div>
+      </div>
 
-        <!-- 2. Display condition -->
-        <div class="tvv-group" data-group="display" data-required>
-          <div class="tvv-group__head">
-            <span class="tvv-group__num">2</span>
-            <span class="tvv-group__title">Display condition</span>
-          </div>
-          <p class="tvv-group__hint">Check the screen for spots, lines and dead pixels</p>
-          <div class="tvv-opts">
-            <button type="button" class="tvv-opt" data-value='Display perfect'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>Display perfect</strong><span>No spots, lines or dead pixels</span></span></button>
-            <button type="button" class="tvv-opt" data-value='Minor display marks'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>Minor marks</strong><span>Small spots or a few dead pixels</span></span></button>
-            <button type="button" class="tvv-opt" data-value='Major display issue'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>Major issue</strong><span>Lines, black screen or broken panel</span></span></button>
-          </div>
+      <!-- 3. Remote and stand -->
+      <div class="qgroup" data-group="accessories" data-required>
+        <div class="qgroup__head">
+          <span class="qgroup__num">3</span>
+          <span class="qgroup__title">Remote and stand</span>
         </div>
-
-        <!-- 3. Remote and stand -->
-        <div class="tvv-group" data-group="accessories" data-required>
-          <div class="tvv-group__head">
-            <span class="tvv-group__num">3</span>
-            <span class="tvv-group__title">Remote and stand</span>
-          </div>
-          <p class="tvv-group__hint">What's available with the TV?</p>
-          <div class="tvv-opts">
-            <button type="button" class="tvv-opt" data-value='Remote and stand available'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>Remote + stand</strong><span>Original remote and stand available</span></span></button>
-            <button type="button" class="tvv-opt" data-value='Remote missing'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>Remote missing</strong><span>Stand available, remote missing</span></span></button>
-            <button type="button" class="tvv-opt" data-value='No remote or stand'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>No remote / stand</strong><span>TV only, no remote or stand</span></span></button>
-          </div>
+        <p class="qgroup__hint">What's available with the TV?</p>
+        <div class="qopts">
+          <button type="button" class="qopt" data-value="Remote and stand available">
+            <span class="qopt__box"><i class="bi bi-check-lg"></i></span>
+            <span class="qopt__label"><strong>Remote + stand</strong><span>Original remote and stand available</span></span>
+          </button>
+          <button type="button" class="qopt" data-value="Remote missing">
+            <span class="qopt__box"><i class="bi bi-check-lg"></i></span>
+            <span class="qopt__label"><strong>Remote missing</strong><span>Stand available, remote missing</span></span>
+          </button>
+          <button type="button" class="qopt" data-value="No remote or stand">
+            <span class="qopt__box"><i class="bi bi-check-lg"></i></span>
+            <span class="qopt__label"><strong>No remote / stand</strong><span>TV only, no remote or stand</span></span>
+          </button>
         </div>
+      </div>
 
-        <!-- 4. Functional condition (multi-select) -->
-        <div class="tvv-group" data-group="functional" data-mode="multi">
-          <div class="tvv-group__head">
-            <span class="tvv-group__num">4</span>
-            <span class="tvv-group__title">Functional condition</span>
-            <span class="tvv-count" data-count></span>
-          </div>
-          <p class="tvv-group__hint">Select any faults — or confirm everything works</p>
-          <div class="tvv-opts">
-            <button type="button" class="tvv-opt" data-multi data-exclusive data-value='Everything works'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>Everything works</strong><span>No functional faults</span></span></button>
-            <button type="button" class="tvv-opt" data-multi data-value='Button not working'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>Button not working</strong><span>Physical buttons unresponsive</span></span></button>
-            <button type="button" class="tvv-opt" data-multi data-value='USB/HDMI port not working'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>USB / HDMI port</strong><span>One or more ports faulty</span></span></button>
-            <button type="button" class="tvv-opt" data-multi data-value='Speaker faulty'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>Speaker faulty</strong><span>Cracked or distorted sound</span></span></button>
-            <button type="button" class="tvv-opt" data-multi data-value='Bluetooth faulty'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>Bluetooth faulty</strong><span>Won't pair or connect</span></span></button>
-            <button type="button" class="tvv-opt" data-multi data-value='Wifi faulty'><span class="tvv-opt__mark"></span><span class="tvv-opt__label"><strong>Wi‑Fi faulty</strong><span>Can't connect to network</span></span></button>
-          </div>
+      <!-- 4. Functional condition (multi-select checkboxes) -->
+      <div class="qgroup" data-group="functional" data-mode="multi">
+        <div class="qgroup__head">
+          <span class="qgroup__num">4</span>
+          <span class="qgroup__title">Functional condition</span>
+          <span class="qgroup__count" data-count></span>
+        </div>
+        <p class="qgroup__hint">Select any faults — or confirm everything works</p>
+        <div class="qopts">
+          <button type="button" class="qopt" data-multi data-exclusive data-value="Everything works">
+            <span class="qopt__box"><i class="bi bi-check-lg"></i></span>
+            <span class="qopt__label"><strong>Everything works</strong><span>No functional faults</span></span>
+          </button>
+          <button type="button" class="qopt" data-multi data-value="Button not working">
+            <span class="qopt__box"><i class="bi bi-check-lg"></i></span>
+            <span class="qopt__label"><strong>Button not working</strong><span>Physical buttons unresponsive</span></span>
+          </button>
+          <button type="button" class="qopt" data-multi data-value="USB/HDMI port not working">
+            <span class="qopt__box"><i class="bi bi-check-lg"></i></span>
+            <span class="qopt__label"><strong>USB / HDMI port</strong><span>One or more ports faulty</span></span>
+          </button>
+          <button type="button" class="qopt" data-multi data-value="Speaker faulty">
+            <span class="qopt__box"><i class="bi bi-check-lg"></i></span>
+            <span class="qopt__label"><strong>Speaker faulty</strong><span>Cracked or distorted sound</span></span>
+          </button>
+          <button type="button" class="qopt" data-multi data-value="Bluetooth faulty">
+            <span class="qopt__box"><i class="bi bi-check-lg"></i></span>
+            <span class="qopt__label"><strong>Bluetooth faulty</strong><span>Won't pair or connect</span></span>
+          </button>
+          <button type="button" class="qopt" data-multi data-value="Wifi faulty">
+            <span class="qopt__box"><i class="bi bi-check-lg"></i></span>
+            <span class="qopt__label"><strong>Wi-Fi faulty</strong><span>Can't connect to network</span></span>
+          </button>
         </div>
       </div>
     </section>
-  </main>
 
-  <!-- ===== Sticky continue bar ===== -->
-  <footer class="tvv-foot">
-    <div class="tvv-foot__inner">
-      <span class="tvv-foot__pick" id="tvvFootPick">Answer the first 3 sections to continue</span>
-      <button class="tvv-btn" id="continueBtn" type="button" data-next="tv_Questions.html" disabled>
+    <!-- RIGHT: your selection summary -->
+    <aside class="summary">
+      <h3>Your Selection</h3>
+      <p>Review your TV condition before we calculate your quote.</p>
+
+      <dl class="summary__rows">
+        <div class="summary__row">
+          <dt>Model</dt>
+          <dd data-sum="model" class="is-empty">–</dd>
+        </div>
+        <div class="summary__row">
+          <dt>Physical</dt>
+          <dd data-sum="condition" class="is-empty">–</dd>
+        </div>
+        <div class="summary__row">
+          <dt>Display</dt>
+          <dd data-sum="display" class="is-empty">–</dd>
+        </div>
+        <div class="summary__row">
+          <dt>Accessories</dt>
+          <dd data-sum="accessories" class="is-empty">–</dd>
+        </div>
+        <div class="summary__row">
+          <dt>Faults</dt>
+          <dd data-sum="functional" class="summary__faults"><span class="is-empty" style="background:none;border:none;padding:0;">–</span></dd>
+        </div>
+      </dl>
+
+      <div class="summary__price">
+        <p>Expected Price</p>
+        <strong>₹0</strong>
+      </div>
+
+      <button class="summary__btn" id="continueBtn" type="button" data-next="tv_Questions.html" disabled>
         Continue
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
       </button>
-    </div>
-  </footer>
+      <p class="summary__note" id="footNote">Answer the first 3 sections to continue</p>
+    </aside>
 
-  <!-- Master nav behaviour -->
-  <script src="assets/js/script.js"></script>
-  <script src="assets/js/brand.js"></script>
+  </main>
 
-  <!-- Page logic: single + multi groups, validation, persistence -->
   <script>
     (function () {
       var flow = document.querySelector("[data-flow]");
       var groups = Array.prototype.slice.call(flow.querySelectorAll("[data-group]"));
       var btn = document.getElementById("continueBtn");
-      var footPick = document.getElementById("tvvFootPick");
+      var footNote = document.getElementById("footNote");
 
       var params = new URLSearchParams(window.location.search);
       var model = params.get("model") || localStorage.getItem("selectedModel") || "Your TV";
@@ -232,7 +649,7 @@
       function isMulti(g) { return g.getAttribute("data-mode") === "multi"; }
 
       function selectedValues(g) {
-        return Array.prototype.map.call(g.querySelectorAll(".tvv-opt.is-selected"), function (o) { return o.getAttribute("data-value"); });
+        return Array.prototype.map.call(g.querySelectorAll(".qopt.is-selected"), function (o) { return o.getAttribute("data-value"); });
       }
 
       function collect() {
@@ -252,24 +669,61 @@
         el.textContent = n ? n + " selected" : "";
       }
 
+      function setSummaryText(key, text) {
+        var el = document.querySelector('[data-sum="' + key + '"]');
+        if (!el) return;
+        if (text) {
+          el.textContent = text;
+          el.classList.remove("is-empty");
+        } else {
+          el.textContent = "–";
+          el.classList.add("is-empty");
+        }
+      }
+
+      function renderSummary(data) {
+        setSummaryText("model", model);
+        setSummaryText("condition", data.condition);
+        setSummaryText("display", data.display);
+        setSummaryText("accessories", data.accessories);
+
+        var faultsEl = document.querySelector('[data-sum="functional"]');
+        faultsEl.innerHTML = "";
+        var faults = data.functional || [];
+        if (!faults.length) {
+          var span = document.createElement("span");
+          span.textContent = "–";
+          span.style.background = "none";
+          span.style.border = "none";
+          span.style.padding = "0";
+          span.style.color = "#b9c3bd";
+          faultsEl.appendChild(span);
+        } else {
+          faults.forEach(function (f) {
+            var span = document.createElement("span");
+            span.textContent = f;
+            faultsEl.appendChild(span);
+          });
+        }
+      }
+
       function validate() {
         var data = collect();
         var done = groups.every(function (g) {
           return isMulti(g) || !g.hasAttribute("data-required") || data[g.getAttribute("data-group")];
         });
         btn.disabled = !done;
-        var picked = groups.filter(function (g) { return !isMulti(g); })
-          .map(function (g) { return data[g.getAttribute("data-group")]; }).filter(Boolean);
-        footPick.innerHTML = done
-          ? "Selected: <strong>" + picked.join(" · ") + "</strong>"
+        footNote.textContent = done
+          ? "All set — review your selection and continue"
           : "Answer the first 3 sections to continue";
+        renderSummary(data);
       }
 
       groups.forEach(function (g) {
         var key = g.getAttribute("data-group");
         var multi = isMulti(g);
 
-        g.querySelectorAll(".tvv-opt").forEach(function (opt) {
+        g.querySelectorAll(".qopt").forEach(function (opt) {
           var val = opt.getAttribute("data-value");
           var on = multi ? (Array.isArray(saved[key]) && saved[key].indexOf(val) > -1) : (saved[key] === val);
           if (on) opt.classList.add("is-selected");
@@ -280,14 +734,14 @@
             if (multi) {
               var turningOn = !opt.classList.contains("is-selected");
               if (opt.hasAttribute("data-exclusive")) {
-                g.querySelectorAll(".tvv-opt").forEach(function (o) { if (o !== opt) { o.classList.remove("is-selected"); o.setAttribute("aria-checked", "false"); } });
+                g.querySelectorAll(".qopt").forEach(function (o) { if (o !== opt) { o.classList.remove("is-selected"); o.setAttribute("aria-checked", "false"); } });
               } else {
-                g.querySelectorAll(".tvv-opt[data-exclusive]").forEach(function (o) { o.classList.remove("is-selected"); o.setAttribute("aria-checked", "false"); });
+                g.querySelectorAll(".qopt[data-exclusive]").forEach(function (o) { o.classList.remove("is-selected"); o.setAttribute("aria-checked", "false"); });
               }
               opt.classList.toggle("is-selected", turningOn);
               opt.setAttribute("aria-checked", turningOn ? "true" : "false");
             } else {
-              g.querySelectorAll(".tvv-opt").forEach(function (o) {
+              g.querySelectorAll(".qopt").forEach(function (o) {
                 var sel = o === opt;
                 o.classList.toggle("is-selected", sel);
                 o.setAttribute("aria-checked", sel ? "true" : "false");
@@ -313,6 +767,6 @@
       validate();
     })();
   </script>
-</body>
 
+</body>
 </html>
